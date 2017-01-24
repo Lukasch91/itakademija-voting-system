@@ -11,7 +11,7 @@ var DistrictListComponent = React.createClass({
                 <tr key={index}>
                 <td>{district.title}</td>
                 <td>{district.address}</td>
-                <td>{district.voters}</td>
+                <td>{district.numberOfVoters}</td>
                 <td>{rep_name}</td>
                 <td><button type="button" className="btn btn-primary" onClick={self.props.onAdministerRepresentative(district)}>Administruoti atstovą</button></td>
                 <td>

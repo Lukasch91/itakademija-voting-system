@@ -9,7 +9,7 @@ var RegisterVotesMultiComponent = React.createClass( {
                         className="form-control"
                         type="number"
                         value={self.props.election.votes}
-                        onChange={self.props.onFieldChange( 'votes' )}
+                        onChange={self.props.onFieldChange( 'votes' + index )}
                         /><br />
                 </div>
             );
