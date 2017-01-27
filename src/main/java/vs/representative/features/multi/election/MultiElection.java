@@ -26,7 +26,7 @@ public class MultiElection {
 	private Integer votes;
 	
 	@Column
-	private Date enetered_date;
+	private Date entered_date;
 	
 	@Column
 	private Date published_date;
@@ -44,12 +44,12 @@ public class MultiElection {
 		
 	}
 
-	public MultiElection(Integer id, Integer votes, Date enetered_date, Date published_date, Date deleted_date,
+	public MultiElection(Integer id, Integer votes, Date entered_date, Date published_date, Date deleted_date,
 			Party party, District district) {
 		super();
 		this.id = id;
 		this.votes = votes;
-		this.enetered_date = enetered_date;
+		this.entered_date = entered_date;
 		this.published_date = published_date;
 		this.deleted_date = deleted_date;
 		this.party = party;
@@ -72,12 +72,12 @@ public class MultiElection {
 		this.votes = votes;
 	}
 
-	public Date getEnetered_date() {
-		return enetered_date;
+	public Date getEntered_date() {
+		return entered_date;
 	}
 
-	public void setEnetered_date(Date enetered_date) {
-		this.enetered_date = enetered_date;
+	public void setEntered_date(Date entered_date) {
+		this.entered_date = entered_date;
 	}
 
 	public Date getPublished_date() {

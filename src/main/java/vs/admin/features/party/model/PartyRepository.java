@@ -37,7 +37,7 @@ public class PartyRepository {
 	
 	public Party findPartyById(Integer id) {
 		Party party = entityManager.find(Party.class, id);
-		if (party.getDeletedTime() == null) {
+		if ((party.getDeletedTime() == null)&&(party != null)) {
 			return party;
 		}
 		return null;

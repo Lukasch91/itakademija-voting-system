@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 import vs.admin.features.admin.district.District;
 
 @Entity
@@ -32,6 +34,7 @@ public class Constituency {
 	private Date deletedTime;
 
 	@OneToMany(cascade = CascadeType.ALL)
+	@Where(clause = "deleted_time is null")
 	@JoinColumn(name = "constituency_id", referencedColumnName = "id")
 	private List<District> districts = new ArrayList<>();
 

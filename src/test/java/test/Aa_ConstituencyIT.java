@@ -1,12 +1,10 @@
 package test;
 
-import static org.hamcrest.CoreMatchers.is;
 
-import java.util.List;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
-import org.junit.Ignore;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +13,6 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -25,13 +21,12 @@ import net.minidev.json.JSONObject; //string to JSON
 import net.minidev.json.parser.JSONParser; //string to JSON
 import net.minidev.json.parser.ParseException; //string to JSON
 import vs.Application;
-import vs.admin.features.admin.constituency.Constituency;
 import vs.admin.features.admin.constituency.ConstituencyRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { A_ConstituencyIT.Config.class,
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { Aa_ConstituencyIT.Config.class,
 		Application.class })
-public class A_ConstituencyIT {
+public class Aa_ConstituencyIT {
 
 	private static final String URI = "/api/constituency";
 	JSONParser parser = new JSONParser(0);
@@ -45,37 +40,6 @@ public class A_ConstituencyIT {
 		// Verify
 		Assert.assertThat(response.getStatusCode(), CoreMatchers.is(HttpStatus.OK));
 	}
-
-	private List<Constituency> findAllConstituenciesTest() {
-		// Setup
-		ParameterizedTypeReference<List<Constituency>> constituencies = new ParameterizedTypeReference<List<Constituency>>() {
-		};
-		// Execute
-		ResponseEntity<List<Constituency>> response = restTemplate.exchange(URI, HttpMethod.GET, null, constituencies);
-
-		// Verify
-		Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK));
-
-		return response.getBody();
-	}
-
-	private Constituency findConstituencyById(final int id) {
-		// Setup
-		ParameterizedTypeReference<Constituency> constituency = new ParameterizedTypeReference<Constituency>() {
-		};
-		// Exercise
-		ResponseEntity<Constituency> response = restTemplate.exchange(URI + "/" + id, HttpMethod.GET, null,
-				constituency);
-		// Verify
-		Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK));
-
-		return response.getBody();
-	}
-
-	// @Before
-	// public void setUp() throws Exception {
-	// createConstituencies();
-	// }
 
 	@Test
 	public void createConstituencies() {
@@ -99,24 +63,6 @@ public class A_ConstituencyIT {
 		createOrUpdateConstituency(stringToJson(constituency_08));
 	}
 
-	@Ignore
-	@Test
-	public void findAllUndeletedConstituencies() {
-
-		List<Constituency> constituencies = findAllConstituenciesTest();
-
-		Assert.assertThat(constituencies.size(), is(2));
-	}
-
-	@Ignore
-	@Test
-	public void findConstituency() {
-
-		Constituency foundById = findConstituencyById(2);
-
-		Assert.assertThat(foundById.getTitle(), is("Second"));
-	}
-
 	private JSONObject stringToJson(final String jstring) {
 		JSONObject json = null;
 		try {
@@ -130,7 +76,6 @@ public class A_ConstituencyIT {
 
 	@TestConfiguration
 	static class Config {
-		/* Aplikacija naudos ConstituencyRepository */
 		@Bean
 		@Primary
 		public ConstituencyRepository constRepo() {

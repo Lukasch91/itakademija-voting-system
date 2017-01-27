@@ -34,7 +34,7 @@ var AddDistrictContainer = React.createClass({
     },
     
     handleCancel: function() {
-        this.context.router.push('/dis');
+        this.context.router.push('/dis/' + this.props.params.conId);
     },
     
     render: function() {

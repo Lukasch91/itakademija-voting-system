@@ -8,8 +8,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
-
 @Repository
 public class RepresentativeRepository {
 	private static final String FIND_ALL = "SELECT x FROM Representative x";
@@ -48,12 +46,4 @@ public class RepresentativeRepository {
 		Representative representative = em.find(Representative.class, id);
 		em.remove(representative);
 	}
-
-
-
-	// validation
-	// junit
-	// integration
-	// documentation
-
 }

@@ -11,3 +11,9 @@ Prisijungiama kai programa paleista
 ###Swagger dokumentacija (vietoj Postman):
 
   http://localhost:8080/swagger-ui.html#/
+
+###Integraciniai testai:
+  
+  1) Istrinam duombaze
+  
+  2) Eclipse aplinkoje pasileidziame testu bendrines klases arba pavienius testus.

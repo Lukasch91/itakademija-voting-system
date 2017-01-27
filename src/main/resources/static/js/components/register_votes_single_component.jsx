@@ -1,10 +1,10 @@
 var RegisterVotesSingleComponent = React.createClass({
     render: function() {    
         var self = this;
-        var partyList = this.props.parties.map( function( party, index ) {
+        var candidatesList = this.props.candidates.map( function( candidate, index ) {
           return (
                   <div key={index}>
-                  <label>{party.title}</label>
+                  <label>{candidate.candidateName} {candidate.candidateSurname}</label>
                   <input className="form-control" type="number" /><br />
                   </div>
           );
@@ -15,7 +15,7 @@ var RegisterVotesSingleComponent = React.createClass({
                 <h3>Vienamandatės</h3>
                 <h4>Apygarda: ...</h4>
                 <h4>Apylinkė: ...</h4><br />
-                {partyList}            
+                {candidatesList}            
                 <input type="checkbox" /> Patvirtinu, kad įvesti duomenys teisingi.<br />              
                 <button className="btn btn-success" >Pateikti rezultatus</button>
                 <button className="btn btn-danger">Atšaukti</button>
@@ -24,8 +24,6 @@ var RegisterVotesSingleComponent = React.createClass({
     }
 });
 
-RegisterVotesSingleComponent.propTypes = {
-        parties: React.PropTypes.array.isRequired
-};
+
 
 window.RegisterVotesSingleComponent = RegisterVotesSingleComponent;

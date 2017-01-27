@@ -19,7 +19,7 @@ var AdministrateRepresentativeComponent = React.createClass({
                 <input className="form-control" type="email"   value={this.props.representative.email} onChange={this.props.onFieldChange('email')}/><br />
                 
                 <button className="btn btn-success" onClick={this.props.onAddRepresentative}>Pridėti</button>
-                <button className="btn btn-danger">Atšaukti</button>
+                <button className="btn btn-danger" onClick={this.props.onCancel} >Atšaukti</button>
                 </form>
                 
         

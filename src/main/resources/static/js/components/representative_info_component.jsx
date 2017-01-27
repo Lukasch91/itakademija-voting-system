@@ -9,8 +9,8 @@ var RepresentativeInfoComponent = React.createClass({
                 <p>El. paštas: {this.props.representative.email}</p>
                 <button className="btn btn-success" >Redaguoti</button>
                 <button className="btn btn-info">Siųsti prisijungimus atstovui</button>
-                <button className="btn btn-danger">Trinti atstovą</button>
-                <button className="btn btn-warning">Grįžti</button>
+                <button className="btn btn-danger" onClick={this.props.onDelete}>Trinti atstovą</button>
+                <button className="btn btn-warning" onClick={this.props.onCancel}>Grįžti</button>
                 </div>
         
         )

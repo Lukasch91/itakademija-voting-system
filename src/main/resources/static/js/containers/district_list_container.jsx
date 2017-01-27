@@ -23,14 +23,14 @@ var DistrictListContainer = React.createClass({
     handleAdministerRepresentative: function(district) {
         var self = this;
         return function() {
-                self.context.router.push('/repres/' + district.representatives[0].id);
+                self.context.router.push('/repres/' + district.constituencyId + '/' + district.representatives[0].id);
         }
     },
     
     handleAddRepresentative: function(district) {
         var self = this;
         return function() {
-                self.context.router.push('/add-rep/' + district.id);
+                self.context.router.push('/add-rep/' + district.constituencyId + '/' + district.id);
         }
         
     },
@@ -40,7 +40,8 @@ var DistrictListContainer = React.createClass({
         return function() { 
           axios.put('/api/district/'+ district.id).then(function(response) { 
               console.log('item deleted'); 
-              axios.get('/api/constituency') 
+              var conId = self.props.params.conId;
+              axios.get('/api/constituency/' + conId) 
               .then(function (response) { 
                   self.setState({  
                       districts: response.data.districts,
@@ -51,11 +52,11 @@ var DistrictListContainer = React.createClass({
         }; 
       },
       
-      handleAddDist: function(distId) {
-          
-          
+      handleGoBack: function() {
+          console.log('click');
+          this.context.router.push('/con');
       },
-    
+      
     render: function() {
         return (
         <div>
@@ -68,6 +69,7 @@ var DistrictListContainer = React.createClass({
             onRemoveItem={this.handleRemoveItem}
             />
         <AddNewContainer redirectTo={'/add-dis/' + this.state.constit.id}/>
+        <button type="button" className="btn btn-default" onClick={this.handleGoBack}>Back</button>
         </div>
         )
   }

@@ -37,7 +37,6 @@ public class Representative {
 	private Integer districtId;
 
 	public Representative() {
-
 	}
 
 	public Representative(Integer id, String name, String surname, String loginName, String password, String email,
@@ -108,21 +107,5 @@ public class Representative {
 		this.districtId = districtId;
 	}
 
+	
 }
-
-/*
- * 
- * Based on: FR3 Acceptance:
- * 
- * data entered is using extended “apylinkes atstovo duomenu modelis” admin can
- * select district for which the data will be entered admin can enter district
- * representatives data after selecting a district admin can view district
- * representatives data admin can delete district representatives admin can edit
- * district representatives Validation: administrator can enter only those
- * districts that are in the district list district - singular entry UI alert
- * informs if the data is already entered Backend doesn’t allow data repetition
- * Input fields do not accept non character symbols except dash and @. Out of
- * Scope: -functionality Administrator can give access to the system
- * (login(email, password))
- * 
- */

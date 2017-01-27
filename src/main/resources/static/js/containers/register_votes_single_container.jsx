@@ -2,23 +2,23 @@ var RegisterVotesSingleContainer = React.createClass({
     
     getInitialState: function() {
         return {
-            parties: [] 
+            candidates: [] 
         };
     },
     
     componentWillMount: function() {
         var self = this;
-        axios.get('/api/party')
+        axios.get('/api/candidate')
         .then(function (response) {
             self.setState({ 
-                parties: response.data 
+                candidates: response.data 
             });
         });
 
     },
     
     render: function() {
-        return <RegisterVotesSingleComponent parties={this.state.parties}  />
+        return <RegisterVotesSingleComponent candidates={this.state.candidates}  />
     }
 });
 

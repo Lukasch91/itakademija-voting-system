@@ -1,13 +1,7 @@
 package test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-
-import java.util.List;
-
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +10,6 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -26,13 +18,12 @@ import net.minidev.json.JSONObject; //string to JSON
 import net.minidev.json.parser.JSONParser; //string to JSON
 import net.minidev.json.parser.ParseException; //string to JSON
 import vs.Application;
-import vs.admin.features.admin.district.District;
 import vs.admin.features.admin.district.DistrictRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { B_DistrictIT.Config.class,
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { Ab_DistrictIT.Config.class,
 		Application.class })
-public class B_DistrictIT {
+public class Ab_DistrictIT {
 
 	private static final String URI = "/api/district"; // keisti++
 	JSONParser parser = new JSONParser(0);
@@ -47,38 +38,6 @@ public class B_DistrictIT {
 		Assert.assertThat(response.getStatusCode(), CoreMatchers.is(HttpStatus.OK)); // keisti++
 	}
 
-	private List<District> findAllDistrictsTest() { // keisti++
-		// Setup
-		ParameterizedTypeReference<List<District>> districts = new ParameterizedTypeReference<List<District>>() { // keisti++
-		};
-		// Execute
-		ResponseEntity<List<District>> response = restTemplate.exchange(URI, HttpMethod.GET, null, districts); // keisti++
-
-		// Verify
-		Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK)); // keisti++
-
-		return response.getBody();
-	}
-
-	private District deleteDistrictByIdTest(final int id) { // keisti++
-		// Setup
-		ParameterizedTypeReference<District> district = new ParameterizedTypeReference<District>() { // keisti++
-		};
-		// Exercise
-		ResponseEntity<District> response = restTemplate.exchange(URI + "/" + id, HttpMethod.PUT, null, // keisti++
-				district);
-		// Verify
-		Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK)); // keisti
-
-		return response.getBody(); // keisti++
-	}
-
-	// @Before
-	// public void setUp() throws Exception {
-	// createConstituencies();
-	// }
-
-	// keisti
 	@Test
 	public void createConstituencies() {
 
@@ -131,26 +90,6 @@ public class B_DistrictIT {
 
 	}
 
-	// keisti
-	@Ignore
-	@Test
-	public void findAllUndeletedConstituencies() {
-
-		List<District> districts = findAllDistrictsTest();
-
-		Assert.assertThat(districts.size(), is(2));
-	}
-
-	// keisti
-	@Ignore
-	@Test
-	public void deleteDistrict() {
-
-		District deletedById = deleteDistrictByIdTest(2);
-
-		Assert.assertThat(deletedById.getDeletedTime(), is((not(null))));
-	}
-
 	private JSONObject stringToJson(final String jstring) {
 		JSONObject json = null;
 		try {
@@ -164,11 +103,10 @@ public class B_DistrictIT {
 
 	@TestConfiguration
 	static class Config {
-		/* Aplikacija naudos ConstituencyRepository */
 		@Bean
 		@Primary
-		public DistrictRepository constRepo() { // keisti++
-			return new DistrictRepository(); // keisti++
+		public DistrictRepository constRepo() {
+			return new DistrictRepository();
 		}
 	}
 }

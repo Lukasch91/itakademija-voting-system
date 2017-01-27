@@ -31,4 +31,9 @@ public class DistrictController {
 	public void deteleConstituencyById(@PathVariable("id") Integer id) {
 		districtRepository.deleteDistrict(id);
 	}
+
+	@RequestMapping(value = "/api/district/{id}", method = RequestMethod.GET)
+	public District findAllDistricts(@PathVariable("id") Integer id) {
+		return districtRepository.findDistrictById(id);
+	}
 }

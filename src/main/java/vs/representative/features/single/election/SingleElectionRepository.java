@@ -9,11 +9,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
+
 @Repository
 public class SingleElectionRepository {
 
 	private static final String FIND_ALL = "SELECT x FROM SingleElection x WHERE single_deleted_date IS NULL";
-	private static final String FIND_BY_DISTRICT_ID = "SELECT x FROM SingleElection x WHERE single_Constituency IS ";
+	private static final String FIND_BY_DISTRICT_ID = "SELECT x FROM SingleElection x WHERE singleDistrict IS ";
 	
 	@Autowired
 	private EntityManager em;
@@ -25,42 +27,22 @@ public class SingleElectionRepository {
 
 	@Transactional
 	public SingleElection saveSingleElection(SingleElection singleElection) {
-		if (singleElection.getSingleId() == null) {
-			Date enteredDate = new Date();
-			singleElection.setSingleEnteredDate(enteredDate);
+		if (singleElection.getSingleId() == null) {			
+			Date singleEnteredDate = new Date();
+			singleElection.setSingleEnteredDate(singleEnteredDate);
+			em.persist(singleElection);
 			return singleElection;
-		} else {
+		} 		
+		
+		/*============UpdateDisabled====*/
+		else {
+//			SingleElection merged = em.merge(singleElection);
+//			em.persist(merged);
+//			return merged;
 			return null;
-			/*
-			 * SingleElection merged = em.merge(singleElection);
-			 * em.persist(merged); return merged;
-			 */
-			/* update is disabled */
 		}
 	}
-
-	@Transactional
-	public void publishSingleElectionResultById(Integer id) {
-		SingleElection singleElection = em.find(SingleElection.class, id);
-		Date date = new Date();
-		singleElection.setSinglePublishedDate(date);
-		em.persist(singleElection);
-	}
-	
-	@SuppressWarnings("null")
-	@Transactional
-	public List<SingleElection> publishSingleElectionResultByDistrictId(Integer id) {
-		@SuppressWarnings("unchecked")
-		List<SingleElection> bulkPublish = em.createQuery((FIND_BY_DISTRICT_ID+id)).getResultList();
-		List<SingleElection> rBulkPublish = null;
-		Date publishedDate = new Date();
-		for (SingleElection sE : bulkPublish) {
-			sE.setSinglePublishedDate(publishedDate);
-			rBulkPublish.add(sE); //suppressWarnings null
-		}
-		return rBulkPublish; //UPDATE TO HAVE PERSIST
-	}
-	
+		
 	public SingleElection findSingleElectionById(Integer id) {
 		SingleElection singleElection = em.find(SingleElection.class, id);
 		if ((singleElection != null) && (singleElection.getSingleDeletedDate() == null)) {
@@ -78,9 +60,47 @@ public class SingleElectionRepository {
 		em.persist(singleElection);
 	}
 
+	@Transactional
+	public void publishSingleElectionResultsByDistrictId(Integer districtId) {
+		@SuppressWarnings("unchecked")
+		List<SingleElection> singleElectionsPublish = em.createQuery(FIND_BY_DISTRICT_ID+districtId).getResultList();
+		
+		for(SingleElection singleElectionPublish : singleElectionsPublish) {
+			Date date = new Date();
+			singleElectionPublish.setSinglePublishedDate(date);
+			em.persist(singleElectionPublish);	
+		}
+	}
+	
+	@Transactional
+	public void deleteSingleElectionResultsByDistrictId(Integer districtId) {
+		@SuppressWarnings("unchecked")
+		List<SingleElection> singleElectionsDelete = em.createQuery(FIND_BY_DISTRICT_ID+districtId).getResultList();
+		
+		for(SingleElection singleElectionDelete : singleElectionsDelete) {
+			Date date = new Date();
+			singleElectionDelete.setSingleDeletedDate(date);
+			em.persist(singleElectionDelete);	
+		}
+	}
+	
+	@Transactional
+	public void deleteSingleElectionResultsByDistrictIdREAL(Integer districtId) {
+		@SuppressWarnings("unchecked")
+		List<SingleElection> singleElectionsDeleteREAL = em.createQuery(FIND_BY_DISTRICT_ID+districtId).getResultList();
+		
+		for(SingleElection singleElectionDeleteREAL : singleElectionsDeleteREAL) {
+
+			em.remove(singleElectionDeleteREAL);
+		}
+	}
+	
+	
+	
+	
+	
+	
 }
 
-// validation
-// junit
-// integration
-// documentation
+
+

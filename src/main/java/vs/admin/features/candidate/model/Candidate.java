@@ -2,7 +2,6 @@ package vs.admin.features.candidate.model;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import vs.admin.features.admin.constituency.Constituency;
@@ -22,53 +20,48 @@ public class Candidate {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "candidate_Id")
+	@Column
 	private Integer candidateID;
 
-	@Column(name = "candidate_Name")
+	@Column
 	private String candidateName;
 
-	@Column(name = "candidate_Surname")
+	@Column
 	private String candidateSurname;
 
-	@Column(name = "candidate_Date_Of_Birth")
+	@Column
 	private String candidateDateOfBirth; // Date or String???
 
-	@Column(name = "candidate_Personal_ID")
+	@Column
 	private String candidatePersonalID;
 
-	@Column(name = "candidate_Description")
+	@Column
 	private String candidateDescription;
-	
-	
+
 	/*-----------------------------------------------------------------*/
 	@ManyToOne
-	@JoinColumn(name = "candidate_Party_Id") //referencedColumnName = "id"
-	private Party party;
+	@JoinColumn(name = "candidateParty") // referencedColumnName = "id"
+	private Party candidateParty = new Party();
 	/*-----------------------------------------------------------------*/
-	
-	
-	@Column(name = "candidate_Number_In_Party")
+
+	@Column
 	private Integer candidateNumberInParty;
-	
-	
+
 	/*-----------------------------------------------------------------*/
 	@ManyToOne
-	@JoinColumn(name = "candidate_Constituency_Id")
-	private Constituency constituency;
+	@JoinColumn(name = "candidateConstituency")
+	private Constituency candidateConstituency = new Constituency();
 	/*-----------------------------------------------------------------*/
-	
-	
-	@Column(name = "candidate_Deleted_Date")
+
+	@Column
 	private Date candidateDeletedDate;
 
 	public Candidate() {
 	}
 
-	/* From Constituency */
 	public Candidate(Integer candidateID, String candidateName, String candidateSurname, String candidateDateOfBirth,
-			String candidatePersonalID, String candidateDescription, Party party, Integer candidateNumberInParty,
-			Date candidateDeletedDate) {
+			String candidatePersonalID, String candidateDescription, Party candidateParty,
+			Integer candidateNumberInParty, Constituency candidateConstituency, Date candidateDeletedDate) {
 		super();
 		this.candidateID = candidateID;
 		this.candidateName = candidateName;
@@ -76,23 +69,9 @@ public class Candidate {
 		this.candidateDateOfBirth = candidateDateOfBirth;
 		this.candidatePersonalID = candidatePersonalID;
 		this.candidateDescription = candidateDescription;
-		this.party = party;
+		this.candidateParty = candidateParty;
 		this.candidateNumberInParty = candidateNumberInParty;
-		this.candidateDeletedDate = candidateDeletedDate;
-	}
-
-	/* From Party */
-	public Candidate(Integer candidateID, String candidateName, String candidateSurname, String candidateDateOfBirth,
-			String candidatePersonalID, String candidateDescription, Constituency constituency,
-			Date candidateDeletedDate) {
-		super();
-		this.candidateID = candidateID;
-		this.candidateName = candidateName;
-		this.candidateSurname = candidateSurname;
-		this.candidateDateOfBirth = candidateDateOfBirth;
-		this.candidatePersonalID = candidatePersonalID;
-		this.candidateDescription = candidateDescription;
-		this.constituency = constituency;
+		this.candidateConstituency = candidateConstituency;
 		this.candidateDeletedDate = candidateDeletedDate;
 	}
 
@@ -144,12 +123,12 @@ public class Candidate {
 		this.candidateDescription = candidateDescription;
 	}
 
-	public Party getParty() {
-		return party;
+	public Party getCandidateParty() {
+		return candidateParty;
 	}
 
-	public void setParty(Party party) {
-		this.party = party;
+	public void setCandidateParty(Party candidateParty) {
+		this.candidateParty = candidateParty;
 	}
 
 	public Integer getCandidateNumberInParty() {
@@ -160,12 +139,12 @@ public class Candidate {
 		this.candidateNumberInParty = candidateNumberInParty;
 	}
 
-	public Constituency getConstituency() {
-		return constituency;
+	public Constituency getCandidateConstituency() {
+		return candidateConstituency;
 	}
 
-	public void setConstituency(Constituency constituency) {
-		this.constituency = constituency;
+	public void setCandidateConstituency(Constituency candidateConstituency) {
+		this.candidateConstituency = candidateConstituency;
 	}
 
 	public Date getCandidateDeletedDate() {
@@ -176,4 +155,32 @@ public class Candidate {
 		this.candidateDeletedDate = candidateDeletedDate;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((candidatePersonalID == null) ? 0 : candidatePersonalID.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Candidate other = (Candidate) obj;
+		if (candidatePersonalID == null) {
+			if (other.candidatePersonalID != null)
+				return false;
+		} else if (!candidatePersonalID.equals(other.candidatePersonalID))
+			return false;
+		return true;
+	}
+
+	
+	
+	
 }

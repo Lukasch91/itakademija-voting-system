@@ -40,7 +40,7 @@ public class MultiElectionRepository {
 	
 	public MultiElection findMultiElectionById(Integer id) {
 		MultiElection multiElection = entityManager.find(MultiElection.class, id);
-		if (multiElection.getDeleted_date() == null) {
+		if ((multiElection != null)&&(multiElection.getDeleted_date() == null)) {
 			return multiElection;
 		}
 		return null;

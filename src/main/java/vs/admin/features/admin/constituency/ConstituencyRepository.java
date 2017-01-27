@@ -12,12 +12,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ConstituencyRepository {
 
-	private static final String FIND_ALL = "SELECT DISTINCT c FROM Constituency c LEFT JOIN fetch c.districts cd "
-			+ "WHERE c.deletedTime IS NULL AND cd.deletedTime is NULL ORDER BY c.id";
+	// TODO : ASK PO ABOUT MULTIPLE SELECTS OF HIBERNATE (FETCH BAG)
 
-	private static final String FIND_BY_ID = "SELECT DISTINCT c FROM Constituency c "
-			+ "LEFT JOIN fetch c.districts cd WHERE c.deletedTime IS NULL AND c.id = :id "
-			+ "AND cd.deletedTime is NULL ORDER BY c.id";
+	private static final String FIND_ALL = "SELECT c FROM Constituency c " + "LEFT JOIN FETCH c.districts cd "
+			+ "LEFT JOIN cd.representatives r " + "WHERE c.deletedTime IS NULL " + "ORDER BY c.id";
+
+	private static final String FIND_BY_ID = "SELECT c FROM Constituency c " + "LEFT JOIN FETCH c.districts cd "
+			+ "LEFT JOIN cd.representatives r " + "WHERE c.deletedTime IS NULL " + "AND c.id = :id " + "ORDER BY c.id";
 
 	@Autowired
 	EntityManager entityManager;
@@ -26,7 +27,6 @@ public class ConstituencyRepository {
 	@SuppressWarnings("unchecked")
 	public List<Constituency> findAllConstituencies() {
 		List<Constituency> constituenciesList = entityManager.createQuery(FIND_ALL).getResultList();
-
 		return constituenciesList;
 	}
 
@@ -43,9 +43,7 @@ public class ConstituencyRepository {
 	}
 
 	public Constituency findConstituencyById(Integer id) {
-		Constituency constituency = (Constituency) entityManager.createQuery(FIND_BY_ID).setParameter("id", id)
-				.getSingleResult();
-		return constituency;
+		return (Constituency) entityManager.createQuery(FIND_BY_ID).setParameter("id", id).getSingleResult();
 	}
 
 	@Transactional

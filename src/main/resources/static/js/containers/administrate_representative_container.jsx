@@ -21,6 +21,10 @@ var AdministrateRepresentativeContainer = React.createClass({
         };
     },
     
+    handleCancel: function() {
+        this.context.router.push('/dis/' + this.props.params.conId);
+    },
+    
     handleAddRepresentative: function(e) {
         e.preventDefault();
         var self = this;
@@ -33,15 +37,17 @@ var AdministrateRepresentativeContainer = React.createClass({
             districtId: this.props.params.disId
         }).then(function () {
             console.log('representative added');
-            self.context.router.push('/con');
+            /*self.context.router.push('/dis/' + this.props.params.conId);*/
           });
+        this.context.router.push('/dis/' + this.props.params.conId);
     },
     
     render: function() {
         return <AdministrateRepresentativeComponent 
         representative={this.state.representative}
         onFieldChange={this.handleFieldChange}
-        onAddRepresentative={this.handleAddRepresentative}/>
+        onAddRepresentative={this.handleAddRepresentative}
+        onCancel={this.handleCancel}/>
     }
 });
 

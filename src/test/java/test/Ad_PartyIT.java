@@ -1,12 +1,7 @@
 package test;
 
-import static org.hamcrest.CoreMatchers.is;
-
-import java.util.List;
-
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +10,6 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -25,72 +18,26 @@ import net.minidev.json.JSONObject; //string to JSON
 import net.minidev.json.parser.JSONParser; //string to JSON
 import net.minidev.json.parser.ParseException; //string to JSON
 import vs.Application;
-import vs.admin.features.party.model.Party;
 import vs.admin.features.party.model.PartyRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { D_PartyIT.Config.class,
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { Ad_PartyIT.Config.class,
 		Application.class })
-public class D_PartyIT {
+public class Ad_PartyIT {
 
-	private static final String URI = "/api/party"; // keisti
+	private static final String URI = "/api/party";
 	JSONParser parser = new JSONParser(0);
 
 	@Autowired
 	private TestRestTemplate restTemplate;
 
-	private void createOrUpdatePartyTest(final JSONObject createParty) { // keisti
+	private void createOrUpdatePartyTest(final JSONObject createParty) {
 		// Exercise
-		ResponseEntity<Void> response = restTemplate.postForEntity(URI, createParty, Void.class); // keisti
+		ResponseEntity<Void> response = restTemplate.postForEntity(URI, createParty, Void.class);
 		// Verify
-		Assert.assertThat(response.getStatusCode(), CoreMatchers.is(HttpStatus.OK)); // keisti
+		Assert.assertThat(response.getStatusCode(), CoreMatchers.is(HttpStatus.OK));
 	}
 
-	private List<Party> findAllPartiesTest() { // keisti
-		// Setup
-		ParameterizedTypeReference<List<Party>> parties = new ParameterizedTypeReference<List<Party>>() { // keisti
-		};
-		// Execute
-		ResponseEntity<List<Party>> response = restTemplate.exchange(URI, HttpMethod.GET, null, parties); // keisti
-
-		// Verify
-		Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK)); // keisti
-
-		return response.getBody();
-	}
-
-	private Party deletePartyByIdTest(final int id) { // keisti
-		// Setup
-		ParameterizedTypeReference<Party> party = new ParameterizedTypeReference<Party>() { // keisti
-		};
-		// Exercise
-		ResponseEntity<Party> response = restTemplate.exchange(URI + "/" + id, HttpMethod.DELETE, null, // keisti
-				party);
-		// Verify
-		Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK)); // keisti
-
-		return response.getBody(); // keisti
-	}
-
-	private Party findPartyByIdTest(final int id) { // keisti
-		// Setup
-		ParameterizedTypeReference<Party> party = new ParameterizedTypeReference<Party>() { // keisti
-		};
-		// Exercise
-		ResponseEntity<Party> response = restTemplate.exchange(URI + "/" + id, HttpMethod.GET, null, // keisti
-				party);
-		// Verify
-		Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK)); // keisti
-
-		return response.getBody(); // keisti
-	}
-
-	// @Before
-	// public void setUp() throws Exception {
-	// createConstituencies();
-	// }
-
-	// keisti
 	@Test
 	public void createParties() {
 
@@ -125,36 +72,6 @@ public class D_PartyIT {
 		createOrUpdatePartyTest(stringToJson(party_08));
 		createOrUpdatePartyTest(stringToJson(party_09));
 		createOrUpdatePartyTest(stringToJson(party_10));
-
-	}
-
-	// keisti
-	@Ignore
-	@Test
-	public void findAllUndeletedParties() {
-
-		List<Party> parties = findAllPartiesTest();
-
-		Assert.assertThat(parties.size(), is(2));
-	}
-
-	// keisti
-	@Ignore
-	@Test
-	public void deleteParty() {
-
-		//
-	}
-
-	// keisti
-	@Ignore
-	@Test
-	public void findParty() {
-
-		Party foundById = findPartyByIdTest(1);
-
-		// Assert.assertThat(foundById.getId(), is(null));
-
 	}
 
 	private JSONObject stringToJson(final String jstring) {
@@ -172,8 +89,8 @@ public class D_PartyIT {
 	static class Config {
 		@Bean
 		@Primary
-		public PartyRepository constRepo() { // keisti
-			return new PartyRepository(); // keisti
+		public PartyRepository constRepo() {
+			return new PartyRepository();
 		}
 	}
 }

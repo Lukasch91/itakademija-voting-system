@@ -8,10 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import vs.admin.features.admin.constituency.Constituency;
+import vs.admin.features.admin.district.District;
 import vs.admin.features.candidate.model.Candidate;
 
 @Entity
@@ -20,50 +20,45 @@ public class SingleElection {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "single_id")
+	@Column
 	private Integer singleId;
 
-	@Column(name = "single_votes")
+	@Column
 	private Integer singleVotes;
 
-	@Column(name = "single_entered_date")
+	@Column
 	private Date singleEnteredDate;
 
-	@Column(name = "single_published_date")
+	@Column
 	private Date singlePublishedDate;
 
-	@Column(name = "single_deleted_date")
+	@Column
 	private Date singleDeletedDate;
-	/* ====================================== */
-	@OneToOne // (cascade = CascadeType.ALL) when creating a vote you fill the
-				// data but do not perform operations on other tables
-	@JoinColumn(name = "single_Candidate")
-	private Candidate singleCandidate;
 
-	@OneToOne // (cascade = CascadeType.ALL) when creating a vote you fill the
-				// data but do not perform operations on other tables
-	@JoinColumn(name = "single_Constituency")
-	private Constituency singleConstituency;
+	/* ====================================== */
+	@ManyToOne
+	@JoinColumn(name = "singleCandidate") // referencedColumnName = "candidateID"
+	private Candidate singleCandidate = new Candidate();
+
+	@ManyToOne
+	@JoinColumn(name = "singleDistrict") // referencedColumnName = "id"
+	private District singleDistrict = new District();
 	/* ====================================== */
 
 	public SingleElection() {
 	}
 
-	
-	
-	public SingleElection(Integer singleId, Integer singleVotes, /*Date singleEnteredDate,*/ /*Date singlePublishedDate,*/
-			Date singleDeletedDate, Candidate singleCandidate, Constituency singleConstituency) {
+	public SingleElection(Integer singleId, Integer singleVotes, Date singleEnteredDate, Date singlePublishedDate,
+			Date singleDeletedDate, Candidate singleCandidate, District singleDistrict) {
 		super();
 		this.singleId = singleId;
 		this.singleVotes = singleVotes;
-		/*this.singleEnteredDate = singleEnteredDate;*/
-		/*this.singlePublishedDate = singlePublishedDate;*/
+		this.singleEnteredDate = singleEnteredDate;
+		this.singlePublishedDate = singlePublishedDate;
 		this.singleDeletedDate = singleDeletedDate;
 		this.singleCandidate = singleCandidate;
-		this.singleConstituency = singleConstituency;
+		this.singleDistrict = singleDistrict;
 	}
-
-
 
 	public Integer getSingleId() {
 		return singleId;
@@ -113,11 +108,12 @@ public class SingleElection {
 		this.singleCandidate = singleCandidate;
 	}
 
-	public Constituency getSingleConstituency() {
-		return singleConstituency;
+	public District getSingleDistrict() {
+		return singleDistrict;
 	}
 
-	public void setSingleConstituency(Constituency singleConstituency) {
-		this.singleConstituency = singleConstituency;
+	public void setSingleDistrict(District singleDistrict) {
+		this.singleDistrict = singleDistrict;
 	}
+
 }

@@ -33,33 +33,41 @@ public class SingleElectionController {
 		return singleElectionRepository.saveSingleElection(singleElection);
 	}
 	
-	@RequestMapping(value = "/api/singleelectionpublishsingle/{id}", method = RequestMethod.POST)
-	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-	@ApiOperation(value = "publish single single election result")
-	public void publishSingleSingleElectionResult(@PathVariable("id") Integer id) {
-		singleElectionRepository.publishSingleElectionResultById(id);
-	}
-
-	@RequestMapping(value = "/api/singleelectionpublishdistrict/{id}", method = RequestMethod.POST)
-	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-	@ApiOperation(value = "publish single election results by district id")
-	public List<SingleElection> publishSingleElectionResultsByDistrictId(@PathVariable("id") Integer id) {
-		return singleElectionRepository.publishSingleElectionResultByDistrictId(id);
-	}
-
 	@RequestMapping(value = "/api/singleelection/{id}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "find single election result by id")
+	@ApiOperation(value = "Find single election result by id")
 	public SingleElection getSingleElectionResultsById(@PathVariable("id") Integer id) {
 		return singleElectionRepository.findSingleElectionById(id);
 	}
 	
 	@RequestMapping(value = "/api/singleelection/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(org.springframework.http.HttpStatus.OK)
+	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "delete single election result by id(adds deletion date)")
 	public void deleteSingleElectionResultById(@PathVariable("id") Integer id) {
 		singleElectionRepository.deleteSingleElectionById(id);
 	}	
+	
+	@RequestMapping(value = "/api/singleelectiondistrict/{id}", method = RequestMethod.POST)
+	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
+	@ApiOperation(value = "Publish single election results by district id")
+	public void publishSingleElectionResultsByDistrictId(@PathVariable("id") Integer id) {
+		singleElectionRepository.publishSingleElectionResultsByDistrictId(id);
+	}
+
+	@RequestMapping(value = "/api/singleelectiondistrict/{id}", method = RequestMethod.DELETE)
+	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
+	@ApiOperation(value = "Delete single election results by district id(adds date)")
+	public void deleteSingleElectionResultsByDistrictId(@PathVariable("id") Integer id) {
+		singleElectionRepository.deleteSingleElectionResultsByDistrictId(id);
+	}
+
+	@RequestMapping(value = "/api/singleelectiondistrictREAL/{id}", method = RequestMethod.DELETE)
+	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
+	@ApiOperation(value = "Delete single election results by district id (REAL DELETE!)")
+	public void deleteSingleElectionResultsByDistrictIdREAL(@PathVariable("id") Integer id) {
+		singleElectionRepository.deleteSingleElectionResultsByDistrictIdREAL(id);
+	}
+
 }
 	
 	
