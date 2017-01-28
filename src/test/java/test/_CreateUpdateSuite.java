@@ -5,8 +5,9 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses(
-	{Aa_ConstituencyIT.class, 
+@SuiteClasses({
+	_DeleteDatabaseFiles.class, 
+	Aa_ConstituencyIT.class, 
 	Ab_DistrictIT.class, 
 	Ac_RepresentativeIT.class, 
 	Ad_PartyIT.class, 
