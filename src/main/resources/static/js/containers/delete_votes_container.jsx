@@ -26,9 +26,7 @@ var DeleteVotesContainer = React.createClass({
     
     handleFieldChange: function(event) {
         this.setState({districtVal: event.target.value});
-        axios.delete('/api/singleelectiondistrict/' + this.state.districtVal).then(function() {
-            console.log('votes deleted');
-        });
+        
     },
     
     handleDeleteVotes: function() {
