@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+
 import vs.admin.features.admin.district.District;
 import vs.admin.features.party.model.Party;
 
@@ -39,6 +42,10 @@ public class MultiElection {
 	
 	@ManyToOne
 	private District district;
+	
+
+	
+
 	
 	public MultiElection () {
 		

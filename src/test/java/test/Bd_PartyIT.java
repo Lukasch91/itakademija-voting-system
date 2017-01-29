@@ -60,33 +60,36 @@ public class Bd_PartyIT {
 		return response.getBody();
 	}
 	
-	@Test
+	/*@Test
 	public void testPriority() {
-		findAllUndeletedParties(10);
+		//findAllUndeletedParties(10);
 		findParty(2);
 		deleteParty(1);
 		findAllUndeletedParties(9);
-	}
+	}*/
 
-	//@Test
-	public void findAllUndeletedParties(int size) {
+	@Test
+	public void t1_findAllUndeletedParties() {
 		List<Party> parties = findAllPartiesTest();
-		Assert.assertThat(size, is(parties.size()));
+		Assert.assertThat(parties.size(), is(10));
 	}
 
-	//@Test
-	public void deleteParty(int idD) {
+	
+	@Test
+	public void t2_findParty() {
+
+		Party foundById = findPartyByIdTest(2);								
+		Assert.assertThat(foundById.getParty_abbreviation(), is("LHP"));	
+	}
+	
+	@Test
+	public void t3_deleteParty() {
 		
-		Party deleteById = deletePartyByIdTest(idD);			//delete party, if ok, PASS
+		Party deleteById = deletePartyByIdTest(1);			//delete party, if ok, PASS
 		Assert.assertNull(deleteById); 					//verify delete date, if ok , PASS	
 	}
 
-	//@Test
-	public void findParty(int idF) {
 
-		Party foundById = findPartyByIdTest(idF);								
-		Assert.assertThat(foundById.getParty_abbreviation(), is("LHP"));	
-	}
 
 	@TestConfiguration
 	static class Config {

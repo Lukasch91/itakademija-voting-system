@@ -8,6 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "parties")
@@ -19,11 +25,15 @@ public class Party {
 	private Integer id;
 
 	@Column
+	@NotBlank
+	@Length(min = 2, message = "The field must be at least 2 characters")
 	private String title;
 
 	@Column
-	// @Size(max=10)
+	@NotBlank
+	@Length(min = 2, message = "The field must be at least 2 characters")
 	private String party_abbreviation;
+	
 
 	@Column
 	private Date deletedTime;

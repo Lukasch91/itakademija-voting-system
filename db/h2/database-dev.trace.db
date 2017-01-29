@@ -1,4 +1,26 @@
-2017-01-23 23:50:01 jdbc[52]: exception
+2017-01-29 22:56:13 jdbc[72]: exception
+org.h2.jdbc.JdbcSQLException: The database has been closed [90098-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.engine.Session.getTransaction(Session.java:1611)
+	at org.h2.engine.Session.getStatementSavepoint(Session.java:1621)
+	at org.h2.engine.Session.setSavepoint(Session.java:800)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:184)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.springframework.boot.devtools.autoconfigure.DevToolsDataSourceAutoConfiguration$NonEmbeddedInMemoryDatabaseShutdownExecutor.destroy(DevToolsDataSourceAutoConfiguration.java:107)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:272)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:954)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:961)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1033)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1009)
+	at org.springframework.context.support.AbstractApplicationContext$2.run(AbstractApplicationContext.java:928)
+2017-01-29 22:56:13 jdbc[21]: exception
 org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-193]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	at org.h2.message.DbException.get(DbException.java:179)
@@ -25,16 +47,17 @@ org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic c
 	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1033)
 	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1009)
 	at org.springframework.context.support.AbstractApplicationContext$2.run(AbstractApplicationContext.java:928)
-2017-01-23 23:50:01 jdbc[42]: exception
-org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-193]
+2017-01-29 22:56:13 jdbc[32]: exception
+org.h2.jdbc.JdbcSQLException: The database has been closed [90098-193]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	at org.h2.message.DbException.get(DbException.java:179)
 	at org.h2.message.DbException.get(DbException.java:155)
 	at org.h2.message.DbException.get(DbException.java:144)
-	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1483)
-	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1458)
-	at org.h2.jdbc.JdbcConnection.createStatement(JdbcConnection.java:202)
-	at org.apache.tomcat.jdbc.pool.PooledConnection.validate(PooledConnection.java:502)
+	at org.h2.engine.Database.checkPowerOff(Database.java:522)
+	at org.h2.command.Command.executeQuery(Command.java:225)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:179)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.validate(PooledConnection.java:509)
 	at org.apache.tomcat.jdbc.pool.PooledConnection.validate(PooledConnection.java:443)
 	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:784)
 	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:635)
@@ -50,16 +73,17 @@ org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic c
 	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1033)
 	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1009)
 	at org.springframework.context.support.AbstractApplicationContext$2.run(AbstractApplicationContext.java:928)
-2017-01-23 23:50:01 jdbc[12]: exception
-org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-193]
+2017-01-29 22:56:13 jdbc[62]: exception
+org.h2.jdbc.JdbcSQLException: The database has been closed [90098-193]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	at org.h2.message.DbException.get(DbException.java:179)
 	at org.h2.message.DbException.get(DbException.java:155)
 	at org.h2.message.DbException.get(DbException.java:144)
-	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1483)
-	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1458)
-	at org.h2.jdbc.JdbcConnection.createStatement(JdbcConnection.java:202)
-	at org.apache.tomcat.jdbc.pool.PooledConnection.validate(PooledConnection.java:502)
+	at org.h2.engine.Database.checkPowerOff(Database.java:522)
+	at org.h2.command.Command.executeQuery(Command.java:225)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:179)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.validate(PooledConnection.java:509)
 	at org.apache.tomcat.jdbc.pool.PooledConnection.validate(PooledConnection.java:443)
 	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:784)
 	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:635)
@@ -75,16 +99,17 @@ org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic c
 	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1033)
 	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1009)
 	at org.springframework.context.support.AbstractApplicationContext$2.run(AbstractApplicationContext.java:928)
-2017-01-23 23:50:01 jdbc[22]: exception
-org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-193]
+2017-01-29 22:56:13 jdbc[52]: exception
+org.h2.jdbc.JdbcSQLException: The database has been closed [90098-193]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	at org.h2.message.DbException.get(DbException.java:179)
 	at org.h2.message.DbException.get(DbException.java:155)
 	at org.h2.message.DbException.get(DbException.java:144)
-	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1483)
-	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1458)
-	at org.h2.jdbc.JdbcConnection.createStatement(JdbcConnection.java:202)
-	at org.apache.tomcat.jdbc.pool.PooledConnection.validate(PooledConnection.java:502)
+	at org.h2.engine.Database.checkPowerOff(Database.java:522)
+	at org.h2.command.Command.executeQuery(Command.java:225)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:179)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.validate(PooledConnection.java:509)
 	at org.apache.tomcat.jdbc.pool.PooledConnection.validate(PooledConnection.java:443)
 	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:784)
 	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:635)
@@ -100,7 +125,33 @@ org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic c
 	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1033)
 	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1009)
 	at org.springframework.context.support.AbstractApplicationContext$2.run(AbstractApplicationContext.java:928)
-2017-01-23 23:50:01 jdbc[32]: exception
+2017-01-29 22:56:13 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: The database has been closed [90098-193]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.message.DbException.get(DbException.java:144)
+	at org.h2.engine.Database.checkPowerOff(Database.java:522)
+	at org.h2.command.Command.executeQuery(Command.java:225)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:179)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:158)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.validate(PooledConnection.java:509)
+	at org.apache.tomcat.jdbc.pool.PooledConnection.validate(PooledConnection.java:443)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:784)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.borrowConnection(ConnectionPool.java:635)
+	at org.apache.tomcat.jdbc.pool.ConnectionPool.getConnection(ConnectionPool.java:187)
+	at org.apache.tomcat.jdbc.pool.DataSourceProxy.getConnection(DataSourceProxy.java:132)
+	at org.springframework.boot.devtools.autoconfigure.DevToolsDataSourceAutoConfiguration$NonEmbeddedInMemoryDatabaseShutdownExecutor.destroy(DevToolsDataSourceAutoConfiguration.java:107)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:272)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:578)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:554)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:954)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:523)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:961)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1033)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1009)
+	at org.springframework.context.support.AbstractApplicationContext$2.run(AbstractApplicationContext.java:928)
+2017-01-29 22:56:13 jdbc[42]: exception
 org.h2.jdbc.JdbcSQLException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-193]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	at org.h2.message.DbException.get(DbException.java:179)

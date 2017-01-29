@@ -1,13 +1,13 @@
 package test;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
+
 
 import java.util.List;
-
+import org.junit.FixMethodOrder;//JUnit4.11+ test method ordering
+import org.junit.runners.*;//JUnit4.11+ test method ordering
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +28,11 @@ import vs.representative.features.multi.election.MultiElectionRepository;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { Bf_MultiElectionIT.Config.class,
 		Application.class })
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING) // JUnit4.11+ test method ordering
 public class Bf_MultiElectionIT {
 
 	private static final String URI = "/api/reg-votes-multi";
-
+	private static final String URI_PUBLISH = "/api/multielectiondistrict";
 	@Autowired
 	private TestRestTemplate restTemplate;
 
@@ -50,7 +50,7 @@ public class Bf_MultiElectionIT {
 		}; // Setup
 		ResponseEntity<MultiElection> response = restTemplate.exchange(URI + "/" + id, HttpMethod.PUT, null,
 				multiElection); // Exercise
-		Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK)); // Verify
+		Assert.assertThat(response.getStatusCode(), is(HttpStatus.NO_CONTENT)); // Verify
 
 		return response.getBody();
 	}
@@ -64,7 +64,19 @@ public class Bf_MultiElectionIT {
 
 		return response.getBody();
 	}
-
+	
+	private void publishMultiElectionResultsByIdTest(final int id) {
+		ResponseEntity<Void> response = restTemplate.exchange(URI_PUBLISH + "/" + id, HttpMethod.POST, null,
+				Void.class);
+		Assert.assertThat(response.getStatusCode(), is(HttpStatus.CREATED));
+	}
+	
+	private void deleteMultiElectionResultsByIdTest(final int id) {
+		ResponseEntity<Void> response = restTemplate.exchange(URI_PUBLISH + "/" + id, HttpMethod.DELETE, null,
+				Void.class);
+		Assert.assertThat(response.getStatusCode(), is(HttpStatus.NO_CONTENT));
+	}
+/*
 	@Test
 	public void testPriority() {
 		findAllUndeletedElection(5);
@@ -72,25 +84,35 @@ public class Bf_MultiElectionIT {
 		deleteElection(2);
 		findAllUndeletedElection(4);
 	}
-
-	//@Test
-	public void findAllUndeletedElection(int expected) {
+*/
+	@Test
+	public void t01_findAllUndeletedElection() {
 
 		List<MultiElection> multiElection = findAllElectionTest();
-		// int expected = 5;
+		int expected = 5;
 		Assert.assertThat(expected, is(multiElection.size()));
 	}
 
-	// @Test
-	public void findElectionById(int idF) {
-		MultiElection foundById = findMultiElectionByIdTest(idF);
+	@Test
+	public void t02_findElectionById() {
+		MultiElection foundById = findMultiElectionByIdTest(3);
 		Assert.assertThat(foundById.getVotes(), is(300));
 	}
 
-	 //@Test
-	public void deleteElection(int idD) {
-		MultiElection deletedById = deleteMultiElectionByIdTest(idD); 	// Delete election if ok , PASS															
+	@Test
+	public void t03_deleteElection() {
+		MultiElection deletedById = deleteMultiElectionByIdTest(2); 	// Delete election if ok , PASS															
 		Assert.assertNull(deletedById); 								// Check is election having Delete Date if ok , PASS
+	}
+	
+	@Test
+	public void t04_publishMultiElectionResultsById() {
+		publishMultiElectionResultsByIdTest(1);
+	}
+	
+	@Test
+	public void t05_deleteMultiElectionResultsById() {
+		deleteMultiElectionResultsByIdTest(5);
 	}
 
 	@TestConfiguration
