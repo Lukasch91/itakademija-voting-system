@@ -16,20 +16,20 @@ var DeleteVotesComponent = React.createClass({
               
               <form>
               <label>Apygarda (neveikia)</label><br />
-                  <select className="form-control">
+                  <select className="form-control" disabled>
                       <option value="base">Pasirinkite apygardą</option>
                       {constituencyList}
                   </select>
               <label>Apylinkė</label><br />
-                  <select className="form-control"  value={this.props.districtVal} onChange={this.props.onFieldChange}>
+                  <select className="form-control"  value={this.props.districtVal} onChange={this.props.onDistrictChange}>
                       <option value="base">Pasirinkite apylinkę</option>
                       {districtList}
                   </select>
               <label>Rinkimų tipas (neveikia)</label><br />
-                  <select className="form-control">
+                  <select className="form-control" value={this.props.electionType} onChange={this.props.onTypeChange}>
                       <option value="base">Pasirinkite rinkimų tipą</option>
-                      <option>Vienmandate</option>
-                      <option>Daugiamandate</option>
+                      <option value="single">Vienmandate</option>
+                      <option value="multi">Daugiamandate</option>
                   </select>
                   <button className="btn btn-danger" onClick={this.props.onDeleteVotes}>Anuliuoti rezultatus</button>
               </form>
