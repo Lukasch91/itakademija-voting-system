@@ -31,16 +31,13 @@ public class MultiElectionRepository {
 	}
 	
 	@Transactional
-	public MultiElection saveOrUpdate(MultiElection multiElection) {
-		if (multiElection.getId() == null) {
-			Date multiEnteredDate = new Date();
-			multiElection.setEntered_date(multiEnteredDate);
-			entityManager.persist(multiElection);
-			return multiElection;
-		} else {
-			MultiElection merged = entityManager.merge(multiElection);
-			entityManager.persist(merged);
-			return merged;
+	public void saveOrUpdate(List<MultiElection> multiElection) {
+		for (MultiElection multiElections : multiElection) {
+			if (multiElections.getId() == null) {
+				Date multiEnteredDate = new Date();
+				multiElections.setEntered_date(multiEnteredDate);
+				entityManager.persist(multiElections);
+			}
 		}
 	}
 	

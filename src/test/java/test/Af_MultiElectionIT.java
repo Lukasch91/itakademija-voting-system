@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
@@ -32,7 +34,7 @@ public class Af_MultiElectionIT {
 	@Autowired
 	private TestRestTemplate restTemplate;
 
-	private void createOrUpdateMultiElectionTest(final JSONObject createMultiElection) {
+	private void createOrUpdateMultiElectionTest(final JSONArray createMultiElection) {
 		
 		ResponseEntity<Void> response = restTemplate.postForEntity(URI, createMultiElection, Void.class); // Exercise
 		Assert.assertThat(response.getStatusCode(), CoreMatchers.is(HttpStatus.OK)); // Verify
@@ -76,11 +78,16 @@ public class Af_MultiElectionIT {
 							+ "\"party\": {\"id\": 1}, "
 							+ "\"votes\": 500"
 						+ "}";
-		createOrUpdateMultiElectionTest(stringToJson(election_01));
-		createOrUpdateMultiElectionTest(stringToJson(election_02));
-		createOrUpdateMultiElectionTest(stringToJson(election_03));
-		createOrUpdateMultiElectionTest(stringToJson(election_04));
-		createOrUpdateMultiElectionTest(stringToJson(election_05));
+
+
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.add(stringToJson(election_01));
+		jsonArray.add(stringToJson(election_02));
+		jsonArray.add(stringToJson(election_03));
+		jsonArray.add(stringToJson(election_04));
+		jsonArray.add(stringToJson(election_05));
+		
+		createOrUpdateMultiElectionTest(jsonArray);	
 	}
 	
 	

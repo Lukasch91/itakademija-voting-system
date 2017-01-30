@@ -21,6 +21,7 @@ public class MultiElectionController {
 
 	@Autowired
 	private MultiElectionRepository multiElectionRepository;
+	
 	@RequestMapping(value = "/api/reg-votes-multi", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Get all  Multi Election results")
@@ -30,9 +31,9 @@ public class MultiElectionController {
 	
 	@RequestMapping(value = "/api/reg-votes-multi", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Save or update Multi Election results")
-	public MultiElection createOrUpdateMulti(@RequestBody MultiElection multiElection) {
-		return multiElectionRepository.saveOrUpdate(multiElection);
+	@ApiOperation(value = "Save or update Multi Election results. Accepts Array")
+	public void createOrUpdateMulti(@RequestBody List<MultiElection> multiElection) {
+		multiElectionRepository.saveOrUpdate(multiElection);
 	}
 	
 	@RequestMapping(value = "/api/reg-votes-multi/{id}", method = RequestMethod.GET)
