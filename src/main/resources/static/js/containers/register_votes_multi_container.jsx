@@ -21,11 +21,10 @@ var RegisterVotesMultiContainer = React.createClass( {
 
     handleFieldChange: function( fieldName ) {
         var self = this;
-        var votesList = [];
-        return function( e ) {
-
-            election[fieldName] = e.target.value;
-            self.setState( { election: self.state.election });
+        return function(e) {
+          var constituency = self.state.election;
+          election[fieldName] = e.target.value;
+          self.setState({ election: election });
         };
     },
 
@@ -33,7 +32,6 @@ var RegisterVotesMultiContainer = React.createClass( {
         e.preventDefault();
         for ( var i = 0; i < this.state.parties.length; i++ ) {
             axios.post( '/api/reg-votes-multi', {
-        
                 votes: this.state.election.votes,
                 party: { id: this.state.parties[i].id },
                 district: { id: '1' },
