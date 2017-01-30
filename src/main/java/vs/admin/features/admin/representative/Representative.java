@@ -2,6 +2,11 @@ package vs.admin.features.admin.representative;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -17,23 +22,33 @@ public class Representative {
 	@Column
 	private Integer id;
 
+	/*https://docs.jboss.org/hibernate/validator/4.2/api/org/hibernate/validator/constraints/package-summary.html  	*/
+	
 	@Column
+	@NotBlank //Hibernate validation
+	@Size(max=30) //Hibernate validation
+	@ApiModelProperty(value = "@NotBlank; @Size(max=30)")
 	private String name;
 
 	@Column
+	@ApiModelProperty(value = "-------------------------------")
 	private String surname;
 
-	// @UniqueConstraint
+	// @UniqueConstraint: http://stackoverflow.com/questions/17092601/how-to-validate-unique-username-in-spring
 	@Column
+	@ApiModelProperty(value = "-------------------------------")
 	private String loginName;
 
 	@Column
+	@ApiModelProperty(value = "-------------------------------")
 	private String password;
 
 	@Column
+	@ApiModelProperty(value = "-------------------------------")
 	private String email;
 
 	@Column(name = "district_id")
+	@ApiModelProperty(value = "-------------------------------")
 	private Integer districtId;
 
 	public Representative() {

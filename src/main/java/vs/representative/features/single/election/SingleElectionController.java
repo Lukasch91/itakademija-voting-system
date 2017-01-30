@@ -28,9 +28,12 @@ public class SingleElectionController {
 	
 	@RequestMapping(value = "/api/singleelection", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-	@ApiOperation(value = "Create single election result")
-	public SingleElection createSingleElectionResult(@RequestBody SingleElection singleElection) {
-		return singleElectionRepository.saveSingleElection(singleElection);
+	@ApiOperation(value = "Create single election result or results. Accepts array.", notes = "Data: ["
++ "{\"singleId\": null, \"singleCandidate\": {\"candidateID\": 1}, \"singleDistrict\": { \"id\": 3}, \"singleVotes\": 99}, "
++ "{\"singleId\": null, \"singleCandidate\": {\"candidateID\": 2}, \"singleDistrict\": { \"id\": 4}, \"singleVotes\": 33}"
++ "]")
+	public void createSingleElectionResult(@RequestBody List<SingleElection> singleElections) {
+		/*return*/ singleElectionRepository.saveSingleElection(singleElections);
 	}
 	
 	@RequestMapping(value = "/api/singleelection/{id}", method = RequestMethod.GET)
