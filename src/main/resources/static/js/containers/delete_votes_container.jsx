@@ -38,7 +38,12 @@ var DeleteVotesContainer = React.createClass( {
             axios.delete( '/api/singleelectiondistrict/' + this.state.districtVal ).then( function() {
                 console.log( 'votes deleted' );
             });
-        } else {
+        } else if ( this.state.districtVal != 'base' && this.state.electionType == 'multi' ) {
+            axios.delete( '/api/multielectiondistrict/' + this.state.districtVal ).then( function() {
+                console.log( 'votes deleted' );
+            });
+        } 
+        else {
             alert( 'Paršome pasirinkti apygardą' );
         }
     },
