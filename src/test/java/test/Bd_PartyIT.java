@@ -46,7 +46,7 @@ public class Bd_PartyIT {
 		ParameterizedTypeReference<Party> party = new ParameterizedTypeReference<Party>() {
 		}; // Setup
 		ResponseEntity<Party> response = restTemplate.exchange(URI + "/" + id, HttpMethod.PUT, null, party); // Exercise
-		Assert.assertThat(response.getStatusCode(), is(HttpStatus.OK)); // Verify
+		Assert.assertThat(response.getStatusCode(), is(HttpStatus.NO_CONTENT)); // Verify
 
 		return response.getBody();
 	}
