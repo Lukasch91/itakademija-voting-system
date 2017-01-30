@@ -28,6 +28,7 @@ var AdministrateRepresentativeContainer = React.createClass({
     handleAddRepresentative: function(e) {
         e.preventDefault();
         var self = this;
+        console.log("sagg_test_01:");
         axios.post('/api/representative', {
             name: this.state.representative.name,
             surname: this.state.representative.surname,
@@ -35,10 +36,30 @@ var AdministrateRepresentativeContainer = React.createClass({
             password: this.state.representative.password,
             email: this.state.representative.email,
             districtId: this.props.params.disId
-        }).then(function () {
-            console.log('representative added');
-            /*self.context.router.push('/dis/' + this.props.params.conId);*/
-          });
+        })
+                
+        .then(function(response) {
+            console.log("sagg_test_02:");
+            console.log(response);
+            console.log("representative added");
+        })
+        
+        .catch(function(error) {
+            console.log("sagg_test_03: error response message");
+            console.log(error.response.data.message);
+            console.log("sagg_test_04: error response object");
+            console.log(error.response);
+            console.log("sagg_test_05: error response status(code(500))");
+            console.log("ErrorStatus: "+error.response.status);
+
+        });
+        
+               
+        
+//        .then(function () {
+//            console.log('representative added');
+//            /*self.context.router.push('/dis/' + this.props.params.conId);*/
+//          });
         this.context.router.push('/dis/' + this.props.params.conId);
     },
     

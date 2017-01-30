@@ -46,18 +46,12 @@ public class RepresentativeController {
 
 		return representativeRepository.saveOrUpdateRepresentative(representative);
 
+		
+		//custom http error
+		
+		
+		
 			/*
-			  @PostMapping("/")
-    public String checkPersonInfo(@Valid PersonForm personForm, BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-            return "form";
-        }
-
-        return "redirect:/results";
-    }		
-    
-    
     callback:
     http://stackoverflow.com/questions/2697719/error-handling-with-post
     http://stackoverflow.com/questions/2833951/how-to-catch-ajax-query-post-error
