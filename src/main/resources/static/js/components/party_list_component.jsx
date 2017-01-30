@@ -7,9 +7,7 @@ var PartyListComponent = React.createClass( {
                     <td>{party.title}</td>
                     <td>{party.party_abbreviation}</td>
                     <td>
-                        <button type="button" className="btn btn-default" onClick={self.props.onRemoveItem( party )}>
-                            <span className="glyphicon glyphicon-remove"></span>
-                        </button>
+                    <DeleteConfirmationComponent deletion={self.props.onRemoveItem(party)}/ >
                     </td>
                 </tr>
             );

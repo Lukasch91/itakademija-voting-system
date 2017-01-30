@@ -15,9 +15,8 @@ var DistrictListComponent = React.createClass({
                 <td>{rep_name}</td>
                 <td><button type="button" className="btn btn-primary" onClick={self.props.onAdministerRepresentative(district)}>Administruoti atstovą</button></td>
                 <td>
-                <button type="button" className="btn btn-default" onClick={self.props.onRemoveItem(district)}>
-                <span className="glyphicon glyphicon-remove" ></span>
-                </button></td>
+                <DeleteConfirmationComponent deletion={self.props.onRemoveItem( district )} />
+                </td>
                 </tr>    
                 )
             } else {
@@ -29,9 +28,8 @@ var DistrictListComponent = React.createClass({
               <td>{rep_name}</td>
               <td><button type="button" className="btn btn-primary" onClick={self.props.onAddRepresentative(district)}>Pridėti atstovą</button></td>
               <td>
-              <button type="button" className="btn btn-default" onClick={self.props.onRemoveItem(district)}>
-              <span className="glyphicon glyphicon-remove"></span>
-              </button></td>
+              <DeleteConfirmationComponent deletion={self.props.onRemoveItem( district )} />
+              </td>
               </tr>
           );
             }

@@ -1,7 +1,7 @@
-var RepresentativeInfoComponent = React.createClass({
+var RepresentativeInfoComponent = React.createClass( {
     render: function() {
         return (
-                <div>
+            <div>
                 <p>Vardas: {this.props.representative.name}</p>
                 <p>Pavardė: {this.props.representative.surname}</p>
                 <p>Prisijungimo vardas: {this.props.representative.loginName}</p>
@@ -9,10 +9,32 @@ var RepresentativeInfoComponent = React.createClass({
                 <p>El. paštas: {this.props.representative.email}</p>
                 <button className="btn btn-success" >Redaguoti</button>
                 <button className="btn btn-info">Siųsti prisijungimus atstovui</button>
-                <button className="btn btn-danger" onClick={this.props.onDelete}>Trinti atstovą</button>
-                <button className="btn btn-warning" onClick={this.props.onCancel}>Grįžti</button>
+
+                <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target="#modal">
+                    Trinti atstovą
+                </button>
+                <div className="modal fade" id="modal" tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
+                                <h4 className="modal-title" id="myModalLabel">Dėmesio!</h4>
+                            </div>
+                            <div className="modal-body">
+                                Ar tikrai norite ištrinti apygardą?
+                            </div>
+                            <div className="modal-footer">
+                                <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
+                                <button type="button" className="btn btn-danger" onClick={this.props.onDelete} data-dismiss="modal">Ištrinti</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-        
+
+
+                <button className="btn btn-warning" onClick={this.props.onCancel}>Grįžti</button>
+            </div>
+
         )
     }
 });
