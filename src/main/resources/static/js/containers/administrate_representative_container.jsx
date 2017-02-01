@@ -1,5 +1,7 @@
-var AdministrateRepresentativeContainer = React.createClass({
-   
+var AdministrateRepresentativeContainer = React.createClass( {
+
+    
+    
     getInitialState: function() {
         return {
             representative: {
@@ -7,73 +9,93 @@ var AdministrateRepresentativeContainer = React.createClass({
                 surname: '',
                 loginName: '',
                 password: '',
-                email: ''              
+                email: ''
             }
         }
     },
-    
-    handleFieldChange: function(fieldName) {
+
+    handleFieldChange: function( fieldName ) {
         var self = this;
-        return function(e) {
-          var representative = self.state.representative;
-          representative[fieldName] = e.target.value;
-          self.setState({ representative: representative });
+        return function( e ) {
+            var representative = self.state.representative;
+            representative[fieldName] = e.target.value;
+            self.setState( { representative: representative });
         };
     },
-    
+
     handleCancel: function() {
-        this.context.router.push('/dis/' + this.props.params.conId);
+        this.context.router.push( '/dis/' + this.props.params.conId );
     },
-    
-    handleAddRepresentative: function(e) {
+
+    handleAddRepresentative: function( e ) {
         e.preventDefault();
         var self = this;
-        console.log("sagg_test_01:");
-        axios.post('/api/representative', {
+        
+        var success = 0;
+        
+        console.log( "sagg_test_01:" );
+        axios.post( '/api/representative', {
             name: this.state.representative.name,
             surname: this.state.representative.surname,
             loginName: this.state.representative.loginName,
             password: this.state.representative.password,
             email: this.state.representative.email,
             districtId: this.props.params.disId
-        })
-                
-        .then(function(response) {
-            console.log("sagg_test_02:");
-            console.log(response);
-            console.log("representative added");
-        })
-        
-        .catch(function(error) {
-            console.log("sagg_test_03: error response message");
-            console.log(error.response.data.message);
-            console.log("sagg_test_04: error response object");
-            console.log(error.response);
-            console.log("sagg_test_05: error response status(code(500))");
-            console.log("ErrorStatus: "+error.response.status);
+            
+                  })
+/*=================*/
+            .then( function( response ) {
+                success = 1;
+                console.log("-----------------"+success);
+                console.log( "sagg_test_02:" );
+                console.log( response );
+                console.log( "representative added" );
+            })
+            .catch( function( error ) {
+                if(error.response) {
+                    console.log( "sagg_test_03: error response message" );
+                    console.log( error.response.data.message );
+                    console.log( "sagg_test_04: error response object" );
+                    console.log( error.response );
+                    console.log( "sagg_test_05: error response status:" );
+                    console.log( "ErrorStatus: " + error.response.status );
 
-        });
+                    console.log( "sagg_test_06: error message:" );
+                    for ( var i = 0; i < ( error.response.data.errors.length ); i++ ) {
+                        console.log( ">>>" + error.response.data.errors[i].defaultMessage );
+                    }
+                }
+             });
+
+
+        if (success == 1) {
+            this.context.router.push( '/dis/' + this.props.params.conId );
+        }
+            
+
         
-               
+
         
-//        .then(function () {
-//            console.log('representative added');
-//            /*self.context.router.push('/dis/' + this.props.params.conId);*/
-//          });
-        this.context.router.push('/dis/' + this.props.params.conId);
+
+        //        .then(function () {
+        //            console.log('representative added');
+        //            /*self.context.router.push('/dis/' + this.props.params.conId);*/
+        //          });
+/*=================*/
+        
     },
-    
+
     render: function() {
-        return <AdministrateRepresentativeComponent 
-        representative={this.state.representative}
-        onFieldChange={this.handleFieldChange}
-        onAddRepresentative={this.handleAddRepresentative}
-        onCancel={this.handleCancel}/>
+        return <AdministrateRepresentativeComponent
+            representative={this.state.representative}
+            onFieldChange={this.handleFieldChange}
+            onAddRepresentative={this.handleAddRepresentative}
+            onCancel={this.handleCancel} />
     }
 });
 
 AdministrateRepresentativeContainer.contextTypes = {
-        router: React.PropTypes.object.isRequired,
+    router: React.PropTypes.object.isRequired,
 };
 
 window.AdministrateRepresentativeContainer = AdministrateRepresentativeContainer;

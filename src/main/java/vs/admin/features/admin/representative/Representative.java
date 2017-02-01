@@ -4,7 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -25,13 +27,15 @@ public class Representative {
 	/*https://docs.jboss.org/hibernate/validator/4.2/api/org/hibernate/validator/constraints/package-summary.html  	*/
 	
 	@Column
-	@NotBlank //Hibernate validation
-	@Size(max=30) //Hibernate validation
-	@ApiModelProperty(value = "@NotBlank; @Size(max=30)")
+	@NotEmpty(message="Vardas negali būti tuščias")
+	@Size(max=20, message="Vardo ilgis negali būti ilgesnis negu {max} simboliu")
+	@ApiModelProperty(value = "@NotEmpty; @Size(max=20)")
 	private String name;
 
 	@Column
-	@ApiModelProperty(value = "-------------------------------")
+	@NotEmpty(message="Pavardė negali būti tuščia")
+	@Size(max=20, message="Pavardės ilgis negali būti ilgesnis negu {max} simbolių")
+	@ApiModelProperty(value = "@NotEmpty; @Size(max=20)")
 	private String surname;
 
 	// @UniqueConstraint: http://stackoverflow.com/questions/17092601/how-to-validate-unique-username-in-spring
@@ -40,15 +44,20 @@ public class Representative {
 	private String loginName;
 
 	@Column
-	@ApiModelProperty(value = "-------------------------------")
+	@NotEmpty(message="Slaptažodis negali būti tuščias")
+	@Size(max=20, message="Slaptažodzio ilgis negali būti ilgesnis negu {max} simbolių")
+	@ApiModelProperty(value = "@NotEmpty; @Size(max=20)")
 	private String password;
 
 	@Column
-	@ApiModelProperty(value = "-------------------------------")
+	@NotEmpty(message="E-paštas negali būti tuščias")
+	@Email(message="Neteisingas E-pašto formatas")
+	@ApiModelProperty(value = "@NotEmpty; @Email")
 	private String email;
 
 	@Column(name = "district_id")
-	@ApiModelProperty(value = "-------------------------------")
+	//Unique (negalima ideti atstovo jeigu toks id jau panaudotas) 
+	@ApiModelProperty(value = "@NotEmpty")
 	private Integer districtId;
 
 	public Representative() {

@@ -38,29 +38,8 @@ public class RepresentativeController {
 			+ "\"email\": \"Sablonskis@gmail.com\", \"id\": null, \"loginName\": \"Sab\", "
 			+ "\"name\": \"Sablonius\", \"password\": \"xxx\", \"surname\": \"SABLONSKIS\"}") //swaggerino
 	
-	public Representative createOrUpdateRepresentative(
-			@Valid Representative representativeValidation /*hibernate checks validation of model*/, 
-			BindingResult bindingResult /*hibernate should return some kind of exception*/, 
-			@RequestBody Representative representative) {
-		
-
-		return representativeRepository.saveOrUpdateRepresentative(representative);
-
-		
-		//custom http error
-		
-		
-		
-			/*
-    callback:
-    http://stackoverflow.com/questions/2697719/error-handling-with-post
-    http://stackoverflow.com/questions/2833951/how-to-catch-ajax-query-post-error
-    http://javascriptissexy.com/understand-javascript-callback-functions-and-use-them/
-    		*/
-		
-		
-		
-		
+	public Representative createOrUpdateRepresentative(@Valid @RequestBody Representative representative) {
+		return representativeRepository.saveOrUpdateRepresentative(representative);		
 	}
 	/*============================================================*/
 	@RequestMapping(value = "/api/representative/{id}", method = RequestMethod.GET)
