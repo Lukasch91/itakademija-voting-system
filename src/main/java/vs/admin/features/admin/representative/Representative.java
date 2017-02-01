@@ -5,10 +5,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import io.swagger.annotations.ApiModelProperty;
+import vs.utils.hibernate.validators.representative.UniqueRepresentativeUsername;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -23,8 +23,6 @@ public class Representative {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private Integer id;
-
-	/*https://docs.jboss.org/hibernate/validator/4.2/api/org/hibernate/validator/constraints/package-summary.html  	*/
 	
 	@Column
 	@NotEmpty(message="Vardas negali būti tuščias")
@@ -38,11 +36,20 @@ public class Representative {
 	@ApiModelProperty(value = "@NotEmpty; @Size(max=20)")
 	private String surname;
 
-	// @UniqueConstraint: http://stackoverflow.com/questions/17092601/how-to-validate-unique-username-in-spring
+	
+
 	@Column
-	@ApiModelProperty(value = "-------------------------------")
+	@NotEmpty(message="Slapyvardis negali būti tuščias")
+	
+//	@UniqueRepresentativeUsername //message in the class
+	
+	@ApiModelProperty(value = "@NotEmpty, @UniqueRU")
 	private String loginName;
 
+	
+	
+	
+	
 	@Column
 	@NotEmpty(message="Slaptažodis negali būti tuščias")
 	@Size(max=20, message="Slaptažodzio ilgis negali būti ilgesnis negu {max} simbolių")
@@ -57,7 +64,7 @@ public class Representative {
 
 	@Column(name = "district_id")
 	//Unique (negalima ideti atstovo jeigu toks id jau panaudotas) 
-	@ApiModelProperty(value = "@NotEmpty")
+	@ApiModelProperty(value = "------------------------")
 	private Integer districtId;
 
 	public Representative() {
