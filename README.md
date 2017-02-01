@@ -17,3 +17,8 @@ Prisijungiama kai programa paleista
   1) Istrinam duombaze
   
   2) Eclipse aplinkoje pasileidziame testu bendrines klases arba pavienius testus.
+
+
+###Login
+UserName - user
+Password - pass
