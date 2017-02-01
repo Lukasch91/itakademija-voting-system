@@ -2,7 +2,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div style={{ paddingTop: '20px' }}>
-        <NavigationComponent />
+        <NavigationContainer />
         {this.props.children}
       </div>
     );
