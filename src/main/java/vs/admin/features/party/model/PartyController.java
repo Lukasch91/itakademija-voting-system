@@ -2,6 +2,8 @@ package vs.admin.features.party.model;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +28,7 @@ public class PartyController {
 
 	@RequestMapping(value = "/api/party", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	public Party createOrUpdateParty(@RequestBody Party party) {
+	public Party createOrUpdateParty(@Valid @RequestBody Party party) {
 		return partyRepository.saveOrUpdate(party);
 	}
 	@RequestMapping(value = "/api/party/{id}", method = RequestMethod.GET)

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -26,6 +27,7 @@ public class MultiElection {
 	private Integer id;
 	
 	@Column
+	@Min(value = 0L, message = "The value must be positive")
 	private Integer votes;
 	
 	@Column
