@@ -13,7 +13,7 @@ var ConstituencyListComponent = React.createClass( {
                 </tr>
             );
         });
-
+        
         return (
             <div className="panel panel-default">
                 <table className="table">

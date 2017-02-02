@@ -11,7 +11,6 @@ var DeleteVotesComponent = React.createClass( {
                 <option key={index} value={district.id}>{district.title}</option>
             );
         });
-
         return (
 
             <form>

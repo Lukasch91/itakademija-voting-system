@@ -28,7 +28,7 @@ var ConstituencyListContainer = React.createClass( {
         var self = this;
         return function() {
             axios.put( '/api/constituency/' + constituency.id ).then( function( response ) {
-                console.log( 'item deleted' );
+                console.log( 'item deleted');
                 axios.get( '/api/constituency' )
                     .then( function( response ) {
                         self.setState( {
