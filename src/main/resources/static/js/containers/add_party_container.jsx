@@ -21,10 +21,36 @@ var AddPartyContainer = React.createClass({
     handleAddParty: function(e) {
         e.preventDefault();
         var self = this;
-        axios.post('/api/party', this.state.party).then(function () {
-            console.log('party added');
-            self.context.router.push('/parties');
-          });
+        var success = 0;
+        
+        axios.post('/api/party', this.state.party)
+       .then( function( response ) {
+              success = 1;
+              console.log("-----------------"+success);
+              console.log( "sagg_test_02:" );
+              console.log( response );
+              console.log( "party added" );
+          })
+          .catch( function( error ) {
+              if(error.response) {
+                  console.log( "sagg_test_03: error response message" );
+                  console.log( error.response.data.message );
+                  console.log( "sagg_test_04: error response object" );
+                  console.log( error.response );
+                  console.log( "sagg_test_05: error response status:" );
+                  console.log( "ErrorStatus: " + error.response.status );
+
+                  console.log( "sagg_test_06: error message:" );
+                  for ( var i = 0; i < ( error.response.data.errors.length ); i++ ) {
+                      console.log( ">>>" + error.response.data.errors[i].defaultMessage );
+                  }
+              }
+           }).then(function() {
+               if (success == 1) {
+                   self.context.router.push('/parties');
+               }
+           });
+;
     },
     
     handleCancel: function() {

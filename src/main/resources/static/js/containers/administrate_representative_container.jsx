@@ -65,22 +65,17 @@ var AdministrateRepresentativeContainer = React.createClass( {
                         console.log( ">>>" + error.response.data.errors[i].defaultMessage );
                     }
                 }
+             }).then(function() {
+                 if (success == 1) {
+                     self.context.router.push( '/dis/' + self.props.params.conId );
+                 }
              });
 
 
-        if (success == 1) {
-            this.context.router.push( '/dis/' + this.props.params.conId );
-        }
+
             
 
         
-
-        
-
-        //        .then(function () {
-        //            console.log('representative added');
-        //            /*self.context.router.push('/dis/' + this.props.params.conId);*/
-        //          });
 /*=================*/
         
     },

@@ -18,6 +18,8 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import vs.utils.hibernate.validators.party.UniqueParty;
+
 @Entity
 @Table(name = "parties")
 public class Party {
@@ -29,6 +31,7 @@ public class Party {
 
 	@Column
 	//@Valid
+	@UniqueParty
 	@NotBlank(message = "Title cant be with only spaces or empty")					//check for spaces, null not valid
 	//@Size(min=1, max=50, message = "Title length must be between 1 and 50")		//title letter length
 	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ]{2}$)", message = "Title must be letters or numbers")

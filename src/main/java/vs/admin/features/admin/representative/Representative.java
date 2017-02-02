@@ -41,7 +41,7 @@ public class Representative {
 	@Column
 	@NotEmpty(message="Slapyvardis negali būti tuščias")
 	
-//	@UniqueRepresentativeUsername //message in the class
+	@UniqueRepresentativeUsername //message in the class
 	
 	@ApiModelProperty(value = "@NotEmpty, @UniqueRU")
 	private String loginName;
