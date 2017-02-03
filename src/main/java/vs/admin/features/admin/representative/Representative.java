@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import io.swagger.annotations.ApiModelProperty;
+import vs.utils.hibernate.validators.representative.UniqueRepresentativeEmail;
 import vs.utils.hibernate.validators.representative.UniqueRepresentativeUsername;
 
 import javax.persistence.Column;
@@ -22,49 +23,45 @@ public class Representative {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
+	@ApiModelProperty(value = "No validation")
 	private Integer id;
-	
+
 	@Column
-	@NotEmpty(message="Vardas negali būti tuščias")
-	@Size(max=20, message="Vardo ilgis negali būti ilgesnis negu {max} simboliu")
-	@ApiModelProperty(value = "@NotEmpty; @Size(max=20)")
+	@NotEmpty(message = "Vardas negali būti tuščias")
+	@Size(max = 30, message = "Vardo ilgis negali būti ilgesnis negu {max} simboliu")
+	@ApiModelProperty(value = "@NotEmpty, @Size(max=30)")
 	private String name;
 
 	@Column
-	@NotEmpty(message="Pavardė negali būti tuščia")
-	@Size(max=20, message="Pavardės ilgis negali būti ilgesnis negu {max} simbolių")
-	@ApiModelProperty(value = "@NotEmpty; @Size(max=20)")
+	@NotEmpty(message = "Pavardė negali būti tuščia")
+	@Size(max = 20, message = "Pavardės ilgis negali būti ilgesnis negu {max} simbolių")
+	@ApiModelProperty(value = "@NotEmpty, @Size(max=20)")
 	private String surname;
 
-	
-
 	@Column
-	@NotEmpty(message="Slapyvardis negali būti tuščias")
-	
-	@UniqueRepresentativeUsername //message in the class
-	
-	@ApiModelProperty(value = "@NotEmpty, @UniqueRU")
+	@NotEmpty(message = "Slapyvardis negali būti tuščias")
+	@UniqueRepresentativeUsername // message in the validator class
+	@ApiModelProperty(value = "@NotEmpty, @Unique")
 	private String loginName;
 
-	
-	
-	
-	
 	@Column
-	@NotEmpty(message="Slaptažodis negali būti tuščias")
-	@Size(max=20, message="Slaptažodzio ilgis negali būti ilgesnis negu {max} simbolių")
-	@ApiModelProperty(value = "@NotEmpty; @Size(max=20)")
+	@NotEmpty(message = "Slaptažodis negali būti tuščias")
+	@Size(max = 50, message = "Slaptažodzio ilgis negali būti ilgesnis negu {max} simbolių")
+	@ApiModelProperty(value = "@NotEmpty, @Size(max=50)")
 	private String password;
 
 	@Column
-	@NotEmpty(message="E-paštas negali būti tuščias")
-	@Email(message="Neteisingas E-pašto formatas")
-	@ApiModelProperty(value = "@NotEmpty; @Email")
+	@NotEmpty(message = "E-paštas negali būti tuščias")
+	@Email(message = "Neteisingas E-pašto formatas")
+	@Size(max = 50, message = "E-pašto ilgis negali būti ilgesnis negu {max} simbolių")
+	@UniqueRepresentativeEmail // message in the validator class
+	@ApiModelProperty(value = "@NotEmpty, @Size(max=50), @Email, @Unique")
 	private String email;
 
 	@Column(name = "district_id")
-	//Unique (negalima ideti atstovo jeigu toks id jau panaudotas) 
-	@ApiModelProperty(value = "------------------------")
+	// Uppon attempted validation<javax.validation.UnexpectedTypeException:
+	// HV000030: No validator could be found for constraint>
+	@ApiModelProperty(value = "No validation")
 	private Integer districtId;
 
 	public Representative() {
@@ -137,6 +134,4 @@ public class Representative {
 	public void setDistrictId(Integer districtId) {
 		this.districtId = districtId;
 	}
-
-	
 }

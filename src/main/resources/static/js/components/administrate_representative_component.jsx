@@ -13,7 +13,7 @@ var AdministrateRepresentativeComponent = React.createClass( {
         return (
             <div>
                 <form>
-                    <label>Vardas------</label><br />
+                    <label>Vardas</label><br />
                     <input className="form-control" type="text" value={this.props.representative.name} onChange={this.props.onFieldChange( 'name' )} /><br />
 
                     <label>Pavardė</label><br />
