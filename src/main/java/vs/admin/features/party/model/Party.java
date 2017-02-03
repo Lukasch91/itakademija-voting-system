@@ -33,14 +33,14 @@ public class Party {
 	//@Valid
 	@UniqueParty
 	@NotBlank(message = "Title cant be with only spaces or empty")					//check for spaces, null not valid
-	//@Size(min=1, max=50, message = "Title length must be between 1 and 50")		//title letter length
-	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ]{2}$)", message = "Title must be letters or numbers")
+	@Size(min=5, max=70, message = "Party title length must be between 1 and 70")		//title letter length
+	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]$)", message = "Title must be letters or/and numbers")
 	private String title;
 
 	@Column
 	@NotBlank
-	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ]{2}$)", message = "Party abbreviation must be letters or numbers")
-	//@Length(min = 2, message = "The field must be at least 2 characters")
+	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]{2}$)", message = "Party abbreviation must be letters or numbers")
+	@Size(min=1, max=10, message = "Party abbrevation length must be between 1 and 10")
 	private String party_abbreviation;
 	
 
@@ -51,10 +51,11 @@ public class Party {
 
 	}
 
-	public Party(Integer id, String title, Date deletedTime) {
+	public Party(Integer id, String title, Date deletedTime, String party_abbreviation) {
 		this.id = id;
 		this.title = title;
 		this.deletedTime = deletedTime;
+		this.party_abbreviation = party_abbreviation;
 	}
 
 	public Integer getId() {
