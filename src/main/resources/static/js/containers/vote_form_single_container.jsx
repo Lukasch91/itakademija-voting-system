@@ -28,18 +28,8 @@ var VoteFormSingleContainer = React.createClass( {
             .then( function() {
                 console.log( 'vote added' );
             });
-        /*window.location.reload();*/
+        window.location.reload();
 
-/*        [
-         {
-           "singleCandidate": {      "candidateID": 1 },
-           "singleDeletedDate": null,
-           "singleDistrict": { "id": 1 },
-           "singleEnteredDate": null,
-           "singlePublishedDate": null,
-           "singleVotes": 10
-         }
-       ]*/
     },
 
     render: function() {
