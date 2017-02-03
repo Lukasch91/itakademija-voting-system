@@ -3,18 +3,18 @@ var RegisterVotesMultiComponent = React.createClass( {
         var self = this;
         var votesList = [];
         var votesEntered = [];
-        
+
         this.props.elections.map( function( electVotes, index ) {
             votesList.push( electVotes.party.id );
             votesEntered.push( electVotes );
         });
 
-        console.log('bla');
+        console.log( 'bla' );
         var partyCount = [];
 
 
         var partyList = this.props.parties.map( function( party, index ) {
-            partyCount.push(party);
+            partyCount.push( party );
 
             if ( votesList.includes( party.id ) ) {
 
@@ -34,20 +34,19 @@ var RegisterVotesMultiComponent = React.createClass( {
                 return (
                     <div key={index}>
                         <label>{party.title} ({party.party_abbreviation} )</label>
-                        <VoteFormContainer partyId={party.id} /><br />
+                        <VoteFormMultiContainer partyId={party.id} /><br />
                     </div>
                 );
             }
-            
+
         });
 
-        console.log(partyCount.length);
+        console.log( partyCount.length );
         var disabled = true;
-        if (votesEntered.length == 5 && votesEntered[0].published_date == null) {
+        if ( partyCount.length != 0 && votesEntered.length == partyCount.length && votesEntered[0].published_date == null ) {
             disabled = false;
         }
-        
-        
+
         return (
             <form>
                 <h3>Daugiamandatės</h3>
@@ -55,8 +54,7 @@ var RegisterVotesMultiComponent = React.createClass( {
                 <h4>Apylinkė: test</h4><br />
                 {partyList}
                 <input type="checkbox" /> Patvirtinu, kad įvesti duomenys teisingi.<br />
-                <button className="btn btn-success" onClick={self.props.onPublishVotes} disabled={disabled}>Publikuoti rezultatus</button>&nbsp;
-                
+                <button className="btn btn-success" onClick={self.props.onPublishVotes} disabled={disabled}>Publikuoti rezultatus</button>
             </form>
         )
     }

@@ -1,4 +1,4 @@
-var VoteFormComponent = React.createClass( {
+var VoteFormSingleComponent = React.createClass( {
     render: function() {
         var self = this;
         var voteForm = function() {
@@ -28,4 +28,4 @@ var VoteFormComponent = React.createClass( {
     }
 });
 
-window.VoteFormComponent = VoteFormComponent;
+window.VoteFormSingleComponent = VoteFormSingleComponent;

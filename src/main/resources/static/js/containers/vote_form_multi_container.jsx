@@ -1,4 +1,4 @@
-var VoteFormContainer = React.createClass( {
+var VoteFormMultiContainer = React.createClass( {
 
     getInitialState: function() {
         return {
@@ -35,7 +35,7 @@ var VoteFormContainer = React.createClass( {
     },
 
     render: function() {
-        return <VoteFormComponent
+        return <VoteFormMultiComponent
 
             election={this.state.election}
             onFieldChange={this.handleFieldChange}
@@ -45,4 +45,4 @@ var VoteFormContainer = React.createClass( {
 });
 
 
-window.VoteFormContainer = VoteFormContainer;
+window.VoteFormMultiContainer = VoteFormMultiContainer;

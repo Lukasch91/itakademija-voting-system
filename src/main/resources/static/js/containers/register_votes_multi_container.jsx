@@ -4,7 +4,6 @@ var RegisterVotesMultiContainer = React.createClass( {
         return {
             parties: [],
             elections: []
-
         };
     },
 
@@ -25,12 +24,11 @@ var RegisterVotesMultiContainer = React.createClass( {
     },
 
     handlePublishVotes: function() {
-        axios.post( '/api/multielectiondistrict/1' );
+        axios.post( '/api/multielectiondistrict/1' ).then( function( response ) {
+            window.location.reload();
+        });
         console.log( 'votes published' );
-        window.location.reload();
-
     },
-
 
     render: function() {
         return <RegisterVotesMultiComponent
@@ -40,6 +38,5 @@ var RegisterVotesMultiContainer = React.createClass( {
             />
     }
 });
-
 
 window.RegisterVotesMultiContainer = RegisterVotesMultiContainer;
