@@ -18,6 +18,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import io.swagger.annotations.ApiModelProperty;
 import vs.utils.hibernate.validators.party.UniqueParty;
 
 @Entity
@@ -35,12 +36,13 @@ public class Party {
 	@NotBlank(message = "Patikrinkite partijos pavadinimą")					//check for spaces, null not valid
 	@Size(min=5, max=70, message = "Partijos pavadinimas negali būti trumpesnis nei {min} ar ilgesnis nei {max}")		//title letter length
 	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]$)", message = "Pavadinime naudojami netinkami simboliai")
+	@ApiModelProperty(value = "@NotBlank, @Size(min5, max=70), @UniqueParty, @Patern")
 	private String title;
 
 	@Column
 	@NotBlank
 	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]{2}$)", message = "Partijos trumpinyje naudojami netinkami simboliai")
-	@Size(min=1, max=10, message = "Partijos trumpinio ilgis turi būti tarp {min} ir {max}")
+	@Size(min=1, max=10, message = "Partijos trumpinio ilgis turi būti mažiausiai : {min} ir daugiausiai: {max} simbolių")
 	private String party_abbreviation;
 	
 
