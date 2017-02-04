@@ -32,15 +32,15 @@ public class Party {
 	@Column
 	//@Valid
 	@UniqueParty
-	@NotBlank(message = "Title cant be with only spaces or empty")					//check for spaces, null not valid
-	@Size(min=5, max=70, message = "Party title length must be between 1 and 70")		//title letter length
-	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]$)", message = "Title must be letters or/and numbers")
+	@NotBlank(message = "Patikrinkite partijos pavadinimą")					//check for spaces, null not valid
+	@Size(min=5, max=70, message = "Partijos pavadinimas negali būti trumpesnis nei {min} ar ilgesnis nei {max}")		//title letter length
+	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]$)", message = "Pavadinime naudojami netinkami simboliai")
 	private String title;
 
 	@Column
 	@NotBlank
-	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]{2}$)", message = "Party abbreviation must be letters or numbers")
-	@Size(min=1, max=10, message = "Party abbrevation length must be between 1 and 10")
+	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]{2}$)", message = "Partijos trumpinyje naudojami netinkami simboliai")
+	@Size(min=1, max=10, message = "Partijos trumpinio ilgis turi būti tarp {min} ir {max}")
 	private String party_abbreviation;
 	
 
