@@ -20,12 +20,12 @@ var VoteFormMultiContainer = React.createClass( {
 
     handleVoteClick: function( e ) {
         e.preventDefault();
-        axios.post( '/api/reg-votes-multi', [{
+        axios.post( '/api/reg-votes-multi', {
             votes: this.state.election.votes,
             party: { id: this.props.partyId },
             district: { id: '1' },
             enetered_date: Date.now()
-        }])
+        })
             .then( function() {
                 console.log( 'vote added' );
             });
