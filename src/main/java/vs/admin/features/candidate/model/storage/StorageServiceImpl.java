@@ -50,8 +50,6 @@ public class StorageServiceImpl implements StorageService {
 			content = "";
 
 			while ((tempContent = reader.readLine()) != null) {
-				System.out.println(content);
-				System.out.println(tempContent);
 				this.content += (tempContent + "\n");
 			}
 		} catch (IOException x) {

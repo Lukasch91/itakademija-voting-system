@@ -23,6 +23,9 @@ public class CandidateController {
 
 	@Autowired
 	private StorageService storageService;
+	
+	@Autowired
+	private CandidateService candidateService;
 
 	@Autowired
 	private CandidateRepository candidateRepository;
@@ -62,7 +65,31 @@ public class CandidateController {
 	public String districtCandidatesCSV(@RequestParam("file") MultipartFile file, @RequestHeader Integer districtId) {
 
 		storageService.store(file);
+		
+		candidateService.setCandidatesDistrict(districtId);
+		candidateService.setCandidatesData(storageService.returnStoredFile(file));
+		candidateService.saveDistrictCandidates();
+		
 		String aaa = storageService.returnStoredFile(file);
+		
+		storageService.deleteFile(file);
+
+		return aaa;
+	}
+	
+	@RequestMapping(value = "/api/partycandidatesFILE", method = RequestMethod.POST)
+	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
+	@ApiOperation(value = "Upload party candidates CSV")
+	public String partyCandidatesCSV(@RequestParam("file") MultipartFile file, @RequestHeader Integer partyId) {
+
+		storageService.store(file);
+		
+		candidateService.setCandidatesParty(partyId);
+		candidateService.setCandidatesData(storageService.returnStoredFile(file));
+		candidateService.savePartyCandidates();
+		
+		String aaa = storageService.returnStoredFile(file);
+		
 		storageService.deleteFile(file);
 
 		return aaa;
