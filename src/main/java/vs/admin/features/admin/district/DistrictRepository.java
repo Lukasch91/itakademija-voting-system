@@ -14,6 +14,10 @@ public class DistrictRepository {
 
 	private static final String FIND_ALL = "SELECT d FROM District d WHERE d.deletedTime IS NULL";
 
+	private static final String GET_NUMBER_OF_DISTRICTS_BY_CONSTITUENCY = "SELECT COUNT(d) FROM District d WHERE d.constituencyId = :id AND d.deletedTime IS NULL";
+
+	private static final String GET_NUMBER_OF_VOTERS_IN_DISTRICTS_BY_CONSTITUENCY = "SELECT SUM(d.numberOfVoters) FROM District d WHERE d.constituencyId = :id AND d.deletedTime IS NULL";
+
 	@Autowired
 	private EntityManager entityManager;
 
@@ -48,6 +52,16 @@ public class DistrictRepository {
 		Date date = new Date();
 		district.setDeletedTime(date);
 		entityManager.persist(district);
+	}
+
+	public Long getNumberOfExistentDistricts(Integer id) {
+		return (Long) entityManager.createQuery(GET_NUMBER_OF_DISTRICTS_BY_CONSTITUENCY).setParameter("id", id)
+				.getSingleResult();
+	}
+
+	public Long getSumOfVoters(Integer id) {
+		return (Long) entityManager.createQuery(GET_NUMBER_OF_VOTERS_IN_DISTRICTS_BY_CONSTITUENCY)
+				.setParameter("id", id).getSingleResult();
 	}
 
 }

@@ -11,9 +11,29 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class SingleElectionRepository {
+	
 
 	private static final String FIND_ALL = "SELECT x FROM SingleElection x WHERE single_deleted_date IS NULL";
+
 	private static final String FIND_BY_DISTRICT_ID = "SELECT x FROM SingleElection x WHERE singleDistrict IS ";
+
+	private static final String COUNT_PUBLISHED_DISTRICT_RESULTS = "SELECT count(d) FROM SingleElection s "
+			+ "LEFT JOIN s.singleDistrict d " + "WHERE s.singleDeletedDate IS NULL "
+			+ "AND s.singlePublishedDate IS NOT NULL and d.constituencyId=:id";
+
+	private static final String SUM_PUBLISHED_VOTES_IN_DISTRICTS_BY_CONSTITUENCY = "SELECT sum(s.singleVotes) FROM SingleElection s "
+			+ "LEFT JOIN s.singleDistrict d " + "WHERE s.singleDeletedDate IS NULL "
+			+ "AND s.singlePublishedDate IS NOT NULL and d.constituencyId=:id";
+
+	private static final String GET_NUMBER_OF_INVALID_VOTES = "SELECT sum(s.singleVotes) FROM SingleElection s "
+			+ "LEFT JOIN s.singleDistrict sd " + "LEFT JOIN s.singleCandidate sc "
+			+ "WHERE s.singleDeletedDate IS NULL "
+			+ "AND s.singlePublishedDate IS NOT NULL and sd.constituencyId=:id AND sc.candidateName ='NOVOTES'";
+
+	private static final String GET_NUMBER_OF_VOTERS_WHO_VOTED = "SELECT sum(s.singleVotes) FROM SingleElection s "
+			+ "LEFT JOIN s.singleDistrict sd " + "LEFT JOIN s.singleCandidate sc "
+			+ "WHERE s.singleDeletedDate IS NULL "
+			+ "AND s.singlePublishedDate IS NOT NULL and sd.constituencyId=:id AND sc.candidateName !='NOVOTES'";
 
 	@Autowired
 	private EntityManager em;
@@ -32,7 +52,7 @@ public class SingleElectionRepository {
 				singleElection.setSingleEnteredDate(singleEnteredDate);
 				em.persist(singleElection);
 			}
-//			return null; //return type made to void
+			// return null; //return type made to void
 		}
 		/* ============UpdateDisabled==== */
 		// else {
@@ -96,4 +116,20 @@ public class SingleElectionRepository {
 		}
 	}
 
+	public Long getNumberOfPublishedResults(Integer id) {
+		return (Long) em.createQuery(COUNT_PUBLISHED_DISTRICT_RESULTS).setParameter("id", id).getSingleResult();
+	}
+
+	public Long getSumOfPublishedVotes(Integer id) {
+		return (Long) em.createQuery(SUM_PUBLISHED_VOTES_IN_DISTRICTS_BY_CONSTITUENCY).setParameter("id", id)
+				.getSingleResult();
+	}
+
+	public Long getSumOfInvalidVotes(Integer id) {
+		return (Long) em.createQuery(GET_NUMBER_OF_INVALID_VOTES).setParameter("id", id).getSingleResult();
+	}
+
+	public Long getSumOfValidVotes(Integer id) {
+		return (Long) em.createQuery(GET_NUMBER_OF_VOTERS_WHO_VOTED).setParameter("id", id).getSingleResult();
+	}
 }
