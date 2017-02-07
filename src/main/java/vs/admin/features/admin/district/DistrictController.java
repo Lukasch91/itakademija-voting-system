@@ -2,6 +2,8 @@ package vs.admin.features.admin.district;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +25,7 @@ public class DistrictController {
 	}
 
 	@RequestMapping(value = "/api/district", method = RequestMethod.POST)
-	public District createOrUpdateDistrict(@RequestBody District district) {
+	public District createOrUpdateDistrict(@Valid @RequestBody District district) {
 		return districtRepository.saveOrUpdate(district);
 	}
 

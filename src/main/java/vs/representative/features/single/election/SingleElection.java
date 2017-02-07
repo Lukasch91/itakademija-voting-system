@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import vs.admin.features.admin.district.District;
 import vs.admin.features.candidate.model.Candidate;
@@ -24,6 +27,9 @@ public class SingleElection {
 	private Integer singleId;
 
 	@Column
+	@NotNull(message = "Būtina įvesti balsų skaičių")
+	@Min(value = 0, message = "Minimalus balsų skaičius {value}")
+	@Max(value = 500000, message = "Maksimalus balsų skaičius {value}")
 	private Integer singleVotes;
 
 	@Column

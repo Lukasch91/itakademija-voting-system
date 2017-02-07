@@ -29,7 +29,10 @@ public class MultiElectionController {
 
 	@RequestMapping(value = "/api/reg-votes-multi", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Save or update Multi Election results.")
+	@ApiOperation(value = "Create multi election result.", notes = "Data: {\"id\": null,"
+			+ " \"party\": {\"id\": 1},"
+			+ "\"district\": { \"id\": 3},"
+			+ " \"votes\": 99}")
 	public void createOrUpdateMulti(@Valid @RequestBody MultiElection multiElection) {
 		multiElectionRepository.saveOrUpdate(multiElection);
 	}
