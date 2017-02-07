@@ -28,10 +28,9 @@ var VoteFormMultiContainer = React.createClass( {
         })
             .then( function() {
                 console.log( 'vote added' );
+                
             });
         window.location.reload();
-
-
     },
 
     render: function() {
@@ -43,6 +42,10 @@ var VoteFormMultiContainer = React.createClass( {
             />
     }
 });
+
+VoteFormMultiContainer.contextTypes = {
+        router: React.PropTypes.object.isRequired,
+    };
 
 
 window.VoteFormMultiContainer = VoteFormMultiContainer;
