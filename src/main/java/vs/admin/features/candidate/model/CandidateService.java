@@ -3,7 +3,7 @@ package vs.admin.features.candidate.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import vs.admin.features.admin.district.District;
+import vs.admin.features.admin.constituency.Constituency;
 import vs.admin.features.party.model.Party;
 
 @Service
@@ -13,7 +13,7 @@ public class CandidateService {
 	private CandidateRepository candidateRepository;
 
 	private String candidatesData;
-	private Integer candidatesDistrict;
+	private Integer candidatesConstituency;
 	private Integer candidatesParty;
 
 	private String[] row;
@@ -24,7 +24,7 @@ public class CandidateService {
 		for (String row : row) {
 			cell = null;
 			parseCells(row);
-			candidateRepository.createOrUpdateCandidate(createDistrictCandidate());
+			candidateRepository.createOrUpdateCandidate(createConstituencyCandidate());
 		}
 	}
 
@@ -45,16 +45,16 @@ public class CandidateService {
 		this.cell = row.split(";");
 	}
 
-	private Candidate createDistrictCandidate() {
+	private Candidate createConstituencyCandidate() {
 		Candidate candidate = new Candidate();
 		candidate.setCandidateName(cell[0]);
 		candidate.setCandidateSurname(cell[1]);
 		candidate.setCandidateDateOfBirth(cell[2]);
 		candidate.setCandidatePersonalID(cell[3]);
 		candidate.setCandidateDescription(cell[4]);
-		District idSetter = new District();
-		idSetter.setId(candidatesDistrict);
-		candidate.setCandidateDistrict(idSetter);
+		Constituency idSetter = new Constituency();
+		idSetter.setId(candidatesConstituency);
+		candidate.setCandidateConstituency(idSetter);
 		candidate.setCandidateParty(null);
 		return candidate;
 	}
@@ -67,7 +67,7 @@ public class CandidateService {
 		candidate.setCandidatePersonalID(cell[3]);
 		candidate.setCandidateDescription(cell[4]);
 		candidate.setCandidateNumberInParty(Integer.valueOf(cell[5]));
-		candidate.setCandidateDistrict(null);
+		candidate.setCandidateConstituency(null);
 		Party idSetter = new Party();
 		idSetter.setId(candidatesParty);
 		candidate.setCandidateParty(idSetter);
@@ -82,7 +82,7 @@ public class CandidateService {
 		this.candidatesData = districtCandidates;
 	}
 
-	public void setCandidatesDistrict(Integer candidatesDistrict) {
-		this.candidatesDistrict = candidatesDistrict;
+	public void setCandidatesConstituency(Integer candidatesDistrict) {
+		this.candidatesConstituency = candidatesDistrict;
 	}
 }

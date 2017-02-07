@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import vs.admin.features.admin.district.District;
+import vs.admin.features.admin.constituency.Constituency;
 import vs.admin.features.party.model.Party;
 
 @Entity
@@ -49,8 +49,8 @@ public class Candidate {
 
 	/*-----------------------------------------------------------------*/
 	@ManyToOne
-	@JoinColumn(name = "candidateDistrict")
-	private District candidateDistrict = new District();
+	@JoinColumn(name = "candidateConstituency")
+	private Constituency candidateConstituency = new Constituency();
 	/*-----------------------------------------------------------------*/
 
 	@Column
@@ -61,7 +61,7 @@ public class Candidate {
 
 	public Candidate(Integer candidateID, String candidateName, String candidateSurname, String candidateDateOfBirth,
 			String candidatePersonalID, String candidateDescription, Party candidateParty,
-			Integer candidateNumberInParty, District candidateDistrict, Date candidateDeletedDate) {
+			Integer candidateNumberInParty, Constituency candidateConstituency, Date candidateDeletedDate) {
 		super();
 		this.candidateID = candidateID;
 		this.candidateName = candidateName;
@@ -71,7 +71,7 @@ public class Candidate {
 		this.candidateDescription = candidateDescription;
 		this.candidateParty = candidateParty;
 		this.candidateNumberInParty = candidateNumberInParty;
-		this.candidateDistrict = candidateDistrict;
+		this.candidateConstituency = candidateConstituency;
 		this.candidateDeletedDate = candidateDeletedDate;
 	}
 
@@ -139,12 +139,12 @@ public class Candidate {
 		this.candidateNumberInParty = candidateNumberInParty;
 	}
 
-	public District getCandidateDistrict() {
-		return candidateDistrict;
+	public Constituency getCandidateConstituency() {
+		return candidateConstituency;
 	}
 
-	public void setCandidateDistrict(District candidateDistrict) {
-		this.candidateDistrict = candidateDistrict;
+	public void setCandidateConstituency(Constituency candidateConstituency) {
+		this.candidateConstituency = candidateConstituency;
 	}
 
 	public Date getCandidateDeletedDate() {

@@ -46,7 +46,7 @@ public class Ae_CandidateIT {
 		+ "\"candidatePersonalID\": null, "
 		+ "\"candidateDescription\": \"NOVOTES\", "
 		+ "\"candidateParty\": null, "
-		+ "\"candidateDistrict\": null, "
+		+ "\"candidateConstituency\": null, "
 		+ "\"candidateNumberInParty\": null}";
 		// PartyPeople
 		final String candidate_02 = "{"
@@ -58,7 +58,7 @@ public class Ae_CandidateIT {
 													+ "\"candidateDescription\": \"Nuuu kaaa, ir vel valdzioj busiu?\", " 
 													
 													+ "\"candidateParty\": {\"id\": 1}, "
-													+ "\"candidateDistrict\": null, "
+													+ "\"candidateConstituency\": null, "
 													
 													+ "\"candidateNumberInParty\": 1"
 													+ "}";
@@ -71,7 +71,7 @@ public class Ae_CandidateIT {
 													+ "\"candidateDescription\": \"Tai man dar reikia….\", "
 													
 													+ "\"candidateParty\": {\"id\": 1}, "
-													+ "\"candidateDistrict\": null, "
+													+ "\"candidateConstituency\": null, "
 													
 													+ "\"candidateNumberInParty\": 2}";
 		
@@ -83,7 +83,7 @@ public class Ae_CandidateIT {
 													+ "\"candidateDescription\": \"Szto cybie nada\", "
 													
 													+ "\"candidateParty\": {\"id\": 2}, "
-													+ "\"candidateDistrict\": null, "
+													+ "\"candidateConstituency\": null, "
 													
 													+ "\"candidateNumberInParty\": 1}";
 
@@ -97,7 +97,7 @@ public class Ae_CandidateIT {
 													+ "\"candidateDescription\": \"Mane isrinko tauta ir palaiko dievas\", " 
 													
 													+ "\"candidateParty\": {\"id\": 3}, "
-													+ "\"candidateDistrict\": null, "
+													+ "\"candidateConstituency\": null, "
 													
 													+ "\"candidateNumberInParty\": 1}";
 		
@@ -112,7 +112,7 @@ public class Ae_CandidateIT {
 												+ "\"candidateParty\": null, "	//perraso ankstesnius duomenis i null
 												+ "\"candidateNumberInParty\": null, " //perraso ankstesnius duomenis i null
 												
-												+ "\"candidateDistrict\": {\"id\": 1}}";
+												+ "\"candidateConstituency\": {\"id\": 1}}";
 
 		// ConstituencyHeroes
 		final String candidate_07 = "{\"candidateID\": null, " 
@@ -125,7 +125,7 @@ public class Ae_CandidateIT {
 													+ "\"candidateParty\": null, "
 													+ "\"candidateNumberInParty\": null, "
 													
-													+ "\"candidateDistrict\": {\"id\": 2}}";
+													+ "\"candidateConstituency\": {\"id\": 2}}";
 		
 		final String candidate_08 = "{\"candidateID\": null, " 
 													+ "\"candidateName\": \"VIDA MARIJA\", "
@@ -137,7 +137,7 @@ public class Ae_CandidateIT {
 													+ "\"candidateParty\": null, "
 													+ "\"candidateNumberInParty\": null, "
 													
-													+ "\"candidateDistrict\": {\"id\": 3}}";
+													+ "\"candidateConstituency\": {\"id\": 3}}";
 		
 		final String candidate_09 = "{\"candidateID\": null, " 
 													+ "\"candidateName\": \"VIAČESLAV\", "
@@ -149,7 +149,7 @@ public class Ae_CandidateIT {
 													+ "\"candidateParty\": null, "
 													+ "\"candidateNumberInParty\": null, "
 													
-													+ "\"candidateDistrict\": {\"id\": 4}}";
+													+ "\"candidateConstituency\": {\"id\": 4}}";
 		
 		final String candidate_10 = "{\"candidateID\": null, " 
 													+ "\"candidateName\": \"BRONISLOVAS\", "
@@ -161,7 +161,7 @@ public class Ae_CandidateIT {
 													+ "\"candidateParty\": null, "
 													+ "\"candidateNumberInParty\": null, "
 													
-													+ "\"candidateDistrict\": {\"id\": 5}}";
+													+ "\"candidateConstituency\": {\"id\": 5}}";
 
 		//NOVOTES
 		createOrUpdateCandidateTest(stringToJson(candidate_01));

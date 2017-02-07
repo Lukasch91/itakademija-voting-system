@@ -62,11 +62,11 @@ public class CandidateController {
 	@RequestMapping(value = "/api/districtcandidatesFILE", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
 	@ApiOperation(value = "Upload district candidates CSV")
-	public String districtCandidatesCSV(@RequestParam("file") MultipartFile file, @RequestHeader Integer districtId) {
+	public String districtCandidatesCSV(@RequestParam("file") MultipartFile file, @RequestHeader Integer constituencyId) {
 
 		storageService.store(file);
 		
-		candidateService.setCandidatesDistrict(districtId);
+		candidateService.setCandidatesConstituency(constituencyId);
 		candidateService.setCandidatesData(storageService.returnStoredFile(file));
 		candidateService.saveDistrictCandidates();
 		
