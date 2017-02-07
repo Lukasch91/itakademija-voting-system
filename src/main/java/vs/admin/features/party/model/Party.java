@@ -36,7 +36,7 @@ public class Party {
 	@NotBlank(message = "Patikrinkite partijos pavadinimą")					//check for spaces, null not valid
 	@Size(min=5, max=70, message = "Partijos pavadinimas negali būti trumpesnis nei {min} ar ilgesnis nei {max}")		//title letter length
 	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]$)", message = "Pavadinime naudojami netinkami simboliai")
-	@ApiModelProperty(value = "@NotBlank, @Size(min5, max=70), @UniqueParty, @Patern")
+	@ApiModelProperty(value = "@NotBlank, @Size(min=5, max=70), @UniqueParty, @Patern")
 	private String title;
 
 	@Column

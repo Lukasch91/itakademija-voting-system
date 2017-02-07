@@ -25,38 +25,37 @@ import vs.admin.features.admin.district.District;
 import vs.admin.features.party.model.Party;
 
 @Entity
-@Table(name="multi_member_votes")
+@Table(name = "multi_member_votes")
 public class MultiElection {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private Integer id;
-	
+
 	@Column
+	@NotNull(message = "Būtina įvesti balsų skaičių")
+	@Min(value = 0, message = "Minimalus balsų skaičius {value}")
+	@Max(value = 500000, message = "Maksimalus balsų skaičius {value}")
 	private Integer votes;
-	
+
 	@Column
 	private Date entered_date;
-	
+
 	@Column
 	private Date published_date;
-	
+
 	@Column
 	private Date deleted_date;
-	
+
 	@ManyToOne
 	private Party party;
-	
+
 	@ManyToOne
 	private District district;
-	
 
-	
+	public MultiElection() {
 
-	
-	public MultiElection () {
-		
 	}
 
 	public MultiElection(Integer id, Integer votes, Date entered_date, Date published_date, Date deleted_date,
@@ -126,7 +125,5 @@ public class MultiElection {
 	public void setDistrict(District district) {
 		this.district = district;
 	}
-	
-	
-	
+
 }

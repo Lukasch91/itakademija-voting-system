@@ -7,7 +7,6 @@ var RepresentativeInfoComponent = React.createClass( {
                 <p>Prisijungimo vardas: {this.props.representative.loginName}</p>
                 <p>Slaptažodis: {this.props.representative.password}</p>
                 <p>El. paštas: {this.props.representative.email}</p>
-                <button className="btn btn-success" >Redaguoti</button>
                 <button className="btn btn-info">Siųsti prisijungimus atstovui</button>
 
                 <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target="#modal">

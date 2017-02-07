@@ -13,10 +13,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.Where;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotBlank;
 
+import io.swagger.annotations.ApiModelProperty;
 import vs.admin.features.admin.district.District;
+import vs.utils.hibernate.validators.constituency.UniqueConstituency;
 
 @Entity
 @Table(name = "constituency")
@@ -28,6 +33,11 @@ public class Constituency {
 	private Integer id;
 
 	@Column
+	@UniqueConstituency
+	@NotBlank
+	@Length(min=2, max=70, message="Pavadinimas turi būti sudarytas iš mažiausiai {min} simbolių ir daugiausiai {max} simbolių")
+	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]$)", message = "Pavadinime naudojami netinkami simboliai")
+	@ApiModelProperty(value = "@NotBlank, @Length(min=2, max=70), @UniqueConstituency, @Pattern")
 	private String title;
 
 	@Column

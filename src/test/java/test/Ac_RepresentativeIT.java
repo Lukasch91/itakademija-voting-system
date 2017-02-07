@@ -56,7 +56,7 @@ public class Ac_RepresentativeIT {
 		final String representative_05 = "{\"districtId\": 5, " + " \"email\": \"Ona@gmail.com\", " + "\"id\": null, "
 				+ "\"loginName\": \"OB\", " + "\"name\": \"Ona\", " + "\"password\": \"567\", "
 				+ "\"surname\": \"BUIŠIENĖ\"}";
-		final String representative_06 = "{\"districtId\": 6, " + " \"email\": \"Antanas@gmail.com\", "
+		final String representative_06 = "{\"districtId\": 6, " + " \"email\": \"Antanas2@gmail.com\", "
 				+ "\"id\": null, " + "\"loginName\": \"AB\", " + "\"name\": \"Antanas\", " + "\"password\": \"678\", "
 				+ "\"surname\": \"BUKAUSKAS\"}";
 		final String representative_07 = "{\"districtId\": 7, " + " \"email\": \"Reda@gmail.com\", " + "\"id\": null, "

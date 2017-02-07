@@ -25,43 +25,43 @@ public class CandidateRepository {
 	public Candidate createOrUpdateCandidate(Candidate candidate) {
 		if (candidate.getCandidateID() == null) {
 			
-			boolean canPersIdNoMatch = true;
-			@SuppressWarnings("unchecked")
-			List<Candidate> candidates = em.createQuery(FIND_ALL).getResultList();
-			
-			for(Candidate x : candidates) {
-				 if(x.equals(candidate)) {
-				 canPersIdNoMatch = false;		
-				 }
-			}
-			
-			if(canPersIdNoMatch == false) {
-				Candidate TEMP = new Candidate(
-						candidate.getCandidateID(), 
-						"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 
-						candidate.getCandidateSurname(), 
-						candidate.getCandidateDateOfBirth(), 
-						candidate.getCandidatePersonalID(), 
-						candidate.getCandidateDescription(), 
-						candidate.getCandidateParty(), 
-						candidate.getCandidateNumberInParty(), 
-						candidate.getCandidateConstituency(), 
-						candidate.getCandidateDeletedDate());
+//			boolean canPersIdNoMatch = true;
+//			@SuppressWarnings("unchecked")
+//			List<Candidate> candidates = em.createQuery(FIND_ALL).getResultList();
+//			
+//			for(Candidate x : candidates) {
+//				 if(x.equals(candidate)) {
+//				 canPersIdNoMatch = false;		
+//				 }
+//			}
+//			
+//			if(canPersIdNoMatch == false) {
+//				Candidate TEMP = new Candidate(
+//						candidate.getCandidateID(), 
+//						"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 
+//						candidate.getCandidateSurname(), 
+//						candidate.getCandidateDateOfBirth(), 
+//						candidate.getCandidatePersonalID(), 
+//						candidate.getCandidateDescription(), 
+//						candidate.getCandidateParty(), 
+//						candidate.getCandidateNumberInParty(), 
+//						candidate.getCandidateConstituency(), 
+//						candidate.getCandidateDeletedDate());
 						
 						
 				
-				em.persist(em.merge(TEMP));
-				
-				return TEMP;
-				
-			} else {
-
-				
-				
-				em.persist(candidate);
+//				em.persist(em.merge(TEMP));
+			em.persist(candidate);				
 				return candidate;
-
-			}
+				
+//			} else {
+//
+//				
+//				
+//				em.persist(candidate);
+//				return candidate;
+//
+//			}
 			
 			
 			

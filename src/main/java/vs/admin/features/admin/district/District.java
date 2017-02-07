@@ -13,6 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import vs.admin.features.admin.representative.Representative;
 
@@ -26,12 +31,22 @@ public class District {
 	private Integer id;
 
 	@Column
+	@NotBlank
+	@Min(value=2, message="Pavadinimo negali sudaryti mažiau {min} simbolių")
+	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]$)", message = "Pavadinime naudojami netinkami simboliai")
+	@Max(value=70, message="Pavadinimo negali sudaryti daugiau {max} simbolių")
 	private String title;
 
 	@Column
+	@NotBlank
+	@Min(value=0, message="Per maža reikšmė")
+	@Max(value=500000, message="Reikšmė ribota iki {max}")
 	private Long numberOfVoters;
 
 	@Column
+	@NotBlank
+	@Min(value=2, message="Adreso negali sudaryti mažiau {min} simbolių")
+	@Max(value=70, message="Adreso negali sudaryti daugiau {max} simbolių")
 	private String address;
 
 	@Column

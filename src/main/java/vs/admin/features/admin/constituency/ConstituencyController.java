@@ -2,6 +2,8 @@ package vs.admin.features.admin.constituency;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +25,7 @@ public class ConstituencyController {
 	}
 
 	@RequestMapping(value = "/api/constituency", method = RequestMethod.POST)
-	public Constituency createOrUpdateConstituency(@RequestBody Constituency con) {
+	public Constituency createOrUpdateConstituency(@Valid @RequestBody Constituency con) {
 		return constituencyRepository.saveOrUpdate(con);
 	}
 
