@@ -3,7 +3,8 @@ var AdministrateSingleCandidatesContainer = React.createClass( {
 
     getInitialState: function() {
         return {
-            constituencies: []
+            constituencies: [],
+            file: null //sagg
         };
     },
 
@@ -18,36 +19,53 @@ var AdministrateSingleCandidatesContainer = React.createClass( {
 
     },
     //===========================================================
+    onHandleFileChange: function( file ) {
+
+        console.log( "--3" );
+        this.setState( { file: file });
+    },
+
+
+
+
     handleAddDistrictCandidates: function( e ) {
         e.preventDefault();
         var self = this;
 
+        var header = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'constituencyId': 1
+            }
+        };
+
+        var file = 'nofile.aaa';
+        if ( this.state.file != null ) {
+            file = this.state.file;
+        }
+        var data = new FormData();
+
+        data.append( 'file', file );
 
 
 
-//
-//        axios.post( '/api/representative', {
-//            name: this.state.representative.name,
-//            surname: this.state.representative.surname,
-//            loginName: this.state.representative.loginName,
-//            password: this.state.representative.password,
-//            email: this.state.representative.email,
-//            districtId: this.props.params.disId
-//
-//        })
-//            .then( function( response ) {
-//                success = 1;
-//                console.log( response );
-//                console.log( "representative added" );
-//            })
+        console.log( "sagg__upload" );
+
+        axios.post( '/api/districtcandidatesFILE', data, header )
+            .then( function( response ) {
+                console.log( "sagg_done" );
+                console.log( response );
+            });
 
     },
+
     //===========================================================
 
     render: function() {
         return (
             <div>
                 <AdministrateSingleCandidatesComponent
+                    onHandleFileChange={this.onHandleFileChange}
                     constituencies={this.state.constituencies}
                     onAddDistrictCandidates={this.handleAddDistrictCandidates} />
             </div>
@@ -56,3 +74,4 @@ var AdministrateSingleCandidatesContainer = React.createClass( {
 });
 
 window.AdministrateSingleCandidatesContainer = AdministrateSingleCandidatesContainer;
+

@@ -1,57 +1,34 @@
 var AdministrateSingleCandidatesComponent = React.createClass( {
-
-    /*
-
-    <form role="form" class="form" onsubmit="return false;">
-      <div class="form-group">
-        <label for="file">File</label>
-        <input id="file" type="file" class="form-control"/>
-      </div>
-      <button id="upload" type="button" class="btn btn-primary">Upload</button>
-    </form>
-
-    <div id="output" class="container"></div>
-
-    <script src="/axios.min.js"></script>
     
-    
-    
-    <script>
-      (function () {
-        var output = document.getElementById('output');
+    onFileChange : function(file){
         
-        
-        document.getElementById('upload').onclick = function () {
-          var data = new FormData();
-          data.append('foo', 'bar');
-          data.append('file', document.getElementById('file').files[0]);
-          var config = {
-            onUploadProgress: function(progressEvent) {
-              var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-            }
-          };
-          axios.put('/upload/server', data, config)
-            .then(function (res) {
-              output.className = 'container';
-              output.innerHTML = res.data;
-            })
-            .catch(function (err) {
-              output.className = 'container text-danger';
-              output.innerHTML = err.message;
-            });
-        };
-      })();
-    </script>
-  </body>
-</html>
-   
-    */
-
-
+        console.log("--1");
+        console.log(file);
+        console.log(file.files[0]);
+//        var xxx = document.getElementById(file).files[0];
+//        console.log(xxx);
+//        console.log('xxx'+xxx);
+        this.props.onHandleFileChange(xxx); //self.refs.file.files[0]   //file.files[0]
+        console.log("--2");
+    },
+//    onXXX(file){
+//        console.log("--1");
+//        console.log(file);
+//        
+//        var xxx = document.getElementById('file').files[0];
+//        console.log(xxx);
+//        console.log('xxx'+xxx);
+//        this.props.onHandleFileChange(xxx); //self.refs.file.files[0]   //file.files[0]
+//        console.log("--2");
+//    },
+//  onChange={self.onXXX(self)}      //onChange={self.onFileChange}     onClick={self.onFileChange(constituency.id)}
 
     render: function() {
 
         var self = this;
+
+
+        
         var constituencyList = this.props.constituencies.map( function( constituency, index ) {
             return (
                 <tr key={index}>
@@ -61,9 +38,20 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
                         <form className="form">
                             <div>
                                 <b>{constituency.id}</b>
-                                <input id="file" type="file" className="form-control" />
+                                <input 
+                                id={constituency.id}
+                                type="file" 
+                                name="file" 
+                                accept='.csv'
+                                
+                                onChange={self.onFileChange.bind(self)}
+                                
+                                className="form-control" />
                             </div>
 
+                                
+                                
+                            <button  className="btn btn-primary">Trans</button>
                             <button onClick={self.props.onAddDistrictCandidates} className="btn btn-primary">Upload</button>
 
                         </form>
@@ -102,7 +90,8 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
 });
 
 AdministrateSingleCandidatesComponent.propTypes = {
-    onAddDistrictCandidates: React.PropTypes.func.isRequired
+    onAddDistrictCandidates: React.PropTypes.func.isRequired,
+    onHandleFileChange: React.PropTypes.func.isRequired
 };
 
 
