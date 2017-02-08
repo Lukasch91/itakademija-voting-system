@@ -32,23 +32,19 @@ public class District {
 	private Integer id;
 
 	@Column
-	@NotBlank
-	@Size(min=2, max=70, message="Adreso negali sudaryti mažiau nei {min} ar daugiau nei {max} simbolių")
-	//@Min(value=2, message="Pavadinimo negali sudaryti mažiau {min} simbolių")
+	@NotBlank(message = "Pavadinimas negali būti tuščias")
+	@Size(min = 2, max = 70, message = "Pavadinimo negali sudaryti mažiau nei {min} ar daugiau nei {max} simbolių")
 	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]$)", message = "Pavadinime naudojami netinkami simboliai")
-	//@Max(value=70, message="Pavadinimo negali sudaryti daugiau {max} simbolių")
 	private String title;
 
 	@Column
-	@Min(value=0, message="Per maža reikšmė")
-	@Max(value=500000, message="Reikšmė ribota iki {max}")
+	@Min(value = 0, message = "Per maža reikšmė")
+	@Max(value = 500000, message = "Reikšmė ribota iki {max}")
 	private Long numberOfVoters;
 
 	@Column
-	@NotBlank
-	@Size(min=2, max=70, message="Adreso negali sudaryti mažiau nei {min} ar daugiau nei {max} simbolių")
-	//@Min(value=2, message="Adreso negali sudaryti mažiau {min} simbolių")
-	//@Max(value=70, message="Adreso negali sudaryti daugiau {max} simbolių")
+	@NotBlank(message = "Adresas negali būti tuščias")
+	@Size(min = 2, max = 70, message = "Adreso negali sudaryti mažiau nei {min} ar daugiau nei {max} simbolių")
 	private String address;
 
 	@Column
