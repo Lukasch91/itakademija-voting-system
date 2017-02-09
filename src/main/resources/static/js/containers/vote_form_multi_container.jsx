@@ -24,7 +24,7 @@ var VoteFormMultiContainer = React.createClass( {
             votes: this.state.election.votes,
             party: { id: this.props.partyId },
             district: { id: '1' },
-            enetered_date: Date.now()
+            entered_date: Date.now()
         })
             .then( function() {
                 console.log( 'vote added' );
