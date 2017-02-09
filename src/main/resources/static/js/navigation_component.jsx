@@ -34,9 +34,6 @@ var NavigationComponent = React.createClass( {
                         <NavLink to="/upload-single-cadidates">Kandidatų įkėlimas (vien.)</NavLink>
                         <NavLink to="/upload-multi-cadidates">Kandidatų įkėlimas (daug.)</NavLink>
                         <NavLink to="/delete-votes">Rezultatų anuliavimas</NavLink>
-                        <NavLink to="/reg-votes-multi">Balsų registravimas (daug.)</NavLink>
-                        <NavLink to="/reg-votes-single">Balsų registravimas (vien.)</NavLink>
-                        <NavLink to="/results">Rezultatai</NavLink>
 
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
