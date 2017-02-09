@@ -28,7 +28,7 @@ var NavigationPubComponent = React.createClass( {
             <nav className="navbar navbar-default">
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
-                        <NavLink to="/home" onlyActiveOnIndex>Home</NavLink>
+                        <NavLink to="/" onlyActiveOnIndex>Home</NavLink>
                         <NavLink to="/candidates">Kandidatai</NavLink>
                         <NavLink to="/results">Rezultatai</NavLink>
                     </ul>

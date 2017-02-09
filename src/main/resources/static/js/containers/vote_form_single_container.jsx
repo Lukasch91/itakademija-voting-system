@@ -20,11 +20,11 @@ var VoteFormSingleContainer = React.createClass( {
 
     handleVoteClick: function( e ) {
         e.preventDefault();
-        axios.post( '/api/singleelection', {
+        axios.post( '/api/singleelection', [{
             singleVotes: this.state.election.votes,
             singleCandidate: { candidateID: this.props.candidateId },
             singleDistrict: { id: '1' }
-        })
+        }])
             .then( function() {
                 console.log( 'vote added' );
             });

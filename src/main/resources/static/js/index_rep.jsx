@@ -23,7 +23,7 @@ var hashHistory = ReactRouter.hashHistory;
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={NoMatch} />
+      <IndexRoute component={HomeComponent} />
         <Route path="/reg-votes-multi" component={RegisterVotesMultiContainer} />
         <Route path="/reg-votes-single" component={RegisterVotesSingleContainer} />
       <Route path="*" component={NoMatch}/>

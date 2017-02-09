@@ -23,7 +23,7 @@ var hashHistory = ReactRouter.hashHistory;
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={NoMatch} />
+      <IndexRoute component={HomeComponent} />
         <Route path="/con" component={ConstituencyListContainer} />
         <Route path="/dis/:conId" component={DistrictListContainer} />
         <Route path="/add-con" component={AddConstituencyContainer} />

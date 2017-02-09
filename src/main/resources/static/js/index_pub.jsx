@@ -23,9 +23,9 @@ var hashHistory = ReactRouter.hashHistory;
 ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={NoMatch} />
-        <Route path="/candidates" component={NoMatch} />
-        <Route path="/results" component={NoMatch} />
+      <IndexRoute component={HomeComponent} />
+        <Route path="/candidates" component={CandidateSearchComponen} />
+        <Route path="/results" component={SingleElectionsResultsContainer} />
       <Route path="*" component={NoMatch}/>
     </Route>
   </Router>

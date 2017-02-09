@@ -43,7 +43,7 @@ var RegisterVotesSingleComponent = React.createClass( {
 
         console.log( candidateCount.length );
         var disabled = true;
-        if ( candidateCount.length != 0 && votesEntered.length == candidateCount.length && votesEntered[0].published_date == null ) {
+        if ( candidateCount.length != 0 && votesEntered.length == candidateCount.length && votesEntered[1].singlePublishedDate == null ) {
             disabled = false;
         }
 
