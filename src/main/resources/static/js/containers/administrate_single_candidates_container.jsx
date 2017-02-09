@@ -5,6 +5,7 @@ var AdministrateSingleCandidatesContainer = React.createClass( {
         return {
             constituencies: [],
             file: null //sagg
+           
         };
     },
 
@@ -24,9 +25,26 @@ var AdministrateSingleCandidatesContainer = React.createClass( {
         console.log( "--3" );
         this.setState( { file: file });
     },
+    
 
 
+    handleSHIT: function( e ) {
+       
+        var self = this;
 
+        console.log( "SHIT" );
+        console.log(e);
+        
+        
+//        return function() {
+//            self.context.router.push('/add-rep/' + district.constituencyId + '/' + district.id);
+//    }
+        
+        
+        
+
+
+    },
 
     handleAddDistrictCandidates: function( e ) {
         e.preventDefault();
@@ -67,7 +85,8 @@ var AdministrateSingleCandidatesContainer = React.createClass( {
                 <AdministrateSingleCandidatesComponent
                     onHandleFileChange={this.onHandleFileChange}
                     constituencies={this.state.constituencies}
-                    onAddDistrictCandidates={this.handleAddDistrictCandidates} />
+                    onAddDistrictCandidates={this.handleAddDistrictCandidates}
+                    handleSHIT={this.handleSHIT}/>
             </div>
         )
     }

@@ -20,7 +20,7 @@ var RepresentativeInfoComponent = React.createClass( {
                                 <h4 className="modal-title" id="myModalLabel">Dėmesio!</h4>
                             </div>
                             <div className="modal-body">
-                                Ar tikrai norite ištrinti apygardą?
+                                Ar tikrai norite ištrinti atstovą?
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
