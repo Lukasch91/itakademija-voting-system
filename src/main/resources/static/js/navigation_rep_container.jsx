@@ -1,6 +1,6 @@
 var NavigationRepContainer = React.createClass({
     
-    handleLogout: function(e) {
+    handleLogout: function() {
         axios.get('/logout').then(function () {
             window.location.reload()
           });
@@ -15,5 +15,6 @@ var NavigationRepContainer = React.createClass({
         );
     }
 });
+
 
 window.NavigationRepContainer = NavigationRepContainer;
