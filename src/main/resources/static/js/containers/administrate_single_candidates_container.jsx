@@ -34,15 +34,6 @@ var AdministrateSingleCandidatesContainer = React.createClass( {
 
         console.log( "SHIT" );
         console.log(e);
-        
-        
-//        return function() {
-//            self.context.router.push('/add-rep/' + district.constituencyId + '/' + district.id);
-//    }
-        
-        
-        
-
 
     },
 

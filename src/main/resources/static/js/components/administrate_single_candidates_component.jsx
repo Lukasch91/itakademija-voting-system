@@ -14,6 +14,10 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
                         <button onClick={() => { self.props.handleSHIT( constituency.id ) } } className="btn btn-primary">Pridėti kandidatus</button>
 
                     </td>
+                    <td>
+                        <AdministrateCandidatesCSVcomponent handleSHIT={() => {self.props.handleSHIT}}
+                                    deletion={() => { self.props.onRemoveItem( constituency.id ) } } />
+                    </td>
                 </tr>
             );
         });
