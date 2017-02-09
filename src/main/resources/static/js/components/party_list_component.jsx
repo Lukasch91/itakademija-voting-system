@@ -7,12 +7,17 @@ var PartyListComponent = React.createClass( {
                     <td>{party.title}</td>
                     <td>{party.party_abbreviation}</td>
                     <td>
-                    <DeleteConfirmationComponent deletion={self.props.onRemoveItem(party)}/ >
+                    
+                    <button type="button" className="btn btn-danger" onClick={self.props.onRemoveItem( party )} data-dismiss="modal">
+                        <span className="glyphicon glyphicon-remove"></span>
+                    </button>
                     </td>
                 </tr>
             );
         });
 
+        /* <DeleteConfirmationComponent deletion={self.props.onRemoveItem(party)}/ > */
+        
         return (
             <div className="panel panel-default">
                 <table className="table table-hover">

@@ -15,7 +15,11 @@ var DistrictListComponent = React.createClass({
                 <td>{rep_name}</td>
                 <td><button type="button" className="btn btn-primary" onClick={self.props.onAdministerRepresentative(district)}>Administruoti atstovą</button></td>
                 <td>
-                <DeleteConfirmationComponent deletion={self.props.onRemoveItem( district )} />
+                
+                <button type="button" className="btn btn-danger" onClick={self.props.onRemoveItem( district )} data-dismiss="modal">
+                    <span className="glyphicon glyphicon-remove"></span>
+                </button>
+                
                 </td>
                 </tr>    
                 )
@@ -27,14 +31,19 @@ var DistrictListComponent = React.createClass({
               <td>{district.voters}</td>
               <td>{rep_name}</td>
               <td><button type="button" className="btn btn-primary" onClick={self.props.onAddRepresentative(district)}>Pridėti atstovą</button></td>
-              <td>
-              <DeleteConfirmationComponent deletion={self.props.onRemoveItem( district )} />
+              <td>           
+              
+              <button type="button" className="btn btn-danger" onClick={self.props.onRemoveItem( district )} data-dismiss="modal">
+                  <span className="glyphicon glyphicon-remove"></span>
+              </button>
               </td>
               </tr>
           );
             }
         });
-
+        /* <DeleteConfirmationComponent deletion={self.props.onRemoveItem( district )} /> */
+        
+        
       return (
               <div className="panel panel-default">
               <h3>{this.props.constit.title}</h3>

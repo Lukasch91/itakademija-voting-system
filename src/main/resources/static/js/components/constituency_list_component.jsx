@@ -8,11 +8,17 @@ var ConstituencyListComponent = React.createClass( {
                     <td>{constituency.districts.length}</td>
                     <td><button type="button" className="btn btn-info" onClick={self.props.onAdministerDistricts( constituency )}>Administruoti apylinkes</button></td>
                     <td>
-                        <DeleteConfirmationComponent deletion={self.props.onRemoveItem( constituency )} />
+                        
+                    <button type="button" className="btn btn-danger" onClick={self.props.onRemoveItem( constituency )} data-dismiss="modal">
+                        <span className="glyphicon glyphicon-remove"></span>
+                    </button>
+                    
                     </td>
                 </tr>
             );
         });
+        /*  <DeleteConfirmationComponent deletion={self.props.onRemoveItem( constituency )} /> */
+      
         
         return (
             <div className="panel panel-default">
