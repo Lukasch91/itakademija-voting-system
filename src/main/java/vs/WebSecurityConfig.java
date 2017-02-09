@@ -21,7 +21,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf().disable()
 		.headers().disable()
 		.authorizeRequests()
-			.antMatchers("/api/**", "/", "/index.html", "/js/**").permitAll()
+			.antMatchers("/api/**", "/", "/js/**").permitAll()
+			/*.antMatchers("/admin/**").hasRole("ADMIN")
+			.antMatchers("/rep/**").hasRole("USER")*/
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
@@ -34,12 +36,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Autowired
-	public void configureGlobal(DataSource dataSource, AuthenticationManagerBuilder auth) throws Exception {
+	public void configureGlobal(DataSource dataSource, AuthenticationManagerBuilder auth) throws Exception {		
 		auth
 			.inMemoryAuthentication()
 				.withUser("user").password("pass").roles("USER").and()
 				.withUser("admin").password("pass").roles("ADMIN");
-			/*.jdbcAuthentication()
+		/*auth
+			.jdbcAuthentication()
 				.dataSource(dataSource)
 				.usersByUsernameQuery("select login_name, password, true from representatives where login_name = ?")
 				.authoritiesByUsernameQuery("select login_name, 'ROLE_USER' from representatives where login_name = ?");*/
