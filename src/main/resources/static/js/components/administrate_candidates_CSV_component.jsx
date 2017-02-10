@@ -1,23 +1,52 @@
 var AdministrateCandidatesCSVcomponent = React.createClass( {
 
+    getInitialState: function() {
+        return {
+            file: null
+        };
+    },
 
+    onHandleFileChange: function( file ) {
+
+        this.setState( { file: file });
+        console.log('2');
+    },
+
+    handleAddDistrictCandidates: function() {
+        console.log('3');
+        var self = this;
+
+        var header = {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'constituencyId': 1
+            }
+        };
+
+        var file = 'nofile.aaa';
+        if ( this.state.file != null ) {
+            file = this.state.file;
+        }
+        var data = new FormData();
+
+        data.append( 'file', file );
+
+        axios.post( '/api/districtcandidatesFILE', data, header )
+            .then( function( response ) {
+                console.log( "server_response" );
+                console.log( response );
+            });
+
+    },
 
     onFileChange: function() {
 
-        console.log( "--1" );
-        //        console.log( file );
-        //        console.log( file.files[0] );
         var xxx = document.getElementById( 'fileId' ).files[0];
-        console.log( xxx );
-        console.log( 'xxx' + xxx );
-        this.onHandleFileChange( xxx ); //self.refs.file.files[0]   //file.files[0]
-        console.log( "--2" );
+        console.log('1');
+        this.onHandleFileChange( xxx );
     },
-    //  onChange={self.onXXX(self)}      //onChange={self.onFileChange}     onClick={self.onFileChange(constituency.id)}
 
-    //onClick={() => { self.props.onFileChange(deleteButton) } }
-
-    render: function() {
+    render: function( e ) {
         return (
             <div>
                 <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target="#modal">
@@ -32,7 +61,7 @@ var AdministrateCandidatesCSVcomponent = React.createClass( {
                                 <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
 
                                 <h4 className="modal-title" id="myModalLabel">Pasirinkite CSV bylaa</h4>
-
+                                <h4>{this.props.e}</h4>
                             </div>
 
                             <div className="modal-body">
@@ -47,13 +76,9 @@ var AdministrateCandidatesCSVcomponent = React.createClass( {
                                             className="form-control" />
                                     </div>
                                 </form>
-
-
-
-
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={() => { this.props.handleSHIT( 1 ) } } >Pridėti kandidatus</button>
+                                <button type="button" className="btn btn-primary" onClick={this.handleAddDistrictCandidates} >Pridėti kandidatus</button>
                                 <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
                             </div>
                         </div>
@@ -64,11 +89,7 @@ var AdministrateCandidatesCSVcomponent = React.createClass( {
     }
 });
 
-AdministrateSingleCandidatesComponent.propTypes = {
-    onAddDistrictCandidates: React.PropTypes.func.isRequired,
-    onHandleFileChange: React.PropTypes.func.isRequired,
-    handleSHIT: React.PropTypes.func.isRequired
-};
+
 
 
 window.AdministrateCandidatesCSVcomponent = AdministrateCandidatesCSVcomponent;

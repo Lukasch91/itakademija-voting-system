@@ -4,7 +4,8 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
 
         var self = this;
 
-
+//deletion={() => { self.props.onRemoveItem( constituency.id ) } }
+//handleSHIT={() => {self.props.handleSHIT}}
 
         var constituencyList = this.props.constituencies.map( function( constituency, index ) {
             return (
@@ -15,8 +16,7 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
 
                     </td>
                     <td>
-                        <AdministrateCandidatesCSVcomponent handleSHIT={() => {self.props.handleSHIT}}
-                                    deletion={() => { self.props.onRemoveItem( constituency.id ) } } />
+                        <AdministrateCandidatesCSVcomponent e={index}/>
                     </td>
                 </tr>
             );
