@@ -45,15 +45,21 @@ var AdministrateCandidatesCSVcomponent = React.createClass( {
         console.log('1');
         this.onHandleFileChange( xxx );
     },
+    
+    
 
-    render: function( e ) {
+    render: function() {
+        
+        var modalId = "modal" + this.props.constitId;
+        var modalIdHash = "#modal" + this.props.constitId;
         return (
-            <div>
-                <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target="#modal">
-                    Prideeti kandidatus
+            
+                <div>
+                <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
+                    Prideeti kandidatus (id: {this.props.constitId})
                     </button>
 
-                <div className="modal fade" id="modal" tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div className="modal fade" id={modalId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -61,7 +67,7 @@ var AdministrateCandidatesCSVcomponent = React.createClass( {
                                 <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
 
                                 <h4 className="modal-title" id="myModalLabel">Pasirinkite CSV bylaa</h4>
-                                <h4>{this.props.e}</h4>
+                                <h4>{this.props.constitId}</h4>
                             </div>
 
                             <div className="modal-body">

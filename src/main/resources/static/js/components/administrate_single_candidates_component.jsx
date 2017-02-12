@@ -16,7 +16,7 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
 
                     </td>
                     <td>
-                        <AdministrateCandidatesCSVcomponent e={index}/>
+                        <AdministrateCandidatesCSVcomponent constitId={constituency.id}/>
                     </td>
                 </tr>
             );
