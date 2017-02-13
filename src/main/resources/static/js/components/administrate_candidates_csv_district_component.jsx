@@ -1,25 +1,31 @@
-var AdministrateCandidatesCSVcomponent = React.createClass( {
+var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
 
     getInitialState: function() {
         return {
-            file: null
+            file: null,
+            id: null
         };
+    },
+    componentWillMount: function() {
+        this.setState( { id: this.props.constitId });
     },
 
     onHandleFileChange: function( file ) {
 
         this.setState( { file: file });
-        console.log('2');
+        console.log( '2' );
+
     },
 
+
     handleAddDistrictCandidates: function() {
-        console.log('3');
+        console.log( '3' );
         var self = this;
 
         var header = {
             headers: {
                 'Content-Type': 'multipart/form-data',
-                'constituencyId': 1
+                'constituencyId': this.state.id
             }
         };
 
@@ -41,22 +47,25 @@ var AdministrateCandidatesCSVcomponent = React.createClass( {
 
     onFileChange: function() {
 
-        var xxx = document.getElementById( 'fileId' ).files[0];
-        console.log('1');
-        this.onHandleFileChange( xxx );
+        var fileData = document.getElementById( 'fileId' ).files[0];
+        console.log( '1' );
+        this.onHandleFileChange( fileData );
     },
-    
-    
+
+
 
     render: function() {
-        
+
         var modalId = "modal" + this.props.constitId;
         var modalIdHash = "#modal" + this.props.constitId;
+
+
+
         return (
-            
-                <div>
+
+            <div>
                 <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
-                    Prideeti kandidatus (id: {this.props.constitId})
+                    Pridėti kandidatus
                     </button>
 
                 <div className="modal fade" id={modalId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -66,8 +75,7 @@ var AdministrateCandidatesCSVcomponent = React.createClass( {
 
                                 <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
 
-                                <h4 className="modal-title" id="myModalLabel">Pasirinkite CSV bylaa</h4>
-                                <h4>{this.props.constitId}</h4>
+                                <h4 className="modal-title" id="myModalLabel">Pasirinkite CSV bylą</h4>
                             </div>
 
                             <div className="modal-body">
@@ -84,7 +92,7 @@ var AdministrateCandidatesCSVcomponent = React.createClass( {
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={this.handleAddDistrictCandidates} >Pridėti kandidatus</button>
+                                <button type="button" className="btn btn-primary" onClick={this.handleAddDistrictCandidates} data-dismiss="modal" >Pridėti kandidatus</button>
                                 <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
                             </div>
                         </div>
@@ -98,4 +106,4 @@ var AdministrateCandidatesCSVcomponent = React.createClass( {
 
 
 
-window.AdministrateCandidatesCSVcomponent = AdministrateCandidatesCSVcomponent;
+window.AdministrateCandidatesCSVDistrictcomponent = AdministrateCandidatesCSVDistrictcomponent;
