@@ -38,4 +38,9 @@ public class DistrictController {
 	public District findAllDistricts(@PathVariable("id") Integer id) {
 		return districtRepository.findDistrictById(id);
 	}
+	
+	@RequestMapping(value = "/api/districtbyid/{id}", method = RequestMethod.GET)
+	public List<District> findDistrictsByConstituencyId(@PathVariable("id") Integer id) {
+		return districtRepository.findAllDistrictsByConstituencyId(id);
+	}
 }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class SingleElectionRepository {
-	
 
 	private static final String FIND_ALL = "SELECT x FROM SingleElection x WHERE single_deleted_date IS NULL";
 
@@ -35,6 +34,14 @@ public class SingleElectionRepository {
 			+ "WHERE s.singleDeletedDate IS NULL "
 			+ "AND s.singlePublishedDate IS NOT NULL and sd.constituencyId=:id AND sc.candidateName !='NOVOTES'";
 
+	private static final String GET_PUBLISHED_VOTES_IN_DISTRICT = "SELECT sum(s.singleVotes) FROM SingleElection s "
+			+ "LEFT JOIN s.singleDistrict sd " + "WHERE sd.id = :id "
+			+ "AND s.singleDeletedDate IS NULL " + "AND s.singlePublishedDate IS NOT NULL";
+
+	private static final String GET_DISTRICTS_PUBLISHED_VOTES_IN_DISTRICT = "SELECT sum(s.singleVotes) FROM SingleElection s "
+			+ "LEFT JOIN s.singleDistrict sd LEFT JOIN s.singleCandidate sc  WHERE sd.id = :id " 
+			+ "AND s.singleDeletedDate IS NULL AND s.singlePublishedDate IS NOT NULL  AND sc.candidateName !='NOVOTES'";
+	
 	@Autowired
 	private EntityManager em;
 
@@ -131,5 +138,15 @@ public class SingleElectionRepository {
 
 	public Long getSumOfValidVotes(Integer id) {
 		return (Long) em.createQuery(GET_NUMBER_OF_VOTERS_WHO_VOTED).setParameter("id", id).getSingleResult();
+	}
+
+	public Long getNumberOfpublishedVotes(Integer id) {
+		return (Long) em.createQuery(GET_PUBLISHED_VOTES_IN_DISTRICT).setParameter("id", id)
+				.getSingleResult();
+	}
+	
+	public Long getNumberOfDistrictInvalidVotes(Integer id) {
+		return (Long) em.createQuery(GET_DISTRICTS_PUBLISHED_VOTES_IN_DISTRICT).setParameter("id", id)
+				.getSingleResult();
 	}
 }

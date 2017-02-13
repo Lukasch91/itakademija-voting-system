@@ -6,6 +6,7 @@ import java.util.List;
 
 import vs.admin.features.admin.constituency.Constituency;
 import vs.admin.features.admin.constituency.ConstituencyRepository;
+import vs.admin.features.admin.district.District;
 import vs.admin.features.admin.district.DistrictRepository;
 import vs.representative.features.single.election.SingleElectionRepository;
 
@@ -13,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SingleElectionConstitencyService {
+public class SingleElectionResultsService {
 
 	@Autowired
 	ConstituencyRepository constituencyRepository;
@@ -24,10 +25,10 @@ public class SingleElectionConstitencyService {
 	@Autowired
 	SingleElectionRepository singleElectionRepository;
 
-	public List<SingleElectionConstituencyResults> singleElectionConstituencyResults() {
+	public List<SingleElectionConstituency> singleElectionConstituencyResults() {
 
 		List<Constituency> constituencyList = constituencyRepository.findAllConstituencies();
-		List<SingleElectionConstituencyResults> resultList = new ArrayList<>();
+		List<SingleElectionConstituency> resultList = new ArrayList<>();
 
 		for (Constituency constituency : constituencyList) {
 
@@ -51,12 +52,45 @@ public class SingleElectionConstitencyService {
 
 			BigDecimal percentageOfValidVotes = checkForCorrectArithmetic(validVotes, voted);
 
-			SingleElectionConstituencyResults singleElectionConstituencyResults = new SingleElectionConstituencyResults(
-					id, constituency.getTitle(), numberOfDistricts, districtsPublishedResults, sumOfVoters, voted,
+			SingleElectionConstituency singleElectionConstituencyResults = new SingleElectionConstituency(id,
+					constituency.getTitle(), numberOfDistricts, districtsPublishedResults, sumOfVoters, voted,
 					percentageVoted, invalidVotes, percentageOfInvalidVotes, validVotes, percentageOfValidVotes);
 
 			resultList.add(singleElectionConstituencyResults);
 
+		}
+
+		return resultList;
+
+	}
+
+	public List<SingleElectionDistrict> singleElectionDistrictResults(Integer id) {
+
+		List<District> districtList = districtRepository.findAllDistrictsByConstituencyId(id);
+		List<SingleElectionDistrict> resultList = new ArrayList<>();
+
+		for (District district : districtList) {
+
+			Long numberOfVoters = changeNullToLong(district.getNumberOfVoters());
+
+			Long voted = changeNullToLong(singleElectionRepository.getNumberOfpublishedVotes(district.getId()));
+
+			Long invalidVotes = changeNullToLong(
+					singleElectionRepository.getNumberOfDistrictInvalidVotes(district.getId()));
+
+			Long validVotes = changeNullToLong(voted - invalidVotes);
+
+			BigDecimal percentageOfVoted = checkForCorrectArithmetic(voted, numberOfVoters);
+
+			BigDecimal percentageOfInvalidVotes = checkForCorrectArithmetic(invalidVotes, voted);
+
+			BigDecimal percentageOfValidVotes = checkForCorrectArithmetic(validVotes, voted);
+
+			SingleElectionDistrict singleElectionDistrict = new SingleElectionDistrict(district.getId(),
+					district.getTitle(), numberOfVoters, voted, percentageOfVoted, invalidVotes,
+					percentageOfInvalidVotes, validVotes, percentageOfValidVotes);
+
+			resultList.add(singleElectionDistrict);
 		}
 
 		return resultList;

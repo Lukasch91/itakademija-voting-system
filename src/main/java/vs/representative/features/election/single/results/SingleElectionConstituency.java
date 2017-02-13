@@ -2,7 +2,7 @@ package vs.representative.features.election.single.results;
 
 import java.math.BigDecimal;
 
-public class SingleElectionConstituencyResults {
+public class SingleElectionConstituency {
 
 	private Integer constituencyId;
 
@@ -26,7 +26,7 @@ public class SingleElectionConstituencyResults {
 
 	private BigDecimal percentageOfValidVotes;
 
-	public SingleElectionConstituencyResults(Integer constituencyId, String title, Long numberOfDistricts,
+	public SingleElectionConstituency(Integer constituencyId, String title, Long numberOfDistricts,
 			Long numberOfDistrictsPublishedResults, Long numberOfVoters, Long numberOfVotersWhoVote,
 			BigDecimal percentageOfVotersWhoVote, Long numberOfInvalidVotes, BigDecimal percentageOfInvalidVotes,
 			Long numberOfValidVotes, BigDecimal percentageOfValidVotes) {
