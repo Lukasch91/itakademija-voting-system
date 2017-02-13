@@ -78,6 +78,16 @@ public class Representative {
 		this.email = email;
 		this.districtId = districtId;
 	}
+	
+	public Representative(Representative representative) {
+		this.id = representative.id;
+		this.name = representative.name;
+		this.surname = representative.surname;
+		this.loginName = representative.loginName;
+		this.password = representative.password;
+		this.email = representative.email;
+		this.districtId = representative.districtId;
+	}
 
 	public Integer getId() {
 		return id;

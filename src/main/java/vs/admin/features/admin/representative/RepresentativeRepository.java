@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class RepresentativeRepository {
 	private static final String FIND_ALL = "SELECT x FROM Representative x";
+	private static final String FIND_BY_LOGIN = "SELECT x FROM Representative x WHERE x.loginName = :loginName";
 
 	@Autowired
 	private EntityManager em;
@@ -45,5 +46,10 @@ public class RepresentativeRepository {
 	public void deleteRepresentative(Integer id) {
 		Representative representative = em.find(Representative.class, id);
 		em.remove(representative);
+	}
+	
+	public Representative findByLoginName(String loginName) {
+		return (Representative) em.createQuery(FIND_BY_LOGIN).setParameter("loginName", loginName)
+				.getSingleResult();
 	}
 }
