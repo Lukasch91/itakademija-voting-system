@@ -1,5 +1,6 @@
 package vs.representative.features.multi.election;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -23,6 +24,8 @@ import org.hibernate.validator.constraints.Range;
 
 import vs.admin.features.admin.district.District;
 import vs.admin.features.party.model.Party;
+import vs.utils.hibernate.validators.multiElection.VotesMultiElection;
+import vs.utils.hibernate.validators.party.UniqueParty;
 
 @Entity
 @Table(name = "multi_member_votes")
@@ -34,10 +37,11 @@ public class MultiElection {
 	private Integer id;
 
 	@Column
+	@VotesMultiElection
 	@NotNull(message = "Būtina įvesti balsų skaičių")
 	@Min(value = 0, message = "Minimalus balsų skaičius {value}")
 	@Max(value = 500000, message = "Maksimalus balsų skaičius {value}")
-	private Integer votes;
+	private BigDecimal  votes;
 
 	@Column
 	private Date entered_date;
@@ -58,7 +62,7 @@ public class MultiElection {
 
 	}
 
-	public MultiElection(Integer id, Integer votes, Date entered_date, Date published_date, Date deleted_date,
+	public MultiElection(Integer id, BigDecimal  votes, Date entered_date, Date published_date, Date deleted_date,
 			Party party, District district) {
 		super();
 		this.id = id;
@@ -78,11 +82,11 @@ public class MultiElection {
 		this.id = id;
 	}
 
-	public Integer getVotes() {
+	public BigDecimal  getVotes() {
 		return votes;
 	}
 
-	public void setVotes(Integer votes) {
+	public void setVotes(BigDecimal  votes) {
 		this.votes = votes;
 	}
 
