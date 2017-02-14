@@ -24,55 +24,71 @@ public class CandidateRepository {
 	@Transactional
 	public Candidate createOrUpdateCandidate(Candidate candidate) {
 		if (candidate.getCandidateID() == null) {
-			
-//			boolean canPersIdNoMatch = true;
-//			@SuppressWarnings("unchecked")
-//			List<Candidate> candidates = em.createQuery(FIND_ALL).getResultList();
-//			
-//			for(Candidate x : candidates) {
-//				 if(x.equals(candidate)) {
-//				 canPersIdNoMatch = false;		
-//				 }
-//			}
-//			
-//			if(canPersIdNoMatch == false) {
-//				Candidate TEMP = new Candidate(
-//						candidate.getCandidateID(), 
-//						"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", 
-//						candidate.getCandidateSurname(), 
-//						candidate.getCandidateDateOfBirth(), 
-//						candidate.getCandidatePersonalID(), 
-//						candidate.getCandidateDescription(), 
-//						candidate.getCandidateParty(), 
-//						candidate.getCandidateNumberInParty(), 
-//						candidate.getCandidateConstituency(), 
-//						candidate.getCandidateDeletedDate());
-						
-						
-				
-//				em.persist(em.merge(TEMP));
-			em.persist(candidate);				
+
+			// find a match
+
+			boolean canPersIdNoMatch = true;
+			Candidate match = null;
+			@SuppressWarnings("unchecked")
+			List<Candidate> candidates = em.createQuery(FIND_ALL).getResultList();
+
+			for (Candidate matchingCandidate : candidates) {
+				if (matchingCandidate.equals(candidate)) {
+					canPersIdNoMatch = false;
+					match = matchingCandidate;
+				}
+			}
+
+			if (canPersIdNoMatch == false) {
+
+				if (match.getCandidateParty() != null) {
+					// add constituency id
+					Candidate updatedCandidate = new Candidate();
+					updatedCandidate.setCandidateID(match.getCandidateID());
+					updatedCandidate.setCandidateName(match.getCandidateName());
+					updatedCandidate.setCandidateSurname(match.getCandidateSurname());
+					updatedCandidate.setCandidateDateOfBirth(match.getCandidateDateOfBirth());
+					updatedCandidate.setCandidatePersonalID(match.getCandidatePersonalID());
+					updatedCandidate.setCandidateDescription(match.getCandidateDescription());
+					updatedCandidate.setCandidateDeletedDate(null);
+
+					updatedCandidate.setCandidateParty(match.getCandidateParty());
+					updatedCandidate.setCandidateNumberInParty(match.getCandidateNumberInParty());
+
+					updatedCandidate.setCandidateConstituency(candidate.getCandidateConstituency());
+
+					em.persist(em.merge(updatedCandidate));
+					return updatedCandidate;
+
+				} else if (match.getCandidateConstituency() != null) {
+					// add party id & number in party
+					Candidate updatedCandidate = new Candidate();
+					updatedCandidate.setCandidateID(match.getCandidateID());
+					updatedCandidate.setCandidateName(match.getCandidateName());
+					updatedCandidate.setCandidateSurname(match.getCandidateSurname());
+					updatedCandidate.setCandidateDateOfBirth(match.getCandidateDateOfBirth());
+					updatedCandidate.setCandidatePersonalID(match.getCandidatePersonalID());
+					updatedCandidate.setCandidateDescription(match.getCandidateDescription());
+					updatedCandidate.setCandidateDeletedDate(null);
+
+					updatedCandidate.setCandidateParty(candidate.getCandidateParty());
+					updatedCandidate.setCandidateNumberInParty(candidate.getCandidateNumberInParty());
+
+					updatedCandidate.setCandidateConstituency(match.getCandidateConstituency());
+
+					em.persist(em.merge(updatedCandidate));
+					return updatedCandidate;
+				} else {
+					System.err.println("candidate merge error");
+					return null;
+				}
+
+			} else {
+				em.persist(candidate);
 				return candidate;
-				
-//			} else {
-//
-//				
-//				
-//				em.persist(candidate);
-//				return candidate;
-//
-//			}
-			
-			
-			
-		
-		
-			
-			
-			
-			
-		
-		//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~update
+			}
+
+			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~update
 		} else {
 
 			Candidate merged = em.merge(candidate);
@@ -100,4 +116,3 @@ public class CandidateRepository {
 		em.persist(candidate);
 	}
 }
-
