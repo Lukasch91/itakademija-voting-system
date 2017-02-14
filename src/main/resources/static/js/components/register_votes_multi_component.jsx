@@ -50,8 +50,7 @@ var RegisterVotesMultiComponent = React.createClass( {
         return (
             <form>
                 <h3>Daugiamandatės</h3>
-                <h4>Apygarda: test</h4>
-                <h4>Apylinkė: test</h4><br />
+                <LoggedInRepresentativeInfoContainer />
                 {partyList}
                 <input type="checkbox" /> Patvirtinu, kad įvesti duomenys teisingi.<br />
                 <button className="btn btn-success" onClick={self.props.onPublishVotes} disabled={disabled}>Publikuoti rezultatus</button>

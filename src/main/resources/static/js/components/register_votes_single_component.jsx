@@ -14,6 +14,9 @@ var RegisterVotesSingleComponent = React.createClass( {
 
 
         var candidatesList = this.props.candidates.map( function( candidate, index ) {
+            
+            if (candidate.candidateConstituency != null && candidate.candidateConstituency.id == 1) {
+        
             candidateCount.push( candidate );
 
             if ( votesList.includes( candidate.candidateID ) ) {
@@ -38,20 +41,20 @@ var RegisterVotesSingleComponent = React.createClass( {
                     </div>
                 );
             }
+            }
 
         });
 
         console.log( candidateCount.length );
         var disabled = true;
-        if ( candidateCount.length != 0 && votesEntered.length == candidateCount.length && votesEntered[1].singlePublishedDate == null ) {
+        if ( candidateCount.length != 0 && votesEntered.length == candidateCount.length && votesEntered[5].singlePublishedDate == null ) {
             disabled = false;
         }
 
         return (
             <form>
                 <h3>Vienamandatės</h3>
-                <h4>Apygarda: ...</h4>
-                <h4>Apylinkė: ...</h4><br />
+                <LoggedInRepresentativeInfoContainer />
                 {candidatesList}
                 <input type="checkbox" /> Patvirtinu, kad įvesti duomenys teisingi.<br />
                 <button className="btn btn-success" onClick={self.props.onPublishVotes} disabled={disabled}>Publikuoti rezultatus</button>

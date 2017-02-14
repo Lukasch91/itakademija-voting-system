@@ -3,11 +3,13 @@ var RegisterVotesMultiContainer = React.createClass( {
     getInitialState: function() {
         return {
             parties: [],
-            elections: []
+            elections: [],
+            constituency: null
         };
     },
 
     componentWillMount: function() {
+        
         var self = this;
         axios.get( '/api/party' )
             .then( function( response ) {
@@ -21,6 +23,7 @@ var RegisterVotesMultiContainer = React.createClass( {
                     elections: response.data
                 });
             });
+    
     },
 
     handlePublishVotes: function() {
@@ -35,6 +38,8 @@ var RegisterVotesMultiContainer = React.createClass( {
             parties={this.state.parties}
             elections={this.state.elections}
             onPublishVotes={this.handlePublishVotes}
+            constituency={this.state.constituency}
+            district={this.state.district}
             />
     }
 });
