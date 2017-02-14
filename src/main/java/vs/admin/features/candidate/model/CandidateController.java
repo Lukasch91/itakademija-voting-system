@@ -50,12 +50,27 @@ public class CandidateController {
 	public Candidate getCandidateById(@PathVariable("id") Integer id) {
 		return candidateRepository.findCandidateById(id);
 	}
+	
+	@RequestMapping(value = "/api/candidateConstituency/{constituencyId}", method = RequestMethod.GET)
+	@ResponseStatus(org.springframework.http.HttpStatus.OK)
+	@ApiOperation(value = "Get candidate by Constituency id")
+	public List<Candidate> getCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
+		return candidateRepository.findCandidatesByConstituencyId(id);
+	}
 
 	@RequestMapping(value = "/api/candidate/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "Delete candidate by id (adds deletion date)")
 	public void deleteCandidateById(@PathVariable("id") Integer id) {
 		candidateRepository.deleteCandidateById(id);
+	}
+	
+	
+	@RequestMapping(value = "/api/candidateConstituency/{constituencyId}", method = RequestMethod.DELETE)
+	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
+	@ApiOperation(value = "Delete candidate by Constituency id (adds deletion date)")
+	public void deleteCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
+		candidateRepository.deleteCandidatesByConstituencyId(id);
 	}
 	/* ===========================================================File=== */
 

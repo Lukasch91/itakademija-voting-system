@@ -7,9 +7,12 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public class CandidateRepository {
 	private static final String FIND_ALL = "SELECT x FROM Candidate x WHERE candidate_Deleted_Date is NULL";
+	private static final String FIND_ALL_CONSTITUENCY = "SELECT x FROM Candidate x "
+			+ "WHERE candidate_Deleted_Date is NULL AND candidateConstituency=";
 
 	@Autowired
 	private EntityManager em;
@@ -18,6 +21,14 @@ public class CandidateRepository {
 	public List<Candidate> findAllUndeletedCandidates() {
 		return em.createQuery(FIND_ALL).getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Candidate> findCandidatesByConstituencyId(Integer id) {
+		return em.createQuery(FIND_ALL_CONSTITUENCY+id).getResultList();
+	}
+	
+	
+	
 
 	/* ===================================================== */
 
@@ -115,4 +126,31 @@ public class CandidateRepository {
 		candidate.setCandidateDeletedDate(date);
 		em.persist(candidate);
 	}
+	
+	@Transactional
+	public void deleteCandidatesByConstituencyId(Integer constituencyId) {
+		@SuppressWarnings("unchecked")
+		List<Candidate> candidatesToDelete = em.createQuery(FIND_ALL_CONSTITUENCY + constituencyId).getResultList();
+
+		for (Candidate candidate : candidatesToDelete) {
+			Date date = new Date();
+			candidate.setCandidateDeletedDate(date);
+			em.persist(candidate);
+		}
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -37,6 +37,8 @@ var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
 
         data.append( 'file', file );
 
+        this.setState( { file: null });
+        
         axios.post( '/api/districtcandidatesFILE', data, header )
             .then( function( response ) {
                 console.log( "server_response" );
@@ -64,7 +66,7 @@ var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
         return (
 
             <div>
-                <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
+                <button type="button" className="btn btn-primary btn-primary" data-toggle="modal" data-target={modalIdHash}>
                     Pridėti kandidatus
                     </button>
 

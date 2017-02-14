@@ -6,11 +6,24 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
 
 
         var constituencyList = this.props.constituencies.map( function( constituency, index ) {
+
+            /*
+            get number of candidates who have constituencyId == index
+             
+             
+            if ( if number is more than 0 then change button  ) {
+            } else {
+            }
+              */
+
             return (
                 <tr key={index}>
                     <td>{constituency.title}</td>
                     <td>
-                        <AdministrateCandidatesCSVDistrictcomponent constitId={constituency.id}/>
+                        <AdministrateCandidatesCSVDistrictcomponent constitId={constituency.id} />
+                    </td>
+                    <td>
+                        <ViewCandidatesByConstituencyComponent constituency={constituency} />
                     </td>
                 </tr>
             );
@@ -25,6 +38,8 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
                             <th>Apygardos pavadinimas</th>
 
                             <th>Pridėti kandidatus</th>
+                            
+                            <th>Peržiurėti kandidatus</th>
                         </tr>
                     </thead>
                     <tbody>
