@@ -4,80 +4,62 @@ var AdministrateSingleCandidatesContainer = React.createClass( {
     getInitialState: function() {
         return {
             constituencies: [],
-            file: null //sagg
-           
+            xxx: []
         };
     },
 
     componentWillMount: function() {
+
         var self = this;
+        
         axios.get( '/api/constituency' )
             .then( function( response ) {
                 self.setState( {
                     constituencies: response.data
                 });
-            });
+            })
+            .then( function() {
+                var constitIdCandidateNumber = null;
+                var tempNumberOfCandidates = new Array();
 
-    },
-    //===========================================================
-    onHandleFileChange: function( file ) {
-
-        console.log( "--3" );
-        this.setState( { file: file });
-    },
+//                console.log(self.state.constituencies);
+                
+                for ( var i = 0; i < self.state.constituencies.length; i++ ) {
+                    axios.get( '/api/candidatesInConstituency/' + self.state.constituencies[i].id )
+                    .then( function( response ) {
+                            
+                            
+//     console.log(self.state.constituencies[(response.config.url.split( '/' )[3])-1]);
     
+                        
+     (self.state.constituencies[(response.config.url.split( '/' )[3])-1]).numberOfCandidates=response.data;
+                             
+   
+                    });
+                }
+                
+              console.log(self.state.constituencies);
 
-
-    handleSHIT: function( e ) {
-       
-        var self = this;
-
-        console.log( "SHIT" );
-        console.log(e);
-
-    },
-
-    handleAddDistrictCandidates: function( e ) {
-        e.preventDefault();
-        var self = this;
-
-        var header = {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'constituencyId': 1
-            }
-        };
-
-        var file = 'nofile.aaa';
-        if ( this.state.file != null ) {
-            file = this.state.file;
-        }
-        var data = new FormData();
-
-        data.append( 'file', file );
-
-
-
-        console.log( "sagg__upload" );
-
-        axios.post( '/api/districtcandidatesFILE', data, header )
+                
+            })
             .then( function( response ) {
-                console.log( "sagg_done" );
-                console.log( response );
+                self.setState( {
+                    xxx: self.state.constituencies 
+                });
+                console.log("a");
+                console.log(self.state.xxx);
+                self.forceUpdate();
             });
 
     },
-
-    //===========================================================
 
     render: function() {
         return (
             <div>
                 <AdministrateSingleCandidatesComponent
-                    onHandleFileChange={this.onHandleFileChange}
                     constituencies={this.state.constituencies}
-                    onAddDistrictCandidates={this.handleAddDistrictCandidates}
-                    handleSHIT={this.handleSHIT}/>
+                    numberOfCandidates={this.state.numberOfCandidates}
+                    />
             </div>
         )
     }

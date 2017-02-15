@@ -13,6 +13,8 @@ public class CandidateRepository {
 	private static final String FIND_ALL = "SELECT x FROM Candidate x WHERE candidate_Deleted_Date is NULL";
 	private static final String FIND_ALL_CONSTITUENCY = "SELECT x FROM Candidate x "
 			+ "WHERE candidate_Deleted_Date is NULL AND candidateConstituency=";
+	
+	private static final String NUMBER_OF_CANDIDATES_IN_CONSTITUENCY = "SELECT COUNT(candidateid) FROM Candidate x WHERE   candidate_Deleted_Date is NULL AND candidateConstituency =";
 
 	@Autowired
 	private EntityManager em;
@@ -27,6 +29,9 @@ public class CandidateRepository {
 		return em.createQuery(FIND_ALL_CONSTITUENCY+id).getResultList();
 	}
 	
+	public  Object numberOfCandidatesByConstituencyId(Integer id) {
+		return em.createQuery(NUMBER_OF_CANDIDATES_IN_CONSTITUENCY+id).getSingleResult();
+	}
 	
 	
 

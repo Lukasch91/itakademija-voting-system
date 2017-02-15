@@ -57,6 +57,13 @@ public class CandidateController {
 	public List<Candidate> getCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
 		return candidateRepository.findCandidatesByConstituencyId(id);
 	}
+	
+	@RequestMapping(value = "/api/candidatesInConstituency/{constituencyId}", method = RequestMethod.GET)
+	@ResponseStatus(org.springframework.http.HttpStatus.OK)
+	@ApiOperation(value = "Get  number of candidates in Constituency id")
+	public Object numberOfCandidatesByConstituencyId(@PathVariable("constituencyId") Integer id) {
+		return candidateRepository.numberOfCandidatesByConstituencyId(id);
+	}
 
 	@RequestMapping(value = "/api/candidate/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
