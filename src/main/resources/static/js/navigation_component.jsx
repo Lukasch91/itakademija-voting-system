@@ -29,15 +29,15 @@ var NavigationComponent = React.createClass( {
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
                         <NavLink to="/" onlyActiveOnIndex>Home</NavLink>
-                        <NavLink to="/con">Apygardos/Apylinkės</NavLink>
-                        <NavLink to="/parties">Partijos</NavLink>
-                        <NavLink to="/upload-single-cadidates">Kandidatų įkėlimas (vien.)</NavLink>
-                        <NavLink to="/upload-multi-cadidates">Kandidatų įkėlimas (daug.)</NavLink>
-                        <NavLink to="/delete-votes">Rezultatų anuliavimas</NavLink>
+                        <NavLink id="constituency" to="/con">Apygardos/Apylinkės</NavLink>
+                        <NavLink id="party" to="/parties">Partijos</NavLink>
+                        <NavLink id="singleMember" to="/upload-single-cadidates">Kandidatų įkėlimas (vien.)</NavLink>
+                        <NavLink id="multiMember" to="/upload-multi-cadidates">Kandidatų įkėlimas (daug.)</NavLink>
+                        <NavLink id="resultDeletePage" to="/delete-votes">Rezultatų anuliavimas</NavLink>
 
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
-                        <button type="button" className="btn btn-default" onClick={this.props.onLogoutClick}>Atsijungti</button>
+                        <button id="logout" type="button" className="btn btn-default" onClick={this.props.onLogoutClick}>Atsijungti</button>
                     </ul>
                 </div>
             </nav>

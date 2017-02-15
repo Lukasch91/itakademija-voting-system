@@ -56,8 +56,8 @@ var RegisterVotesSingleComponent = React.createClass( {
                 <h3>Vienamandatės</h3>
                 <LoggedInRepresentativeInfoContainer />
                 {candidatesList}
-                <input type="checkbox" /> Patvirtinu, kad įvesti duomenys teisingi.<br />
-                <button className="btn btn-success" onClick={self.props.onPublishVotes} disabled={disabled}>Publikuoti rezultatus</button>
+                <input id="submitSingle" type="checkbox" disabled /> Patvirtinu, kad įvesti duomenys teisingi.<br />
+                <button id="publishSingle" className="btn btn-success" onClick={self.props.onPublishVotes} disabled={disabled}>Publikuoti rezultatus</button>
             </form>
         )
     }

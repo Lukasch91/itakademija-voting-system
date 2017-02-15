@@ -29,11 +29,11 @@ var NavigationRepComponent = React.createClass( {
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
                         <NavLink to="/" onlyActiveOnIndex>Home</NavLink>
-                        <NavLink to="/reg-votes-multi">Balsų registravimas (daug.)</NavLink>
-                        <NavLink to="/reg-votes-single">Balsų registravimas (vien.)</NavLink>
+                        <NavLink id="singleVoteRegistration" to="/reg-votes-multi">Balsų registravimas (daug.)</NavLink>
+                        <NavLink id="multiVoteRegistration" to="/reg-votes-single">Balsų registravimas (vien.)</NavLink>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
-                        <button type="button" className="btn btn-default" onClick={this.props.onLogoutClick}>Atsijungti</button>
+                        <button id="logout" type="button" className="btn btn-default" onClick={this.props.onLogoutClick}>Atsijungti</button>
                     </ul>
                 </div>
             </nav>

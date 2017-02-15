@@ -14,23 +14,23 @@ var AdministrateRepresentativeComponent = React.createClass( {
             <div>
                 <form>
                     <label>Vardas</label><br />
-                    <input className="form-control" type="text" value={this.props.representative.name} onChange={this.props.onFieldChange( 'name' )} /><br />
+                    <input id="representativeName" className="form-control" type="text" value={this.props.representative.name} onChange={this.props.onFieldChange( 'name' )} /><br />
 
                     <label>Pavardė</label><br />
-                    <input className="form-control" type="text" value={this.props.representative.surname} onChange={this.props.onFieldChange( 'surname' )} /><br />
+                    <input id="representativeSurname" className="form-control" type="text" value={this.props.representative.surname} onChange={this.props.onFieldChange( 'surname' )} /><br />
 
                     <label>Prisijungimo vardas</label><br />
-                    <input className="form-control" type="text" value={this.props.representative.loginName} onChange={this.props.onFieldChange( 'loginName' )} /><br />
+                    <input id="representativeUsername" className="form-control" type="text" value={this.props.representative.loginName} onChange={this.props.onFieldChange( 'loginName' )} /><br />
 
-                    <label>Slaptažodis </label><button className="btn btn-warning" >Generuoti slaptažodį</button><br />
+                    <label>Slaptažodis </label><button id="generatePassword" className="btn btn-warning" disabled>Generuoti slaptažodį</button><br />
                     <input className="form-control" type="password" value={this.props.representative.password} onChange={this.props.onFieldChange( 'password' )} /><br />
 
 
                     <label>El. paštas</label><br />
-                    <input className="form-control" type="email" value={this.props.representative.email} onChange={this.props.onFieldChange( 'email' )} /><br />
+                    <input id="email" className="form-control" type="email" value={this.props.representative.email} onChange={this.props.onFieldChange( 'email' )} /><br />
 
-                    <button className="btn btn-success" onClick={this.props.onAddRepresentative}>Pridėti</button>
-                    <button className="btn btn-danger" onClick={this.props.onCancel} >Atšaukti</button>
+                    <button id="addRepresentative" className="btn btn-success" onClick={this.props.onAddRepresentative}>Pridėti</button>
+                    <button id="cancelRepresentative" className="btn btn-danger" onClick={this.props.onCancel} >Atšaukti</button>
                 </form>
 
                 <table className="table table-condensed">

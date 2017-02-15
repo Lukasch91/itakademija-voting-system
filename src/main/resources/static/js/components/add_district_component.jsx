@@ -15,16 +15,16 @@ var AddDistrictComponent = React.createClass( {
             <div>
                 <form>
                     <label>Apylinkės pavadinimas</label><br />
-                    <input className="form-control" type="text" value={this.props.district.title} onChange={this.props.onFieldChange( 'title' )} /><br />
+                    <input id="districtName" className="form-control" type="text" value={this.props.district.title} onChange={this.props.onFieldChange( 'title' )} /><br />
 
                     <label>Adresas</label><br />
-                    <input className="form-control" type="text" value={this.props.district.address} onChange={this.props.onFieldChange( 'address' )} /><br />
+                    <input id="address" className="form-control" type="text" value={this.props.district.address} onChange={this.props.onFieldChange( 'address' )} /><br />
 
                     <label>Rinkėjų skaičius</label><br />
-                    <input className="form-control" type="number" value={this.props.district.numberOfVoters} onChange={this.props.onFieldChange( 'numberOfVoters' )} /><br />
+                    <input id="votersNumber" className="form-control" type="number" value={this.props.district.numberOfVoters} onChange={this.props.onFieldChange( 'numberOfVoters' )} /><br />
 
-                    <button className="btn btn-success" onClick={this.props.onAddClick} >Pridėti</button>
-                    <button className="btn btn-danger" onClick={this.props.onCancel} >Atšaukti</button>
+                    <button id="addDistrict" className="btn btn-success" onClick={this.props.onAddClick} >Pridėti</button>
+                    <button id="cancelDistrict" className="btn btn-danger" onClick={this.props.onCancel} >Atšaukti</button>
                 </form>
 
                 <table className="table table-condensed">

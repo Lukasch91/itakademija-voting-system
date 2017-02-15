@@ -46,7 +46,7 @@ var ConstituencyListContainer = React.createClass( {
                     constituencies={this.state.constituencies}
                     onAdministerDistricts={this.handleAdministerDistricts}
                     onRemoveItem={this.handleRemoveItem} />
-                <AddNewContainer redirectTo={'/add-con'} />
+                <AddNewContainer id="newConstituency" redirectTo={'/add-con'} />
             </div>
         )
     }
