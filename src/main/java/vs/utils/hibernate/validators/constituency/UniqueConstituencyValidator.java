@@ -16,7 +16,7 @@ public class UniqueConstituencyValidator
 		implements ConstraintValidator<UniqueConstituency, String> {
 
 	// ===============================================
-	private static final String FIND_ALL = "SELECT x FROM Constituency x";
+	private static final String FIND_ALL = "SELECT x FROM Constituency x WHERE deletedTime IS null";
 	@Autowired
 	private EntityManager em;
 	// ===============================================
