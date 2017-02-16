@@ -17,8 +17,8 @@ var PubDelVotesDistrictListContainer = React.createClass( {
                     constit: response.data
                 });
             });
-
     },
+
 
 
     handleGoBack: function() {

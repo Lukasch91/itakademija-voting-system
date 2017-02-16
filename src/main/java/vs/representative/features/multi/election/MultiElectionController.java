@@ -43,6 +43,13 @@ public class MultiElectionController {
 	public MultiElection getMultiElectionById(@PathVariable("id") Integer id) {
 		return multiElectionRepository.findMultiElectionById(id);
 	}
+	
+	@RequestMapping(value = "/api/reg-votes-multi/dis/{id}", method = RequestMethod.GET)
+	@ResponseStatus(org.springframework.http.HttpStatus.OK)
+	@ApiOperation(value = "Get Multi Election results by District id")
+	public List<MultiElection> getMultiElectionByDistrictId(@PathVariable("id") Integer id) {
+		return multiElectionRepository.findMultiElectionByDistrictId(id);
+	}
 
 	@RequestMapping(value = "/api/reg-votes-multi/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)

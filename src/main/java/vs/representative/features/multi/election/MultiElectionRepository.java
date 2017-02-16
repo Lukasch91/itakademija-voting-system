@@ -9,10 +9,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import vs.admin.features.admin.district.District;
-import vs.admin.features.party.model.Party;
-import vs.representative.features.single.election.SingleElection;
-
 @Repository
 public class MultiElectionRepository {
 
@@ -44,6 +40,13 @@ public class MultiElectionRepository {
 			return multiElection;
 		}
 		return null;
+	}
+	
+	public List<MultiElection> findMultiElectionByDistrictId(Integer district_id) {
+		@SuppressWarnings("unchecked")
+		List<MultiElection> multiElectionsPublish = entityManager.createQuery(FIND_BY_DISTRICT_ID + district_id + "AND deleted_date is null")
+				.getResultList();
+		return multiElectionsPublish;
 	}
 
 	@Transactional
