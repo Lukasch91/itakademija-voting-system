@@ -1,4 +1,4 @@
-var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
+var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
 
     getInitialState: function() {
         return {
@@ -109,4 +109,4 @@ var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
 
 
 
-window.AdministrateCandidatesCSVDistrictcomponent = AdministrateCandidatesCSVDistrictcomponent;
+window.AdministrateCandidatesCSVConstituencyComponent = AdministrateCandidatesCSVConstituencyComponent;

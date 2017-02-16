@@ -19,7 +19,7 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
                     <tr key={index}>
                         <td>{constituency.title}</td>
                         <td>
-                            <AdministrateCandidatesCSVDistrictcomponent constitId={constituency.id} />
+                            <AdministrateCandidatesCSVConstituencyComponent constitId={constituency.id} />
                         </td>
                     </tr>
                 );

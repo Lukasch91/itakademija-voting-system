@@ -6,7 +6,7 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
             id: null
         };
     },
-    componentWillMount: function() {
+    componentDidMount: function() {
         this.setState( { id: this.props.partyId });
     },
 

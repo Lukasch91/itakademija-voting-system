@@ -45,10 +45,8 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
         var modalId = "modal" + 1 + this.props.constituency.id;
         var modalIdHash = "#modal" + 1 + this.props.constituency.id;
         var self = this;
-        
-        var array = self.state.candidates;
            
-        var candidateList = array.map( function( candidate, index ) {
+        var candidateList = self.state.candidates.map( function( candidate, index ) {
             return (
                     <tr key={index}>
                         <td>{candidate.candidateName}</td>
