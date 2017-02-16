@@ -7,13 +7,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
 public class CandidateRepository {
 	private static final String FIND_ALL = "SELECT x FROM Candidate x WHERE candidate_Deleted_Date is NULL";
 	private static final String FIND_ALL_CONSTITUENCY = "SELECT x FROM Candidate x "
 			+ "WHERE candidate_Deleted_Date is NULL AND candidateConstituency=";
-	
+	private static final String FIND_ALL_PARTY = "SELECT x FROM Candidate x "
+			+ "WHERE candidate_Deleted_Date is NULL AND candidateParty=";
+
 	@Autowired
 	private EntityManager em;
 
@@ -22,11 +23,6 @@ public class CandidateRepository {
 		return em.createQuery(FIND_ALL).getResultList();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<Candidate> findCandidatesByConstituencyId(Integer id) {
-		return em.createQuery(FIND_ALL_CONSTITUENCY+id).getResultList();
-	}
-
 	/* ===================================================== */
 
 	@Transactional
@@ -95,33 +91,24 @@ public class CandidateRepository {
 				em.persist(candidate);
 				return candidate;
 			}
-
-			// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~update
 		} else {
-
-			Candidate merged = em.merge(candidate);
-			em.persist(merged);
-			return merged;
-
+			return null; //if candidate id is not null
 		}
+		// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~update--disabled
+		// } else {
+		//
+		// Candidate merged = em.merge(candidate);
+		// em.persist(merged);
+		// return merged;
+		//
+		// }
 	}
 
 	/* ===================================================== */
-	public Candidate findCandidateById(Integer id) {
-		Candidate candidate = em.find(Candidate.class, id);
-		if ((candidate != null) && (candidate.getCandidateDeletedDate() == null)) {
-			return candidate;
-		} else {
-			return null;
-		}
-	}
-
-	@Transactional
-	public void deleteCandidateById(Integer id) {
-		Candidate candidate = em.find(Candidate.class, id);
-		Date date = new Date();
-		candidate.setCandidateDeletedDate(date);
-		em.persist(candidate);
+	
+	@SuppressWarnings("unchecked")
+	public List<Candidate> findCandidatesByConstituencyId(Integer constituencyId) {
+		return em.createQuery(FIND_ALL_CONSTITUENCY + constituencyId).getResultList();
 	}
 	
 	@Transactional
@@ -130,24 +117,38 @@ public class CandidateRepository {
 		List<Candidate> candidatesToDelete = em.createQuery(FIND_ALL_CONSTITUENCY + constituencyId).getResultList();
 
 		for (Candidate candidate : candidatesToDelete) {
-			Date date = new Date();
-			candidate.setCandidateDeletedDate(date);
-			em.persist(candidate);
+			if (candidate.getCandidateParty() != null) {
+				candidate.setCandidateConstituency(null);
+				em.persist(candidate);
+			} else {
+				Date date = new Date();
+				candidate.setCandidateDeletedDate(date);
+				em.persist(candidate);
+			}
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Candidate> findCandidatesByPartyId(Integer partyId) {
+		return em.createQuery(FIND_ALL_PARTY + partyId).getResultList();
+	}
 	
+	@Transactional
+	public void deleteCandidatesByPartyId(Integer partyId) {
+		@SuppressWarnings("unchecked")
+		List<Candidate> candidatesToDelete = em.createQuery(FIND_ALL_PARTY + partyId).getResultList();
+
+		for (Candidate candidate : candidatesToDelete) {
+			if (candidate.getCandidateConstituency() != null) {
+				candidate.setCandidateParty(null);
+				candidate.setCandidateNumberInParty(null);
+				em.persist(candidate);
+			} else {
+				Date date = new Date();
+				candidate.setCandidateDeletedDate(date);
+				em.persist(candidate);
+			}
+		}
+	}
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

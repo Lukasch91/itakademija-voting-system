@@ -1,17 +1,31 @@
 var AdministrateMultiCandidatesComponent = React.createClass( {
+    
     render: function() {
-
         var self = this;
+        console.log( "_________________" )
         var partyList = this.props.parties.map( function( party, index ) {
-            return (
-                <tr key={index}>
-                    <td>{party.title}</td>
-                    <td>{party.party_abbreviation}</td>
-                    <td>
-                        <AdministrateCandidatesCSVPartyComponent partyId={party.id} />
-                    </td>
-                </tr>
-            );
+
+            if ( party.numberOfCandidatesInParty != 0 ) {
+                return (
+                    <tr key={index}>
+                        <td>{party.title}</td>
+                        <td>{party.party_abbreviation}</td>
+                        <td>
+                            <ViewCandidatesByPartyComponent party={party} />
+                        </td>
+                    </tr>
+                );
+            } else {
+                return (
+                    <tr key={index}>
+                        <td>{party.title}</td>
+                        <td>{party.party_abbreviation}</td>
+                        <td>
+                            <AdministrateCandidatesCSVPartyComponent partyId={party.id} />
+                        </td>
+                    </tr>
+                );
+            }
         });
 
         return (
@@ -22,12 +36,11 @@ var AdministrateMultiCandidatesComponent = React.createClass( {
                         <tr>
                             <th>Partijos pavadinimas</th>
                             <th>Trumpinys</th>
-                            <th>Pridėti kandidatus</th>
+                            <th>Veiksmai</th>
                         </tr>
                     </thead>
                     <tbody>
                         {partyList}
-
                     </tbody>
                 </table>
             </div>

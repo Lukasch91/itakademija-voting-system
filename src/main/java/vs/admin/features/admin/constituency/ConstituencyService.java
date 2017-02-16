@@ -37,7 +37,6 @@ public class ConstituencyService {
 				}
 			}
 			consExtend.setNumberOfCandidatesInConstituency(numberOfCandidates);
-
 			extendedConstituencies.add(consExtend);
 		}
 		return extendedConstituencies;

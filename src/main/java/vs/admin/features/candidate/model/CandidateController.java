@@ -44,25 +44,11 @@ public class CandidateController {
 		return candidateRepository.createOrUpdateCandidate(candidate);
 	}
 
-	@RequestMapping(value = "/api/candidate/{id}", method = RequestMethod.GET)
-	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get candidate by id")
-	public Candidate getCandidateById(@PathVariable("id") Integer id) {
-		return candidateRepository.findCandidateById(id);
-	}
-
 	@RequestMapping(value = "/api/candidateConstituency/{constituencyId}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Get candidate by Constituency id")
 	public List<Candidate> getCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
 		return candidateRepository.findCandidatesByConstituencyId(id);
-	}
-
-	@RequestMapping(value = "/api/candidate/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "Delete candidate by id (adds deletion date)")
-	public void deleteCandidateById(@PathVariable("id") Integer id) {
-		candidateRepository.deleteCandidateById(id);
 	}
 
 	@RequestMapping(value = "/api/candidateConstituency/{constituencyId}", method = RequestMethod.DELETE)
@@ -71,6 +57,21 @@ public class CandidateController {
 	public void deleteCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
 		candidateRepository.deleteCandidatesByConstituencyId(id);
 	}
+	
+	@RequestMapping(value = "/api/candidateParty/{partyId}", method = RequestMethod.GET)
+	@ResponseStatus(org.springframework.http.HttpStatus.OK)
+	@ApiOperation(value = "Get candidate by Party id")
+	public List<Candidate> getCandidateByPartyId(@PathVariable("partyId") Integer id) {
+		return candidateRepository.findCandidatesByPartyId(id);
+	}
+
+	@RequestMapping(value = "/api/candidateParty/{partyId}", method = RequestMethod.DELETE)
+	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
+	@ApiOperation(value = "Delete candidate by Party id (adds deletion date)")
+	public void deleteCandidateByPartyId(@PathVariable("partyId") Integer id) {
+		candidateRepository.deleteCandidatesByPartyId(id);
+	}
+	
 	/* ===========================================================File=== */
 
 	@RequestMapping(value = "/api/districtcandidatesFILE", method = RequestMethod.POST)

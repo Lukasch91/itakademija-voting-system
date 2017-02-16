@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @CrossOrigin
@@ -26,6 +29,8 @@ public class ConstituencyController {
 	}
 
 	@RequestMapping(value = "/api/constituencyExtended", method = RequestMethod.GET)
+	@ResponseStatus(org.springframework.http.HttpStatus.OK)
+	@ApiOperation(value = "Find Constituencies and add Number of candidates")
 	public List<ConstituencyExtension> findAllConstituenciesExtended() {
 		return constituencyService.findAllConstituenciesExtended();
 	}

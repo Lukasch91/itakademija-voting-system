@@ -9,15 +9,12 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
     componentWillMount: function() {
         this.setState( { id: this.props.constitId });
     },
-
     onHandleFileChange: function( file ) {
         this.setState( { file: file });
         console.log( '2' );
-
     },
 
-
-    handleAddDistrictCandidates: function() {
+    handleAddConstituencyCandidates: function() {
         console.log( '3' );
         var self = this;
 
@@ -42,8 +39,6 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
             .then( function( response ) {
                 console.log( "server_response" );
                 console.log( response );
-
-
             });
         window.location.reload();//!!!!!!!!improve, initialize AxiosGet
     },
@@ -54,8 +49,6 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
         console.log( '1' );
         this.onHandleFileChange( fileData );
     },
-
-
 
     render: function() {
 
@@ -95,7 +88,7 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={this.handleAddDistrictCandidates} data-dismiss="modal" >Pridėti kandidatus</button>
+                                <button type="button" className="btn btn-primary" onClick={this.handleAddConstituencyCandidates} data-dismiss="modal" >Pridėti kandidatus</button>
                                 <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
                             </div>
                         </div>

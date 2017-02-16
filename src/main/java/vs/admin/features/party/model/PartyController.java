@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import io.swagger.annotations.ApiOperation;
+
 
 
 
@@ -21,6 +21,8 @@ public class PartyController {
 
 	@Autowired
 	private PartyRepository partyRepository;
+	@Autowired
+	private PartyService partyService;
 
 	@RequestMapping(value = "/api/party", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
@@ -48,4 +50,13 @@ public class PartyController {
 	public void detelePartyById(@PathVariable("id") Integer id) {
 		partyRepository.deleteParty(id);
 	}
+	
+	@RequestMapping(value = "/api/partyExtended", method = RequestMethod.GET)
+	@ResponseStatus(org.springframework.http.HttpStatus.OK)
+	@ApiOperation(value = "Find Parties and add Number of candidates")
+	public List<PartyExtension> findAllPartiesExtended() {
+		return partyService.findAllPartiesExtended();
+	}
+	
+	
 }
