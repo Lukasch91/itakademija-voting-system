@@ -2,7 +2,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div style={{ paddingTop: '20px' }}>
-        <NavigationContainer />
+        <NavigationAdminContainer />
         {this.props.children}
       </div>
     );
@@ -33,7 +33,8 @@ ReactDOM.render((
         <Route path="/repres/:conId/:repId" component={RepresentativeInfoContainer} />
         <Route path="/parties" component={PartyListContainer} />
         <Route path="/add-party" component={AddPartyContainer} />
-        <Route path="/delete-votes" component={DeleteVotesContainer} />
+        <Route path="/publish-delete-votes" component={PubDelVotesConstituencyListContainer} />
+        <Route path="/publish-delete-votes/:conId" component={PubDelVotesDistrictListContainer} />
         <Route path="/upload-single-cadidates" component={AdministrateSingleCandidatesContainer} />
         <Route path="/upload-multi-cadidates" component={AdministrateMultiCandidatesContainer} />
       <Route path="*" component={NoMatch}/>

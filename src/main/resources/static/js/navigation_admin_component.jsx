@@ -22,7 +22,7 @@ NavLink.propTypes = {
     to: React.PropTypes.string.isRequired,
 };
 
-var NavigationComponent = React.createClass( {
+var NavigationAdminComponent = React.createClass( {
     render: function() {
         return (
             <nav className="navbar navbar-default">
@@ -33,7 +33,7 @@ var NavigationComponent = React.createClass( {
                         <NavLink id="party" to="/parties">Partijos</NavLink>
                         <NavLink id="singleMember" to="/upload-single-cadidates">Kandidatų įkėlimas (vien.)</NavLink>
                         <NavLink id="multiMember" to="/upload-multi-cadidates">Kandidatų įkėlimas (daug.)</NavLink>
-                        <NavLink id="resultDeletePage" to="/delete-votes">Rezultatų anuliavimas</NavLink>
+                        <NavLink id="resultDeletePage" to="/publish-delete-votes">Rezultatų publikavimas/anuliavimas</NavLink>
 
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
@@ -45,4 +45,4 @@ var NavigationComponent = React.createClass( {
     }
 });
 
-window.NavigationComponent = NavigationComponent;
+window.NavigationAdminComponent = NavigationAdminComponent;

@@ -1,4 +1,4 @@
-var NavigationContainer = React.createClass({
+var NavigationAdminContainer = React.createClass({
     
     handleLogout: function() {
         axios.get('/logout').then(function () {
@@ -9,11 +9,11 @@ var NavigationContainer = React.createClass({
       
     render: function() {
         return (
-            <NavigationComponent
+            <NavigationAdminComponent
                 onLogoutClick={this.handleLogout}
                 />
         );
     }
 });
 
-window.NavigationContainer = NavigationContainer;
+window.NavigationAdminContainer = NavigationAdminContainer;
