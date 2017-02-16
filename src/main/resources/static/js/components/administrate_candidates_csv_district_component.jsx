@@ -11,7 +11,6 @@ var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
     },
 
     onHandleFileChange: function( file ) {
-
         this.setState( { file: file });
         console.log( '2' );
 
@@ -38,13 +37,15 @@ var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
         data.append( 'file', file );
 
         this.setState( { file: null });
-        
+
         axios.post( '/api/districtcandidatesFILE', data, header )
             .then( function( response ) {
                 console.log( "server_response" );
                 console.log( response );
-            });
 
+
+            });
+        window.location.reload();//!!!!!!!!improve, initialize AxiosGet
     },
 
     onFileChange: function() {

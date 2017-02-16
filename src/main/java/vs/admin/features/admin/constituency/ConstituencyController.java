@@ -1,9 +1,7 @@
 package vs.admin.features.admin.constituency;
 
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +15,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConstituencyController {
 
 	@Autowired
-	ConstituencyRepository constituencyRepository;
+	private ConstituencyRepository constituencyRepository;
+	
+	@Autowired
+	private ConstituencyService constituencyService;
 
 	@RequestMapping(value = "/api/constituency", method = RequestMethod.GET)
 	public List<Constituency> findAllConstituencies() {
 		return constituencyRepository.findAllConstituencies();
+	}
+
+	@RequestMapping(value = "/api/constituencyExtended", method = RequestMethod.GET)
+	public List<ConstituencyExtension> findAllConstituenciesExtended() {
+		return constituencyService.findAllConstituenciesExtended();
 	}
 
 	@RequestMapping(value = "/api/constituency", method = RequestMethod.POST)

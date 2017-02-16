@@ -23,7 +23,7 @@ public class CandidateController {
 
 	@Autowired
 	private StorageService storageService;
-	
+
 	@Autowired
 	private CandidateService candidateService;
 
@@ -50,19 +50,12 @@ public class CandidateController {
 	public Candidate getCandidateById(@PathVariable("id") Integer id) {
 		return candidateRepository.findCandidateById(id);
 	}
-	
+
 	@RequestMapping(value = "/api/candidateConstituency/{constituencyId}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Get candidate by Constituency id")
 	public List<Candidate> getCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
 		return candidateRepository.findCandidatesByConstituencyId(id);
-	}
-	
-	@RequestMapping(value = "/api/candidatesInConstituency/{constituencyId}", method = RequestMethod.GET)
-	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get  number of candidates in Constituency id")
-	public Object numberOfCandidatesByConstituencyId(@PathVariable("constituencyId") Integer id) {
-		return candidateRepository.numberOfCandidatesByConstituencyId(id);
 	}
 
 	@RequestMapping(value = "/api/candidate/{id}", method = RequestMethod.DELETE)
@@ -71,8 +64,7 @@ public class CandidateController {
 	public void deleteCandidateById(@PathVariable("id") Integer id) {
 		candidateRepository.deleteCandidateById(id);
 	}
-	
-	
+
 	@RequestMapping(value = "/api/candidateConstituency/{constituencyId}", method = RequestMethod.DELETE)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "Delete candidate by Constituency id (adds deletion date)")
@@ -84,34 +76,35 @@ public class CandidateController {
 	@RequestMapping(value = "/api/districtcandidatesFILE", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
 	@ApiOperation(value = "Upload district candidates CSV")
-	public String districtCandidatesCSV(@RequestParam("file") MultipartFile file, @RequestHeader Integer constituencyId) {
+	public String districtCandidatesCSV(@RequestParam("file") MultipartFile file,
+			@RequestHeader Integer constituencyId) {
 
 		storageService.store(file);
-		
+
 		candidateService.setCandidatesConstituency(constituencyId);
 		candidateService.setCandidatesData(storageService.returnStoredFile(file));
 		candidateService.saveDistrictCandidates();
-		
+
 		String aaa = storageService.returnStoredFile(file);
-		
+
 		storageService.deleteFile(file);
 
 		return aaa;
 	}
-	
+
 	@RequestMapping(value = "/api/partycandidatesFILE", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
 	@ApiOperation(value = "Upload party candidates CSV")
 	public String partyCandidatesCSV(@RequestParam("file") MultipartFile file, @RequestHeader Integer partyId) {
 
 		storageService.store(file);
-		
+
 		candidateService.setCandidatesParty(partyId);
 		candidateService.setCandidatesData(storageService.returnStoredFile(file));
 		candidateService.savePartyCandidates();
-		
+
 		String aaa = storageService.returnStoredFile(file);
-		
+
 		storageService.deleteFile(file);
 
 		return aaa;

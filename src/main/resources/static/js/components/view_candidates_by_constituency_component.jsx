@@ -35,7 +35,9 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
             self.setState({ 
                 candidates: []
             });
+            
         });
+        window.location.reload();//!!!!!!!!improve, initialize AxiosGet
     },
     
     render: function() {
