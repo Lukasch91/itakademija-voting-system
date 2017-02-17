@@ -3,23 +3,26 @@ var PubDelVotesDistrictListContainer = React.createClass( {
     getInitialState: function() {
         return {
             districts: [],
-            constit: []
+            constit: [],
+            multiVotes: []
         };
     },
 
     componentWillMount: function() {
         var self = this;
         var conId = this.props.params.conId;
-        axios.get( '/api/constituency/' + conId )
-            .then( function( response ) {
-                self.setState( {
-                    districts: response.data.districts,
-                    constit: response.data
-                });
-            });
+        
+        axios.all([
+                  axios.get( '/api/constituency/' + conId ),
+                  axios.get( '/api/reg-votes-multi')
+                  ]).then(axios.spread(function (constResponse, votesResponse) {
+                      self.setState( {
+                          districts: constResponse.data.districts,
+                          constit: constResponse.data,
+                          multiVotes: votesResponse.data
+                      })
+                  }));
     },
-
-
 
     handleGoBack: function() {
         console.log( 'click' );
@@ -60,6 +63,7 @@ var PubDelVotesDistrictListContainer = React.createClass( {
                 <PubDelVotesDistrictListComponent
                     districts={this.state.districts}
                     constit={this.state.constit}
+                    multiVotes={this.state.multiVotes}
                     onPublishSingleVotes={this.handlePublishSingleVotes}
                     onDeleteSingleVotes={this.handleDeleteSingleVotes}
                     onPublishMultiVotes={this.handlePublishMultiVotes}
