@@ -39,16 +39,33 @@ public class Ae_CandidateIT {
 	@Test
 	public void createCandidates() {
 
-		final String candidate_01 = "{\"candidateID\": null, "
+		final String candidate_01 = "{"
+		+ "\"candidateID\": null, "
 		+ "\"candidateName\": \"Linutis\", "
 		+ "\"candidateSurname\": \"Šalaševičius\", "
-		+ "\"candidateDateOfBirth\": 2010-01-01, "
-		+ "\"candidatePersonalID\": 41001010000, "
+		+ "\"candidateDateOfBirth\": \"2010-01-01\", "
+		+ "\"candidatePersonalID\": \"41001010000\", "
 		+ "\"candidateDescription\": \"Reikia viska išbandyti\", "
+
+		+ "\"candidateParty\":null, "
+		+ "\"candidateConstituency\": {\"id\": 1},"
+		+ "\"candidateNumberInParty\": null"
+		+ "}";
+		
+		final String candidate_11 = "{"
+		+ "\"candidateID\": null, "
+		+ "\"candidateName\": \"Linutis\", "
+		+ "\"candidateSurname\": \"Šalaševičius\", "
+		+ "\"candidateDateOfBirth\": \"2010-01-01\", "
+		+ "\"candidatePersonalID\": \"41001010000\", "
+		+ "\"candidateDescription\": \"Reikia viska išbandyti\", "
+
 		+ "\"candidateParty\": {\"id\": 1}, "
-		+ "\"candidateConstituency\": {\"id\": 1}},"
-		+ "\"candidateNumberInParty\": 3}";
-//		// PartyPeople
+		+ "\"candidateConstituency\": null,"
+		+ "\"candidateNumberInParty\": 3"
+		+ "}";
+		
+		// PartyPeople
 		final String candidate_02 = "{"
 													+ "\"candidateID\": null, " 
 													+ "\"candidateName\": \"TOMAS\", "
@@ -181,7 +198,7 @@ public class Ae_CandidateIT {
 		createOrUpdateCandidateTest(stringToJson(candidate_08));
 		createOrUpdateCandidateTest(stringToJson(candidate_09));
 		createOrUpdateCandidateTest(stringToJson(candidate_10));
-
+		createOrUpdateCandidateTest(stringToJson(candidate_11));
 	}
 
 	private JSONObject stringToJson(final String jstring) {
