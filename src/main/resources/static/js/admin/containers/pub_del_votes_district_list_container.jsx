@@ -4,7 +4,9 @@ var PubDelVotesDistrictListContainer = React.createClass( {
         return {
             districts: [],
             constit: [],
-            multiVotes: []
+            multiVotes: [],
+            singleVotes: [],
+            disableTest: true
         };
     },
 
@@ -14,12 +16,14 @@ var PubDelVotesDistrictListContainer = React.createClass( {
         
         axios.all([
                   axios.get( '/api/constituency/' + conId ),
-                  axios.get( '/api/reg-votes-multi')
-                  ]).then(axios.spread(function (constResponse, votesResponse) {
+                  axios.get( '/api/reg-votes-multi'),
+                  axios.get( '/api/singleelection')
+                  ]).then(axios.spread(function (constResponse, votesMultiResponse, votesSingleResponse) {
                       self.setState( {
                           districts: constResponse.data.districts,
                           constit: constResponse.data,
-                          multiVotes: votesResponse.data
+                          multiVotes: votesMultiResponse.data,
+                          singleVotes: votesSingleResponse.data
                       })
                   }));
     },
@@ -30,30 +34,40 @@ var PubDelVotesDistrictListContainer = React.createClass( {
     },
 
     handlePublishSingleVotes: function( districtId ) {
+        var self = this;
         return function() {
             console.log( 'publishing: ' + districtId );
-            axios.post( '/api/singleelectiondistrict/' + districtId );
+            axios.post( '/api/singleelectiondistrict/' + districtId ).then(function() {
+                window.location.reload();
+            });
+            
         }
     },
 
     handleDeleteSingleVotes: function( districtId ) {
         return function() {
             console.log( 'deleting ' + districtId );
-            axios.delete( '/api/singleelectiondistrict/' + districtId );
+            axios.delete( '/api/singleelectiondistrict/' + districtId ).then(function() {
+                window.location.reload();
+            });
         }
     },
 
     handlePublishMultiVotes: function( districtId ) {
         return function() {
             console.log( 'publishing: ' + districtId );
-            axios.post( '/api/multielectiondistrict/' + districtId );
+            axios.post( '/api/multielectiondistrict/' + districtId ).then(function() {
+                window.location.reload();
+            });
         }
     },
 
     handleDeleteMultiVotes: function( districtId ) {
         return function() {
             console.log( 'deleting ' + districtId );
-            axios.delete( '/api/multielectiondistrict/' + districtId );
+            axios.delete( '/api/multielectiondistrict/' + districtId ).then(function() {
+                window.location.reload();
+            });
         }
     },
 
@@ -64,10 +78,12 @@ var PubDelVotesDistrictListContainer = React.createClass( {
                     districts={this.state.districts}
                     constit={this.state.constit}
                     multiVotes={this.state.multiVotes}
+                    singleVotes={this.state.singleVotes}
                     onPublishSingleVotes={this.handlePublishSingleVotes}
                     onDeleteSingleVotes={this.handleDeleteSingleVotes}
                     onPublishMultiVotes={this.handlePublishMultiVotes}
                     onDeleteMultiVotes={this.handleDeleteMultiVotes}
+                    disableTest={this.state.disableTest}
                     />
                 <button id="backToConstituency" type="button" className="btn btn-default" onClick={this.handleGoBack}>Back</button>
             </div>
