@@ -38,16 +38,16 @@ public class Ae_CandidateIT {
 
 	@Test
 	public void createCandidates() {
-		// NOVOTES
-//		final String candidate_01 = "{\"candidateID\": null, "
-//		+ "\"candidateName\": \"NOVOTES\", "
-//		+ "\"candidateSurname\": \"NOVOTES\", "
-//		+ "\"candidateDateOfBirth\": null, "
-//		+ "\"candidatePersonalID\": null, "
-//		+ "\"candidateDescription\": \"NOVOTES\", "
-//		+ "\"candidateParty\": null, "
-//		+ "\"candidateConstituency\": null, "
-//		+ "\"candidateNumberInParty\": null}";
+
+		final String candidate_01 = "{\"candidateID\": null, "
+		+ "\"candidateName\": \"Linutis\", "
+		+ "\"candidateSurname\": \"Šalaševičius\", "
+		+ "\"candidateDateOfBirth\": 2010-01-01, "
+		+ "\"candidatePersonalID\": 41001010000, "
+		+ "\"candidateDescription\": \"Reikia viska išbandyti\", "
+		+ "\"candidateParty\": {\"id\": 1}, "
+		+ "\"candidateConstituency\": {\"id\": 1}},"
+		+ "\"candidateNumberInParty\": 3}";
 //		// PartyPeople
 		final String candidate_02 = "{"
 													+ "\"candidateID\": null, " 
@@ -163,8 +163,8 @@ public class Ae_CandidateIT {
 													
 													+ "\"candidateConstituency\": {\"id\": 5}}";
 
-		//NOVOTES
-//		createOrUpdateCandidateTest(stringToJson(candidate_01));
+		
+		createOrUpdateCandidateTest(stringToJson(candidate_01));
 		// PartyPeople
 		createOrUpdateCandidateTest(stringToJson(candidate_02));
 		createOrUpdateCandidateTest(stringToJson(candidate_03));

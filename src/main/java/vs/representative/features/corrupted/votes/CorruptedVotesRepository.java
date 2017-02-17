@@ -9,9 +9,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import vs.admin.features.admin.district.District;
-import vs.admin.features.party.model.Party;
-import vs.representative.features.single.election.SingleElection;
 
 @Repository
 public class CorruptedVotesRepository {

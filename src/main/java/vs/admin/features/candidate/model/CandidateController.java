@@ -36,6 +36,13 @@ public class CandidateController {
 	public List<Candidate> findAllCandidates() {
 		return candidateRepository.findAllUndeletedCandidates();
 	}
+	
+	@RequestMapping(value = "/api/candidate/{districtId}", method = RequestMethod.GET)
+	@ResponseStatus(org.springframework.http.HttpStatus.OK)
+	@ApiOperation(value = "Get all undeleted candidates by districtId")
+	public List<Candidate> findAllCandidatesByDistrictId(@PathVariable("districtId") Integer districtId) {
+		return candidateService.findAllCandidatesByDistrictId(districtId);
+	}
 
 	@RequestMapping(value = "/api/candidate", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)

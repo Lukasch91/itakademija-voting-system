@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import vs.admin.features.admin.district.District;
@@ -32,7 +31,7 @@ public class CorruptedVotes {
 	private Integer votes;
 
 	@Column
-	private Boolean type;
+	private Boolean typeMulti;
 
 	@Column
 	private Date entered_date;
@@ -47,13 +46,13 @@ public class CorruptedVotes {
 
 	}
 
-	public CorruptedVotes(Integer id, District district, Integer votes, Boolean type, Date entered_date,
+	public CorruptedVotes(Integer id, District district, Integer votes, Boolean typeMulti, Date entered_date,
 			Date published_date, Date deleted_date) {
 		super();
 		this.id = id;
 		this.district = district;
 		this.votes = votes;
-		this.type = type;
+		this.typeMulti = typeMulti;
 		this.entered_date = entered_date;
 		this.published_date = published_date;
 		this.deleted_date = deleted_date;
@@ -83,12 +82,12 @@ public class CorruptedVotes {
 		this.votes = votes;
 	}
 
-	public Boolean getType() {
-		return type;
+	public Boolean getTypeMulti() {
+		return typeMulti;
 	}
 
-	public void setType(Boolean type) {
-		this.type = type;
+	public void setTypeMulti(Boolean typeMulti) {
+		this.typeMulti = typeMulti;
 	}
 
 	public Date getEntered_date() {

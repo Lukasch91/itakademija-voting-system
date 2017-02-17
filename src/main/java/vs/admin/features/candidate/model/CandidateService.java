@@ -1,9 +1,13 @@
 package vs.admin.features.candidate.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import vs.admin.features.admin.constituency.Constituency;
+import vs.admin.features.admin.district.District;
 import vs.admin.features.party.model.Party;
 
 @Service
@@ -85,4 +89,26 @@ public class CandidateService {
 	public void setCandidatesConstituency(Integer candidatesDistrict) {
 		this.candidatesConstituency = candidatesDistrict;
 	}
+
+	public List<Candidate> findAllCandidatesByDistrictId(Integer districtId) {
+
+		// can be changed to a well written SQL or something
+
+		List<Candidate> allCandidates = candidateRepository.findAllUndeletedCandidates();
+		List<Candidate> candidatesInDistrict = new ArrayList<Candidate>();
+
+		for (Candidate candidate : allCandidates) {
+			List<District> candidateDistricts = new ArrayList<District>();
+			if(candidate.getCandidateConstituency() != null && candidate.getCandidateConstituency().getDistricts() != null ) {
+				candidateDistricts = candidate.getCandidateConstituency().getDistricts();
+				for (District district : candidateDistricts) {
+					if (district.getId() == districtId) {
+						candidatesInDistrict.add(candidate);
+					}
+				}
+			}
+		}
+		return candidatesInDistrict;
+	}
+
 }
