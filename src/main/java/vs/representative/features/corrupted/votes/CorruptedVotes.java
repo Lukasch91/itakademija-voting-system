@@ -1,6 +1,6 @@
 package vs.representative.features.corrupted.votes;
 
-import java.math.BigDecimal;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,16 +23,17 @@ public class CorruptedVotes {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private Integer id;
-	
-	@OneToOne
-	private  District district;
-	
+
+	@ManyToOne
+	@JoinColumn
+	private District district = new District();
+
 	@Column
-	private BigDecimal votes;
-	
+	private Integer votes;
+
 	@Column
-	private String singleOrMulti;
-	
+	private Boolean type;
+
 	@Column
 	private Date entered_date;
 
@@ -40,18 +42,18 @@ public class CorruptedVotes {
 
 	@Column
 	private Date deleted_date;
-	
+
 	public CorruptedVotes() {
 
 	}
 
-	public CorruptedVotes(Integer id, District district, BigDecimal votes, String singleOrMulti, Date entered_date,
+	public CorruptedVotes(Integer id, District district, Integer votes, Boolean type, Date entered_date,
 			Date published_date, Date deleted_date) {
 		super();
 		this.id = id;
 		this.district = district;
 		this.votes = votes;
-		this.singleOrMulti = singleOrMulti;
+		this.type = type;
 		this.entered_date = entered_date;
 		this.published_date = published_date;
 		this.deleted_date = deleted_date;
@@ -73,20 +75,20 @@ public class CorruptedVotes {
 		this.district = district;
 	}
 
-	public BigDecimal getVotes() {
+	public Integer getVotes() {
 		return votes;
 	}
 
-	public void setVotes(BigDecimal votes) {
+	public void setVotes(Integer votes) {
 		this.votes = votes;
 	}
 
-	public String getSingleOrMulti() {
-		return singleOrMulti;
+	public Boolean getType() {
+		return type;
 	}
 
-	public void setSingleOrMulti(String singleOrMulti) {
-		this.singleOrMulti = singleOrMulti;
+	public void setType(Boolean type) {
+		this.type = type;
 	}
 
 	public Date getEntered_date() {
@@ -113,9 +115,4 @@ public class CorruptedVotes {
 		this.deleted_date = deleted_date;
 	}
 
-
-	
-	
-	
-	
 }
