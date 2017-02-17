@@ -1,4 +1,4 @@
-var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
+var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
 
     getInitialState: function() {
         return {
@@ -9,16 +9,12 @@ var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
     componentWillMount: function() {
         this.setState( { id: this.props.constitId });
     },
-
     onHandleFileChange: function( file ) {
-
         this.setState( { file: file });
         console.log( '2' );
-
     },
 
-
-    handleAddDistrictCandidates: function() {
+    handleAddConstituencyCandidates: function() {
         console.log( '3' );
         var self = this;
 
@@ -38,13 +34,13 @@ var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
         data.append( 'file', file );
 
         this.setState( { file: null });
-        
+
         axios.post( '/api/districtcandidatesFILE', data, header )
             .then( function( response ) {
                 console.log( "server_response" );
                 console.log( response );
             });
-
+        window.location.reload();//!!!!!!!!improve, initialize AxiosGet
     },
 
     onFileChange: function() {
@@ -53,8 +49,6 @@ var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
         console.log( '1' );
         this.onHandleFileChange( fileData );
     },
-
-
 
     render: function() {
 
@@ -94,7 +88,7 @@ var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={this.handleAddDistrictCandidates} data-dismiss="modal" >Pridėti kandidatus</button>
+                                <button type="button" className="btn btn-primary" onClick={this.handleAddConstituencyCandidates} data-dismiss="modal" >Pridėti kandidatus</button>
                                 <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
                             </div>
                         </div>
@@ -108,4 +102,4 @@ var AdministrateCandidatesCSVDistrictcomponent = React.createClass( {
 
 
 
-window.AdministrateCandidatesCSVDistrictcomponent = AdministrateCandidatesCSVDistrictcomponent;
+window.AdministrateCandidatesCSVConstituencyComponent = AdministrateCandidatesCSVConstituencyComponent;

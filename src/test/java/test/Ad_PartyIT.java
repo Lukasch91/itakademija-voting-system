@@ -41,8 +41,8 @@ public class Ad_PartyIT {
 	@Test
 	public void createParties() {
 
-		final String party_01 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"NOVOTES\", "
-				+ "\"title\": \"NOVOTES\"}";
+//		final String party_01 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"NOVOTES\", "
+//				+ "\"title\": \"NOVOTES\"}";
 		final String party_02 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LHP\", "
 				+ "\"title\": \"Lietuvos humanistų partija\"}";
 		final String party_03 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LŽP\", "
@@ -62,7 +62,7 @@ public class Ad_PartyIT {
 		final String party_10 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LRS\", "
 				+ "\"title\": \"Lietuvos rusų sąjunga\"}";
 
-		createOrUpdatePartyTest(stringToJson(party_01));
+//		createOrUpdatePartyTest(stringToJson(party_01));
 		createOrUpdatePartyTest(stringToJson(party_02));
 		createOrUpdatePartyTest(stringToJson(party_03));
 		createOrUpdatePartyTest(stringToJson(party_04));

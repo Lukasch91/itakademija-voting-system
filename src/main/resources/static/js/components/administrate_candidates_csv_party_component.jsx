@@ -6,17 +6,13 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
             id: null
         };
     },
-    componentWillMount: function() {
+    componentDidMount: function() {
         this.setState( { id: this.props.partyId });
     },
-
     onHandleFileChange: function( file ) {
-
         this.setState( { file: file });
         console.log( '2' );
-
     },
-
 
     handleAddPartyCandidates: function() {
         console.log( '3' );
@@ -36,13 +32,15 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
         var data = new FormData();
 
         data.append( 'file', file );
+        
+        this.setState( { file: null });
 
         axios.post( '/api/partycandidatesFILE', data, header )
             .then( function( response ) {
                 console.log( "server_response" );
                 console.log( response );
             });
-
+        window.location.reload();//!!!!!!!!improve, initialize AxiosGet
     },
 
     onFileChange: function() {
@@ -51,8 +49,6 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
         console.log( '1' );
         this.onHandleFileChange( fileData );
     },
-
-
 
     render: function() {
 
@@ -64,7 +60,7 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
         return (
 
             <div>
-                <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
+                <button type="button" className="btn btn-primary btn-primary" data-toggle="modal" data-target={modalIdHash}>
                     Pridėti kandidatus
                     </button>
 

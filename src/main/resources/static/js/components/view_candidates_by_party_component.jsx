@@ -1,4 +1,4 @@
-var ViewCandidatesByConstituencyComponent = React.createClass( {
+var ViewCandidatesByPartyComponent = React.createClass( {
 
     getInitialState: function() {
         return {
@@ -9,8 +9,8 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
     handleInitiateData: function() {
         var self = this;
         if(self.state.candidates.length == 0) {
-            var conId = this.props.constituency.id;
-            axios.get('api/candidateConstituency/' + conId)    
+            var partyId = this.props.party.id;
+            axios.get('api/candidateParty/' + partyId)    
             .then(function (response) {
      
                 console.log(response.data);
@@ -27,9 +27,9 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
         console.log("delete");
         
         var self = this;
-        var conId = this.props.constituency.id;
+        var partyId = this.props.party.id;
         
-        axios.delete('/api/candidateConstituency/'+ conId)
+        axios.delete('/api/candidateParty/'+ partyId)
         .then(function(response) { 
             console.log("deletedddddd");
             self.setState({ 
@@ -42,8 +42,8 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
     
     render: function() {
 
-        var modalId = "modal" + 1 + this.props.constituency.id;
-        var modalIdHash = "#modal" + 1 + this.props.constituency.id;
+        var modalId = "modal" + 1 + this.props.party.id;
+        var modalIdHash = "#modal" + 1 + this.props.party.id;
         var self = this;
            
         var candidateList = self.state.candidates.map( function( candidate, index ) {
@@ -54,11 +54,9 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
                         <td>{candidate.candidateDateOfBirth}</td>
                         <td>{candidate.candidatePersonalID}</td>
                         <td>{candidate.candidateDescription}</td>
-                        <td>
-  {candidate.candidateParty != null ? candidate.candidateParty.title : '-'}
-  </td>
+                        <td>{candidate.candidateNumberInParty}</td>
   <td>
-  {candidate.candidateNumberInParty != null ? candidate.candidateNumberInParty : '-'}
+  {candidate.candidateConstituency != null ? candidate.candidateConstituency.title : '-'}
   </td>
                     </tr>
                 );
@@ -81,7 +79,7 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
                                     <span className="sr-only">Close</span>
                                 </button>
 
-                                <h4 className="modal-title" id="myModalLabel">{this.props.constituency.title} apygardos kandidatai</h4>
+                                <h4 className="modal-title" id="myModalLabel">{this.props.party.title} - kandidatai</h4>
                             </div>
 
                             <div className="modal-body">
@@ -94,8 +92,8 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
                                         <th>Gimimo data</th>
                                         <th>Asmens kodas</th>
                                         <th>Aprašymas</th>
-                                        <th>Partija</th>
                                         <th>Numeris partijoje</th>
+                                        <th>Apygarda</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -120,4 +118,4 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
 
 
 
-window.ViewCandidatesByConstituencyComponent = ViewCandidatesByConstituencyComponent;
+window.ViewCandidatesByPartyComponent = ViewCandidatesByPartyComponent;
