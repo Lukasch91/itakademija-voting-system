@@ -29,39 +29,130 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                     }) );
             });
     },
+    handleSpoiltChange: function(districtId, event) {
+      
+        console.log("I'm spoilt :@");
+        console.log(event.target.value);
+        console.log(districtId);
+        
+    },
+    
+    handleListChange: function(index, event) {
+
+        console.log("inputHandler");
+        console.log(index);
+        console.log(event.target.value);
+        
+//        1) empty array
+//        2) if array[index] == null create new object (singleVote)
+//        3) if array[index] != null update array[index] object(singleVote)
+        
+        
+//        4) set empty array state to new state
+        
+        
+        
+        
+        
+        
+//    var emails = this.state.emails.slice(); // Make a copy of the emails first.
+//      var emails = this.state.emails;
+//      emails[index].emailText = event.target.value; // Update it with the modified email.
+//      this.setState({emails: emails}); // Update the state.
+    },
+    
+    handleExport: function() {
+        
+        var self = this;
+        
+        var toJson = JSON.stringify(self.state.candidates);
+        console.log(toJson);
+    },
 
 
     render: function() {
         var self = this;
 
         if ( self.state.singleResults[0] == null ) {
+            
+        
             var candidatesList = this.state.candidates.map( function( candidate, index ) {
 
  //      console.log( candidate.candidateConstituency != null ? candidate.candidateConstituency : '---' );
 
                 return (
-                    <div key={'candidate' + index}>
-                        <label>{candidate.candidateName} {candidate.candidateSurname}</label>
-                        <TestVoteFormSingleContainer
-                        candidateId={candidate.candidateID} 
-                        districtId={self.state.currentDistrictId} 
-                        />
-                        <br />
-                    </div>
+                        
+                    <tr key={'row' + index}>
+                        <td>{candidate.candidateName} {candidate.candidateSurname}</td>
+                        <td>
+                             <input key={'input' + index} type="text" className="form-control" onChange={self.handleListChange.bind(this, index)}/>
+                        </td>
+                    </tr>
+                                                
+                    
                 );
             });
             
 
             return (
-                <form>
+                <div>
                     <h3>Vienamandatės</h3>
                     <LoggedInRepresentativeInfoContainer />
-                    {candidatesList}
-                    <label>Sugadinti balsai</label><br />
-                    <button id="publishSingle" className="btn btn-success" onClick="">XXXXX</button>
-                </form>
+                    
+                    <div>
+                    
+                    <table className="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Kandidatai</th>
+                                <th>Balsai</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           {candidatesList}
+                           <tr><td>Sugadinti balsai</td>
+                           <td>
+                           <input key={'input-spoilt'} type="text" className="form-control" onChange={self.handleSpoiltChange.bind(this, self.state.currentDistrictId)} />
+                           </td></tr>
+                        </tbody>
+                    </table>
+                    
+                    
+                            
+                   </div>
+                                        
+                    <br />
+                    <button type="button" className="btn btn-success" onClick={this.handleExport}>JSON</button>
+                </div>
             )
-        } else {
+        } 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        else {
             var singleElectionResultsList = this.state.singleResults.map( function( single, index ) {
                 return (
                         <tr key={'single' + index}>
