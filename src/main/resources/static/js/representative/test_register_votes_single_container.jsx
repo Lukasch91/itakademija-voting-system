@@ -42,6 +42,28 @@ var TestRegisterVotesSingleContainer = React.createClass( {
 
     handleSpoiltVotesChange: function( districtId, event ) {
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         console.log( "I'm spoilt :@" );
         console.log( event.target.value );
         console.log( districtId );

@@ -32,10 +32,10 @@ public class CorruptedVotesController {
 	@RequestMapping(value = "/api/invalid-votes", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Create create invalid votes.", notes = "Data: {\"id\": null,"
-			+ " \"type\": true,"
+			+ " \"typeMulti\": true,"
 			+ "\"district\": { \"id\": 1},"
 			+ " \"votes\": 123}")
-	public void createOrUpdateCorrupted(@Valid @RequestBody CorruptedVotes corruptedVotes) {
+	public void createOrUpdateCorrupted(/*@Valid*/ @RequestBody CorruptedVotes corruptedVotes) {
 		corruptedVotesRepository.saveOrUpdate(corruptedVotes);
 	}
 

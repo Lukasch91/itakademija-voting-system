@@ -25,7 +25,9 @@ public class CorruptedVotesRepository {
 
 	@Transactional
 	public CorruptedVotes saveOrUpdate(CorruptedVotes corruptedVotes) {
-		if (corruptedVotes == null) {
+		if (corruptedVotes.getId() == null) {
+			Date corruptedEnteredDate = new Date();
+			corruptedVotes.setEntered_date(corruptedEnteredDate);
 			entityManager.persist(corruptedVotes);
 			return corruptedVotes;
 		} else {
