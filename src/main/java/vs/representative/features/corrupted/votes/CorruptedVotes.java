@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import vs.admin.features.admin.district.District;
 
@@ -28,9 +31,11 @@ public class CorruptedVotes {
 	private District district = new District();
 
 	@Column
+	@NotBlank
 	private Integer votes;
-
+	
 	@Column
+	@NotNull
 	private Boolean typeMulti;
 
 	@Column
@@ -113,5 +118,8 @@ public class CorruptedVotes {
 	public void setDeleted_date(Date deleted_date) {
 		this.deleted_date = deleted_date;
 	}
+
+
+	
 
 }

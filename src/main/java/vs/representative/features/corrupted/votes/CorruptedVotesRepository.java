@@ -9,12 +9,12 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
 public class CorruptedVotesRepository {
 
 	private static final String FIND_ALL = "Select e FROM CorruptedVotes e where deleted_date is null";
 	private static final String FIND_BY_DISTRICT_ID = "SELECT e FROM CorruptedVotes e WHERE district IS ";
+	private static final String FIND_BY_TYPE = "SELECT e FROM CorruptedVotes e WHERE deleted_date is null AND typeMulti IS ";
 	@Autowired
 	private EntityManager entityManager;
 
@@ -41,6 +41,14 @@ public class CorruptedVotesRepository {
 			return corruptedVotes;
 		}
 		return null;
+	}
+
+	@Transactional
+	public List<CorruptedVotes> GetCorruptedVotesByType(Boolean typeMulti) {
+		@SuppressWarnings("unchecked")
+		List<CorruptedVotes> corruptedVotessType = entityManager.createQuery(FIND_BY_TYPE + typeMulti).getResultList();
+		return corruptedVotessType;
+
 	}
 
 	@Transactional
@@ -73,7 +81,7 @@ public class CorruptedVotesRepository {
 		for (CorruptedVotes corruptedVotesDelete : corruptedVotessDelete) {
 			Date date = new Date();
 			corruptedVotesDelete.setDeleted_date(date);
-			
+
 			entityManager.persist(corruptedVotesDelete);
 		}
 	}
