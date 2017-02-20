@@ -33,7 +33,7 @@ public class MultiElectionController {
 			+ " \"party\": {\"id\": 1},"
 			+ "\"district\": { \"id\": 3},"
 			+ " \"votes\": 99}")
-	public void createOrUpdateMulti(@Valid @RequestBody MultiElection multiElection) {
+	public void createOrUpdateMulti(/*@Valid*/ @RequestBody List<MultiElection> multiElection) {
 		multiElectionRepository.saveOrUpdate(multiElection);
 	}
 

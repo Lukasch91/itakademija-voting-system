@@ -23,14 +23,17 @@ public class MultiElectionRepository {
 	}
 
 	@Transactional
-	public MultiElection saveOrUpdate(MultiElection multiElection) {
-		if (multiElection == null) {
-			entityManager.persist(multiElection);
-			return multiElection;
-		} else {
-			MultiElection merged = entityManager.merge(multiElection);
-			entityManager.persist(merged);
-			return merged;
+	public void saveOrUpdate(List<MultiElection> multiElections) {
+		for (MultiElection multiElection : multiElections) {
+			if (multiElection.getId() == null) {
+				Date multiEnteredDate = new Date();
+				multiElection.setEntered_date(multiEnteredDate);
+				entityManager.persist(multiElection);
+				
+			} else {
+				MultiElection merged = entityManager.merge(multiElection);
+				entityManager.persist(merged);
+			}
 		}
 	}
 
@@ -41,11 +44,11 @@ public class MultiElectionRepository {
 		}
 		return null;
 	}
-	
+
 	public List<MultiElection> findMultiElectionByDistrictId(Integer district_id) {
 		@SuppressWarnings("unchecked")
-		List<MultiElection> multiElectionsPublish = entityManager.createQuery(FIND_BY_DISTRICT_ID + district_id + "AND deleted_date is null")
-				.getResultList();
+		List<MultiElection> multiElectionsPublish = entityManager
+				.createQuery(FIND_BY_DISTRICT_ID + district_id + "AND deleted_date is null").getResultList();
 		return multiElectionsPublish;
 	}
 
