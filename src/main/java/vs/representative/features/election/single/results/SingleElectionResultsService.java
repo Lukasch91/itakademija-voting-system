@@ -1,6 +1,7 @@
 package vs.representative.features.election.single.results;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,7 +109,8 @@ public class SingleElectionResultsService {
 		if (firstParameter == 0 || secondParamter == 0) {
 			return new BigDecimal(0);
 		}
-		return new BigDecimal((firstParameter / secondParamter) * 100);
+		BigDecimal percentage = new BigDecimal(firstParameter * 100.0 / secondParamter);
+		return  percentage.setScale(2, RoundingMode.HALF_UP) ;
 	}
 
 }
