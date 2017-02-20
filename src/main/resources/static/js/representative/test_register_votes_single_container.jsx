@@ -4,11 +4,13 @@ var TestRegisterVotesSingleContainer = React.createClass( {
         return {
             candidates: [],
             singleResults: [],
+            spoiltVote: {},
             enteredResults: [],
+            enteredSpoiltVote: {},
             currentDistrictId: 0
         };
     },
-
+    
     componentWillMount: function() {
         var self = this;
         //bad design??? maybe pass a prop by rendering this element 
@@ -19,12 +21,21 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                 self.setState( { currentDistrictId: response.data.districtId });
                 axios.all( [
                     axios.get( '/api/candidate/' + response.data.districtId ),
-                    axios.get( '/api/singleelection' )
+                    axios.get( '/api/singleelection' ),
+                    axios.get( 'api/invalid-votes/type/' + false )
                 ] )
-                    .then( axios.spread( function( candidateResponse, singleElectionResponse ) {
+                    .then( axios.spread( function( candidateResponse, singleElectionResponse, spoiltVotesResponse ) {
+
+                        var spoiltVote = null;
+                        for ( var i = 0; i < spoiltVotesResponse.data.length; i++ ) {
+                            if ( spoiltVotesResponse.data[i].district.id == self.state.currentDistrictId ) {
+                                spoiltVote = spoiltVotesResponse.data[i];
+                            }
+                        }
                         self.setState( {
                             candidates: candidateResponse.data,
-                            singleResults: singleElectionResponse.data
+                            singleResults: singleElectionResponse.data,
+                            spoiltVote: spoiltVote
                         });
                     }) )
                     .then( function() {
@@ -34,39 +45,16 @@ var TestRegisterVotesSingleContainer = React.createClass( {
 
                                 resultsTemplate.push( { singleId: null, singleCandidate: { candidateID: self.state.candidates[i].candidateID }, singleDistrict: { id: self.state.currentDistrictId } })
                             }
-                            self.setState( { enteredResults: resultsTemplate });
+                            self.setState( { enteredResults: resultsTemplate,  reload: false });
                         }
                     });
             });
     },
 
     handleSpoiltVotesChange: function( districtId, event ) {
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        console.log( "I'm spoilt :@" );
-        console.log( event.target.value );
-        console.log( districtId );
+        var self = this;
+        var spoiltVoteObject = ( { id: null, typeMulti: false, district: { id: districtId }, votes: event.target.value });
+        self.setState( { enteredSpoiltVote: spoiltVoteObject });
 
     },
 
@@ -83,19 +71,25 @@ var TestRegisterVotesSingleContainer = React.createClass( {
 
     handleExport: function() {
         var self = this;
-        
-        axios.post( '/api/singleelection', self.state.enteredResults )
-        .then( function( response ) {
-            console.log( response );
-        });
-        
 
+        axios.all( [
+            axios.post( '/api/singleelection', self.state.enteredResults ),
+            axios.post( '/api/invalid-votes', self.state.enteredSpoiltVote )
+
+        ] )
+            .then( axios.spread( function( singleElectionResponse, spoiltVotesResponse ) {
+                   console.log("sent");
+                   console.log(singleElectionResponse);
+                   console.log(spoiltVotesResponse);
+                   
+                   self.componentWillMount();
+            }) );
     },
 
     render: function() {
         var self = this;
 
-        if ( self.state.singleResults[0] == null ) {
+        if ( ( self.state.singleResults[0] == null ) && ( self.state.spoiltVote == null ) ) {
 
 
             var candidatesList = this.state.candidates.map( function( candidate, index ) {
@@ -105,7 +99,7 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                         <td>{candidate.candidateName} {candidate.candidateSurname}</td>
                         <td>
                             <input key={'input' + index}
-                                type="text"
+                                type="number"
                                 className="form-control"
                                 onChange={self.handleSingleVotesChange.bind( this, candidate.candidateID )} />
                         </td>
@@ -129,13 +123,13 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                                 {candidatesList}
                                 <tr><td>Sugadinti balsai</td>
                                     <td>
-                                        <input key={'input-spoilt'} type="text" className="form-control" onChange={self.handleSpoiltVotesChange.bind( this, self.state.currentDistrictId )} />
+                                        <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( this, self.state.currentDistrictId )} />
                                     </td></tr>
                             </tbody>
                         </table>
                     </div>
                     <br />
-                    <button type="button" className="btn btn-success" onClick={this.handleExport}>JSON</button>
+                    <button type="button" className="btn btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
                 </div>
             )
         } else {
@@ -163,7 +157,9 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                         </thead>
                         <tbody>
                             {singleElectionResultsList}
-                            <tr><td>Sugadinti balsai</td></tr>
+                            <tr><td>Sugadinti balsai</td>
+                                <td></td>
+                                <td>{self.state.spoiltVote.votes}</td></tr>
                         </tbody>
                     </table>
                 </form>

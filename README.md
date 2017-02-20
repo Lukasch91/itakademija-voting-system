@@ -20,5 +20,5 @@ Prisijungiama kai programa paleista
 
 
 ###Login
-UserName - user
+Admin - Admin
 Password - pass
