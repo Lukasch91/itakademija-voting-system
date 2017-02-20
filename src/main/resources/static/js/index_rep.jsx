@@ -27,6 +27,7 @@ ReactDOM.render((
         <Route path="/reg-votes-multi" component={RegisterVotesMultiContainer} />
         <Route path="/reg-votes-single" component={RegisterVotesSingleContainer} />
         <Route path="/reg-votes-testSingle" component={TestRegisterVotesSingleContainer} />
+        <Route path="/reg-votes-testMulti" component={TestRegisterVotesMultiContainer} />
       <Route path="*" component={NoMatch}/>
     </Route>
   </Router>

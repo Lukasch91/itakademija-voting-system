@@ -1,9 +1,9 @@
-var TestRegisterVotesSingleContainer = React.createClass( {
+var TestRegisterVotesMultiContainer = React.createClass( {
 
     getInitialState: function() {
         return {
-            candidates: [],
-            singleResults: [],
+            parties: [],
+            singleResults: [], //multi
             spoiltVote: {},
             enteredResults: [],
             enteredSpoiltVote: {},
@@ -20,11 +20,11 @@ var TestRegisterVotesSingleContainer = React.createClass( {
             .then( function( response ) {
                 self.setState( { currentDistrictId: response.data.districtId });
                 axios.all( [
-                    axios.get( '/api/candidate/' + response.data.districtId ),
-                    axios.get( '/api/singleelection' ),
-                    axios.get( 'api/invalid-votes/type/' + false )
+                    axios.get( '/api/candidate/' + response.data.districtId ), //party
+                    axios.get( '/api/singleelection' ), //multi
+                    axios.get( 'api/invalid-votes/type/' + true ) //true
                 ] )
-                    .then( axios.spread( function( candidateResponse, singleElectionResponse, spoiltVotesResponse ) {
+                    .then( axios.spread( function( candidateResponse, singleElectionResponse, spoiltVotesResponse ) { //multi party
 
                         var spoiltVote = null;
                         for ( var i = 0; i < spoiltVotesResponse.data.length; i++ ) {
@@ -33,17 +33,17 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                             }
                         }
                         self.setState( {
-                            candidates: candidateResponse.data,
-                            singleResults: singleElectionResponse.data,
+                            candidates: candidateResponse.data, //party
+                            singleResults: singleElectionResponse.data, //multi
                             spoiltVote: spoiltVote
                         });
                     }) )
                     .then( function() {
-                        if ( self.state.singleResults[0] == null ) {
+                        if ( self.state.singleResults[0] == null ) { //multi
                             var resultsTemplate = [];
-                            for ( var i = 0; i < self.state.candidates.length; i++ ) {
+                            for ( var i = 0; i < self.state.candidates.length; i++ ) { //party
 
-                                resultsTemplate.push( { singleId: null, singleCandidate: { candidateID: self.state.candidates[i].candidateID }, singleDistrict: { id: self.state.currentDistrictId } })
+                            /*multi*/    resultsTemplate.push( { singleId: null, singleCandidate: { candidateID: self.state.candidates[i].candidateID }, singleDistrict: { id: self.state.currentDistrictId } })
                             }
                             self.setState( { enteredResults: resultsTemplate });
                         }
@@ -53,17 +53,17 @@ var TestRegisterVotesSingleContainer = React.createClass( {
 
     handleSpoiltVotesChange: function( districtId, event ) {
         var self = this;
-        var spoiltVoteObject = ( { id: null, typeMulti: false, district: { id: districtId }, votes: event.target.value });
+        var spoiltVoteObject = ( { id: null, typeMulti: true, district: { id: districtId }, votes: event.target.value }); //true
         self.setState( { enteredSpoiltVote: spoiltVoteObject });
 
     },
 
-    handleSingleVotesChange: function( passCandId, event ) {
+    handleSingleVotesChange: function( passCandId, event ) { //multi
         var self = this;
         var updateResults = self.state.enteredResults;
         for ( var i = 0; i < updateResults.length; i++ ) {
-            if ( updateResults[i].singleCandidate.candidateID == passCandId ) {
-                updateResults[i].singleVotes = event.target.value;
+            if ( updateResults[i].singleCandidate.candidateID == passCandId ) { //party
+                updateResults[i].singleVotes = event.target.value; //multi
             }
         }
         self.setState( { enteredResults: updateResults });
@@ -73,13 +73,13 @@ var TestRegisterVotesSingleContainer = React.createClass( {
         var self = this;
 
         axios.all( [
-            axios.post( '/api/singleelection', self.state.enteredResults ),
+            axios.post( '/api/singleelection', self.state.enteredResults ), //multi
             axios.post( '/api/invalid-votes', self.state.enteredSpoiltVote )
 
         ] )
-            .then( axios.spread( function( singleElectionResponse, spoiltVotesResponse ) {
+            .then( axios.spread( function( singleElectionResponse, spoiltVotesResponse ) { //multi
                 console.log( "sent" );
-                console.log( singleElectionResponse );
+                console.log( singleElectionResponse ); //multi
                 console.log( spoiltVotesResponse );
 
                 self.componentWillMount();
@@ -89,19 +89,19 @@ var TestRegisterVotesSingleContainer = React.createClass( {
     render: function() {
         var self = this;
 
-        if ( ( self.state.singleResults[0] == null ) && ( self.state.spoiltVote == null ) ) {
+        if ( ( self.state.singleResults[0] == null ) && ( self.state.spoiltVote == null ) ) { //multi
 
 
-            var candidatesList = this.state.candidates.map( function( candidate, index ) {
+            var candidatesList = this.state.candidates.map( function( candidate, index ) { //party
                 return (
 
                     <tr key={'row' + index}>
-                        <td>{candidate.candidateName} {candidate.candidateSurname}</td>
+                        <td>{candidate.candidateName} {candidate.candidateSurname}</td> //party
                         <td>
                             <input key={'input' + index}
                                 type="number"
                                 className="form-control"
-                                onChange={self.handleSingleVotesChange.bind( this, candidate.candidateID )} />
+                                onChange={self.handleSingleVotesChange.bind( this, candidate.candidateID )} /> //party
                         </td>
                     </tr>
                 );
@@ -109,18 +109,18 @@ var TestRegisterVotesSingleContainer = React.createClass( {
 
             return (
                 <div>
-                    <h3>Vienamandatės</h3>
+                    <h3>Daugiamandatės</h3>
                     <LoggedInRepresentativeInfoContainer />
                     <div>
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Kandidatai</th>
+                                    <th>Partijos</th>
                                     <th>Balsai</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {candidatesList}
+                                {candidatesList} //party
                                 <tr><td>Sugadinti balsai</td>
                                     <td>
                                         <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( this, self.state.currentDistrictId )} />
@@ -133,25 +133,25 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                 </div>
             )
         } else {
-            var singleElectionResultsList = this.state.singleResults.map( function( single, index ) {
+            var singleElectionResultsList = this.state.singleResults.map( function( single, index ) { //multi
                 return (
-                    <tr key={'single' + index}>
-                        <td> {single.singleCandidate.candidateName} </td>
-                        <td> {single.singleCandidate.candidateSurname} </td>
-                        <td> {single.singleVotes} </td>
+                    <tr key={'multi' + index}> //multi
+                        <td> {single.singleCandidate.candidateName} </td> //multi
+                        <td> {single.singleCandidate.candidateSurname} </td> //multi
+                        <td> {single.singleVotes} </td> //multi
                     </tr>
                 );
             });
 
             return (
                 <form>
-                    <h3>Vienamandatės</h3>
+                    <h3>Daugiamandatės</h3>
                     <LoggedInRepresentativeInfoContainer />
                     <table className="table table-hover">
                         <thead>
                             <tr>
-                                <th>Kandidato Vardas</th>
-                                <th>Kandidato Pavardė</th>
+                                <th>Partijos pavadinimas</th>
+                                <th>Partijos trumpinys</th>
                                 <th>Balsai</th>
                             </tr>
                         </thead>
@@ -168,4 +168,4 @@ var TestRegisterVotesSingleContainer = React.createClass( {
     }
 });
 
-window.TestRegisterVotesSingleContainer = TestRegisterVotesSingleContainer;
+window.TestRegisterVotesMultiContainer = TestRegisterVotesMultiContainer;
