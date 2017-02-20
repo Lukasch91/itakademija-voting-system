@@ -6,7 +6,8 @@ var PubDelVotesDistrictListContainer = React.createClass( {
             constit: [],
             multiVotes: [],
             singleVotes: [],
-            disableTest: true
+            disableTest: true,
+            theTestingState: 0
         };
     },
 
@@ -70,8 +71,20 @@ var PubDelVotesDistrictListContainer = React.createClass( {
             });
         }
     },
+    
+    handleTheTesting: function(districtId) {
+        var self = this;
+        console.log(districtId);
+        return function() {
+            self.setState({
+                theTestingState: districtId
+            });
+            
+        }
+    },
 
     render: function() {
+        
         return (
             <div>
                 <PubDelVotesDistrictListComponent
@@ -83,6 +96,9 @@ var PubDelVotesDistrictListContainer = React.createClass( {
                     onDeleteSingleVotes={this.handleDeleteSingleVotes}
                     onPublishMultiVotes={this.handlePublishMultiVotes}
                     onDeleteMultiVotes={this.handleDeleteMultiVotes}
+                    disableTest={this.state.disableTest}
+                    theTesting={this.handleTheTesting}
+                    theTestingState={this.state.theTestingState}
                     disableTest={this.state.disableTest}
                     />
                 <button id="backToConstituency" type="button" className="btn btn-default" onClick={this.handleGoBack}>Back</button>
