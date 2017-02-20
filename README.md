@@ -22,3 +22,8 @@ Prisijungiama kai programa paleista
 ###Login
 Admin - Admin
 Password - pass
+
+###El.paštas
+LINK:		https://www.zoho.com/mail/login.html
+LOGIN:		vrk.sistema@zoho.com
+PASSWORD:	sistema.vrk
