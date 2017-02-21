@@ -46,6 +46,9 @@ var CandidateSearchComponen = React.createClass( {
     handleSearchChange: function( event ) {
       var self = this;
       
+      //binding
+      //http://stackoverflow.com/questions/27397266/onclick-event-binding-in-react-js
+      
       var originalCandidates = self.state.candidatesBackup;
       var foundCandidates = [];
       for(var i=0; i < originalCandidates.length; i++) {
@@ -88,7 +91,7 @@ var CandidateSearchComponen = React.createClass( {
                          type="text" 
                          className="form-control" 
                          placeholder="Paieška"
-                  onChange={self.handleSearchChange.bind( this )} />
+                  onChange={(event)=>self.handleSearchChange( event )} />
                 
                 <table className="table table-hover">
                     <thead>
