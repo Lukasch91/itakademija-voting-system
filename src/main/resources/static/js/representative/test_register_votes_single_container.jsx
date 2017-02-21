@@ -101,7 +101,7 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                             <input key={'input' + index}
                                 type="number"
                                 className="form-control"
-                                onChange={self.handleSingleVotesChange.bind( this, candidate.candidateID )} />
+                                onChange={self.handleSingleVotesChange.bind( self, candidate.candidateID )} />
                         </td>
                     </tr>
                 );
@@ -123,7 +123,7 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                                 {candidatesList}
                                 <tr><td>Sugadinti balsai</td>
                                     <td>
-                                        <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( this, self.state.currentDistrictId )} />
+                                        <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
                                     </td></tr>
                             </tbody>
                         </table>

@@ -48,6 +48,7 @@ var CandidateSearchComponen = React.createClass( {
       
       //binding
       //http://stackoverflow.com/questions/27397266/onclick-event-binding-in-react-js
+      //https://github.com/reactjs/react-art/issues/37
       
       var originalCandidates = self.state.candidatesBackup;
       var foundCandidates = [];

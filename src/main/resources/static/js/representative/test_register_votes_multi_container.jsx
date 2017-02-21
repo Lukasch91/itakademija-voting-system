@@ -101,7 +101,7 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                             <input key={'input' + index}
                                 type="number"
                                 className="form-control"
-                                onChange={self.handleMultiVotesChange.bind( this, party.id )} />
+                                onChange={self.handleMultiVotesChange.bind( self, party.id )} />
                         </td>
                     </tr>
                 );
@@ -126,7 +126,7 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                                     <td>Sugadinti balsai</td>
                                     <td></td>
                                     <td>
-                                        <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( this, self.state.currentDistrictId )} />
+                                        <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
                                     </td>
                                 </tr>
                             </tbody>
