@@ -46,8 +46,8 @@ public class Representative {
 
 	@Column
 	@NotEmpty(message = "Slaptažodis negali būti tuščias")
-	@Size(max = 50, message = "Slaptažodzio ilgis negali būti ilgesnis negu {max} simbolių")
-	@ApiModelProperty(value = "@NotEmpty, @Size(max=50)")
+	@Size(max = 60, message = "Slaptažodzio ilgis negali būti ilgesnis negu {max} simbolių")
+	@ApiModelProperty(value = "@NotEmpty, @Size(max=60)")
 	private String password;
 
 	@Column

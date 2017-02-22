@@ -1,17 +1,20 @@
 package vs.admin.features.password;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.xml.bind.DatatypeConverter;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PasswordService {
-
-	private String passwordService;
 
 	private String password;
 	private int randNumber;
@@ -19,7 +22,7 @@ public class PasswordService {
 	private List<Integer> numberList;
 
 	@Transactional
-	public String PassGen() {
+	public String PassGenerator() {
 		this.numberList = new ArrayList<>();
 		this.stringBuilder = new StringBuilder();
 
@@ -46,5 +49,17 @@ public class PasswordService {
 
 		return password;
 	}
+
+	public String PassHashing(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+
+		String passwordMd5 = DatatypeConverter
+				.printHexBinary(MessageDigest.getInstance("MD5").digest(password.getBytes("UTF-8")));
+
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String passwordSalt = passwordEncoder.encode(passwordMd5);
+		return passwordSalt;
+
+	}
+	
 
 }
