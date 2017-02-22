@@ -1,7 +1,9 @@
 package vs.representative.features.multi.election;
 
 import java.util.List;
+import java.util.Set;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
@@ -40,15 +42,16 @@ public class MultiElectionController {
 	public ResponseEntity createOrUpdateMulti(@RequestBody List<MultiElection> multiElections) {
 		JSONArray jsonArray = new JSONArray();
 
-		for (MultiElection mE : multiElections) {
-			if (validator.validate(mE).isEmpty()) {
+		for (MultiElection multiElection : multiElections) {
+			if (validator.validate(multiElection).isEmpty()) {
 			} else {
-				System.err.println(validator.validate(mE).iterator().next().getMessage().toString());
-				jsonArray.add(validator.validate(mE).iterator().next().getMessage());
-				//grazina tik viena zinute, reikia padaryti kad grazintu visas vienam objektui tinkancias zinutes
-				//arba validacija neturi grazinti dvieju zinuciu vienai klaidai
-				//situacijos kai ivedamos raides (gal neaktualu jei vedama is puslapio o ne is swagger)
-				// visos zinutes turi buti unikalios (nesikartoti)
+				Set<ConstraintViolation<MultiElection>> constraintViolations =validator.validate(multiElection);
+
+				for (ConstraintViolation<MultiElection> constraintViolation : constraintViolations) {
+					System.err.println(multiElection.getParty().getId() + " = " +constraintViolation.getMessage());
+					jsonArray.add(multiElection.getParty().getId()  + " = " +constraintViolation.getMessage());
+					}
+				System.err.println("/n===");
 			}
 		}
 
