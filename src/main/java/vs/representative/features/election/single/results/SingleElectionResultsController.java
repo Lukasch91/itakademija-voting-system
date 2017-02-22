@@ -22,7 +22,7 @@ public class SingleElectionResultsController {
 	}
 	
 	@RequestMapping(value = "/api/districtresults/{id}", method = RequestMethod.GET)
-	public List<SingleElectionDistrict> getConstituencyResults(@PathVariable Integer id) {
+	public List<SingleElectionDistrict> getDistrictResults(@PathVariable Integer id) {
 		return singleElectionConstitencyService.singleElectionDistrictResults(id);
 	}
 

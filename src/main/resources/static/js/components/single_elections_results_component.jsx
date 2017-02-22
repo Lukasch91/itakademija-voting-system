@@ -1,9 +1,9 @@
 var SingleElectionsResultsComponent = React.createClass( {
     render: function() {
         var self = this;
-        var constResultsList = this.props.consituencies.map( function( constituency, index ) {
+        var constResultsList = this.props.consituencies.map( function(constituency, index ) {
             return (
-                <tr key={index}>
+                <tr key={index} onClick={self.props.onAdministerDistricts(constituency.constituencyId)}>
                     <td>{constituency.title}</td>
                     <td>{constituency.numberOfDistricts}</td>
                     <td>{constituency.numberOfVoters}</td>
