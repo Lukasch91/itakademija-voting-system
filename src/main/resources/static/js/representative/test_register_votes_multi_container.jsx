@@ -7,7 +7,8 @@ var TestRegisterVotesMultiContainer = React.createClass( {
             spoiltVote: {},
             enteredResults: [],
             enteredSpoiltVote: {},
-            currentDistrictId: 0
+            currentDistrictId: 0,
+            validationArray: []
         };
     },
 
@@ -70,8 +71,23 @@ var TestRegisterVotesMultiContainer = React.createClass( {
     },
 
     handleExport: function() {
-        var self = this;
+        
+        /*
+        function useNull() {
+  return null;
+}
 
+axios.all([
+      axios.request(options[ 0 ]).catch(useNull),
+    , axios.request(options[ 1 ]).catch(useNull),
+    , axios.request(options[ 2 ]).catch(useNull)
+]).then(axios.spread(function (res1, res2, res3) {
+    // res1, res2, and res3 contains the response or null if they failed
+}));
+        
+    */    
+        
+        var self = this;
         axios.all( [
             axios.post( '/api/reg-votes-multi', self.state.enteredResults ),
             axios.post( '/api/invalid-votes', self.state.enteredSpoiltVote )
@@ -83,7 +99,25 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                 console.log( spoiltVotesResponse );
 
                 self.componentWillMount();
-            }) );
+            }) )
+            .catch( function( error ) {
+                if ( error.response.status == 400 ) {
+                    
+                    console.log( "___Error messages:___" );
+                    console.log(error.response.data);
+//                    for ( var i = 0; i < ( error.response.data.errors.length ); i++ ) {
+//                        console.log( ">>>" + error.response.data.errors[i] );
+//                    }
+
+//                    var validationArray = self.state.validation;
+//                    self.setState( { validationArray: error.response.data.errors });
+                }
+                else {
+                    console.log( "___Error response object___" );
+                    console.log( error.response );
+                }
+
+            });
     },
 
     render: function() {

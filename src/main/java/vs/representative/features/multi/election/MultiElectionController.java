@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
 import net.minidev.json.JSONArray;
+import vs.utils.hibernate.validators.multiElection.MEValidationMessages;
 
 @RestController
 public class MultiElectionController {
@@ -45,13 +46,15 @@ public class MultiElectionController {
 		for (MultiElection multiElection : multiElections) {
 			if (validator.validate(multiElection).isEmpty()) {
 			} else {
-				Set<ConstraintViolation<MultiElection>> constraintViolations =validator.validate(multiElection);
+				Set<ConstraintViolation<MultiElection>> constraintViolations = validator.validate(multiElection);
+				MEValidationMessages mEVM = new MEValidationMessages();
+				
+				mEVM.setPartyId(multiElection.getParty().getId());
 
 				for (ConstraintViolation<MultiElection> constraintViolation : constraintViolations) {
-					System.err.println(multiElection.getParty().getId() + " = " +constraintViolation.getMessage());
-					jsonArray.add(multiElection.getParty().getId()  + " = " +constraintViolation.getMessage());
-					}
-				System.err.println("/n===");
+					mEVM.setOneMessage(constraintViolation.getMessage());
+				}
+				jsonArray.add(mEVM);
 			}
 		}
 
