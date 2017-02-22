@@ -29,7 +29,6 @@ public class MultiElectionRepository {
 				Date multiEnteredDate = new Date();
 				multiElection.setEntered_date(multiEnteredDate);
 				entityManager.persist(multiElection);
-				
 			} else {
 				MultiElection merged = entityManager.merge(multiElection);
 				entityManager.persist(merged);
@@ -69,8 +68,6 @@ public class MultiElectionRepository {
 		for (MultiElection multiElectionPublish : multiElectionsPublish) {
 			Date date = new Date();
 			multiElectionPublish.setPublished_date(date);
-			;
-			;
 			entityManager.persist(multiElectionPublish);
 		}
 	}
@@ -84,7 +81,6 @@ public class MultiElectionRepository {
 		for (MultiElection multiElectionDelete : multiElectionsDelete) {
 			Date date = new Date();
 			multiElectionDelete.setDeleted_date(date);
-			;
 			entityManager.persist(multiElectionDelete);
 		}
 	}
