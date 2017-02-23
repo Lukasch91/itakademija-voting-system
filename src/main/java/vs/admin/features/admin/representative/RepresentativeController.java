@@ -54,4 +54,12 @@ public class RepresentativeController {
 	public void deleteRepresentativeById(@PathVariable("id") Integer id) {
 		representativeRepository.deleteRepresentative(id);
 	}
+	
+	@RequestMapping(value = "/api/representative/find", method = RequestMethod.POST)
+	@ResponseStatus(org.springframework.http.HttpStatus.OK)
+	@ApiOperation(value = "Find By LoginName") //swaggerino
+	
+	public Representative findByLogin( @RequestBody String loginName) {
+		return representativeRepository.findByLoginName(loginName);		
+	}
 }

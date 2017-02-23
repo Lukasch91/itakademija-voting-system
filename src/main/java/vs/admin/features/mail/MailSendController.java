@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,9 +23,9 @@ public class MailSendController {
 	@RequestMapping(value = "/api/mail", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Sending mail to representative")
-	public  void MailSending(){
+	public  void MailSending(@RequestParam String toMail, @RequestParam String password){
 		try{
-			mailSendService.SendMail();
+			mailSendService.SendMail(toMail, password);
 		}catch(MailException ex){
 			System.err.println("***KLAIDA*** " + ex);
 		}

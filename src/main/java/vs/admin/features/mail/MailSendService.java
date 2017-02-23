@@ -15,12 +15,12 @@ public class MailSendService {
 		this.javaMailSender = javaMailSender;
 	}
 
-	public void SendMail() {
+	public void SendMail(String toMail, String password) {
 		SimpleMailMessage mail = new SimpleMailMessage();
-		mail.setTo("vrk.sistema@zoho.com");
+		mail.setTo(toMail);
 		mail.setFrom("vrk.sistema@zoho.com");
-		mail.setSubject("VRK sistema: slaptažodis");
-		mail.setText("Slaptažodį prašome saugoti: abc123");
+		mail.setSubject("VRK sistema. Vartotojo slaptažodis");
+		mail.setText("Jūsų vartotojo nuolatinis slaptažodis yra:" + password);
 
 		javaMailSender.send(mail);
 	}
