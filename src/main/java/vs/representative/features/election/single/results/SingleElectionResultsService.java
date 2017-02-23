@@ -9,6 +9,10 @@ import vs.admin.features.admin.constituency.Constituency;
 import vs.admin.features.admin.constituency.ConstituencyRepository;
 import vs.admin.features.admin.district.District;
 import vs.admin.features.admin.district.DistrictRepository;
+import vs.admin.features.candidate.model.Candidate;
+import vs.admin.features.candidate.model.CandidateRepository;
+import vs.representative.features.corrupted.votes.CorruptedVotes;
+import vs.representative.features.corrupted.votes.CorruptedVotesRepository;
 import vs.representative.features.single.election.SingleElectionRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +30,12 @@ public class SingleElectionResultsService {
 	@Autowired
 	SingleElectionRepository singleElectionRepository;
 
+	@Autowired
+	CandidateRepository candidateRepository;
+
+	@Autowired
+	CorruptedVotesRepository corruptedVotesRepository;
+
 	public List<SingleElectionConstituency> singleElectionConstituencyResults() {
 
 		List<Constituency> constituencyList = constituencyRepository.findAllConstituencies();
@@ -40,10 +50,11 @@ public class SingleElectionResultsService {
 			Long districtsPublishedResults = changeNullToLong(singleElectionRepository.getNumberOfPublishedResults(id));
 
 			Long sumOfVoters = changeNullToLong(districtRepository.getSumOfVoters(id));
+			
+			Long invalidVotes = changeNullToLong(corruptedVotesRepository
+					.getCorruptedVotesInConstituency(constituency.getId()));
 
-			Long voted = changeNullToLong(singleElectionRepository.getSumOfPublishedVotes(id));
-
-			Long invalidVotes = changeNullToLong(singleElectionRepository.getSumOfInvalidVotes(id));
+			Long voted = changeNullToLong(singleElectionRepository.getSumOfPublishedVotes(id)) + invalidVotes;
 
 			Long validVotes = changeNullToLong(singleElectionRepository.getSumOfValidVotes(id));
 
@@ -76,10 +87,9 @@ public class SingleElectionResultsService {
 
 			Long voted = changeNullToLong(singleElectionRepository.getNumberOfpublishedVotes(district.getId()));
 
-			Long invalidVotes = changeNullToLong(
-					singleElectionRepository.getNumberOfDistrictInvalidVotes(district.getId()));
+			Long invalidVotes = changeNullToLong( corruptedVotesRepository.getCorruptedVotesByDistrict(district.getId()));
 
-			Long validVotes = changeNullToLong(voted - invalidVotes);
+			Long validVotes = changeNullToLong(voted + invalidVotes);
 
 			BigDecimal percentageOfVoted = checkForCorrectArithmetic(voted, numberOfVoters);
 
@@ -98,6 +108,45 @@ public class SingleElectionResultsService {
 
 	}
 
+	public List<SingleElectionResult> getSingleElectionResults(Integer id) {
+		List<Candidate> candidatesList = candidateRepository.findCandidatesByConstituencyId(id);
+
+		List<SingleElectionResult> resultList = new ArrayList<>();
+
+		for (Candidate candidate : candidatesList) {
+
+			String party = "Išsikelęs pats";
+
+
+			
+			Long invalidVotesInConstituency = changeNullToLong(corruptedVotesRepository
+					.getCorruptedVotesInConstituency(candidate.getCandidateConstituency().getId()));
+
+			Long validVotesInConstituency = changeNullToLong(
+					singleElectionRepository.getSumOfValidVotes(candidate.getCandidateConstituency().getId()));
+
+			Long voted = changeNullToLong(singleElectionRepository.getSumOfPublishedVotes(candidate.getCandidateID()));
+			
+			Long allVotes = validVotesInConstituency + invalidVotesInConstituency;
+
+			BigDecimal percentageOfVoted = checkForCorrectArithmetic(voted, validVotesInConstituency);
+
+			BigDecimal percentageOfAllVotes = checkForCorrectArithmetic(voted, allVotes);
+
+			if (candidate.getCandidateParty() != null) {
+				party = candidate.getCandidateParty().getTitle();
+			}
+
+			SingleElectionResult singleElectionResult = new SingleElectionResult(candidate.getCandidateID(),
+					candidate.getCandidateName(), candidate.getCandidateSurname(), party, voted, percentageOfVoted,
+					percentageOfAllVotes);
+
+			resultList.add(singleElectionResult);
+
+		}
+		return resultList;
+	}
+
 	public Long changeNullToLong(Long parameter) {
 		if (parameter == null) {
 			return (long) 0;
@@ -110,7 +159,7 @@ public class SingleElectionResultsService {
 			return new BigDecimal(0);
 		}
 		BigDecimal percentage = new BigDecimal(firstParameter * 100.0 / secondParamter);
-		return  percentage.setScale(2, RoundingMode.HALF_UP) ;
+		return percentage.setScale(2, RoundingMode.HALF_UP);
 	}
 
 }

@@ -25,5 +25,10 @@ public class SingleElectionResultsController {
 	public List<SingleElectionDistrict> getDistrictResults(@PathVariable Integer id) {
 		return singleElectionConstitencyService.singleElectionDistrictResults(id);
 	}
+	
+	@RequestMapping(value = "/api/candidatesresults/{id}", method = RequestMethod.GET)
+	public List<SingleElectionResult> getSingleCandidatesResults(@PathVariable Integer id) {
+		return singleElectionConstitencyService.getSingleElectionResults(id);
+	}
 
 }

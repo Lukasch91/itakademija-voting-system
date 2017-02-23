@@ -15,12 +15,25 @@ public class CorruptedVotesRepository {
 	private static final String FIND_ALL = "Select e FROM CorruptedVotes e where deleted_date is null";
 	private static final String FIND_BY_DISTRICT_ID = "SELECT e FROM CorruptedVotes e WHERE district IS ";
 	private static final String FIND_BY_TYPE = "SELECT e FROM CorruptedVotes e WHERE deleted_date is null AND typeMulti IS ";
+	private static final String FIND_BY_CONSTITUENCY_ID = "SELECT sum(c.votes) from CorruptedVotes c LEFT JOIN c.district cd WHERE cd.constituencyId = :id";
+	private static final String FIND_FIND_BY_DISTRICT_ID = "SELECT sum(c.votes) FROM CorruptedVotes c left join c.district cd WHERE cd.id =:id";
+
 	@Autowired
 	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	public List<CorruptedVotes> findAllCorruptedVotes() {
 		return entityManager.createQuery(FIND_ALL).getResultList();
+	}
+
+	public Long getCorruptedVotesInConstituency(Integer id) {
+
+		return (Long) (entityManager.createQuery(FIND_BY_CONSTITUENCY_ID).setParameter("id", id).getSingleResult());
+	}
+
+	public Long getCorruptedVotesByDistrict(Integer id) {
+
+		return (Long) (entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID).setParameter("id", id).getSingleResult());
 	}
 
 	@Transactional
