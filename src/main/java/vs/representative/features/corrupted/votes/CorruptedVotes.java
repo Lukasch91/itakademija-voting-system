@@ -1,6 +1,6 @@
 package vs.representative.features.corrupted.votes;
 
-
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,9 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotBlank;
 
 import vs.admin.features.admin.district.District;
 
@@ -31,11 +31,12 @@ public class CorruptedVotes {
 	private District district = new District();
 
 	@Column
-	@NotBlank
-	private Integer votes;
-	
+	@NotNull(message = "Būtina įvesti balsų skaičių")
+	@Min(value = 0, message = "Minimalus balsų skaičius {value}")
+	@Max(value = 500000, message = "Maksimalus balsų skaičius {value}")
+	private BigDecimal votes;
+
 	@Column
-	@NotNull
 	private Boolean typeMulti;
 
 	@Column
@@ -51,7 +52,7 @@ public class CorruptedVotes {
 
 	}
 
-	public CorruptedVotes(Integer id, District district, Integer votes, Boolean typeMulti, Date entered_date,
+	public CorruptedVotes(Integer id, District district, BigDecimal votes, Boolean typeMulti, Date entered_date,
 			Date published_date, Date deleted_date) {
 		super();
 		this.id = id;
@@ -79,11 +80,11 @@ public class CorruptedVotes {
 		this.district = district;
 	}
 
-	public Integer getVotes() {
+	public BigDecimal getVotes() {
 		return votes;
 	}
 
-	public void setVotes(Integer votes) {
+	public void setVotes(BigDecimal votes) {
 		this.votes = votes;
 	}
 
@@ -118,8 +119,5 @@ public class CorruptedVotes {
 	public void setDeleted_date(Date deleted_date) {
 		this.deleted_date = deleted_date;
 	}
-
-
-	
 
 }

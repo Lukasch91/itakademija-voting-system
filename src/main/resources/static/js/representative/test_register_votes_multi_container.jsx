@@ -71,35 +71,21 @@ var TestRegisterVotesMultiContainer = React.createClass( {
     },
 
     handleExport: function() {
+      var self = this;
+       
+      var multiVotesPackage = self.state.enteredResults;
+      multiVotesPackage.push(self.state.enteredSpoiltVote);
         
-        /*
-        function useNull() {
-  return null;
-}
-
-axios.all([
-      axios.request(options[ 0 ]).catch(useNull),
-    , axios.request(options[ 1 ]).catch(useNull),
-    , axios.request(options[ 2 ]).catch(useNull)
-]).then(axios.spread(function (res1, res2, res3) {
-    // res1, res2, and res3 contains the response or null if they failed
-}));
         
-    */    
+        console.log(multiVotesPackage);
         
-        var self = this;
-        axios.all( [
-            axios.post( '/api/reg-votes-multi', self.state.enteredResults ),
-            axios.post( '/api/invalid-votes', self.state.enteredSpoiltVote )
-
-        ] )
-            .then( axios.spread( function( multiElectionResponse, spoiltVotesResponse ) {
+        
+            axios.post( '/api/reg-votes-multi', multiVotesPackage )
+            .then( function( response )  {
                 console.log( "sent" );
-                console.log( multiElectionResponse ); 
-                console.log( spoiltVotesResponse );
-
-                self.componentWillMount();
-            }) )
+                console.log( response );
+//                self.componentWillMount();
+            })
             .catch( function( error ) {
                 if ( error.response.status == 400 ) {
                     

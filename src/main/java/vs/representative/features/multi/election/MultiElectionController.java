@@ -1,15 +1,10 @@
 package vs.representative.features.multi.election;
 
 import java.util.List;
-import java.util.Set;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,16 +13,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
-import net.minidev.json.JSONArray;
-import vs.utils.hibernate.validators.multiElection.MEValidationMessages;
 
 @RestController
 public class MultiElectionController {
 
 	@Autowired
 	private MultiElectionRepository multiElectionRepository;
-
-	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+	@Autowired
+	private MultiElectionCreateService multiElectionCreateService;
 
 	@RequestMapping(value = "/api/reg-votes-multi", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
@@ -40,30 +33,10 @@ public class MultiElectionController {
 	@RequestMapping(value = "/api/reg-votes-multi", method = RequestMethod.POST)
 	@ApiOperation(value = "Create multi election result.", notes = "Data: [{\"id\": null," + " \"party\": {\"id\": 1},"
 			+ "\"district\": { \"id\": 3}," + " \"votes\": 99}]")
-	public ResponseEntity createOrUpdateMulti(@RequestBody List<MultiElection> multiElections) {
-		JSONArray jsonArray = new JSONArray();
+	public ResponseEntity createOrUpdateMulti(@RequestBody List<MultiVotesPackage> multiVotesPackage) {
 
-		for (MultiElection multiElection : multiElections) {
-			if (validator.validate(multiElection).isEmpty()) {
-			} else {
-				Set<ConstraintViolation<MultiElection>> constraintViolations = validator.validate(multiElection);
-				MEValidationMessages mEVM = new MEValidationMessages();
-				
-				mEVM.setPartyId(multiElection.getParty().getId());
+		return multiElectionCreateService.validatePackage(multiVotesPackage);
 
-				for (ConstraintViolation<MultiElection> constraintViolation : constraintViolations) {
-					mEVM.setOneMessage(constraintViolation.getMessage());
-				}
-				jsonArray.add(mEVM);
-			}
-		}
-
-		if (jsonArray.isEmpty()) {
-			multiElectionRepository.saveOrUpdate(multiElections);
-			return ResponseEntity.status(HttpStatus.OK).body(jsonArray);
-		} else {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonArray);
-		}
 	}
 
 	@RequestMapping(value = "/api/reg-votes-multi/{id}", method = RequestMethod.GET)

@@ -6,14 +6,17 @@ import java.util.List;
 public class MEValidationMessages {
 	private Integer partyId;
 	private List<String> messages = new ArrayList<String>();
+	private boolean spoiltVote;
 
 	public MEValidationMessages() {
 	}
+		
+	public boolean isSpoiltVote() {
+		return spoiltVote;
+	}
 
-	public MEValidationMessages(Integer partyId, List<String> messages) {
-		super();
-		this.partyId = partyId;
-		this.messages = messages;
+	public void setSpoiltVote(boolean spoiltVote) {
+		this.spoiltVote = spoiltVote;
 	}
 
 	public Integer getPartyId() {
