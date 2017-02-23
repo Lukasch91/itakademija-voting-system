@@ -70,6 +70,13 @@ public class SingleElectionController {
 	public void deleteSingleElectionResultsByDistrictIdREAL(@PathVariable("id") Integer id) {
 		singleElectionRepository.deleteSingleElectionResultsByDistrictIdREAL(id);
 	}
+	
+	@RequestMapping(value = "/api/singleelectioncandidate/{id}", method = RequestMethod.GET)
+	@ResponseStatus(org.springframework.http.HttpStatus.OK)
+	@ApiOperation(value = "Find single election result by id")
+	public Long getCandidateVotes(@PathVariable("id") Integer id) {
+		return singleElectionRepository.getVotesByCandidateId(id);
+	}
 
 }
 	

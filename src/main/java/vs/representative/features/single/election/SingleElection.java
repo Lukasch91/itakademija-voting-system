@@ -30,7 +30,7 @@ public class SingleElection {
 	@NotNull(message = "Būtina įvesti balsų skaičių")
 	@Min(value = 0, message = "Minimalus balsų skaičius {value}")
 	@Max(value = 500000, message = "Maksimalus balsų skaičius {value}")
-	private Integer singleVotes;
+	private Long singleVotes;
 
 	@Column
 	private Date singleEnteredDate;
@@ -54,7 +54,7 @@ public class SingleElection {
 	public SingleElection() {
 	}
 
-	public SingleElection(Integer singleId, Integer singleVotes, Date singleEnteredDate, Date singlePublishedDate,
+	public SingleElection(Integer singleId, Long singleVotes, Date singleEnteredDate, Date singlePublishedDate,
 			Date singleDeletedDate, Candidate singleCandidate, District singleDistrict) {
 		super();
 		this.singleId = singleId;
@@ -74,11 +74,11 @@ public class SingleElection {
 		this.singleId = singleId;
 	}
 
-	public Integer getSingleVotes() {
+	public Long getSingleVotes() {
 		return singleVotes;
 	}
 
-	public void setSingleVotes(Integer singleVotes) {
+	public void setSingleVotes(Long singleVotes) {
 		this.singleVotes = singleVotes;
 	}
 

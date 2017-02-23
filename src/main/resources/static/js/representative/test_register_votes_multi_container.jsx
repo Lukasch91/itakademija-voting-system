@@ -8,7 +8,8 @@ var TestRegisterVotesMultiContainer = React.createClass( {
             enteredResults: [],
             enteredSpoiltVote: {},
             currentDistrictId: 0,
-            validationArray: []
+            validationArray: [],
+            
         };
     },
 
@@ -63,8 +64,8 @@ var TestRegisterVotesMultiContainer = React.createClass( {
         var self = this;
         var updateResults = self.state.enteredResults;
         for ( var i = 0; i < updateResults.length; i++ ) {
-            if ( updateResults[i].party.id == passPartyId ) {
-                updateResults[i].votes = event.target.value;
+            if ( updateResults[i].party.id == passPartyId ) { //test_register_votes_multi_container.jsx:67 Uncaught TypeError: Cannot read property 'id' of undefined
+                updateResults[i].votes = event.target.value; 
             }
         }
         self.setState( { enteredResults: updateResults });
@@ -88,22 +89,29 @@ var TestRegisterVotesMultiContainer = React.createClass( {
             })
             .catch( function( error ) {
                 if ( error.response.status == 400 ) {
-                    
+                    self.setState( { validationArray: error.response.data });
                     console.log( "___Error messages:___" );
-                    console.log(error.response.data);
-//                    for ( var i = 0; i < ( error.response.data.errors.length ); i++ ) {
-//                        console.log( ">>>" + error.response.data.errors[i] );
-//                    }
-
-//                    var validationArray = self.state.validation;
-//                    self.setState( { validationArray: error.response.data.errors });
+                    self.handleErrors();
+                    
+                    
                 }
                 else {
-                    console.log( "___Error response object___" );
+                    console.log( "___FATALITY___" );
                     console.log( error.response );
                 }
 
             });
+    },
+    
+    handleErrors: function() {
+        var self = this;
+        var validationList = self.state.validationArray.map( function (errorObject, index) {
+            
+        console.log(errorObject);
+        return errorObject;
+            
+            
+        });
     },
 
     render: function() {
@@ -111,9 +119,21 @@ var TestRegisterVotesMultiContainer = React.createClass( {
 
         if ( ( self.state.multiResults[0] == null ) && ( self.state.spoiltVote == null ) ) { 
 
+            
+            var validationList = self.state.validationArray.map( function (errorObject, index) {
+                return(
+                        <tr key={'errorRow' + index}>
+                        <td>{errorObject.partyId}</td>
+                        <td>{errorObject.messages[0]}</td>
+
+                    </tr>
+                  );
+            });
+            
 
             var partiesList = this.state.parties.map( function( party, index ) {
                 return (
+             
                     <tr key={'row' + index}>
                         <td>{party.title}</td>
                         <td>{party.party_abbreviation}</td>
@@ -123,9 +143,16 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                                 className="form-control"
                                 onChange={self.handleMultiVotesChange.bind( self, party.id )} />
                         </td>
+                        <td>
+                            {self.state.validationArray[1] != null ? (party.id == self.state.validationArray[1].partyId ? (self.state.validationArray[1].messages[0]) : "no") : "" }
+                        </td>
                     </tr>
+
+             
                 );
             });
+            
+
 
             return (
                 <div>
@@ -149,6 +176,17 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                                         <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
                                     </td>
                                 </tr>
+                            </tbody>
+                        </table>
+                                    
+                        <table className="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>PartijosId</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {validationList}
                             </tbody>
                         </table>
                     </div>

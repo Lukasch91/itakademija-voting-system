@@ -16,6 +16,10 @@ public class SingleElectionRepository {
 
 	private static final String FIND_BY_DISTRICT_ID = "SELECT x FROM SingleElection x WHERE singleDistrict IS ";
 
+	private static final String FIND_VOTES_BY_CANDIDATE_ID = "SELECT s.singleVotes FROM SingleElection s LEFT Join s.singleCandidate ss "
+			+ "WHERE ss.candidateID = :id AND s.singleDeletedDate is null AND ss.candidateDeletedDate is null "
+			+ "AND s.singlePublishedDate IS NOT NULL";
+
 	private static final String COUNT_PUBLISHED_DISTRICT_RESULTS = "SELECT count(d) FROM SingleElection s "
 			+ "LEFT JOIN s.singleDistrict d " + "WHERE s.singleDeletedDate IS NULL "
 			+ "AND s.singlePublishedDate IS NOT NULL and d.constituencyId=:id";
@@ -35,13 +39,13 @@ public class SingleElectionRepository {
 			+ "AND s.singlePublishedDate IS NOT NULL and sd.constituencyId=:id AND sc.candidateName !='NOVOTES'";
 
 	private static final String GET_PUBLISHED_VOTES_IN_DISTRICT = "SELECT sum(s.singleVotes) FROM SingleElection s "
-			+ "LEFT JOIN s.singleDistrict sd " + "WHERE sd.id = :id "
-			+ "AND s.singleDeletedDate IS NULL " + "AND s.singlePublishedDate IS NOT NULL";
+			+ "LEFT JOIN s.singleDistrict sd " + "WHERE sd.id = :id " + "AND s.singleDeletedDate IS NULL "
+			+ "AND s.singlePublishedDate IS NOT NULL";
 
 	private static final String GET_DISTRICTS_PUBLISHED_VOTES_IN_DISTRICT = "SELECT sum(s.singleVotes) FROM SingleElection s "
-			+ "LEFT JOIN s.singleDistrict sd LEFT JOIN s.singleCandidate sc  WHERE sd.id = :id " 
+			+ "LEFT JOIN s.singleDistrict sd LEFT JOIN s.singleCandidate sc  WHERE sd.id = :id "
 			+ "AND s.singleDeletedDate IS NULL AND s.singlePublishedDate IS NOT NULL  AND sc.candidateName !='NOVOTES'";
-	
+
 	@Autowired
 	private EntityManager em;
 
@@ -141,12 +145,15 @@ public class SingleElectionRepository {
 	}
 
 	public Long getNumberOfpublishedVotes(Integer id) {
-		return (Long) em.createQuery(GET_PUBLISHED_VOTES_IN_DISTRICT).setParameter("id", id)
-				.getSingleResult();
+		return (Long) em.createQuery(GET_PUBLISHED_VOTES_IN_DISTRICT).setParameter("id", id).getSingleResult();
 	}
-	
+
 	public Long getNumberOfDistrictInvalidVotes(Integer id) {
 		return (Long) em.createQuery(GET_DISTRICTS_PUBLISHED_VOTES_IN_DISTRICT).setParameter("id", id)
 				.getSingleResult();
+	}
+	
+	public Long getVotesByCandidateId(Integer id){
+		return (Long) em.createQuery(FIND_VOTES_BY_CANDIDATE_ID).setParameter("id", id).getSingleResult();
 	}
 }
