@@ -1,5 +1,7 @@
 package vs.admin.features.mail;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,7 +16,8 @@ public class MailSendService {
 	public MailSendService(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
-
+	
+	@Transactional
 	public void SendMail(String toMail, String password) {
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(toMail);

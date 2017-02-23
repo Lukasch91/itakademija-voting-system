@@ -20,7 +20,7 @@ public class MailSendController {
 	@Autowired
 	private MailSendService mailSendService;
 	
-	@RequestMapping(value = "/api/mail", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/mail", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Sending mail to representative")
 	public  void MailSending(@RequestParam String toMail, @RequestParam String password){

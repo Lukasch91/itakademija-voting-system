@@ -2,6 +2,7 @@ package vs.admin.features.password;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ResponseHeader;
+import vs.admin.features.admin.representative.Representative;
+import vs.admin.features.admin.representative.RepresentativeRepository;
 import vs.representative.features.corrupted.votes.CorruptedVotes;
 import vs.representative.features.corrupted.votes.CorruptedVotesRepository;
 
@@ -26,12 +29,12 @@ public class PasswordController {
 	@Autowired
 	private PasswordService passwordService;
 
-	@RequestMapping(value = "/api/password/gen", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/password/gen", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Get Password")
-	public @ResponseBody String getGeneratedPassword() {
+	public @ResponseBody ArrayList<String> getGeneratedPassword() {
 
-		return passwordService.PassGenerator();
+		return passwordService.GeneratedPasswordList();
 
 	}
 
@@ -43,5 +46,14 @@ public class PasswordController {
 		
 		return passwordService.PassHashing(password);
 	}
+	
+	@RequestMapping(value = "/api/password/check", method = RequestMethod.POST)
+	@ResponseStatus(org.springframework.http.HttpStatus.OK)
+	@ApiOperation(value = "Check Password")
+	public boolean checkPassword(@RequestParam String loginName, @RequestParam String passwordToCheck) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		return passwordService.PasswordCheck(loginName, passwordToCheck);
+	}
+	
+
 
 }
