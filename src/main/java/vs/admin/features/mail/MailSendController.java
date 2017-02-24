@@ -20,12 +20,12 @@ public class MailSendController {
 	@Autowired
 	private MailSendService mailSendService;
 	
-	@RequestMapping(value = "/api/mail", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/mail", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Sending mail to representative")
-	public  void MailSending(@RequestParam String toMail, @RequestParam String password){
+	public  void MailSending(@RequestParam String toMail, @RequestParam String password, @RequestParam String loginName){
 		try{
-			mailSendService.SendMail(toMail, password);
+			mailSendService.SendMail(toMail, password, loginName);
 		}catch(MailException ex){
 			System.err.println("***KLAIDA*** " + ex);
 		}
