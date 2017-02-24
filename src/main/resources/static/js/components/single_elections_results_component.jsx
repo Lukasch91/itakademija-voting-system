@@ -3,9 +3,9 @@ var SingleElectionsResultsComponent = React.createClass( {
         var self = this;
         var constResultsList = this.props.consituencies.map( function(constituency, index ) {
             return (
-                <tr key={index} onClick={self.props.onAdministerDistricts(constituency.constituencyId)}>
+                <tr key={index}>
                     <td>{constituency.title}</td>
-                    <td>{constituency.numberOfDistricts}</td>
+                    <td>{constituency.numberOfDistrictsPublishedResults}/{constituency.numberOfDistricts}</td>
                     <td>{constituency.numberOfVoters}</td>
                     <td>{constituency.numberOfVotersWhoVote}</td>
                     <td>{constituency.percentageOfVotersWhoVote}%</td>
@@ -13,6 +13,8 @@ var SingleElectionsResultsComponent = React.createClass( {
                     <td>{constituency.percentageOfInvalidVotes}%</td>
                     <td>{constituency.numberOfValidVotes}</td>
                     <td>{constituency.percentageOfValidVotes}%</td>
+                    <td><button type="button" className="btn btn-xs btn-info" onClick={self.props.onAdministerDistricts(constituency.constituencyId)}>Apygardos rezultatai</button></td>
+
                 </tr>
             );
         });
@@ -31,6 +33,7 @@ var SingleElectionsResultsComponent = React.createClass( {
                             <th>Sugadinti proc.</th>
                             <th>Geri balsai</th>
                             <th>Geri balsai proc</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

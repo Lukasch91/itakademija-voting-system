@@ -3,7 +3,10 @@ package vs.representative.features.election.single.results;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import vs.admin.features.admin.constituency.Constituency;
 import vs.admin.features.admin.constituency.ConstituencyRepository;
@@ -50,9 +53,9 @@ public class SingleElectionResultsService {
 			Long districtsPublishedResults = changeNullToLong(singleElectionRepository.getNumberOfPublishedResults(id));
 
 			Long sumOfVoters = changeNullToLong(districtRepository.getSumOfVoters(id));
-			
-			Long invalidVotes = changeNullToLong(corruptedVotesRepository
-					.getCorruptedVotesInConstituency(constituency.getId()));
+
+			Long invalidVotes = changeNullToLong(
+					corruptedVotesRepository.getCorruptedVotesInConstituency(constituency.getId()));
 
 			Long voted = changeNullToLong(singleElectionRepository.getSumOfPublishedVotes(id)) + invalidVotes;
 
@@ -87,7 +90,8 @@ public class SingleElectionResultsService {
 
 			Long voted = changeNullToLong(singleElectionRepository.getNumberOfpublishedVotes(district.getId()));
 
-			Long invalidVotes = changeNullToLong( corruptedVotesRepository.getCorruptedVotesByDistrict(district.getId()));
+			Long invalidVotes = changeNullToLong(
+					corruptedVotesRepository.getCorruptedVotesByDistrict(district.getId()));
 
 			Long validVotes = changeNullToLong(voted + invalidVotes);
 
@@ -117,8 +121,6 @@ public class SingleElectionResultsService {
 
 			String party = "Išsikelęs pats";
 
-
-			
 			Long invalidVotesInConstituency = changeNullToLong(corruptedVotesRepository
 					.getCorruptedVotesInConstituency(candidate.getCandidateConstituency().getId()));
 
@@ -126,7 +128,7 @@ public class SingleElectionResultsService {
 					singleElectionRepository.getSumOfValidVotes(candidate.getCandidateConstituency().getId()));
 
 			Long voted = changeNullToLong(singleElectionRepository.getSumOfPublishedVotes(candidate.getCandidateID()));
-			
+
 			Long allVotes = validVotesInConstituency + invalidVotesInConstituency;
 
 			BigDecimal percentageOfVoted = checkForCorrectArithmetic(voted, validVotesInConstituency);
@@ -144,6 +146,8 @@ public class SingleElectionResultsService {
 			resultList.add(singleElectionResult);
 
 		}
+		Collections.sort(resultList, new SingleElectionResultsComperator());
+		Collections.reverse(resultList);
 		return resultList;
 	}
 
@@ -162,4 +166,8 @@ public class SingleElectionResultsService {
 		return percentage.setScale(2, RoundingMode.HALF_UP);
 	}
 
+	public SingleElectionConstituency getConstiteuncyResult(Integer id) {
+		List<SingleElectionConstituency> list = singleElectionConstituencyResults();
+		return list.stream().filter(r -> r.getConstituencyId() == id).findFirst().get();
+	}
 }
