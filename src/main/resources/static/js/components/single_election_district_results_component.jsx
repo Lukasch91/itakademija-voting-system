@@ -40,9 +40,9 @@ var SingleElectionsDistrictResultsComponent = React.createClass( {
                     Apylinkių skaičius - {this.props.constituency.numberOfDistricts}<br />
                     Pagal gautus iš apylinkių duomenis:<br />
                     rinkėjų sąraše įrašyta rinkėjų – {this.props.constituency.numberOfVoters} ,<br />
-                rinkimuose dalyvavo – {this.props.constituency.numberOfVotersWhoVote} ({this.props.constituency.percentageOfVotersWhoVote} %)<br />
-                negaliojančių biuletenių – {this.props.constituency.numberOfInvalidVotes} ({this.props.constituency.percentageOfInvalidVotes} %),<br />
-                galiojančių biuletenių – {this.props.constituency.numberOfValidVotes} ({this.props.constituency.percentageOfValidVotes} %).<br />
+                    rinkimuose dalyvavo – {this.props.constituency.numberOfVotersWhoVote} ({this.props.constituency.percentageOfVotersWhoVote} %)<br />
+                    negaliojančių biuletenių – {this.props.constituency.numberOfInvalidVotes} ({this.props.constituency.percentageOfInvalidVotes} %),<br />
+                    galiojančių biuletenių – {this.props.constituency.numberOfValidVotes} ({this.props.constituency.percentageOfValidVotes} %).<br />
                 </h7>
                 <div className="panel panel-default">
                     <table className="table table-hover">
@@ -83,7 +83,6 @@ var SingleElectionsDistrictResultsComponent = React.createClass( {
                         </tbody>
                     </table>
                 </div>
-
                 <button id="bakcToConstituencyResults" className="btn btn-xs btn-warning" onClick={this.props.onCancel}>Grįžti</button>
             </div>
 
