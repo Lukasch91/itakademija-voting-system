@@ -14,7 +14,7 @@ public class SingleElectionRepository {
 
 	private static final String FIND_ALL = "SELECT x FROM SingleElection x WHERE single_deleted_date IS NULL";
 
-	private static final String FIND_BY_DISTRICT_ID = "SELECT x FROM SingleElection x WHERE singleDistrict IS ";
+	private static final String FIND_BY_DISTRICT_ID = "SELECT x FROM SingleElection x WHERE singleDistrict=:ID ";
 
 	private static final String FIND_VOTES_BY_CANDIDATE_ID = "SELECT s.singleVotes FROM SingleElection s LEFT Join s.singleCandidate ss "
 			+ "WHERE ss.candidateID = :id AND s.singleDeletedDate is null AND ss.candidateDeletedDate is null "
