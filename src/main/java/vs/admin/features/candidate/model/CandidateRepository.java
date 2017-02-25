@@ -10,11 +10,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CandidateRepository {
 	private static final String FIND_ALL = "SELECT x FROM Candidate x WHERE candidate_Deleted_Date is NULL";
-	private static final String FIND_ALL_CONSTITUENCY = "SELECT x FROM Candidate x  "
-			+ "WHERE candidate_Deleted_Date is NULL AND candidateConstituency=";
+	private static final String FIND_ALL_CONSTITUENCY = "SELECT x FROM Candidate x WHERE x.candidateDeletedDate is null "
+			+ "AND candidateConstituency=";
 	private static final String FIND_ALL_PARTY = "SELECT x FROM Candidate x "
 			+ "WHERE candidate_Deleted_Date is NULL AND candidateParty=";
-
+	
+	
 	@Autowired
 	private EntityManager em;
 

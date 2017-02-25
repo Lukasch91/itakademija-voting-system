@@ -3,10 +3,8 @@ package vs.representative.features.election.single.results;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 import vs.admin.features.admin.constituency.Constituency;
 import vs.admin.features.admin.constituency.ConstituencyRepository;
@@ -14,7 +12,6 @@ import vs.admin.features.admin.district.District;
 import vs.admin.features.admin.district.DistrictRepository;
 import vs.admin.features.candidate.model.Candidate;
 import vs.admin.features.candidate.model.CandidateRepository;
-import vs.representative.features.corrupted.votes.CorruptedVotes;
 import vs.representative.features.corrupted.votes.CorruptedVotesRepository;
 import vs.representative.features.single.election.SingleElectionRepository;
 
@@ -59,7 +56,7 @@ public class SingleElectionResultsService {
 
 			Long voted = changeNullToLong(singleElectionRepository.getSumOfPublishedVotes(id)) + invalidVotes;
 
-			Long validVotes = changeNullToLong(singleElectionRepository.getSumOfValidVotes(id));
+			Long validVotes = changeNullToLong(singleElectionRepository.getSumOfPublishedVotes(id));
 
 			BigDecimal percentageVoted = checkForCorrectArithmetic(voted, sumOfVoters);
 
@@ -88,12 +85,12 @@ public class SingleElectionResultsService {
 
 			Long numberOfVoters = changeNullToLong(district.getNumberOfVoters());
 
-			Long voted = changeNullToLong(singleElectionRepository.getNumberOfpublishedVotes(district.getId()));
-
 			Long invalidVotes = changeNullToLong(
 					corruptedVotesRepository.getCorruptedVotesByDistrict(district.getId()));
 
-			Long validVotes = changeNullToLong(voted + invalidVotes);
+			Long validVotes = changeNullToLong(singleElectionRepository.getNumberOfpublishedVotes(district.getId()));
+
+			Long voted = changeNullToLong(validVotes + invalidVotes);
 
 			BigDecimal percentageOfVoted = checkForCorrectArithmetic(voted, numberOfVoters);
 
@@ -119,15 +116,17 @@ public class SingleElectionResultsService {
 
 		for (Candidate candidate : candidatesList) {
 
+			Integer constituencyId = districtRepository.getConstituencyIdByDistrictId(id);
+
 			String party = "Išsikelęs pats";
 
 			Long invalidVotesInConstituency = changeNullToLong(corruptedVotesRepository
 					.getCorruptedVotesInConstituency(candidate.getCandidateConstituency().getId()));
 
 			Long validVotesInConstituency = changeNullToLong(
-					singleElectionRepository.getSumOfValidVotes(candidate.getCandidateConstituency().getId()));
+					singleElectionRepository.getSumOfPublishedVotes(candidate.getCandidateConstituency().getId()));
 
-			Long voted = changeNullToLong(singleElectionRepository.getSumOfPublishedVotes(candidate.getCandidateID()));
+			Long voted = changeNullToLong(singleElectionRepository.getVotesByCandidateId(candidate.getCandidateID()));
 
 			Long allVotes = validVotesInConstituency + invalidVotesInConstituency;
 
@@ -141,13 +140,54 @@ public class SingleElectionResultsService {
 
 			SingleElectionResult singleElectionResult = new SingleElectionResult(candidate.getCandidateID(),
 					candidate.getCandidateName(), candidate.getCandidateSurname(), party, voted, percentageOfVoted,
-					percentageOfAllVotes);
+					percentageOfAllVotes, id);
 
 			resultList.add(singleElectionResult);
 
 		}
 		Collections.sort(resultList, new SingleElectionResultsComperator());
 		Collections.reverse(resultList);
+		return resultList;
+	}
+
+	public List<SingleElectionResult> getSingleElectionResultInDistrict(Integer id) {
+
+		Integer constituencyId = districtRepository.getConstituencyIdByDistrictId(id);
+
+		List<Candidate> candidateList = candidateRepository.findCandidatesByConstituencyId(constituencyId);
+
+		List<SingleElectionResult> resultList = new ArrayList<>();
+
+		for (Candidate candidate : candidateList) {
+
+			String candidateName = candidate.getCandidateName();
+			String candidateSurname = candidate.getCandidateSurname();
+			String party = "Išsikelęs pats";
+
+			if (candidate.getCandidateParty() != null) {
+				party = candidate.getCandidateParty().getTitle();
+			}
+
+			Long votesForCandidate = singleElectionRepository.getVotesOfCandidate(candidate.getCandidateID(), id);
+
+			Long validVotes = changeNullToLong(singleElectionRepository.getNumberOfDistrictvalidVotes(id));
+
+			Long invalidVotes = changeNullToLong(corruptedVotesRepository.getCorruptedVotesByDistrict(id));
+
+			Long allVotes = validVotes + invalidVotes;
+
+			BigDecimal percentageOfValidVotes = checkForCorrectArithmetic(votesForCandidate, validVotes);
+
+			BigDecimal percentageOfAllVotes = checkForCorrectArithmetic(votesForCandidate, allVotes);
+
+			SingleElectionResult singleElectionResult = new SingleElectionResult(candidate.getCandidateID(),
+					candidateName, candidateSurname, party, votesForCandidate, percentageOfValidVotes,
+					percentageOfAllVotes, constituencyId);
+
+			resultList.add(singleElectionResult);
+
+		}
+
 		return resultList;
 	}
 

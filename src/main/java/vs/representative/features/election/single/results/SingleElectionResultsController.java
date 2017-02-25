@@ -20,20 +20,25 @@ public class SingleElectionResultsController {
 	public List<SingleElectionConstituency> getConstituencyResults() {
 		return singleElectionConstitencyService.singleElectionConstituencyResults();
 	}
-	
+
 	@RequestMapping(value = "/api/districtresults/{id}", method = RequestMethod.GET)
 	public List<SingleElectionDistrict> getDistrictResults(@PathVariable Integer id) {
 		return singleElectionConstitencyService.singleElectionDistrictResults(id);
 	}
-	
+
 	@RequestMapping(value = "/api/candidatesresults/{id}", method = RequestMethod.GET)
 	public List<SingleElectionResult> getSingleCandidatesResults(@PathVariable Integer id) {
 		return singleElectionConstitencyService.getSingleElectionResults(id);
 	}
-	
+
 	@RequestMapping(value = "/api/constresults/{id}", method = RequestMethod.GET)
 	public SingleElectionConstituency getConstiuencyResultsDetails(@PathVariable Integer id) {
 		return singleElectionConstitencyService.getConstiteuncyResult(id);
+	}
+
+	@RequestMapping(value = "/api/districtdetails/{id}", method = RequestMethod.GET)
+	public List<SingleElectionResult> getDistrictResultsDetails(@PathVariable Integer id) {
+		return singleElectionConstitencyService.getSingleElectionResultInDistrict(id);
 	}
 
 }

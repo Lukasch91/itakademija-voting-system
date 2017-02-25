@@ -18,8 +18,10 @@ public class SingleElectionResult {
 
 	private BigDecimal percentageOfAllVotes;
 
-	public SingleElectionResult(Integer candidateId, String candidateFirstname, String candidateSurname,
-			String party, Long voted, BigDecimal percentageOfValidVotes, BigDecimal percentageOfAllVotes) {
+	private Integer consId;
+
+	public SingleElectionResult(Integer candidateId, String candidateFirstname, String candidateSurname, String party,
+			Long voted, BigDecimal percentageOfValidVotes, BigDecimal percentageOfAllVotes, Integer consId) {
 		super();
 		this.candidateId = candidateId;
 		this.candidateFirstname = candidateFirstname;
@@ -28,13 +30,14 @@ public class SingleElectionResult {
 		this.voted = voted;
 		this.percentageOfValidVotes = percentageOfValidVotes;
 		this.percentageOfAllVotes = percentageOfAllVotes;
+		this.consId = consId;
 	}
 
-	public Integer getConstituencyId() {
+	public Integer getCandidateId() {
 		return candidateId;
 	}
 
-	public void setConstituencyId(Integer candidateId) {
+	public void setCandidateId(Integer candidateId) {
 		this.candidateId = candidateId;
 	}
 
@@ -84,6 +87,14 @@ public class SingleElectionResult {
 
 	public void setPercentageOfAllVotes(BigDecimal percentageOfAllVotes) {
 		this.percentageOfAllVotes = percentageOfAllVotes;
+	}
+
+	public Integer getConsId() {
+		return consId;
+	}
+
+	public void setConsId(Integer consId) {
+		this.consId = consId;
 	}
 
 }

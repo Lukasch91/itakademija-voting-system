@@ -2,7 +2,6 @@ var SingleElectionsDistrictResultsComponent = React.createClass( {
     render: function() {
         var self = this;
         var distrResultsList = this.props.districts.map( function( district, index ) {
-
             return (
                 <tr key={index}>
                     <td>{district.title}</td>
@@ -13,6 +12,7 @@ var SingleElectionsDistrictResultsComponent = React.createClass( {
                     <td>{district.percentageOfInvalidVotes} %</td>
                     <td>{district.validVotes}</td>
                     <td>{district.percentageOfValidVotes} %</td>
+                    <td><button type="button" className="btn btn-xs btn-info" onClick={self.props.onAdministerDistricts(district.districtId)}>Apylinkės rezultatai</button></td>
                 </tr>
             );
         });
@@ -76,6 +76,7 @@ var SingleElectionsDistrictResultsComponent = React.createClass( {
                                 <th>Sugadinti proc.</th>
                                 <th>Geri balsai</th>
                                 <th>Geri balsai proc</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>

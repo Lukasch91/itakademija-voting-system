@@ -13,7 +13,7 @@ var SingleElectionsResultsComponent = React.createClass( {
                     <td>{constituency.percentageOfInvalidVotes}%</td>
                     <td>{constituency.numberOfValidVotes}</td>
                     <td>{constituency.percentageOfValidVotes}%</td>
-                    <td><button type="button" className="btn btn-xs btn-info" onClick={self.props.onAdministerDistricts(constituency.constituencyId)}>Apygardos rezultatai</button></td>
+                    <td><button type="button" className="btn btn-xs btn-info" onClick={self.props.onAdministerDistricts(constituency.constituencyId)}>Apylinkių rezultatai</button></td>
 
                 </tr>
             );

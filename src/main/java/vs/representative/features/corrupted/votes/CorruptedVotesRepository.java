@@ -32,8 +32,11 @@ public class CorruptedVotesRepository {
 	}
 
 	public Long getCorruptedVotesByDistrict(Integer id) {
-
-		return (Long) (entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID).setParameter("id", id).getSingleResult());
+		if (entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID).setParameter("id", id).getResultList().isEmpty()) {
+			return 0L;
+		} else {
+			return (Long) entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID).setParameter("id", id).getSingleResult();
+		}
 	}
 
 	@Transactional

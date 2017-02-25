@@ -27,6 +27,8 @@ ReactDOM.render((
         <Route path="/candidates" component={CandidateSearchComponen} />
         <Route path="/results" component={SingleElectionsResultsContainer} />
         <Route path="/disresult/:conId" component={SingleElectionsDistrictResultsContainer} />
+       <Route path="/onedisresult/:disId" component={SingleElectionsOneDistrictResultsContainer} />
+
 
       <Route path="*" component={NoMatch}/>
     </Route>

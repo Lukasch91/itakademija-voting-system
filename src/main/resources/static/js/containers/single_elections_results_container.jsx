@@ -13,7 +13,7 @@ var SingleElectionsResultsContainer = React.createClass( {
                 self.setState( {
                     consituencies: response.data
                 });
-            })
+            });
 
     },
 

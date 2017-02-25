@@ -38,6 +38,13 @@ var SingleElectionsDistrictResultsContainer = React.createClass( {
         self.context.router.push( '/results/' );
     },
 
+    handleAdministerDistricts: function( id ) {
+        var self = this;
+        return function() {
+            self.context.router.push( '/onedisresult/' + id );
+        }
+    },
+
     render: function() {
         return (
             <div>
@@ -45,7 +52,8 @@ var SingleElectionsDistrictResultsContainer = React.createClass( {
                     districts={this.state.districts}
                     candidates={this.state.candidates}
                     constituency={this.state.constituency}
-                    onCancel={this.handleCancel} />
+                    onCancel={this.handleCancel}
+                    onAdministerDistricts={this.handleAdministerDistricts} />
             </div>
         )
     }

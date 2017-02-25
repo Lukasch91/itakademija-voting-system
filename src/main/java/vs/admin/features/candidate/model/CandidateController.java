@@ -57,7 +57,7 @@ public class CandidateController {
 	public List<Candidate> getCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
 		return candidateRepository.findCandidatesByConstituencyId(id);
 	}
-
+	
 	@RequestMapping(value = "/api/candidateConstituency/{constituencyId}", method = RequestMethod.DELETE)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "Delete candidate by Constituency id (adds deletion date)")

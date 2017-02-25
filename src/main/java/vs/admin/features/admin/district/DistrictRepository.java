@@ -19,6 +19,8 @@ public class DistrictRepository {
 	private static final String GET_NUMBER_OF_VOTERS_IN_DISTRICTS_BY_CONSTITUENCY = "SELECT SUM(d.numberOfVoters) FROM District d WHERE d.constituencyId = :id AND d.deletedTime IS NULL";
 	
 	private static final String GET_DISTRICTS_BY_CONSTITUENCY_ID = "SELECT d FROM District d WHERE d.deletedTime IS NULL ANd d.constituencyId=:id";
+	
+	private static final String GET_CONSTITUENCY_ID_BY_DISTRICT_ID = "SELECT d.constituencyId FROM District d where d.deletedTime IS NULL AND d.id=:id";
 
 	@Autowired
 	private EntityManager entityManager;
@@ -31,6 +33,11 @@ public class DistrictRepository {
 	@SuppressWarnings("unchecked")
 	public List<District> findAllDistrictsByConstituencyId(Integer id) {
 		return entityManager.createQuery(GET_DISTRICTS_BY_CONSTITUENCY_ID).setParameter("id", id).getResultList();
+	}
+	
+	public Integer getConstituencyIdByDistrictId (Integer id){
+		return (Integer) entityManager.createQuery(GET_CONSTITUENCY_ID_BY_DISTRICT_ID).setParameter("id", id)
+				.getSingleResult();
 	}
 
 	@Transactional

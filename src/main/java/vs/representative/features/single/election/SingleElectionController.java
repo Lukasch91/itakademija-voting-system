@@ -77,7 +77,7 @@ public class SingleElectionController {
 	public Long getCandidateVotes(@PathVariable("id") Integer id) {
 		return singleElectionRepository.getVotesByCandidateId(id);
 	}
-
+	
 }
 	
 	
