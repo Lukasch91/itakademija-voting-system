@@ -8,17 +8,26 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import net.minidev.json.JSONArray;
 import vs.representative.features.corrupted.votes.CorruptedVotes;
+import vs.representative.features.corrupted.votes.CorruptedVotesRepository;
 import vs.utils.hibernate.validators.multiElection.MEValidationMessages;
 
 @Service
 public class MultiElectionCreateService {
 
+	@Autowired
+	private MultiElectionRepository multiElectionRepository;
+	@Autowired
+	private CorruptedVotesRepository corruptedVotesRepository;
+	
+	
+	
 	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
 	@SuppressWarnings("rawtypes")
@@ -75,8 +84,8 @@ public class MultiElectionCreateService {
 		}
 
 		if (jsonArray.isEmpty()) {
-			// multiElectionRepository.saveOrUpdate(multiElections);
-			// corruptedvotesRepository
+			 multiElectionRepository.saveOrUpdate(multiVotes);
+			 corruptedVotesRepository.saveOrUpdate(spoiltVote);
 			return ResponseEntity.status(HttpStatus.OK).body(jsonArray);
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonArray);

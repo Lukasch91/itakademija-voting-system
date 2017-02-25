@@ -52,7 +52,7 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                     });
             });
     },
-
+    
     handleSpoiltVotesChange: function( districtId, event ) {
         var self = this;
         var spoiltVoteObject = ( { id: null, typeMulti: true, district: { id: districtId }, votes: event.target.value });
@@ -85,7 +85,11 @@ var TestRegisterVotesMultiContainer = React.createClass( {
             .then( function( response )  {
                 console.log( "sent" );
                 console.log( response );
-//                self.componentWillMount();
+                if(response.status == 200){
+                  self.componentWillMount();
+                } else {
+                }
+
             })
             .catch( function( error ) {
                 if ( error.response.status == 400 ) {
@@ -143,12 +147,10 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                                 className="form-control"
                                 onChange={self.handleMultiVotesChange.bind( self, party.id )} />
                         </td>
-                        <td>
-                            {self.state.validationArray[1] != null ? (party.id == self.state.validationArray[1].partyId ? (self.state.validationArray[1].messages[0]) : "no") : "" }
-                        </td>
+                        <TestValidateVotesMultiContainer key={"validation"+party.id} party={party} isSpoilt={false} validation={self.state.validationArray} />
+  
                     </tr>
 
-             
                 );
             });
             
@@ -175,18 +177,8 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                                     <td>
                                         <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
                                     </td>
+                                    <TestValidateVotesMultiContainer key={'spoiltMultivote'} party={null} isSpoilt={true} validation={self.state.validationArray} />
                                 </tr>
-                            </tbody>
-                        </table>
-                                    
-                        <table className="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>PartijosId</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {validationList}
                             </tbody>
                         </table>
                     </div>
