@@ -5,11 +5,12 @@ var TestRegisterVotesMultiContainer = React.createClass( {
             parties: [],
             multiResults: [],
             spoiltVote: {},
+            
             enteredResults: [],
             enteredSpoiltVote: {},
-            currentDistrictId: 0,
-            validationArray: [],
             
+            currentDistrictId: 0,
+            validationArray: []
         };
     },
 
@@ -28,26 +29,50 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                 ] )
                     .then( axios.spread( function( partyResponse, multiElectionResponse, spoiltVotesResponse ) { 
 
+                        //Find spoiltVote in a list of spoiltVotes by district id 
                         var spoiltVote = null;
                         for ( var i = 0; i < spoiltVotesResponse.data.length; i++ ) {
                             if ( spoiltVotesResponse.data[i].district.id == self.state.currentDistrictId ) {
                                 spoiltVote = spoiltVotesResponse.data[i];
                             }
                         }
+                        //Find multiResults in a list of multiResults by district id
+                        var multiVotesAll =[];
+                        
+                        for ( var i = 0; i < multiElectionResponse.data.length; i++ ) {
+                            if ( multiElectionResponse.data[i].district.id == self.state.currentDistrictId ) {
+                                multiVotesAll.push(multiElectionResponse.data[i]);
+                            }
+                        }
+                        
+                        
                         self.setState( {
                             parties: partyResponse.data,
-                            multiResults: multiElectionResponse.data,
+                            multiResults: multiVotesAll,
                             spoiltVote: spoiltVote
                         });
                     }) )
                     .then( function() {
+                        //If there are no results create initial objects for entering results
                         if ( self.state.multiResults[0] == null ) { 
                             var resultsTemplate = [];
                             for ( var i = 0; i < self.state.parties.length; i++ ) {
-
-                            resultsTemplate.push( { id: null, party: { id: self.state.parties[i].id }, district: { id: self.state.currentDistrictId } })
+                                resultsTemplate.push({
+                                                id: null,
+                                                party: { id: self.state.parties[i].id },
+                                                district: { id: self.state.currentDistrictId }
+                                                })
+                                        
                             }
                             self.setState( { enteredResults: resultsTemplate });
+                            
+                            var spoiltVoteObject = null;
+                            spoiltVoteObject = ({ 
+                                                id: null, 
+                                                typeMulti: true, 
+                                                district: { id: self.state.currentDistrictId } 
+                                                });
+                            self.setState( { enteredSpoiltVote: spoiltVoteObject });  
                         }
                     });
             });
@@ -55,8 +80,9 @@ var TestRegisterVotesMultiContainer = React.createClass( {
     
     handleSpoiltVotesChange: function( districtId, event ) {
         var self = this;
-        var spoiltVoteObject = ( { id: null, typeMulti: true, district: { id: districtId }, votes: event.target.value });
-        self.setState( { enteredSpoiltVote: spoiltVoteObject });
+        var spoiltVoteUpdate = self.state.enteredSpoiltVote;
+        spoiltVoteUpdate.votes = event.target.value;
+        self.setState( { enteredSpoiltVote: spoiltVoteUpdate });
 
     },
 
@@ -64,7 +90,7 @@ var TestRegisterVotesMultiContainer = React.createClass( {
         var self = this;
         var updateResults = self.state.enteredResults;
         for ( var i = 0; i < updateResults.length; i++ ) {
-            if ( updateResults[i].party.id == passPartyId ) { //test_register_votes_multi_container.jsx:67 Uncaught TypeError: Cannot read property 'id' of undefined
+            if ( updateResults[i].party.id == passPartyId ) {
                 updateResults[i].votes = event.target.value; 
             }
         }
@@ -73,67 +99,40 @@ var TestRegisterVotesMultiContainer = React.createClass( {
 
     handleExport: function() {
       var self = this;
-       
-      var multiVotesPackage = self.state.enteredResults;
+   
+      var multiVotesPackage = [];
+      multiVotesPackage = self.state.enteredResults.slice();
       multiVotesPackage.push(self.state.enteredSpoiltVote);
         
-        
-        console.log(multiVotesPackage);
-        
-        
-            axios.post( '/api/reg-votes-multi', multiVotesPackage )
-            .then( function( response )  {
-                console.log( "sent" );
-                console.log( response );
-                if(response.status == 200){
-                  self.componentWillMount();
-                } else {
-                }
-
-            })
-            .catch( function( error ) {
-                if ( error.response.status == 400 ) {
-                    self.setState( { validationArray: error.response.data });
-                    console.log( "___Error messages:___" );
-                    self.handleErrors();
-                    
-                    
-                }
-                else {
-                    console.log( "___FATALITY___" );
-                    console.log( error.response );
-                }
-
-            });
-    },
+        axios.post( '/api/reg-votes-multi', multiVotesPackage )
+        .then( function( response )  {
+                            
+            console.log( "sent" );
+            console.log( response );
+            if(response.status == 200){
+              self.componentWillMount();
+            } else {
+            }
     
-    handleErrors: function() {
-        var self = this;
-        var validationList = self.state.validationArray.map( function (errorObject, index) {
-            
-        console.log(errorObject);
-        return errorObject;
-            
-            
+        })
+        .catch( function( error ) {
+            if ( error.response.status == 400 ) {
+                self.setState( { validationArray: error.response.data });
+                console.log( "___Error messages:___" );
+                console.log(error.response.data);
+            }
+            else {
+                console.log( "___FATALITY___" );
+                console.log( error.response );
+            }
+    
         });
     },
-
+    
     render: function() {
         var self = this;
 
         if ( ( self.state.multiResults[0] == null ) && ( self.state.spoiltVote == null ) ) { 
-
-            
-            var validationList = self.state.validationArray.map( function (errorObject, index) {
-                return(
-                        <tr key={'errorRow' + index}>
-                        <td>{errorObject.partyId}</td>
-                        <td>{errorObject.messages[0]}</td>
-
-                    </tr>
-                  );
-            });
-            
 
             var partiesList = this.state.parties.map( function( party, index ) {
                 return (
@@ -154,8 +153,6 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                 );
             });
             
-
-
             return (
                 <div>
                     <h3>Daugiamandatės</h3>
