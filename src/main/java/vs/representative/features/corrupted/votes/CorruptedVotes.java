@@ -34,7 +34,7 @@ public class CorruptedVotes {
 	@NotNull(message = "Būtina įvesti balsų skaičių")
 	@Min(value = 0, message = "Minimalus balsų skaičius {value}")
 	@Max(value = 500000, message = "Maksimalus balsų skaičius {value}")
-	private BigDecimal votes;
+	private Long votes;
 
 	@Column
 	private Boolean typeMulti;
@@ -52,7 +52,7 @@ public class CorruptedVotes {
 
 	}
 
-	public CorruptedVotes(Integer id, District district, BigDecimal votes, Boolean typeMulti, Date entered_date,
+	public CorruptedVotes(Integer id, District district, Long votes, Boolean typeMulti, Date entered_date,
 			Date published_date, Date deleted_date) {
 		super();
 		this.id = id;
@@ -80,11 +80,11 @@ public class CorruptedVotes {
 		this.district = district;
 	}
 
-	public BigDecimal getVotes() {
+	public Long getVotes() {
 		return votes;
 	}
 
-	public void setVotes(BigDecimal votes) {
+	public void setVotes(Long votes) {
 		this.votes = votes;
 	}
 

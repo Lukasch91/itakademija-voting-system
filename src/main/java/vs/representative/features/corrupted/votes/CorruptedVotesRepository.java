@@ -1,5 +1,6 @@
 package vs.representative.features.corrupted.votes;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public class CorruptedVotesRepository {
 
 	private static final String FIND_ALL = "Select e FROM CorruptedVotes e where deleted_date is null";
-	private static final String FIND_BY_DISTRICT_ID = "SELECT e FROM CorruptedVotes e WHERE district IS ";
+
 	private static final String FIND_BY_TYPE = "SELECT e FROM CorruptedVotes e WHERE deleted_date is null AND typeMulti IS ";
 	private static final String FIND_BY_CONSTITUENCY_ID = "SELECT sum(c.votes) from CorruptedVotes c LEFT JOIN c.district cd WHERE cd.constituencyId = :id";
 	private static final String FIND_FIND_BY_DISTRICT_ID = "SELECT sum(c.votes) FROM CorruptedVotes c left join c.district cd WHERE cd.id =:id";
@@ -27,8 +28,10 @@ public class CorruptedVotesRepository {
 	}
 
 	public Long getCorruptedVotesInConstituency(Integer id) {
-
-		return (Long) (entityManager.createQuery(FIND_BY_CONSTITUENCY_ID).setParameter("id", id).getSingleResult());
+		if (entityManager.createQuery(FIND_BY_CONSTITUENCY_ID).setParameter("id", id).getResultList().isEmpty()) {
+			return 0L;
+		} else
+			return (Long) entityManager.createQuery(FIND_BY_CONSTITUENCY_ID).setParameter("id", id).getSingleResult();
 	}
 
 	public Long getCorruptedVotesByDistrict(Integer id) {
@@ -78,10 +81,10 @@ public class CorruptedVotesRepository {
 	}
 
 	@Transactional
-	public void publishCorruptedVotesByDistrictId(Integer district_id) {
+	public void publishCorruptedVotesByDistrictId(Integer districtId) {
 		@SuppressWarnings("unchecked")
-		List<CorruptedVotes> corruptedVotessPublish = entityManager.createQuery(FIND_BY_DISTRICT_ID + district_id)
-				.getResultList();
+		List<CorruptedVotes> corruptedVotessPublish = entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID)
+				.setParameter("id", districtId).getResultList();
 
 		for (CorruptedVotes corruptedVotesPublish : corruptedVotessPublish) {
 			Date date = new Date();
@@ -93,8 +96,8 @@ public class CorruptedVotesRepository {
 	@Transactional
 	public void deleteCorruptedVotesByDistrictId(Integer districtId) {
 		@SuppressWarnings("unchecked")
-		List<CorruptedVotes> corruptedVotessDelete = entityManager.createQuery(FIND_BY_DISTRICT_ID + districtId)
-				.getResultList();
+		List<CorruptedVotes> corruptedVotessDelete = entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID)
+				.setParameter("id", districtId).getResultList();
 
 		for (CorruptedVotes corruptedVotesDelete : corruptedVotessDelete) {
 			Date date = new Date();

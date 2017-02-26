@@ -12,8 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ConstituencyRepository {
 
-	// TODO : ASK PO ABOUT MULTIPLE SELECTS OF HIBERNATE (FETCH BAG)
-
 	private static final String FIND_ALL = "SELECT DISTINCT c FROM Constituency c " + "LEFT JOIN FETCH c.districts cd "
 			+ "LEFT JOIN cd.representatives r " + "WHERE c.deletedTime IS NULL " + "ORDER BY c.id";
 

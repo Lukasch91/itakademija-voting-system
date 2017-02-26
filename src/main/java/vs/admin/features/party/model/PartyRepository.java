@@ -9,12 +9,15 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
 public class PartyRepository {
 
-	private static final String FIND_ALL = "Select p FROM Party p where deletedTime is null";
+	private static final String FIND_ALL = "Select p FROM Party p "
+										 + "WHERE deletedTime IS NULL";
 
+	private static final String FIND_PARTY_BY_ID = "Select p FROM Party p "
+												 + "WHERE p.deletedTime IS NULL "
+												 + "AND p.id =:id";
 	@Autowired
 	private EntityManager entityManager;
 
@@ -34,15 +37,11 @@ public class PartyRepository {
 			return merged;
 		}
 	}
-	
+
 	public Party findPartyById(Integer id) {
-		Party party = entityManager.find(Party.class, id);
-		if ((party.getDeletedTime() == null)&&(party != null)) {
-			return party;
-		}
-		return null;
+		return (Party) entityManager.createQuery(FIND_PARTY_BY_ID).setParameter("id", id);
 	}
-	
+
 	@Transactional
 	public void deleteParty(Integer id) {
 		Party party = entityManager.find(Party.class, id);
