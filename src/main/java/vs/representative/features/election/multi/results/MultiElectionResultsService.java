@@ -80,9 +80,10 @@ public class MultiElectionResultsService {
 			
 			Long districtsPublishedResults = multiElectionRepository.getCountDistricts(id);
 			
-			 
+			Long numberOfVoters = districtRepository.getSumOfVoters(id);
 			
-//			UNFINISHED
+				
+//			NOT FINISHED
 			
 //			MultiElectionConstituencyList multiElectionConstituencyList = new MultiElectionConstituencyList(id,
 //					title, 
