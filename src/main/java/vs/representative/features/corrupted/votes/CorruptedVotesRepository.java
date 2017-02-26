@@ -1,6 +1,5 @@
 package vs.representative.features.corrupted.votes;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -16,8 +15,10 @@ public class CorruptedVotesRepository {
 	private static final String FIND_ALL = "Select e FROM CorruptedVotes e where deleted_date is null";
 
 	private static final String FIND_BY_TYPE = "SELECT e FROM CorruptedVotes e WHERE deleted_date is null AND typeMulti IS ";
-	private static final String FIND_BY_CONSTITUENCY_ID = "SELECT sum(c.votes) from CorruptedVotes c LEFT JOIN c.district cd WHERE cd.constituencyId = :id";
-	private static final String FIND_FIND_BY_DISTRICT_ID = "SELECT sum(c.votes) FROM CorruptedVotes c left join c.district cd WHERE cd.id =:id";
+	private static final String FIND_BY_CONSTITUENCY_ID = "SELECT sum(c.votes) from CorruptedVotes c LEFT JOIN c.district cd WHERE cd.constituencyId = :id and c.typeMulti ='false'";
+	private static final String FIND_FIND_BY_DISTRICT_ID = "SELECT sum(c.votes) FROM CorruptedVotes c left join c.district cd WHERE cd.id =:id and c.typeMult ='false'";
+
+	private static final String FIND_ALL_MULTI_INVALID_VOTES = "SELECT sum(c.votes) FROM CorruptedVotes c WHERE c.published_date is not null and c.deleted_date is null and c.typeMulti='true'";
 
 	@Autowired
 	private EntityManager entityManager;
@@ -39,6 +40,14 @@ public class CorruptedVotesRepository {
 			return 0L;
 		} else {
 			return (Long) entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID).setParameter("id", id).getSingleResult();
+		}
+	}
+	
+	public Long getAllMultiElectionInvalidVotes() {
+		if (entityManager.createQuery(FIND_ALL_MULTI_INVALID_VOTES).getResultList().isEmpty()) {
+			return 0L;
+		} else {
+			return (Long) entityManager.createQuery(FIND_ALL_MULTI_INVALID_VOTES).getSingleResult();
 		}
 	}
 

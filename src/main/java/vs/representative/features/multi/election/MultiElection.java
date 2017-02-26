@@ -32,7 +32,7 @@ public class MultiElection {
 	@NotNull(message = "Būtina įvesti balsų skaičių")
 	@Min(value = 0, message = "Minimalus balsų skaičius {value}")
 	@Max(value = 500000, message = "Maksimalus balsų skaičius {value}")
-	private BigDecimal votes;
+	private Long votes;
 
 	@Column
 	private Date entered_date;
@@ -53,7 +53,7 @@ public class MultiElection {
 
 	}
 
-	public MultiElection(Integer id, BigDecimal votes, Date entered_date, Date published_date, Date deleted_date,
+	public MultiElection(Integer id, Long votes, Date entered_date, Date published_date, Date deleted_date,
 			Party party, District district) {
 		super();
 		this.id = id;
@@ -73,11 +73,11 @@ public class MultiElection {
 		this.id = id;
 	}
 
-	public BigDecimal getVotes() {
+	public Long getVotes() {
 		return votes;
 	}
 
-	public void setVotes(BigDecimal votes) {
+	public void setVotes(Long votes) {
 		this.votes = votes;
 	}
 

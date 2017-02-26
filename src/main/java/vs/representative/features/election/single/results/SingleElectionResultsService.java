@@ -116,8 +116,6 @@ public class SingleElectionResultsService {
 
 		for (Candidate candidate : candidatesList) {
 
-			Integer constituencyId = districtRepository.getConstituencyIdByDistrictId(id);
-
 			String party = "Išsikelęs pats";
 
 			Long invalidVotesInConstituency = changeNullToLong(corruptedVotesRepository

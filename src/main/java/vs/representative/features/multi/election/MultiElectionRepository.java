@@ -14,12 +14,56 @@ public class MultiElectionRepository {
 
 	private static final String FIND_ALL = "Select e FROM MultiElection e where deleted_date is null";
 	private static final String FIND_BY_DISTRICT_ID = "SELECT e FROM MultiElection e WHERE district IS ";
+	private static final String FIND_VOTES_FOR_PARTY_BY_PARTY_ID = "SELECT m.votes from MultiElection m LEFT JOIN m.party mp "
+			+ "WHERE mp.id =:id AND m.published_date IS NOT NULL AND m.deleted_date is null";
+
+	private static final String FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES = "SELECT sum(m.votes) from MultiElection m LEFT JOIN m.party mp "
+			+ "WHERE mp.deletedTime is null AND m.published_date IS NOT NULL AND m.deleted_date is null";
+	
+	private static final String COUNT_PUBLISHED_DISTRICT_RESULTS = "SELECT count(d) FROM MultiElection m "
+			+ "LEFT JOIN m.District md " + "WHERE m.DeletedDate IS NULL "
+			+ "AND m.PublishedDate IS NOT NULL and md.constituencyId=:id";
+	
+
 	@Autowired
 	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	public List<MultiElection> findAllElection() {
 		return entityManager.createQuery(FIND_ALL).getResultList();
+	}
+	
+	public Long getCountDistricts(Integer consId){
+		if (entityManager.createQuery(COUNT_PUBLISHED_DISTRICT_RESULTS).setParameter("id", consId).getResultList()
+				.isEmpty()) {
+			return 0L;
+		} else {
+
+			return (Long) entityManager.createQuery(COUNT_PUBLISHED_DISTRICT_RESULTS).setParameter("id", consId)
+					.getSingleResult();
+		}
+	}
+
+	public Long getVotesOfCandidate(Integer id) {
+		if (entityManager.createQuery(FIND_VOTES_FOR_PARTY_BY_PARTY_ID).setParameter("id", id).getResultList()
+				.isEmpty()) {
+			return 0L;
+		} else {
+
+			return (Long) entityManager.createQuery(FIND_VOTES_FOR_PARTY_BY_PARTY_ID).setParameter("id", id)
+					.getSingleResult();
+		}
+	}
+	
+	public Long getAllPublishedVotes (){
+		if (entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES).getResultList()
+				.isEmpty()) {
+			return 0L;
+		} else {
+
+			return (Long) entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES)
+					.getSingleResult();
+		}
 	}
 
 	@Transactional
