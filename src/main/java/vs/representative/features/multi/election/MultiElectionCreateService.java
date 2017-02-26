@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import net.minidev.json.JSONArray;
+import vs.admin.features.admin.district.DistrictRepository;
 import vs.representative.features.corrupted.votes.CorruptedVotes;
 import vs.representative.features.corrupted.votes.CorruptedVotesRepository;
 import vs.utils.hibernate.validators.multiElection.MEValidationMessages;
@@ -25,10 +26,11 @@ public class MultiElectionCreateService {
 	private MultiElectionRepository multiElectionRepository;
 	@Autowired
 	private CorruptedVotesRepository corruptedVotesRepository;
-	
-	
-	
+	@Autowired
+	private DistrictRepository districtRepository;
+
 	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+	private Long numberOfVotes;
 
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity validatePackage(List<MultiVotesPackage> multiVotesPackage) {
@@ -52,8 +54,6 @@ public class MultiElectionCreateService {
 			}
 		}
 
-		
-		
 		if (validator.validate(spoiltVote).isEmpty() == false) {
 			Set<ConstraintViolation<CorruptedVotes>> constraintViolationsSpoilt = validator.validate(spoiltVote);
 			MEValidationMessages vMessagesSpoilt = new MEValidationMessages();
@@ -83,9 +83,26 @@ public class MultiElectionCreateService {
 			}
 		}
 
+		numberOfVotes = 0L;
+		for (MultiElection multiElection : multiVotes) {
+			numberOfVotes += multiElection.getVotes();
+		}
+		numberOfVotes += spoiltVote.getVotes();
+		if (districtRepository.findDistrictById(spoiltVote.getDistrict().getId()).getNumberOfVoters() != null) {
+			Long votesLimitInDistrict = districtRepository.findDistrictById(spoiltVote.getDistrict().getId())
+					.getNumberOfVoters();
+			if (numberOfVotes > votesLimitInDistrict) {
+				MEValidationMessages vMessageVoteLimit = new MEValidationMessages();
+				vMessageVoteLimit.setPartyId(null);
+				vMessageVoteLimit.setSpoiltVote(true);
+				vMessageVoteLimit.setOneMessage("Balsų kiekis viršija apylinkės rinkėjų skaičių");
+				jsonArray.add(vMessageVoteLimit);
+			}
+		}
+
 		if (jsonArray.isEmpty()) {
-			 multiElectionRepository.saveOrUpdate(multiVotes);
-			 corruptedVotesRepository.saveOrUpdate(spoiltVote);
+			multiElectionRepository.saveOrUpdate(multiVotes);
+			corruptedVotesRepository.saveOrUpdate(spoiltVote);
 			return ResponseEntity.status(HttpStatus.OK).body(jsonArray);
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(jsonArray);
