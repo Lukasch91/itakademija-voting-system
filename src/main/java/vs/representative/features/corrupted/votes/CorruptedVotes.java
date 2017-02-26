@@ -1,6 +1,5 @@
 package vs.representative.features.corrupted.votes;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;

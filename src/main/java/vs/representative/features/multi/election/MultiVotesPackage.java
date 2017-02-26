@@ -1,6 +1,5 @@
 package vs.representative.features.multi.election;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -38,13 +37,13 @@ public class MultiVotesPackage extends MultiElection {
 	}
 
 	@Override
-	public BigDecimal getVotes() {
+	public Long getVotes() {
 		// TODO Auto-generated method stub
 		return super.getVotes();
 	}
 
 	@Override
-	public void setVotes(BigDecimal votes) {
+	public void setVotes(Long votes) {
 		// TODO Auto-generated method stub
 		super.setVotes(votes);
 	}
