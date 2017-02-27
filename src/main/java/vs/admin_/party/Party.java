@@ -26,14 +26,14 @@ public class Party {
 	@Column
 	//@Valid
 	@UniqueParty
-	@NotBlank(message = "Patikrinkite partijos pavadinimą")					//check for spaces, null not valid
+	@NotBlank(message = "Pavadinimas negali būti tuščias")					//check for spaces, null not valid
 	@Size(min=5, max=100, message = "Partijos pavadinimas negali būti trumpesnis nei {min} ar ilgesnis nei {max}")		//title letter length
 	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“][^\\_]+$)", message = "Pavadinime naudojami netinkami simboliai")
 	@ApiModelProperty(value = "@NotBlank, @Size(min=5, max=70), @UniqueParty, @Patern")
 	private String title;
 
 	@Column
-	@NotBlank
+	@NotBlank(message = "Trumpinys negali būti tuščias")
 	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]{2}$)", message = "Partijos trumpinyje naudojami netinkami simboliai")
 	@Size(min=1, max=10, message = "Partijos trumpinio ilgis turi būti mažiausiai : {min} ir daugiausiai: {max} simbolių")
 	private String party_abbreviation;

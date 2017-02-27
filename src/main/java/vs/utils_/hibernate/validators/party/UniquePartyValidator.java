@@ -9,13 +9,12 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import vs.admin_.party.Party;
-import vs.admin_.representative.Representative;
 
 public class UniquePartyValidator
 		implements ConstraintValidator<UniqueParty, String> {
 
 	// ===============================================
-	private static final String FIND_ALL = "SELECT x FROM Party x";
+	private static final String FIND_ALL = "SELECT x FROM Party x WHERE deletedTime IS null";
 	@Autowired
 	private EntityManager em;
 	// ===============================================

@@ -69,7 +69,7 @@ var DistrictListContainer = React.createClass({
             onRemoveItem={this.handleRemoveItem}
             />
         <AddNewContainer redirectTo={'/add-dis/' + this.state.constit.id}/>
-        <button id="backToConstituency" type="button" className="btn btn-default" onClick={this.handleGoBack}>Back</button>
+        <button id="backToConstituency" type="button" className="btn btn-default" onClick={this.handleGoBack}>Atgal</button>
         </div>
         )
   }
