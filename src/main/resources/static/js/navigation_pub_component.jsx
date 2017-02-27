@@ -30,7 +30,8 @@ var NavigationPubComponent = React.createClass( {
                     <ul className="nav navbar-nav">
                         <NavLink to="/" onlyActiveOnIndex>Home</NavLink>
                         <NavLink id="candidates" to="/candidates">Kandidatai</NavLink>
-                        <NavLink id="results" to="/results">Rezultatai</NavLink>
+                        <NavLink id="results" to="/results">Vienmandatės rezultatai</NavLink>
+                        <NavLink id="multiresults" to="/multiresults">Daugiamandatės rezultatai</NavLink>
                     </ul>
                 </div>
             </nav>

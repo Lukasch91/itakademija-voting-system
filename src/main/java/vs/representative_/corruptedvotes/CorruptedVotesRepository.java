@@ -19,7 +19,10 @@ public class CorruptedVotesRepository {
 	private static final String FIND_FIND_BY_DISTRICT_ID = "SELECT sum(c.votes) FROM CorruptedVotes c left join c.district cd WHERE cd.id =:id and c.typeMulti ='false'";
 
 	private static final String FIND_ALL_MULTI_INVALID_VOTES = "SELECT sum(c.votes) FROM CorruptedVotes c WHERE c.published_date is not null and c.deleted_date is null and c.typeMulti='true'";
-
+	private static final String FIND_MULTI_ALL_BY_CONSTITUENCY_ID = "SELECT sum(c.votes) from CorruptedVotes c LEFT JOIN c.district cd WHERE cd.constituencyId = :id and c.typeMulti ='true'";
+	private static final String FIND_MULT_INVALID_VOTES_IN_DISTRICTS ="SELECT c.votes from CorruptedVotes c LEFT JOIN c.district cd where cd.id = :id and c.typeMulti='true'";
+	
+	
 	@Autowired
 	private EntityManager entityManager;
 
@@ -34,6 +37,22 @@ public class CorruptedVotesRepository {
 		} else
 			return (Long) entityManager.createQuery(FIND_BY_CONSTITUENCY_ID).setParameter("id", id).getSingleResult();
 	}
+	
+	public Long getMultiCorruptedVotesInDistrict(Integer id) {
+		if (entityManager.createQuery(FIND_MULT_INVALID_VOTES_IN_DISTRICTS).setParameter("id", id).getResultList().isEmpty()) {
+			return 0L;
+		} else
+			return (Long) entityManager.createQuery(FIND_MULT_INVALID_VOTES_IN_DISTRICTS).setParameter("id", id).getSingleResult();
+	}
+
+	public Long getMultiCorruptedVotesInConstituency(Integer id) {
+		if (entityManager.createQuery(FIND_MULTI_ALL_BY_CONSTITUENCY_ID).setParameter("id", id).getResultList()
+				.isEmpty()) {
+			return 0L;
+		} else
+			return (Long) entityManager.createQuery(FIND_MULTI_ALL_BY_CONSTITUENCY_ID).setParameter("id", id)
+					.getSingleResult();
+	}
 
 	public Long getCorruptedVotesByDistrict(Integer id) {
 		if (entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID).setParameter("id", id).getResultList().isEmpty()) {
@@ -42,7 +61,7 @@ public class CorruptedVotesRepository {
 			return (Long) entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID).setParameter("id", id).getSingleResult();
 		}
 	}
-	
+
 	public Long getAllMultiElectionInvalidVotes() {
 		if (entityManager.createQuery(FIND_ALL_MULTI_INVALID_VOTES).getResultList().isEmpty()) {
 			return 0L;
