@@ -20,8 +20,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import vs.Application;
-import vs.admin.features.party.model.Party;
-import vs.admin.features.party.model.PartyRepository;
+import vs.admin_.party.Party;
+import vs.admin_.party.PartyRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { Bd_PartyIT.Config.class,

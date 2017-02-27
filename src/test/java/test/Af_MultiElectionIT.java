@@ -20,7 +20,7 @@ import net.minidev.json.JSONObject;
 import net.minidev.json.parser.JSONParser;
 import net.minidev.json.parser.ParseException;
 import vs.Application;
-import vs.representative.features.multi.election.MultiElectionRepository;
+import vs.representative_.multielection.MultiElectionRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { Af_MultiElectionIT.Config.class,

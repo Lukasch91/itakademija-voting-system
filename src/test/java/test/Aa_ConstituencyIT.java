@@ -21,7 +21,7 @@ import net.minidev.json.JSONObject; //string to JSON
 import net.minidev.json.parser.JSONParser; //string to JSON
 import net.minidev.json.parser.ParseException; //string to JSON
 import vs.Application;
-import vs.admin.features.admin.constituency.ConstituencyRepository;
+import vs.admin_.constituency.ConstituencyRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { Aa_ConstituencyIT.Config.class,

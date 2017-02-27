@@ -15,8 +15,8 @@ import springfox.documentation.service.ApiInfo; //swagger
 import springfox.documentation.spi.DocumentationType; //swagger
 import springfox.documentation.spring.web.plugins.Docket; //swagger
 import springfox.documentation.swagger2.annotations.EnableSwagger2; //swagger
-import vs.admin.features.candidate.model.storage.StorageProperties;// file upload
-import vs.admin.features.candidate.model.storage.StorageService;// file upload
+import vs.utils_.storage.StorageProperties;
+import vs.utils_.storage.StorageService;
 
 @EnableSwagger2 // swagger
 @SpringBootApplication

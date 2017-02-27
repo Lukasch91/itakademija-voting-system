@@ -22,8 +22,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import vs.Application;
-import vs.representative.features.multi.election.MultiElection;
-import vs.representative.features.multi.election.MultiElectionRepository;
+import vs.representative_.multielection.MultiElection;
+import vs.representative_.multielection.MultiElectionRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { Bf_MultiElectionIT.Config.class,

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import vs.admin.features.admin.representative.Representative;
+import vs.admin_.representative.Representative;
 
 @Controller
 public class LinkController {

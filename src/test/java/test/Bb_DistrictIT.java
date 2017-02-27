@@ -22,8 +22,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import vs.Application;
-import vs.admin.features.admin.district.District;
-import vs.admin.features.admin.district.DistrictRepository;
+import vs.admin_.district.District;
+import vs.admin_.district.DistrictRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { Bb_DistrictIT.Config.class,

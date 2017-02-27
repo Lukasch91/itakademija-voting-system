@@ -22,8 +22,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import vs.Application;
-import vs.admin.features.admin.representative.Representative;
-import vs.admin.features.admin.representative.RepresentativeRepository;
+import vs.admin_.representative.Representative;
+import vs.admin_.representative.RepresentativeRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {

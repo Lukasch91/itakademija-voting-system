@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import vs.admin.features.admin.representative.Representative;
-import vs.admin.features.admin.representative.RepresentativeRepository;
+import vs.admin_.representative.Representative;
+import vs.admin_.representative.RepresentativeRepository;
 
 @Service
 public class UserRepositoryUserDetailsService implements UserDetailsService {

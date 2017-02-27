@@ -21,8 +21,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import vs.Application;
-import vs.admin.features.candidate.model.Candidate;
-import vs.admin.features.candidate.model.CandidateRepository;
+import vs.admin_.candidate.Candidate;
+import vs.admin_.candidate.CandidateRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {Be_CandidateIT.Config.class,

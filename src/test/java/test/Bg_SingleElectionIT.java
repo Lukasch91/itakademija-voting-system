@@ -21,8 +21,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import vs.Application;
-import vs.representative.features.single.election.SingleElection;
-import vs.representative.features.single.election.SingleElectionRepository;
+import vs.representative_.singleelection.SingleElection;
+import vs.representative_.singleelection.SingleElectionRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {

@@ -18,7 +18,7 @@ import net.minidev.json.JSONObject; //string to JSON
 import net.minidev.json.parser.JSONParser; //string to JSON
 import net.minidev.json.parser.ParseException; //string to JSON
 import vs.Application;
-import vs.admin.features.admin.representative.RepresentativeRepository;
+import vs.admin_.representative.RepresentativeRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {
