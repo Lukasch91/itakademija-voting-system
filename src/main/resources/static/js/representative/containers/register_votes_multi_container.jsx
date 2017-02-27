@@ -1,4 +1,4 @@
-var TestRegisterVotesMultiContainer = React.createClass( {
+var RegisterVotesMultiContainer = React.createClass( {
 
     getInitialState: function() {
         return {
@@ -145,7 +145,7 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                                 className="form-control"
                                 onChange={self.handleMultiVotesChange.bind( self, party.id )} />
                         </td>
-                        <TestValidateVotesMultiContainer key={"validation" + party.id} party={party} isSpoilt={false} validation={self.state.validationArray} />
+                        <ValidateVotesMultiContainer key={"validation" + party.id} party={party} isSpoilt={false} validation={self.state.validationArray} />
                     </tr>
 
                 );
@@ -172,7 +172,7 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                                     <td>
                                         <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
                                     </td>
-                                    <TestValidateVotesMultiContainer key={'spoiltMultivote'} party={null} isSpoilt={true} validation={self.state.validationArray} />
+                                    <ValidateVotesMultiContainer key={'spoiltMultivote'} party={null} isSpoilt={true} validation={self.state.validationArray} />
                                 </tr>
                             </tbody>
                         </table>
@@ -217,4 +217,4 @@ var TestRegisterVotesMultiContainer = React.createClass( {
     }
 });
 
-window.TestRegisterVotesMultiContainer = TestRegisterVotesMultiContainer;
+window.RegisterVotesMultiContainer = RegisterVotesMultiContainer;

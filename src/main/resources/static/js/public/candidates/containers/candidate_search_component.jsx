@@ -1,4 +1,4 @@
-var CandidateSearchComponen = React.createClass( {
+var CandidateSearchComponent = React.createClass( {
     
     getInitialState: function() {
         return {
@@ -117,5 +117,5 @@ var CandidateSearchComponen = React.createClass( {
     }
 });
 
-window.CandidateSearchComponen = CandidateSearchComponen;
+window.CandidateSearchComponent = CandidateSearchComponent;
 

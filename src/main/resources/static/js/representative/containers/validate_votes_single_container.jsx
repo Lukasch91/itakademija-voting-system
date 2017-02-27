@@ -1,4 +1,4 @@
-var TestValidateVotesSingleContainer = React.createClass( {
+var ValidateVotesSingleContainer = React.createClass( {
 
 
     render: function() {
@@ -47,4 +47,4 @@ var TestValidateVotesSingleContainer = React.createClass( {
     }
 });
 
-window.TestValidateVotesSingleContainer = TestValidateVotesSingleContainer;
+window.ValidateVotesSingleContainer = ValidateVotesSingleContainer;

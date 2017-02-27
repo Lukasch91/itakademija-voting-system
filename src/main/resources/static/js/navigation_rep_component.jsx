@@ -29,11 +29,9 @@ var NavigationRepComponent = React.createClass( {
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
                         <NavLink to="/" onlyActiveOnIndex>Home</NavLink>
-                        <NavLink id="singleVoteRegistration" to="/reg-votes-multi">Balsų registravimas (daug.)</NavLink>
-                        <NavLink id="multiVoteRegistration" to="/reg-votes-single">Balsų registravimas (vien.)</NavLink>
-                        <NavLink id="testSingleVoteRegistration" to="/reg-votes-testSingle">Test Balsų registravimas (vien.)</NavLink>
-                        <NavLink id="testMultiVoteRegistration" to="/reg-votes-testMulti">Test Balsų registravimas (daug.)</NavLink>
-                    </ul>
+                        <NavLink id="multiVoteRegistration" to="/reg-votes-multi">Balsų registravimas (daug.)</NavLink>
+                        <NavLink id="singleVoteRegistration" to="/reg-votes-single">Balsų registravimas (vien.)</NavLink>
+                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <button id="logout" type="button" className="btn btn-default" onClick={this.props.onLogoutClick}>Atsijungti</button>
                     </ul>

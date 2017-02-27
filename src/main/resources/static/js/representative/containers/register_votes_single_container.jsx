@@ -1,4 +1,4 @@
-var TestRegisterVotesSingleContainer = React.createClass( {
+var RegisterVotesSingleContainer = React.createClass( {
 
     getInitialState: function() {
         return {
@@ -145,7 +145,7 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                                 className="form-control"
                                 onChange={self.handleSingleVotesChange.bind( self, candidate.candidateID )} />
                         </td>
-                        <TestValidateVotesSingleContainer key={"validation" + candidate.candidateID} candidate={candidate} isSpoilt={false} validation={self.state.validationArray} />
+                        <ValidateVotesSingleContainer key={"validation" + candidate.candidateID} candidate={candidate} isSpoilt={false} validation={self.state.validationArray} />
                     </tr>
                 );
             });
@@ -168,7 +168,7 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                                     <td>
                                         <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
                                     </td>
-                                    <TestValidateVotesSingleContainer key={'spoiltSinglevote'} candidate={null} isSpoilt={true} validation={self.state.validationArray} />
+                                    <ValidateVotesSingleContainer key={'spoiltSinglevote'} candidate={null} isSpoilt={true} validation={self.state.validationArray} />
                                 </tr>
                             </tbody>
                         </table>
@@ -213,4 +213,4 @@ var TestRegisterVotesSingleContainer = React.createClass( {
     }
 });
 
-window.TestRegisterVotesSingleContainer = TestRegisterVotesSingleContainer;
+window.RegisterVotesSingleContainer = RegisterVotesSingleContainer;

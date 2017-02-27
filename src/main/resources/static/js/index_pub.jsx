@@ -24,7 +24,7 @@ ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={HomeComponent} />
-        <Route path="/candidates" component={CandidateSearchComponen} />
+        <Route path="/candidates" component={CandidateSearchComponent} />
         <Route path="/results" component={SingleElectionsResultsContainer} />
         <Route path="/disresult/:conId" component={SingleElectionsDistrictResultsContainer} />
        <Route path="/onedisresult/:disId" component={SingleElectionsOneDistrictResultsContainer} />
