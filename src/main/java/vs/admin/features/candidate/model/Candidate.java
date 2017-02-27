@@ -179,5 +179,4 @@ public class Candidate {
 			return false;
 		return true;
 	}
-
 }

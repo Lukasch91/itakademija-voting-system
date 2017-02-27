@@ -34,9 +34,7 @@ public class MultiElectionController {
 	@ApiOperation(value = "Create multi election result.", notes = "Data: [{\"id\": null," + " \"party\": {\"id\": 1},"
 			+ "\"district\": { \"id\": 3}," + " \"votes\": 99}]")
 	public ResponseEntity createOrUpdateMulti(@RequestBody List<MultiVotesPackage> multiVotesPackage) {
-
 		return multiElectionCreateService.validatePackage(multiVotesPackage);
-
 	}
 
 	@RequestMapping(value = "/api/reg-votes-multi/{id}", method = RequestMethod.GET)

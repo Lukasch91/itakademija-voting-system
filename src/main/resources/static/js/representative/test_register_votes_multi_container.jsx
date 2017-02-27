@@ -5,10 +5,10 @@ var TestRegisterVotesMultiContainer = React.createClass( {
             parties: [],
             multiResults: [],
             spoiltVote: {},
-            
+
             enteredResults: [],
             enteredSpoiltVote: {},
-            
+
             currentDistrictId: 0,
             validationArray: []
         };
@@ -23,11 +23,11 @@ var TestRegisterVotesMultiContainer = React.createClass( {
             .then( function( response ) {
                 self.setState( { currentDistrictId: response.data.districtId });
                 axios.all( [
-                    axios.get( '/api/party/'),
-                    axios.get( '/api/reg-votes-multi' ), 
+                    axios.get( '/api/party/' ),
+                    axios.get( '/api/reg-votes-multi' ),
                     axios.get( 'api/invalid-votes/type/' + true )
                 ] )
-                    .then( axios.spread( function( partyResponse, multiElectionResponse, spoiltVotesResponse ) { 
+                    .then( axios.spread( function( partyResponse, multiElectionResponse, spoiltVotesResponse ) {
 
                         //Find spoiltVote in a list of spoiltVotes by district id 
                         var spoiltVote = null;
@@ -37,15 +37,15 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                             }
                         }
                         //Find multiResults in a list of multiResults by district id
-                        var multiVotesAll =[];
-                        
+                        var multiVotesAll = [];
+
                         for ( var i = 0; i < multiElectionResponse.data.length; i++ ) {
                             if ( multiElectionResponse.data[i].district.id == self.state.currentDistrictId ) {
-                                multiVotesAll.push(multiElectionResponse.data[i]);
+                                multiVotesAll.push( multiElectionResponse.data[i] );
                             }
                         }
-                        
-                        
+
+
                         self.setState( {
                             parties: partyResponse.data,
                             multiResults: multiVotesAll,
@@ -54,30 +54,30 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                     }) )
                     .then( function() {
                         //If there are no results create initial objects for entering results
-                        if ( self.state.multiResults[0] == null ) { 
+                        if ( self.state.multiResults[0] == null ) {
                             var resultsTemplate = [];
                             for ( var i = 0; i < self.state.parties.length; i++ ) {
-                                resultsTemplate.push({
-                                                id: null,
-                                                party: { id: self.state.parties[i].id },
-                                                district: { id: self.state.currentDistrictId }
-                                                })
-                                        
+                                resultsTemplate.push( {
+                                    id: null,
+                                    party: { id: self.state.parties[i].id },
+                                    district: { id: self.state.currentDistrictId }
+                                })
+
                             }
                             self.setState( { enteredResults: resultsTemplate });
-                            
+
                             var spoiltVoteObject = null;
-                            spoiltVoteObject = ({ 
-                                                id: null, 
-                                                typeMulti: true, 
-                                                district: { id: self.state.currentDistrictId } 
-                                                });
-                            self.setState( { enteredSpoiltVote: spoiltVoteObject });  
+                            spoiltVoteObject = ( {
+                                id: null,
+                                typeMulti: true,
+                                district: { id: self.state.currentDistrictId }
+                            });
+                            self.setState( { enteredSpoiltVote: spoiltVoteObject });
                         }
                     });
             });
     },
-    
+
     handleSpoiltVotesChange: function( districtId, event ) {
         var self = this;
         var spoiltVoteUpdate = self.state.enteredSpoiltVote;
@@ -91,52 +91,51 @@ var TestRegisterVotesMultiContainer = React.createClass( {
         var updateResults = self.state.enteredResults;
         for ( var i = 0; i < updateResults.length; i++ ) {
             if ( updateResults[i].party.id == passPartyId ) {
-                updateResults[i].votes = event.target.value; 
+                updateResults[i].votes = event.target.value;
             }
         }
         self.setState( { enteredResults: updateResults });
     },
 
     handleExport: function() {
-      var self = this;
-   
-      var multiVotesPackage = [];
-      multiVotesPackage = self.state.enteredResults.slice();
-      multiVotesPackage.push(self.state.enteredSpoiltVote);
-        
+        var self = this;
+
+        var multiVotesPackage = [];
+        multiVotesPackage = self.state.enteredResults.slice();
+        multiVotesPackage.push( self.state.enteredSpoiltVote );
+
         axios.post( '/api/reg-votes-multi', multiVotesPackage )
-        .then( function( response )  {
-                            
-            console.log( "sent" );
-            console.log( response );
-            if(response.status == 200){
-              self.componentWillMount();
-            } else {
-            }
-    
-        })
-        .catch( function( error ) {
-            if ( error.response.status == 400 ) {
-                self.setState( { validationArray: error.response.data });
-                console.log( "___Error messages:___" );
-                console.log(error.response.data);
-            }
-            else {
-                console.log( "___FATALITY___" );
-                console.log( error.response );
-            }
-    
-        });
+            .then( function( response ) {
+
+                console.log( "sent" );
+                console.log( response );
+                if ( response.status == 200 ) {
+                    self.componentWillMount();
+                } else {
+                }
+
+            })
+            .catch( function( error ) {
+                if ( error.response.status == 400 ) {
+                    self.setState( { validationArray: error.response.data });
+                    console.log( "___Error messages:___" );
+                    console.log( error.response.data );
+                }
+                else {
+                    console.log( "___FATALITY___" );
+                    console.log( error.response );
+                }
+            });
     },
-    
+
     render: function() {
         var self = this;
 
-        if ( ( self.state.multiResults[0] == null ) && ( self.state.spoiltVote == null ) ) { 
+        if ( ( self.state.multiResults[0] == null ) && ( self.state.spoiltVote == null ) ) {
 
             var partiesList = this.state.parties.map( function( party, index ) {
                 return (
-             
+
                     <tr key={'row' + index}>
                         <td>{party.title}</td>
                         <td>{party.party_abbreviation}</td>
@@ -146,13 +145,12 @@ var TestRegisterVotesMultiContainer = React.createClass( {
                                 className="form-control"
                                 onChange={self.handleMultiVotesChange.bind( self, party.id )} />
                         </td>
-                        <TestValidateVotesMultiContainer key={"validation"+party.id} party={party} isSpoilt={false} validation={self.state.validationArray} />
-  
+                        <TestValidateVotesMultiContainer key={"validation" + party.id} party={party} isSpoilt={false} validation={self.state.validationArray} />
                     </tr>
 
                 );
             });
-            
+
             return (
                 <div>
                     <h3>Daugiamandatės</h3>

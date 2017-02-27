@@ -1,6 +1,5 @@
 package vs.representative.features.single.election;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,8 +8,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import vs.representative.features.election.single.results.SingleElectionResult;
 
 @Repository
 public class SingleElectionRepository {
@@ -66,7 +63,7 @@ public class SingleElectionRepository {
 	@Autowired
 	private EntityManager em;
 
-	@SuppressWarnings("unchecked")
+
 
 	public Long getVotesOfCandidate(Integer candidateId, Integer districtId) {
 		if (em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID).setParameter("candidateId", candidateId)
@@ -78,7 +75,8 @@ public class SingleElectionRepository {
 					.setParameter("districtId", districtId).getSingleResult();
 		}
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	public List<SingleElection> findAllSingleElectionResults() {
 		return em.createQuery(FIND_ALL).getResultList();
 	}

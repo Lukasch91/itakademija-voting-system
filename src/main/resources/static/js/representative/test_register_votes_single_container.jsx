@@ -5,9 +5,12 @@ var TestRegisterVotesSingleContainer = React.createClass( {
             candidates: [],
             singleResults: [],
             spoiltVote: {},
+
             enteredResults: [],
             enteredSpoiltVote: {},
-            currentDistrictId: 0
+
+            currentDistrictId: 0,
+            validationArray: []
         };
     },
 
@@ -26,26 +29,50 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                 ] )
                     .then( axios.spread( function( candidateResponse, singleElectionResponse, spoiltVotesResponse ) {
 
+                        //Find spoiltVote in a list of spoiltVotes by district id
                         var spoiltVote = null;
                         for ( var i = 0; i < spoiltVotesResponse.data.length; i++ ) {
                             if ( spoiltVotesResponse.data[i].district.id == self.state.currentDistrictId ) {
                                 spoiltVote = spoiltVotesResponse.data[i];
                             }
                         }
+                        //Find singleResults in a list of singleResults by district id
+                        var singleVotesAll = [];
+
+                        for ( var i = 0; i < singleElectionResponse.data.length; i++ ) {
+                            if ( singleElectionResponse.data[i].singleDistrict.id == self.state.currentDistrictId ) {
+                                singleVotesAll.push( singleElectionResponse.data[i] );
+                            }
+                        }
+
+
                         self.setState( {
                             candidates: candidateResponse.data,
-                            singleResults: singleElectionResponse.data,
+                            singleResults: singleVotesAll,
                             spoiltVote: spoiltVote
                         });
                     }) )
                     .then( function() {
+                        //If there are no results create initial objects for entering results
                         if ( self.state.singleResults[0] == null ) {
                             var resultsTemplate = [];
                             for ( var i = 0; i < self.state.candidates.length; i++ ) {
+                                resultsTemplate.push( {
+                                    singleId: null,
+                                    singleCandidate: { candidateID: self.state.candidates[i].candidateID },
+                                    singleDistrict: { id: self.state.currentDistrictId }
+                                })
 
-                                resultsTemplate.push( { singleId: null, singleCandidate: { candidateID: self.state.candidates[i].candidateID }, singleDistrict: { id: self.state.currentDistrictId } })
                             }
                             self.setState( { enteredResults: resultsTemplate });
+
+                            var spoiltVoteObject = null;
+                            spoiltVoteObject = ( {
+                                singleId: null,
+                                typeMulti: false,
+                                singleDistrict: { id: self.state.currentDistrictId }
+                            });
+                            self.setState( { enteredSpoiltVote: spoiltVoteObject });
                         }
                     });
             });
@@ -53,8 +80,9 @@ var TestRegisterVotesSingleContainer = React.createClass( {
 
     handleSpoiltVotesChange: function( districtId, event ) {
         var self = this;
-        var spoiltVoteObject = ( { id: null, typeMulti: false, district: { id: districtId }, votes: event.target.value });
-        self.setState( { enteredSpoiltVote: spoiltVoteObject });
+        var spoiltVoteUpdate = self.state.enteredSpoiltVote;
+        spoiltVoteUpdate.singleVotes = event.target.value;
+        self.setState( { enteredSpoiltVote: spoiltVoteUpdate });
 
     },
 
@@ -72,18 +100,32 @@ var TestRegisterVotesSingleContainer = React.createClass( {
     handleExport: function() {
         var self = this;
 
-        axios.all( [
-            axios.post( '/api/singleelection', self.state.enteredResults ),
-            axios.post( '/api/invalid-votes', self.state.enteredSpoiltVote )
+        var singleVotesPackage = [];
+        singleVotesPackage = self.state.enteredResults.slice();
+        singleVotesPackage.push( self.state.enteredSpoiltVote );
 
-        ] )
-            .then( axios.spread( function( singleElectionResponse, spoiltVotesResponse ) {
+        axios.post( '/api/singleelection', singleVotesPackage )
+            .then( function( response ) {
+
                 console.log( "sent" );
-                console.log( singleElectionResponse );
-                console.log( spoiltVotesResponse );
+                console.log( response );
+                if ( response.status == 201 ) {
+                    self.componentWillMount();
+                } else {
+                }
 
-                self.componentWillMount();
-            }) );
+            })
+            .catch( function( error ) {
+                if ( error.response.status == 400 ) {
+                    self.setState( { validationArray: error.response.data });
+                    console.log( "___Error messages:___" );
+                    console.log( error.response.data );
+                }
+                else {
+                    console.log( "___FATALITY___" );
+                    console.log( error.response );
+                }
+            });
     },
 
     render: function() {
@@ -103,6 +145,7 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                                 className="form-control"
                                 onChange={self.handleSingleVotesChange.bind( self, candidate.candidateID )} />
                         </td>
+                        <TestValidateVotesSingleContainer key={"validation" + candidate.candidateID} candidate={candidate} isSpoilt={false} validation={self.state.validationArray} />
                     </tr>
                 );
             });
@@ -124,7 +167,9 @@ var TestRegisterVotesSingleContainer = React.createClass( {
                                 <tr><td>Sugadinti balsai</td>
                                     <td>
                                         <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
-                                    </td></tr>
+                                    </td>
+                                    <TestValidateVotesSingleContainer key={'spoiltSinglevote'} candidate={null} isSpoilt={true} validation={self.state.validationArray} />
+                                </tr>
                             </tbody>
                         </table>
                     </div>
