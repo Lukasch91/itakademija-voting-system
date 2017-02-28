@@ -15,7 +15,7 @@ var LoggedInRepresentativeInfoContainer = React.createClass( {
                 self.setState( { currentUser: responseU.data });
             })
             .then( function( e ) {
-                axios.get( '/api/district/' + self.state.currentUser.districtId )
+                axios.get( '/api/REPRES/district/' + self.state.currentUser.districtId )
                     .then( function( responseD ) {
                         self.setState( { district: responseD.data });
                     });

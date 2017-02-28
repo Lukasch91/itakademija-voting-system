@@ -17,48 +17,46 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@Api // swagger
+@Api
 @CrossOrigin
 public class RepresentativeController {
 
 	@Autowired
 	private RepresentativeRepository representativeRepository;
 
-	@RequestMapping(value = "/api/representative", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/ADMIN/representative", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get all representatives") // swagger
+	@ApiOperation(value = "[UNUSED - ADMIN] - Get all representatives")
 	public List<Representative> findAllRepresentatives() {
 		return representativeRepository.findAllRepresentatives();
 	}
-/*============================================================*/
-	@RequestMapping(value = "/api/representative", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/api/ADMIN/representative", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-	@ApiOperation(value = "Create or update representative", notes = "Data: {\"districtId\": 13, "
+	@ApiOperation(value = "[ADMIN] - Create or update representative", notes = "Data: {\"districtId\": 13, "
 			+ "\"email\": \"Sablonskis@gmail.com\", \"id\": null, \"loginName\": \"Sab\", "
-			+ "\"name\": \"Sablonius\", \"password\": \"xxx\", \"surname\": \"SABLONSKIS\"}") //swaggerino
-	
+			+ "\"name\": \"Sablonius\", \"password\": \"xxx\", \"surname\": \"SABLONSKIS\"}")
 	public Representative createOrUpdateRepresentative(@Valid @RequestBody Representative representative) {
 		return representativeRepository.saveOrUpdateRepresentative(representative);		
 	}
-	/*============================================================*/
-	@RequestMapping(value = "/api/representative/{id}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/api/ADMIN/representative/{id}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get representative by id") // swagger
+	@ApiOperation(value = "[ADMIN] - Get representative by id")
 	public Representative getRepresentativeById(@PathVariable("id") Integer id) {
 		return representativeRepository.findRepresentativeById(id);
 	}
 
-	@RequestMapping(value = "/api/representative/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/ADMIN/representative/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "Delete representative by id(realDelete)") // swagger
+	@ApiOperation(value = "[ADMIN] - Delete representative by id(realDelete)")
 	public void deleteRepresentativeById(@PathVariable("id") Integer id) {
 		representativeRepository.deleteRepresentative(id);
 	}
 	
-	@RequestMapping(value = "/api/representative/find", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/ADMIN/representative/find", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Find By LoginName") //swaggerino
-	
+	@ApiOperation(value = "[UNUSED - ADMIN] - Find By LoginName")
 	public Representative findByLogin( @RequestBody String loginName) {
 		return representativeRepository.findByLoginName(loginName);		
 	}

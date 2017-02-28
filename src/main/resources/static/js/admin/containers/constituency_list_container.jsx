@@ -8,7 +8,7 @@ var ConstituencyListContainer = React.createClass( {
 
     componentWillMount: function() {
         var self = this;
-        axios.get( '/api/constituency' )
+        axios.get( '/api/ADMIN/constituency' )
             .then( function( response ) {
                 self.setState( {
                     constituencies: response.data
@@ -27,9 +27,9 @@ var ConstituencyListContainer = React.createClass( {
     handleRemoveItem: function( constituency ) {
         var self = this;
         return function() {
-            axios.put( '/api/constituency/' + constituency.id ).then( function( response ) {
+            axios.put( '/api/ADMIN/constituency/' + constituency.id ).then( function( response ) {
                 console.log( 'item deleted');
-                axios.get( '/api/constituency' )
+                axios.get( '/api/ADMIN/constituency' )
                     .then( function( response ) {
                         self.setState( {
                             constituencies: response.data

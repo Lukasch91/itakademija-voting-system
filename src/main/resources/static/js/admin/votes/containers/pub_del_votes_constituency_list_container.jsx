@@ -8,7 +8,7 @@ var PubDelVotesConstituencyListContainer = React.createClass({
 
     componentWillMount: function() {
         var self = this;
-        axios.get( '/api/constituency' )
+        axios.get( '/api/ADMIN/constituency' )
             .then( function( response ) {
                 self.setState( {
                     constituencies: response.data

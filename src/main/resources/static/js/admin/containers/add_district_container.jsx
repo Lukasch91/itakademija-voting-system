@@ -25,7 +25,7 @@ var AddDistrictContainer = React.createClass( {
         var self = this;
         var success = 0;
 
-        axios.post( '/api/district', {
+        axios.post( '/api/ADMIN/district', {
             title: this.state.district.title,
             numberOfVoters: this.state.district.numberOfVoters,
             address: this.state.district.address,

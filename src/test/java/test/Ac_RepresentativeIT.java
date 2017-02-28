@@ -25,7 +25,7 @@ import vs.admin_.representative.RepresentativeRepository;
 		Ac_RepresentativeIT.Config.class, Application.class })
 public class Ac_RepresentativeIT {
 
-	private static final String URI = "/api/representative";
+	private static final String URI = "/api/ADMIN/representative";
 	JSONParser parser = new JSONParser(0);
 
 	@Autowired

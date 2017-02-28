@@ -28,7 +28,7 @@ import vs.admin_.constituency.ConstituencyRepository;
 		Application.class })
 public class Aa_ConstituencyIT {
 
-	private static final String URI = "/api/constituency";
+	private static final String URI = "/api/ADMIN/constituency";
 	JSONParser parser = new JSONParser(0);
 
 	@Autowired

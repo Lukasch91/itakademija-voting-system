@@ -32,7 +32,7 @@ var AdministrateRepresentativeContainer = React.createClass( {
         e.preventDefault();
         var self = this;
         var success = 0;
-        axios.post( '/api/representative', {
+        axios.post( '/api/ADMIN/representative', {
             name: this.state.representative.name,
             surname: this.state.representative.surname,
             loginName: this.state.representative.loginName,

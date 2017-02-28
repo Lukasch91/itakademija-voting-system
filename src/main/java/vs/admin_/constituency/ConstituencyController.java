@@ -23,31 +23,34 @@ public class ConstituencyController {
 	@Autowired
 	private ConstituencyService constituencyService;
 
-	@RequestMapping(value = "/api/constituency", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/ADMIN/constituency", method = RequestMethod.GET)
+	@ApiOperation(value = "[ADMIN] - ")
 	public List<Constituency> findAllConstituencies() {
 		return constituencyRepository.findAllConstituencies();
 	}
 
-	@RequestMapping(value = "/api/constituencyExtended", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/ADMIN/constituencyExtended", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Find Constituencies and add Number of candidates")
+	@ApiOperation(value = "[ADMIN] - Find Constituencies and add Number of candidates")
 	public List<ConstituencyExtension> findAllConstituenciesExtended() {
 		return constituencyService.findAllConstituenciesExtended();
 	}
 
-	@RequestMapping(value = "/api/constituency", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/ADMIN/constituency", method = RequestMethod.POST)
+	@ApiOperation(value = "[ADMIN] - ")
 	public Constituency createOrUpdateConstituency(@Valid @RequestBody Constituency con) {
 		return constituencyRepository.saveOrUpdate(con);
 	}
 
-	@RequestMapping(value = "/api/constituency/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/ADMIN/constituency/{id}", method = RequestMethod.GET)
+	@ApiOperation(value = "[ADMIN] - ")
 	public Constituency getConstituencyById(@PathVariable("id") Integer id) {
 		return constituencyRepository.findConstituencyById(id);
 	}
 
-	@RequestMapping(value = "/api/constituency/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/ADMIN/constituency/{id}", method = RequestMethod.PUT)
+	@ApiOperation(value = "[ADMIN] - ")
 	public void deteleConstituencyById(@PathVariable("id") Integer id) {
 		constituencyRepository.deleteConstituency(id);
 	}
-
 }

@@ -11,13 +11,13 @@ var DeleteVotesContainer = React.createClass( {
 
     componentWillMount: function() {
         var self = this;
-        axios.get( '/api/constituency' )
+        axios.get( '/api/ADMIN/constituency' )
             .then( function( response ) {
                 self.setState( {
                     constituencies: response.data
                 });
             });
-        axios.get( '/api/district' )
+        axios.get( '/api/ADMIN/district' )
             .then( function( response ) {
                 self.setState( {
                     districts: response.data

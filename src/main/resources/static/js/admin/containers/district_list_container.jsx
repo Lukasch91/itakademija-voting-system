@@ -10,7 +10,7 @@ var DistrictListContainer = React.createClass({
     componentWillMount: function() {
         var self = this;
         var conId = this.props.params.conId;
-        axios.get('/api/constituency/' + conId)
+        axios.get('/api/ADMIN/constituency/' + conId)
         .then(function (response) {
             self.setState({ 
                 districts: response.data.districts,
@@ -38,10 +38,10 @@ var DistrictListContainer = React.createClass({
     handleRemoveItem: function(district) { 
         var self = this; 
         return function() { 
-          axios.put('/api/district/'+ district.id).then(function(response) { 
+          axios.put('/api/ADMIN/district/'+ district.id).then(function(response) { 
               console.log('item deleted'); 
               var conId = self.props.params.conId;
-              axios.get('/api/constituency/' + conId) 
+              axios.get('/api/ADMIN/constituency/' + conId) 
               .then(function (response) { 
                   self.setState({  
                       districts: response.data.districts,

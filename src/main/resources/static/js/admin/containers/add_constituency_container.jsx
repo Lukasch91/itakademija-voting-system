@@ -22,7 +22,7 @@ var AddConstituencyContainer = React.createClass( {
         e.preventDefault();
         var self = this;
         var success = 0;
-        axios.post( '/api/constituency', this.state.constituency )
+        axios.post( '/api/ADMIN/constituency', this.state.constituency )
             .then( function( response ) {
                 success = 1;
                 console.log( "-----------------" + success );

@@ -9,7 +9,7 @@ var AdministrateSingleCandidatesContainer = React.createClass( {
 
     componentWillMount: function() {
         var self = this;
-        axios.get( '/api/constituencyExtended' )
+        axios.get( '/api/ADMIN/constituencyExtended' )
             .then( function( response ) {
                 self.setState( {
                     constituencies: response.data

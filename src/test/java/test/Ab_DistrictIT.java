@@ -25,7 +25,7 @@ import vs.admin_.district.DistrictRepository;
 		Application.class })
 public class Ab_DistrictIT {
 
-	private static final String URI = "/api/district"; // keisti++
+	private static final String URI = "/api/ADMIN/district"; // keisti++
 	JSONParser parser = new JSONParser(0);
 
 	@Autowired

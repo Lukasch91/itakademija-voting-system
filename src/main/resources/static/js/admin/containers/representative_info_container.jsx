@@ -9,7 +9,7 @@ var RepresentativeInfoContainer = React.createClass({
     componentWillMount: function() {
         var self = this;
         var repId = this.props.params.repId;
-        axios.get('/api/representative/' + repId)
+        axios.get('/api/ADMIN/representative/' + repId)
         .then(function (response) {
             self.setState({ 
                 representative: response.data
@@ -23,7 +23,7 @@ var RepresentativeInfoContainer = React.createClass({
         var self = this; 
         var repId = this.props.params.repId;
          
-          axios.delete('/api/representative/'+ repId).then(function(response) { 
+          axios.delete('/api/ADMIN/representative/'+ repId).then(function(response) { 
               console.log('item deleted');            
               var district = self.state.representative.districtId;
               console.log(district);
