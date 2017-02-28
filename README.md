@@ -14,14 +14,14 @@ Prisijungiama kai programa paleista
 
 ###Integraciniai testai:
   
-  1) Istrinam duombaze
-  
-  2) Eclipse aplinkoje pasileidziame testu bendrines klases arba pavienius testus.
-
+  Eclipse aplinkoje pasileidziame testu bendrines klases arba pavienius testus.
 
 ###Login
 Admin - Admin
 Password - pass
+
+Representive - ZV, AM - and others
+Password - 123
 
 ###El.paštas
 LINK:		https://www.zoho.com/mail/login.html
