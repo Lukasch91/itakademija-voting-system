@@ -10,6 +10,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import vs.utils_.password.CustomPassword;
 
 
 @Configuration
@@ -17,6 +20,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @ComponentScan(basePackageClasses = UserRepositoryUserDetailsService.class)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	  public CustomPassword bCryptPasswordEncoder() {
+	        return new CustomPassword();
+	    }
+	
 	@Autowired
     private UserDetailsService userDetailsService;
 	
@@ -46,7 +53,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.inMemoryAuthentication()
 			.withUser("admin").password("pass").roles("ADMIN");
 		auth
-            .userDetailsService(userDetailsService);
+            .userDetailsService(userDetailsService)
+           .passwordEncoder(bCryptPasswordEncoder());
         
     }
 	

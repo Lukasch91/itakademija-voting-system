@@ -59,9 +59,7 @@ public class PasswordService {
 	@Transactional
 	public String PassHashing(String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String passwordMd5 = DatatypeConverter
-				.printHexBinary(MessageDigest.getInstance("MD5").digest(password.getBytes("UTF-8")));
-		String passwordSalt = passwordEncoder.encode(passwordMd5);
+		String passwordSalt = passwordEncoder.encode(password);
 		return passwordSalt;
 
 	}
