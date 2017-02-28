@@ -24,8 +24,8 @@ var RegisterVotesMultiContainer = React.createClass( {
                 self.setState( { currentDistrictId: response.data.districtId });
                 axios.all( [
                     axios.get( '/api/party/' ),
-                    axios.get( '/api/reg-votes-multi' ),
-                    axios.get( 'api/invalid-votes/type/' + true )
+                    axios.get( '/api/REPRES/reg-votes-multi' ),
+                    axios.get( '/api/REPRES/invalid-votes/type/' + true )
                 ] )
                     .then( axios.spread( function( partyResponse, multiElectionResponse, spoiltVotesResponse ) {
 
@@ -104,7 +104,7 @@ var RegisterVotesMultiContainer = React.createClass( {
         multiVotesPackage = self.state.enteredResults.slice();
         multiVotesPackage.push( self.state.enteredSpoiltVote );
 
-        axios.post( '/api/reg-votes-multi', multiVotesPackage )
+        axios.post( '/api/REPRES/reg-votes-multi', multiVotesPackage )
             .then( function( response ) {
 
                 console.log( "sent" );

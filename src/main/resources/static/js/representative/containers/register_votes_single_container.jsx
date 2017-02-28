@@ -24,8 +24,8 @@ var RegisterVotesSingleContainer = React.createClass( {
                 self.setState( { currentDistrictId: response.data.districtId });
                 axios.all( [
                     axios.get( '/api/candidate/' + response.data.districtId ),
-                    axios.get( '/api/singleelection' ),
-                    axios.get( 'api/invalid-votes/type/' + false )
+                    axios.get( '/api/REPRES/singleelection' ),
+                    axios.get( '/api/REPRES/invalid-votes/type/' + false )
                 ] )
                     .then( axios.spread( function( candidateResponse, singleElectionResponse, spoiltVotesResponse ) {
 
@@ -104,7 +104,7 @@ var RegisterVotesSingleContainer = React.createClass( {
         singleVotesPackage = self.state.enteredResults.slice();
         singleVotesPackage.push( self.state.enteredSpoiltVote );
 
-        axios.post( '/api/singleelection', singleVotesPackage )
+        axios.post( '/api/REPRES/singleelection', singleVotesPackage )
             .then( function( response ) {
 
                 console.log( "sent" );

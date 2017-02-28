@@ -17,8 +17,8 @@ var PubDelVotesDistrictListContainer = React.createClass( {
         
         axios.all([
                   axios.get( '/api/constituency/' + conId ),
-                  axios.get( '/api/reg-votes-multi'),
-                  axios.get( '/api/singleelection')
+                  axios.get( '/api/REPRES/reg-votes-multi'),
+                  axios.get( '/api/REPRES/singleelection')
                   ]).then(axios.spread(function (constResponse, votesMultiResponse, votesSingleResponse) {
                       self.setState( {
                           districts: constResponse.data.districts,
@@ -38,7 +38,7 @@ var PubDelVotesDistrictListContainer = React.createClass( {
         var self = this;
         return function() {
             console.log( 'publishing: ' + districtId );
-            axios.post( '/api/singleelectiondistrict/' + districtId ).then(function() {
+            axios.post( '/api/ADMIN/singleelectiondistrict/' + districtId ).then(function() {
                 window.location.reload();
             });
             
@@ -48,7 +48,7 @@ var PubDelVotesDistrictListContainer = React.createClass( {
     handleDeleteSingleVotes: function( districtId ) {
         return function() {
             console.log( 'deleting ' + districtId );
-            axios.delete( '/api/singleelectiondistrict/' + districtId ).then(function() {
+            axios.delete( '/api/ADMIN/singleelectiondistrict/' + districtId ).then(function() {
                 window.location.reload();
             });
         }
@@ -57,7 +57,7 @@ var PubDelVotesDistrictListContainer = React.createClass( {
     handlePublishMultiVotes: function( districtId ) {
         return function() {
             console.log( 'publishing: ' + districtId );
-            axios.post( '/api/multielectiondistrict/' + districtId ).then(function() {
+            axios.post( '/api/ADMIN/multielectiondistrict/' + districtId ).then(function() {
                 window.location.reload();
             });
         }
@@ -66,7 +66,7 @@ var PubDelVotesDistrictListContainer = React.createClass( {
     handleDeleteMultiVotes: function( districtId ) {
         return function() {
             console.log( 'deleting ' + districtId );
-            axios.delete( '/api/multielectiondistrict/' + districtId ).then(function() {
+            axios.delete( '/api/ADMIN/multielectiondistrict/' + districtId ).then(function() {
                 window.location.reload();
             });
         }

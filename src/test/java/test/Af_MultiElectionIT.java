@@ -28,7 +28,7 @@ import vs.representative_.multielection.MultiElectionRepository;
 
 public class Af_MultiElectionIT {
 
-	private static final String URI = "/api/reg-votes-multi";
+	private static final String URI = "/api/REPRES/reg-votes-multi";
 	JSONParser parser = new JSONParser(0);
 
 	@Autowired

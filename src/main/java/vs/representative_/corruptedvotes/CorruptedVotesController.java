@@ -19,63 +19,61 @@ public class CorruptedVotesController {
 	@Autowired
 	private CorruptedVotesRepository corruptedVotesRepository;
 
-	@RequestMapping(value = "/api/invalid-votes", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/ADMIN/invalid-votes", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get all  invalid votes")
+	@ApiOperation(value = "[UNUSED - ADMIN] - Get all  invalid votes")
 	public List<CorruptedVotes> findAllVotes() {
 		return corruptedVotesRepository.findAllCorruptedVotes();
 	}
 
-	@RequestMapping(value = "/api/invalid-votes", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/ADMIN/invalid-votes", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Create create invalid votes.", notes = "Data: {\"id\": null,"
+	@ApiOperation(value = "[UNUSED - ADMIN] - Create create invalid votes.", notes = "Data: {\"id\": null,"
 			+ " \"typeMulti\": true,"
 			+ "\"district\": { \"id\": 1},"
 			+ " \"votes\": 123}")
-	public void createOrUpdateCorrupted(/*@Valid*/ @RequestBody CorruptedVotes corruptedVotes) {
+	public void createOrUpdateCorrupted(@RequestBody CorruptedVotes corruptedVotes) {
 		corruptedVotesRepository.saveOrUpdate(corruptedVotes);
 	}
-
-	@RequestMapping(value = "/api/invalid-votes/{id}", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/api/ADMIN/invalid-votes/{id}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get invalid votes by id")
+	@ApiOperation(value = "[UNUSED - ADMIN] - Get invalid votes by id")
 	public CorruptedVotes getCorruptedVotesById(@PathVariable("id") Integer id) {
 		return corruptedVotesRepository.findCorruptedVotesById(id);
 	}
 	
-	@RequestMapping(value = "/api/invalid/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/ADMIN/invalid/{id}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get invalid votes by id")
+	@ApiOperation(value = "[UNUSED - ADMIN] - Get invalid votes by id")
 	public Long getCorruptVotesById(@PathVariable("id") Integer id) {
 		return corruptedVotesRepository.getCorruptedVotesInConstituency(id).longValue();
 	}
 	
-	
-
-	@RequestMapping(value = "/api/invalid-votes/type/{typeMulti}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/REPRES/invalid-votes/type/{typeMulti}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get all  invalid votes( boolean)")
+	@ApiOperation(value = "[REPRES] - Get all  invalid votes( boolean)")
 	public List<CorruptedVotes> findAllCorruptedVotes(@PathVariable("typeMulti") Boolean typeMulti) {
 		return corruptedVotesRepository.GetCorruptedVotesByType(typeMulti);
 	}
 
-	@RequestMapping(value = "/api/invalid-votes/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/ADMIN/invalid-votes/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "Delete invalid votes by id")
+	@ApiOperation(value = "[UNUSED - ADMIN] - Delete invalid votes by id")
 	public void deteleCorruptedVotesById(@PathVariable("id") Integer id) {
 		corruptedVotesRepository.deleteCorruptedVotes(id);
 	}
 
-	@RequestMapping(value = "/api/inalidvotesistrict/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/ADMIN/inalidvotesistrict/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "Delete delete invalid votes by district id")
+	@ApiOperation(value = "[UNUSED - ADMIN] - Delete delete invalid votes by district id")
 	public void deleteCorruptedVotesByDistrictId(@PathVariable("id") Integer id) {
 		corruptedVotesRepository.deleteCorruptedVotesByDistrictId(id);
 	}
 
-	@RequestMapping(value = "/api/inalidvotesistrict/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/ADMIN/inalidvotesistrict/{id}", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-	@ApiOperation(value = "Publish invalid votes by district id")
+	@ApiOperation(value = "[UNUSED - ADMIN] - Publish invalid votes by district id")
 	public void publishCorruptedVotesByDistrictId(@PathVariable("id") Integer id) {
 		corruptedVotesRepository.publishCorruptedVotesByDistrictId(id);
 	}

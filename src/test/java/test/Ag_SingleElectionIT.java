@@ -28,7 +28,7 @@ import vs.representative_.singleelection.SingleElectionRepository;
 		Ag_SingleElectionIT.Config.class, Application.class })
 public class Ag_SingleElectionIT {
 
-	private static final String URI = "/api/singleelection";
+	private static final String URI = "/api/REPRES/singleelection";
 	JSONParser parser = new JSONParser(0);
 
 	@Autowired

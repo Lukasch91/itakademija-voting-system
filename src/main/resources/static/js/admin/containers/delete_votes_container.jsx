@@ -35,11 +35,11 @@ var DeleteVotesContainer = React.createClass( {
 
     handleDeleteVotes: function() {
         if ( this.state.districtVal != 'base' && this.state.electionType == 'single' ) {
-            axios.delete( '/api/singleelectiondistrict/' + this.state.districtVal ).then( function() {
+            axios.delete( '/api/ADMIN/singleelectiondistrict/' + this.state.districtVal ).then( function() {
                 console.log( 'votes deleted' );
             });
         } else if ( this.state.districtVal != 'base' && this.state.electionType == 'multi' ) {
-            axios.delete( '/api/multielectiondistrict/' + this.state.districtVal ).then( function() {
+            axios.delete( '/api/ADMIN/multielectiondistrict/' + this.state.districtVal ).then( function() {
                 console.log( 'votes deleted' );
             });
         } 
