@@ -59,7 +59,7 @@ var MultiElectionsDistrictsResultsContainer = React.createClass( {
     }
 });
 
-SingleElectionsDistrictResultsContainer.contextTypes = {
+MultiElectionsDistrictsResultsContainer.contextTypes = {
     router: React.PropTypes.object.isRequired
 };
 

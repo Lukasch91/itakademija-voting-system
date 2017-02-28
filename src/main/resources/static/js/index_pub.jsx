@@ -12,7 +12,7 @@ var App = React.createClass({
 var NoMatch = React.createClass({
   render: function() {
     return <div>Route did not match</div>;
-  }
+  } 
 });
 
 var Router = ReactRouter.Router;
@@ -28,6 +28,7 @@ ReactDOM.render((
         <Route path="/results" component={SingleElectionsResultsContainer} />
         <Route path="/multiresults" component={MultiElectionsResultsContainer} />
         <Route path="/multidisresult/:conId" component={MultiElectionsDistrictsResultsContainer} />
+        <Route path="/multionedis/:disId/" component={MultiElectionsOneDistrictResultsContainer} />
         
         <Route path="/disresult/:conId" component={SingleElectionsDistrictResultsContainer} />
        <Route path="/onedisresult/:disId" component={SingleElectionsOneDistrictResultsContainer} />

@@ -12,7 +12,7 @@ var MultiElectionsDistrictResultsComponent = React.createClass( {
                     <td>{district.percentageOfInvalidVotes} %</td>
                     <td>{district.validVotes}</td>
                     <td>{district.percentageOfValidVotes} %</td>
-                    <td><button type="button" className="btn btn-xs btn-info" onClick={self.props.onAdministerDistricts(district.districtId)}>Apylinkės rezultatai</button></td>
+                    <td><button type="button" className="btn btn-xs btn-info" onClick={self.props.onAdministerDistricts(district.id)}>Apylinkės rezultatai</button></td>
                 </tr>
             );
         });
