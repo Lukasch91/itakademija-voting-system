@@ -8,7 +8,7 @@ var SingleElectionsResultsContainer = React.createClass( {
 
     componentWillMount: function() {
         var self = this;
-        axios.get( '/api/constresults' )
+        axios.get( '/api/PUBLIC/constresults' )
             .then( function( response ) {
                 self.setState( {
                     consituencies: response.data

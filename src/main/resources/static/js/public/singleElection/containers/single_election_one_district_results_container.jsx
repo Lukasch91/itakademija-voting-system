@@ -9,7 +9,7 @@ var SingleElectionsOneDistrictResultsContainer = React.createClass( {
     componentWillMount: function() {
         var self = this;
         var disId = this.props.params.disId;
-        axios.get( '/api/districtdetails/' + disId )
+        axios.get( '/api/PUBLIC/districtdetails/' + disId )
             .then( function( response ) {
                 self.setState( {
                     candidates: response.data,

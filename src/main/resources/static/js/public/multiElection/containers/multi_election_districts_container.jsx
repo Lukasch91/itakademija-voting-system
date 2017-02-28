@@ -11,19 +11,19 @@ var MultiElectionsDistrictsResultsContainer = React.createClass( {
     componentWillMount: function() {
         var self = this;
         var conId = this.props.params.conId;
-        axios.get( '/api/multidistlist/' + conId )
+        axios.get( '/api/PUBLIC/multidistlist/' + conId )
             .then( function( response ) {
                 self.setState( {
                     districts: response.data,
                 });
             }).then( function() {
-                axios.get( '/api/multicons/' + conId )
+                axios.get( '/api/PUBLIC/multicons/' + conId )
                     .then( function( response ) {
                         self.setState( {
                             parties: response.data,
                         });
                     }).then( function() {
-                        axios.get( '/api/constresults/' + conId )
+                        axios.get( '/api/PUBLIC/constresults/' + conId )
                             .then( function( response ) {
                                 self.setState( {
                                     constituency: response.data

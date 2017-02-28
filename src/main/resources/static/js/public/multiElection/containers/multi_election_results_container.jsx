@@ -9,13 +9,13 @@ var MultiElectionsResultsContainer = React.createClass( {
 
     componentWillMount: function() {
         var self = this;
-        axios.get( '/api/multiconslist' )
+        axios.get( '/api/PUBLIC/multiconslist' )
             .then( function( response ) {
                 self.setState( {
                     consituencies: response.data
                 });
             })
-        axios.get( '/api/multicons' ).then( function( response ) {
+        axios.get( '/api/PUBLIC/multicons' ).then( function( response ) {
             self.setState( {
                 parties: response.data
             });

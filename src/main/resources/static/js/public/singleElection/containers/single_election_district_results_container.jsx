@@ -11,19 +11,19 @@ var SingleElectionsDistrictResultsContainer = React.createClass( {
     componentWillMount: function() {
         var self = this;
         var conId = this.props.params.conId;
-        axios.get( '/api/districtresults/' + conId )
+        axios.get( '/api/PUBLIC/districtresults/' + conId )
             .then( function( response ) {
                 self.setState( {
                     districts: response.data,
                 });
             }).then( function() {
-                axios.get( '/api/candidatesresults/' + conId )
+                axios.get( '/api/PUBLIC/candidatesresults/' + conId )
                     .then( function( response ) {
                         self.setState( {
                             candidates: response.data,
                         });
                     }).then( function() {
-                        axios.get( '/api/constresults/' + conId )
+                        axios.get( '/api/PUBLIC/constresults/' + conId )
                             .then( function( response ) {
                                 self.setState( {
                                     constituency: response.data
