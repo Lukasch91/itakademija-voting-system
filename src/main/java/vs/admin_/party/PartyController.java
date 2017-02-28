@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 
-
-
-
 @RestController
 public class PartyController {
 
@@ -24,39 +21,39 @@ public class PartyController {
 	@Autowired
 	private PartyService partyService;
 
-	@RequestMapping(value = "/api/party", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/REPRES/party", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get all  Parties")
+	@ApiOperation(value = "[REPRES] - Get all  Parties")
 	public List<Party> findAllParties() {
 		return partyRepository.findAllParties();
 	}
 
-	@RequestMapping(value = "/api/party", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/ADMIN/party", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Save or update Party")
+	@ApiOperation(value = "[ADMIN] - Save or update Party")
 	public Party createOrUpdateParty(@Valid @RequestBody Party party) {
 		return partyRepository.saveOrUpdate(party);
 	}
-	@RequestMapping(value = "/api/party/{id}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/api/ADMIN/party/{id}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Find Party by id")
+	@ApiOperation(value = "[UNUSED - ADMIN] - Find Party by id")
 	public Party getPartyById(@PathVariable("id") Integer id) {
 		return partyRepository.findPartyById(id);
 	}
-	
-	@RequestMapping(value = "/api/party/{id}", method = RequestMethod.PUT)
+
+	@RequestMapping(value = "/api/ADMIN/party/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "Delete Party by id")
+	@ApiOperation(value = "[ADMIN] - Delete Party by id")
 	public void detelePartyById(@PathVariable("id") Integer id) {
 		partyRepository.deleteParty(id);
 	}
-	
-	@RequestMapping(value = "/api/partyExtended", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/api/ADMIN/partyExtended", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Find Parties and add Number of candidates")
+	@ApiOperation(value = "[ADMIN] - Find Parties and add Number of candidates")
 	public List<PartyExtension> findAllPartiesExtended() {
 		return partyService.findAllPartiesExtended();
 	}
-	
-	
+
 }

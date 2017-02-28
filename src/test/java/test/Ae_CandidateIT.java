@@ -25,7 +25,7 @@ import vs.admin_.candidate.CandidateRepository;
 		Application.class })
 public class Ae_CandidateIT {
 
-	private static final String URI = "/api/candidate";
+	private static final String URI = "/api/ADMIN/candidate";
 	JSONParser parser = new JSONParser(0);
 
 	@Autowired

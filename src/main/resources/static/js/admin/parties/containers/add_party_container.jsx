@@ -24,7 +24,7 @@ var AddPartyContainer = React.createClass( {
         var self = this;
         var success = 0;
 
-        axios.post( '/api/party', {
+        axios.post( '/api/ADMIN/party', {
             title: this.state.party.title,
             party_abbreviation: this.state.party.party_abbreviation
             })

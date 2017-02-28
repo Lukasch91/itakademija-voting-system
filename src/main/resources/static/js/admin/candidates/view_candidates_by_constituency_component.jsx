@@ -10,7 +10,7 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
         var self = this;
         if(self.state.candidates.length == 0) {
             var conId = this.props.constituency.id;
-            axios.get('api/candidateConstituency/' + conId)    
+            axios.get('api/ADMIN/candidateConstituency/' + conId)    
             .then(function (response) {
      
                 console.log(response.data);
@@ -29,7 +29,7 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
         var self = this;
         var conId = this.props.constituency.id;
         
-        axios.delete('/api/candidateConstituency/'+ conId)
+        axios.delete('/api/ADMIN/candidateConstituency/'+ conId)
         .then(function(response) { 
             console.log("deletedddddd");
             self.setState({ 

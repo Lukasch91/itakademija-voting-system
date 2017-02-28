@@ -9,7 +9,7 @@ var AdministrateMultiCandidatesContainer = React.createClass( {
 
     componentWillMount: function() {
         var self = this;
-        axios.get( '/api/partyExtended' )
+        axios.get( '/api/ADMIN/partyExtended' )
             .then( function( response ) {
                 self.setState( {
                     parties: response.data

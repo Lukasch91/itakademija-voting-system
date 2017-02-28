@@ -25,7 +25,7 @@ import vs.admin_.party.PartyRepository;
 		Application.class })
 public class Ad_PartyIT {
 
-	private static final String URI = "/api/party";
+	private static final String URI = "/api/ADMIN/party";
 	JSONParser parser = new JSONParser(0);
 
 	@Autowired

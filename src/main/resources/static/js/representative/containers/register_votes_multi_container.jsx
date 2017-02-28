@@ -23,7 +23,7 @@ var RegisterVotesMultiContainer = React.createClass( {
             .then( function( response ) {
                 self.setState( { currentDistrictId: response.data.districtId });
                 axios.all( [
-                    axios.get( '/api/party/' ),
+                    axios.get( '/api/REPRES/party/' ),
                     axios.get( '/api/REPRES/reg-votes-multi' ),
                     axios.get( '/api/REPRES/invalid-votes/type/' + true )
                 ] )

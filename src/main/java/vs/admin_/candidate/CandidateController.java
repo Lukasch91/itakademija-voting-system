@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiOperation; //swagger
 import vs.utils_.storage.StorageService;
 
 @RestController
-@Api // swagger
+@Api
 public class CandidateController {
 
 	@Autowired
@@ -30,60 +30,60 @@ public class CandidateController {
 	@Autowired
 	private CandidateRepository candidateRepository;
 
-	@RequestMapping(value = "/api/candidate", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/PUBLIC/candidate", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get all undeleted candidates")
+	@ApiOperation(value = "[PUBLIC] - Get all undeleted candidates")
 	public List<Candidate> findAllCandidates() {
 		return candidateRepository.findAllUndeletedCandidates();
 	}
 	
-	@RequestMapping(value = "/api/candidate/{districtId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/REPRES/candidate/{districtId}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get all undeleted candidates by districtId")
+	@ApiOperation(value = "[REPRES] -Get all undeleted candidates by districtId")
 	public List<Candidate> findAllCandidatesByDistrictId(@PathVariable("districtId") Integer districtId) {
 		return candidateService.findAllCandidatesByDistrictId(districtId);
 	}
 
-	@RequestMapping(value = "/api/candidate", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/ADMIN/candidate", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-	@ApiOperation(value = "Create or update candidate")
+	@ApiOperation(value = "[FORTEST - ADMIN] - Create or update candidate")
 	public Candidate createOrUpdateCandidate(@RequestBody Candidate candidate) {
 		return candidateRepository.createOrUpdateCandidate(candidate);
 	}
 
-	@RequestMapping(value = "/api/candidateConstituency/{constituencyId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/ADMIN/candidateConstituency/{constituencyId}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get candidate by Constituency id")
+	@ApiOperation(value = "[ADMIN] - Get candidate by Constituency id")
 	public List<Candidate> getCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
 		return candidateRepository.findCandidatesByConstituencyId(id);
 	}
 	
-	@RequestMapping(value = "/api/candidateConstituency/{constituencyId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/ADMIN/candidateConstituency/{constituencyId}", method = RequestMethod.DELETE)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "Delete candidate by Constituency id (adds deletion date)")
+	@ApiOperation(value = "[ADMIN] - Delete candidate by Constituency id (adds deletion date)")
 	public void deleteCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
 		candidateRepository.deleteCandidatesByConstituencyId(id);
 	}
 	
-	@RequestMapping(value = "/api/candidateParty/{partyId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/ADMIN/candidateParty/{partyId}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
-	@ApiOperation(value = "Get candidate by Party id")
+	@ApiOperation(value = "[ADMIN] - Get candidate by Party id")
 	public List<Candidate> getCandidateByPartyId(@PathVariable("partyId") Integer id) {
 		return candidateRepository.findCandidatesByPartyId(id);
 	}
 
-	@RequestMapping(value = "/api/candidateParty/{partyId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/ADMIN/candidateParty/{partyId}", method = RequestMethod.DELETE)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "Delete candidate by Party id (adds deletion date)")
+	@ApiOperation(value = "[ADMIN] - Delete candidate by Party id (adds deletion date)")
 	public void deleteCandidateByPartyId(@PathVariable("partyId") Integer id) {
 		candidateRepository.deleteCandidatesByPartyId(id);
 	}
 	
 	/* ===========================================================File=== */
 
-	@RequestMapping(value = "/api/districtcandidatesFILE", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/ADMIN/districtcandidatesFILE", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-	@ApiOperation(value = "Upload district candidates CSV")
+	@ApiOperation(value = "[ADMIN] - Upload district candidates CSV")
 	public String districtCandidatesCSV(@RequestParam("file") MultipartFile file,
 			@RequestHeader Integer constituencyId) {
 
@@ -100,9 +100,9 @@ public class CandidateController {
 		return aaa;
 	}
 
-	@RequestMapping(value = "/api/partycandidatesFILE", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/ADMIN/partycandidatesFILE", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-	@ApiOperation(value = "Upload party candidates CSV")
+	@ApiOperation(value = "[ADMIN] - Upload party candidates CSV")
 	public String partyCandidatesCSV(@RequestParam("file") MultipartFile file, @RequestHeader Integer partyId) {
 
 		storageService.store(file);

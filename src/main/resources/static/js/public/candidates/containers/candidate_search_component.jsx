@@ -11,7 +11,7 @@ var CandidateSearchComponent = React.createClass( {
     componentWillMount: function() {
         var self = this;
         
-        axios.get( '/api/candidate/' )
+        axios.get( '/api/PUBLIC/candidate/' )
             .then( function( response ) {
                 self.setState( { candidates: response.data, candidatesBackup: response.data, candidatesAmount: response.data.length });
             });

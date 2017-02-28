@@ -10,7 +10,7 @@ var ViewCandidatesByPartyComponent = React.createClass( {
         var self = this;
         if(self.state.candidates.length == 0) {
             var partyId = this.props.party.id;
-            axios.get('api/candidateParty/' + partyId)    
+            axios.get('api/ADMIN/candidateParty/' + partyId)    
             .then(function (response) {
      
                 console.log(response.data);
@@ -29,7 +29,7 @@ var ViewCandidatesByPartyComponent = React.createClass( {
         var self = this;
         var partyId = this.props.party.id;
         
-        axios.delete('/api/candidateParty/'+ partyId)
+        axios.delete('/api/ADMIN/candidateParty/'+ partyId)
         .then(function(response) { 
             console.log("deletedddddd");
             self.setState({ 

@@ -23,7 +23,7 @@ var RegisterVotesSingleContainer = React.createClass( {
             .then( function( response ) {
                 self.setState( { currentDistrictId: response.data.districtId });
                 axios.all( [
-                    axios.get( '/api/candidate/' + response.data.districtId ),
+                    axios.get( '/api/REPRES/candidate/' + response.data.districtId ),
                     axios.get( '/api/REPRES/singleelection' ),
                     axios.get( '/api/REPRES/invalid-votes/type/' + false )
                 ] )

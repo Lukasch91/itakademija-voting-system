@@ -8,7 +8,7 @@ var PartyListContainer = React.createClass( {
 
     componentWillMount: function() {
         var self = this;
-        axios.get( '/api/party' )
+        axios.get( '/api/REPRES/party' )
             .then( function( response ) {
                 self.setState( {
                     parties: response.data
@@ -20,9 +20,9 @@ var PartyListContainer = React.createClass( {
     handleRemoveItem: function( party ) {
         var self = this;
         return function() {
-            axios.put( '/api/party/' + party.id ).then( function( response ) {
+            axios.put( '/api/ADMIN/party/' + party.id ).then( function( response ) {
                 console.log( 'item deleted' );
-                axios.get( '/api/party' )
+                axios.get( '/api/REPRES/party' )
                     .then( function( response ) {
                         self.setState( {
                             parties: response.data

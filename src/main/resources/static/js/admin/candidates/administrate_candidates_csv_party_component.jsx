@@ -35,7 +35,7 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
         
         this.setState( { file: null });
 
-        axios.post( '/api/partycandidatesFILE', data, header )
+        axios.post( '/api/ADMIN/partycandidatesFILE', data, header )
             .then( function( response ) {
                 console.log( "server_response" );
                 console.log( response );

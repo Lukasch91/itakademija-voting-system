@@ -35,7 +35,7 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
 
         this.setState( { file: null });
 
-        axios.post( '/api/districtcandidatesFILE', data, header )
+        axios.post( '/api/ADMIN/districtcandidatesFILE', data, header )
             .then( function( response ) {
                 console.log( "server_response" );
                 console.log( response );
