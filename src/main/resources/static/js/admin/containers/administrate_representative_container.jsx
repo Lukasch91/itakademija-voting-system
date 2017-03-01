@@ -8,9 +8,10 @@ var AdministrateRepresentativeContainer = React.createClass( {
                 name: '',
                 surname: '',
                 loginName: '',
-                password: '',
                 email: ''
             },
+            password: null,
+            disabledTest: false,
             validationArray: []
         }
     },
@@ -36,7 +37,7 @@ var AdministrateRepresentativeContainer = React.createClass( {
             name: this.state.representative.name,
             surname: this.state.representative.surname,
             loginName: this.state.representative.loginName,
-            password: this.state.representative.password,
+            password: this.state.password,
             email: this.state.representative.email,
             districtId: this.props.params.disId
 
@@ -68,6 +69,11 @@ var AdministrateRepresentativeContainer = React.createClass( {
                 }
             });
     },
+    
+    handleGeneratePass: function() {
+        this.state.password = '666';
+        console.log(this.state.passwordTest);
+    },
 
     render: function() {
         return <AdministrateRepresentativeComponent
@@ -75,7 +81,11 @@ var AdministrateRepresentativeContainer = React.createClass( {
             validationArray={this.state.validationArray}
             onFieldChange={this.handleFieldChange}
             onAddRepresentative={this.handleAddRepresentative}
-            onCancel={this.handleCancel} />
+            onCancel={this.handleCancel}
+            onGeneratePass={this.handleGeneratePass}
+            password={this.state.password}
+            disabledTest={this.state.disabledTest}
+        />
     }
 });
 

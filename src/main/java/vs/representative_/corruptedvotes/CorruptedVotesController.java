@@ -2,7 +2,6 @@ package vs.representative_.corruptedvotes;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -64,17 +63,17 @@ public class CorruptedVotesController {
 		corruptedVotesRepository.deleteCorruptedVotes(id);
 	}
 
-	@RequestMapping(value = "/api/ADMIN/inalidvotesistrict/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/ADMIN/inalidvotesistrict/{id}/{typeMulti}", method = RequestMethod.DELETE)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
-	@ApiOperation(value = "[UNUSED - ADMIN] - Delete delete invalid votes by district id")
-	public void deleteCorruptedVotesByDistrictId(@PathVariable("id") Integer id) {
-		corruptedVotesRepository.deleteCorruptedVotesByDistrictId(id);
+	@ApiOperation(value = "[UNUSED - ADMIN] - Delete delete invalid votes by district id and voting type")
+	public void deleteCorruptedVotesByDistrictId(@PathVariable("id") Integer id, @PathVariable("typeMulti") Boolean typeMulti) {
+		corruptedVotesRepository.deleteCorruptedVotesByDistrictId(id, typeMulti);
 	}
 
-	@RequestMapping(value = "/api/ADMIN/inalidvotesistrict/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/ADMIN/inalidvotesistrict/{id}/{typeMulti}", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-	@ApiOperation(value = "[UNUSED - ADMIN] - Publish invalid votes by district id")
-	public void publishCorruptedVotesByDistrictId(@PathVariable("id") Integer id) {
-		corruptedVotesRepository.publishCorruptedVotesByDistrictId(id);
+	@ApiOperation(value = "[UNUSED - ADMIN] - Publish invalid votes by district id and voting type")
+	public void publishCorruptedVotesByDistrictId(@PathVariable("id") Integer id, @PathVariable("typeMulti") Boolean typeMulti) {
+		corruptedVotesRepository.publishCorruptedVotesByDistrictId(id, typeMulti);
 	}
 }

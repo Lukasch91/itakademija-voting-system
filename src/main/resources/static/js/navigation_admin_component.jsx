@@ -25,7 +25,7 @@ NavLink.propTypes = {
 var NavigationAdminComponent = React.createClass( {
     render: function() {
         return (
-            <nav className="navbar navbar-default">
+            <nav className="navbar navbar-inverse">
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
                         <NavLink to="/" onlyActiveOnIndex>Home</NavLink>

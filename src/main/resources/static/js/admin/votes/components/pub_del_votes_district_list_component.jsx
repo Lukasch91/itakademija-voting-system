@@ -85,8 +85,8 @@ var PubDelVotesDistrictListComponent = React.createClass( {
             return (
 
                 <tr key={index}>
-                    <td>{district.title} <button type="button" className="btn btn-default" onClick={self.props.theTesting(district.id)} disabled={testDisabled}>{self.props.theTestingState}</button></td>
-                    <td><button type="button" className="btn btn-default" data-toggle="modal" data-target={modalSingleListIdHash} disabled={disabledSingleList} >Peržiūrėti balsus</button>
+                    <td>{district.title}</td>
+                    <td><button type="button" className="btn btn-xs btn-default" data-toggle="modal" data-target={modalSingleListIdHash} disabled={disabledSingleList} >Peržiūrėti balsus</button>
                         <div className="modal fade" id={modalSingleListId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div className="modal-dialog">
                                 <div className="modal-content">
@@ -115,7 +115,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                         </div>
                     </td>
 
-                    <td><button type="button" className="btn btn-primary" data-toggle="modal" data-target={modalSinglePublishIdHash} disabled={disabledSinglePublish} >Publikuoti balsus</button>
+                    <td><button type="button" className="btn btn-xs  btn-primary" data-toggle="modal" data-target={modalSinglePublishIdHash} disabled={disabledSinglePublish} >Publikuoti balsus</button>
                         <div className="modal fade" id={modalSinglePublishId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div className="modal-dialog">
                                 <div className="modal-content">
@@ -135,7 +135,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                         </div>
                     </td>
 
-                    <td><button type="button" className="btn btn-danger" data-toggle="modal" data-target={modalSingleDeleteIdHash} disabled={disabledSingleDelete} >Trinti balsus</button>
+                    <td><button type="button" className="btn btn-xs btn-danger" data-toggle="modal" data-target={modalSingleDeleteIdHash} disabled={disabledSingleDelete} >Trinti balsus</button>
                     <div className="modal fade" id={modalSingleDeleteId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -155,7 +155,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                 </div>
                     </td>
 
-                    <td><button type="button" className="btn btn-default" data-toggle="modal" data-target={modalMultiListIdHash} disabled={disabledMultiList}>Peržiūrėti balsus</button>
+                    <td><button type="button" className="btn btn-xs btn-default" data-toggle="modal" data-target={modalMultiListIdHash} disabled={disabledMultiList}>Peržiūrėti balsus</button>
                         <div className="modal fade" id={modalMultiListId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div className="modal-dialog">
                                 <div className="modal-content">
@@ -184,7 +184,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                         </div>
                     </td>
 
-                    <td><button type="button" className="btn btn-primary" data-toggle="modal" data-target={modalMultiPublishIdHash} disabled={disabledMultiPublish}>Publikuoti balsus</button>
+                    <td><button type="button" className="btn btn-xs btn-primary" data-toggle="modal" data-target={modalMultiPublishIdHash} disabled={disabledMultiPublish}>Publikuoti balsus</button>
                         <div className="modal fade" id={modalMultiPublishId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div className="modal-dialog">
                                 <div className="modal-content">
@@ -204,7 +204,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                         </div>
                     </td>
 
-                    <td><button type="button" className="btn btn-danger" data-toggle="modal" data-target={modalMultiDeleteIdHash} disabled={disabledMultiDelete} >Trinti balsus</button>
+                    <td><button type="button" className="btn btn-xs btn-danger" data-toggle="modal" data-target={modalMultiDeleteIdHash} disabled={disabledMultiDelete} >Trinti balsus</button>
                         <div className="modal fade" id={modalMultiDeleteId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div className="modal-dialog">
                                 <div className="modal-content">
