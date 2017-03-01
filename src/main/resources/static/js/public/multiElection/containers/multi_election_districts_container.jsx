@@ -41,7 +41,7 @@ var MultiElectionsDistrictsResultsContainer = React.createClass( {
     handleAdministerDistricts: function( id ) {
         var self = this;
         return function() {
-            self.context.router.push( '/onedisresult/' + id );
+            self.context.router.push( '/multionedis/' + id );
         }
     },
 

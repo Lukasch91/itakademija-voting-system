@@ -3,9 +3,10 @@ var MultiElectionsOneDistrictResultsContainer = React.createClass( {
     getInitialState: function() {
         return {
             parties: [],
+            constituency: {}
         };
     },
-
+    
     componentWillMount: function() {
         var self = this;
         var disId = this.props.params.disId;
@@ -15,11 +16,17 @@ var MultiElectionsOneDistrictResultsContainer = React.createClass( {
                     parties: response.data,
                 })
             })
+            axios.get( '/api/PUBLIC/constresultsdis/' + disId )
+            .then( function( response ) {
+                self.setState( {
+                    constituency: response.data,
+                })
+            })
     },
 
     handleCancel: function() {
         var self = this;
-        self.context.router.push( '/results/' );
+        self.context.router.push( '//multidisresult//' );
     },
 
 
@@ -27,7 +34,9 @@ var MultiElectionsOneDistrictResultsContainer = React.createClass( {
         return (
             <div>
                 <MultiElectionsOneDistrictResultsComponent
+                
                     parties={this.state.parties}
+                constituency={this.state.constituency}
                     onCancel={this.handleCancel} />
             </div>
         )

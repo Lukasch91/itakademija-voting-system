@@ -25,7 +25,6 @@ var MultiElectionsDistrictResultsComponent = React.createClass( {
                     <td>{party.partyTitle}</td>
                     <td>{party.votes}</td>
                     <td>{party.percentageOfAllVotes}%</td>
-
                 </tr>
             );
         });

@@ -14,8 +14,8 @@ public class MultiElectionRepository {
 
 	private static final String FIND_ALL = "Select e FROM MultiElection e where deleted_date is null";
 	private static final String FIND_BY_DISTRICT_ID = "SELECT e FROM MultiElection e WHERE district IS ";
-	private static final String FIND_VOTES_FOR_PARTY_BY_PARTY_ID = "SELECT m.votes from MultiElection m LEFT JOIN m.party mp "
-			+ "WHERE mp.id =:id AND m.published_date IS NOT NULL AND m.deleted_date is null";
+	private static final String FIND_VOTES_FOR_PARTY_BY_PARTY_ID = "SELECT sum(m.votes) from MultiElection m LEFT JOIN m.party mp "
+			+ "WHERE mp.id =:id AND m.published_date IS NOT NULL AND m.deleted_date is null AND mp.deletedTime is null";
 
 	private static final String FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES = "SELECT sum(m.votes) from MultiElection m LEFT JOIN m.party mp "
 			+ "WHERE mp.deletedTime is null AND m.published_date IS NOT NULL AND m.deleted_date is null";
