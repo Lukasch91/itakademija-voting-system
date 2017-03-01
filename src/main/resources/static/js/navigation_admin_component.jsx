@@ -34,10 +34,9 @@ var NavigationAdminComponent = React.createClass( {
                         <NavLink id="singleMember" to="/upload-single-cadidates">Kandidatų įkėlimas (vien.)</NavLink>
                         <NavLink id="multiMember" to="/upload-multi-cadidates">Kandidatų įkėlimas (daug.)</NavLink>
                         <NavLink id="resultDeletePage" to="/publish-delete-votes">Rezultatų publikavimas/anuliavimas</NavLink>
-
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
-                        <button id="logout" type="button" className="btn btn-default" onClick={this.props.onLogoutClick}>Atsijungti</button>
+                        <NavLink id="logout" to="/home" onClick={this.props.onLogoutClick}>Atsijungti</NavLink>
                     </ul>
                 </div>
             </nav>

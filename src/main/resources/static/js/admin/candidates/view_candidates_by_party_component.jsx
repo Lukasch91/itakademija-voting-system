@@ -65,7 +65,7 @@ var ViewCandidatesByPartyComponent = React.createClass( {
         return (
 
             <div>
-                <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash} onClick={this.handleInitiateData}>
+                <button type="button" className="btn btn-success btn-xs " data-toggle="modal" data-target={modalIdHash} onClick={this.handleInitiateData}>
                     Peržiurėti kandidatus
                     </button>
 

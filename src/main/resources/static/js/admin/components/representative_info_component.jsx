@@ -6,9 +6,9 @@ var RepresentativeInfoComponent = React.createClass( {
                 <p>Pavardė: {this.props.representative.surname}</p>
                 <p>Prisijungimo vardas: {this.props.representative.loginName}</p>
                 <p>El. paštas: {this.props.representative.email}</p>
-                <button id="sendLoginInfo" className="btn btn-info" disabled>Siųsti prisijungimus atstovui</button>
+                <button id="sendLoginInfo" className="btn btn-info btn-xs " disabled>Siųsti prisijungimus atstovui</button>
 
-                <button id="deleteRepresentative" type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target="#modal">
+                <button id="deleteRepresentative" type="button" className="btn btn-primary btn-danger btn-xs " data-toggle="modal" data-target="#modal">
                     Trinti atstovą
                 </button>
                 <div className="modal fade" id="modal" tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -30,7 +30,7 @@ var RepresentativeInfoComponent = React.createClass( {
                 </div>
 
 
-                <button id="bakcToDistrict" className="btn btn-warning" onClick={this.props.onCancel}>Grįžti</button>
+                <button id="bakcToDistrict" className="btn btn-warning btn-xs " onClick={this.props.onCancel}>Grįžti</button>
             </div>
 
         )

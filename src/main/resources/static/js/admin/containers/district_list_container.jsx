@@ -68,8 +68,8 @@ var DistrictListContainer = React.createClass({
             onAddRepresentative={this.handleAddRepresentative}
             onRemoveItem={this.handleRemoveItem}
             />
-        <AddNewContainer redirectTo={'/add-dis/' + this.state.constit.id}/>
-        <button id="backToConstituency" type="button" className="btn btn-default" onClick={this.handleGoBack}>Atgal</button>
+        <AddNewContainer redirectTo={'/add-dis/' + this.state.constit.id}/><br /><br />
+        <button id="backToConstituency" type="button" className="btn btn-danger btn-xs " onClick={this.handleGoBack}>Atgal</button>
         </div>
         )
   }

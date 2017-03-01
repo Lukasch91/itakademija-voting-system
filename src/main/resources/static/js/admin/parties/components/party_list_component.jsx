@@ -10,7 +10,7 @@ var PartyListComponent = React.createClass( {
                     <td>{party.party_abbreviation}</td>
                     <td>
                         <div>
-                            <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
+                            <button type="button" className="btn btn-primary btn-danger btn-xs " data-toggle="modal" data-target={modalIdHash}>
                                 <span className="glyphicon glyphicon-remove"></span>
                             </button>
                             <div className="modal fade" id={modalId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

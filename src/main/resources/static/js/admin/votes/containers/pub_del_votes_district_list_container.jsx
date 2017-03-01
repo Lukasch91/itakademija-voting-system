@@ -99,7 +99,7 @@ var PubDelVotesDistrictListContainer = React.createClass( {
                     onPublishMultiVotes={this.handlePublishMultiVotes}
                     onDeleteMultiVotes={this.handleDeleteMultiVotes}
                     />
-                <button id="backToConstituency" type="button" className="btn btn-default" onClick={this.handleGoBack}>Back</button>
+                <button id="backToConstituency" type="button" className="btn btn-danger btn-xs" onClick={this.handleGoBack}>Grįžti</button>
             </div>
         )
     }

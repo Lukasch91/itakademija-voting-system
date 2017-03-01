@@ -60,7 +60,7 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
         return (
 
             <div>
-                <button type="button" className="btn btn-primary btn-primary" data-toggle="modal" data-target={modalIdHash}>
+                <button type="button" className="btn btn-primary btn-xs" data-toggle="modal" data-target={modalIdHash}>
                     Pridėti kandidatus
                     </button>
 
