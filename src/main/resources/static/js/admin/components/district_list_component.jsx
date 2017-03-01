@@ -15,12 +15,12 @@ var DistrictListComponent = React.createClass( {
                         <td>{district.address}</td>
                         <td>{district.numberOfVoters}</td>
                         <td>{rep_name}</td>
-                        <td><button type="button" className="btn btn-primary" onClick={self.props.onAdministerRepresentative( district )}>Administruoti atstovą</button></td>
+                        <td><button type="button" className="btn btn-xs btn-primary" onClick={self.props.onAdministerRepresentative( district )}>Administruoti atstovą</button></td>
                         <td>
 
 
                             <div>
-                                <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
+                                <button type="button" className="btn btn-xs btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
                                     <span className="glyphicon glyphicon-remove"></span>
                                 </button>
                                 <div className="modal fade" id={modalId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -34,8 +34,8 @@ var DistrictListComponent = React.createClass( {
                                                 Ar tikrai norite ištrinti {district.title} apylinkę?
                         </div>
                                             <div className="modal-footer">
-                                                <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
-                                                <button type="button" className="btn btn-danger" onClick={self.props.onRemoveItem( district )} data-dismiss="modal">Ištrinti</button>
+                                                <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
+                                                <button type="button" className="btn btn-xs btn-danger" onClick={self.props.onRemoveItem( district )} data-dismiss="modal">Ištrinti</button>
                                             </div>
                                         </div>
                                     </div>
@@ -56,10 +56,10 @@ var DistrictListComponent = React.createClass( {
                         <td>{district.address}</td>
                         <td>{district.numberOfVoters}</td>
                         <td>{rep_name}</td>
-                        <td><button type="button" className="btn btn-primary" onClick={self.props.onAddRepresentative( district )}>Pridėti atstovą</button></td>
+                        <td><button type="button" className="btn btn-xs btn-primary" onClick={self.props.onAddRepresentative( district )}>Pridėti atstovą</button></td>
                         <td>
                             <div>
-                                <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
+                                <button type="button" className="btn btn-xs btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
                                     <span className="glyphicon glyphicon-remove"></span>
                                 </button>
                                 <div className="modal fade" id={modalId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -73,8 +73,8 @@ var DistrictListComponent = React.createClass( {
                                                 Ar tikrai norite ištrinti {district.title} apylinkę?
       </div>
                                             <div className="modal-footer">
-                                                <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
-                                                <button type="button" className="btn btn-danger" onClick={self.props.onRemoveItem( district )} data-dismiss="modal">Ištrinti</button>
+                                                <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
+                                                <button type="button" className="btn btn-xs btn-danger" onClick={self.props.onRemoveItem( district )} data-dismiss="modal">Ištrinti</button>
                                             </div>
                                         </div>
                                     </div>

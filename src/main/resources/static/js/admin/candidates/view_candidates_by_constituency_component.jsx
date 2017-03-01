@@ -67,7 +67,7 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
         return (
 
             <div>
-                <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash} onClick={this.handleInitiateData}>
+                <button type="button" className="btn btn-xs btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash} onClick={this.handleInitiateData}>
                     Peržiurėti kandidatus
                     </button>
 
@@ -106,8 +106,8 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
                                 
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-danger" onClick={this.handleRemoveItem} data-dismiss="modal">Ištrinti kandidatus</button>
-                                <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
+                                <button type="button" className="btn btn-xs btn-danger" onClick={this.handleRemoveItem} data-dismiss="modal">Ištrinti kandidatus</button>
+                                <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
                             </div>
                         </div>
                     </div>

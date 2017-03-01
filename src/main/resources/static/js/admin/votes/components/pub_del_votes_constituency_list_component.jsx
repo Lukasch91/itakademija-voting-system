@@ -6,7 +6,7 @@ var PubDelVotesConstituencyListComponent = React.createClass({
                <tr key={index}>
                    <td>{constituency.title}</td>
                    <td>{constituency.districts.length}</td>
-                   <td><button type="button" className="btn btn-info" onClick={self.props.onDistrictsList( constituency )}>Atidaryti apylinkių sąrašą</button></td>
+                   <td><button type="button" className="btn btn-xs btn-info" onClick={self.props.onDistrictsList( constituency )}>Atidaryti apylinkių sąrašą</button></td>
                </tr>
            );
        });

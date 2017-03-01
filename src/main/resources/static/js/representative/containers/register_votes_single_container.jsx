@@ -174,7 +174,7 @@ var RegisterVotesSingleContainer = React.createClass( {
                         </table>
                     </div>
                     <br />
-                    <button type="button" className="btn btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
+                    <button type="button" className="btn btn-xs btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
                 </div>
             )
         } else {

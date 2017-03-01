@@ -10,7 +10,7 @@ var PartyListComponent = React.createClass( {
                     <td>{party.party_abbreviation}</td>
                     <td>
                         <div>
-                            <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
+                            <button type="button" className="btn btn-xs btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
                                 <span className="glyphicon glyphicon-remove"></span>
                             </button>
                             <div className="modal fade" id={modalId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -24,8 +24,8 @@ var PartyListComponent = React.createClass( {
                                             Ar tikrai norite ištrinti partiją - "{party.title}"?
                             </div>
                                         <div className="modal-footer">
-                                            <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
-                                            <button type="button" className="btn btn-danger" onClick={self.props.onRemoveItem( party )} data-dismiss="modal">Ištrinti</button>
+                                            <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
+                                            <button type="button" className="btn btn-xs btn-danger" onClick={self.props.onRemoveItem( party )} data-dismiss="modal">Ištrinti</button>
                                         </div>
                                     </div>
                                 </div>

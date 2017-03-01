@@ -33,7 +33,7 @@ var NavigationRepComponent = React.createClass( {
                         <NavLink id="singleVoteRegistration" to="/reg-votes-single">Balsų registravimas (vien.)</NavLink>
                      </ul>
                     <ul className="nav navbar-nav navbar-right">
-                        <button id="logout" type="button" className="btn btn-default" onClick={this.props.onLogoutClick}>Atsijungti</button>
+                        <button id="logout" type="button" className="btn btn-xs btn-default" onClick={this.props.onLogoutClick}>Atsijungti</button>
                     </ul>
                 </div>
             </nav>

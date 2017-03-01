@@ -2,7 +2,8 @@ var SingleElectionsResultsContainer = React.createClass( {
 
     getInitialState: function() {
         return {
-            consituencies: []
+            consituencies: [],
+            info: {}
         };
     },
 
@@ -13,14 +14,20 @@ var SingleElectionsResultsContainer = React.createClass( {
                 self.setState( {
                     consituencies: response.data
                 });
+            })
+        axios.get( 'api/PUBLIC/singledetails/' )
+            .then( function( response ) {
+                self.setState( {
+                    info: response.data
+                });
             });
 
     },
 
-    handleAdministerDistricts: function(id) {
+    handleAdministerDistricts: function( id ) {
         var self = this;
         return function() {
-            self.context.router.push('/disresult/' + id );
+            self.context.router.push( '/disresult/' + id );
         }
     },
 
@@ -28,8 +35,10 @@ var SingleElectionsResultsContainer = React.createClass( {
         return (
 
             <div>
-                <SingleElectionsResultsComponent consituencies={this.state.consituencies}
-                onAdministerDistricts={this.handleAdministerDistricts}
+                <SingleElectionsResultsComponent
+                    consituencies={this.state.consituencies}
+                    info={this.state.info}
+                    onAdministerDistricts={this.handleAdministerDistricts}
                     />
 
             </div>
@@ -38,7 +47,7 @@ var SingleElectionsResultsContainer = React.createClass( {
 });
 
 SingleElectionsResultsContainer.contextTypes = {
-        router: React.PropTypes.object.isRequired
-    };
+    router: React.PropTypes.object.isRequired
+};
 
 window.SingleElectionsResultsContainer = SingleElectionsResultsContainer;

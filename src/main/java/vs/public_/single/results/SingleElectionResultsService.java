@@ -189,6 +189,34 @@ public class SingleElectionResultsService {
 		return resultList;
 	}
 
+	public SingleElectionDetails getSingleElectionDetails() {
+
+		Long numberOfDistricts = changeNullToLong(districtRepository.countAllDistricts());
+
+		Long numberOfConstituencies = changeNullToLong(constituencyRepository.countAllConstituencies());
+
+		Long numberOfVoters = changeNullToLong(districtRepository.countAllVoters());
+
+		Long validVotes = changeNullToLong(singleElectionRepository.getAllVotes());
+
+		Long invalidVotes = changeNullToLong(corruptedVotesRepository.getAllSingleCorruptedVotes());
+
+		Long numberOfVotersWhoVoted = changeNullToLong(validVotes + invalidVotes);
+
+		BigDecimal percentageOfVoters = checkForCorrectArithmetic(numberOfVotersWhoVoted, numberOfVoters);
+
+		BigDecimal percentageOfInvalidVotes = checkForCorrectArithmetic(invalidVotes, numberOfVotersWhoVoted);
+
+		BigDecimal percentageOfValidVotes = checkForCorrectArithmetic(validVotes, numberOfVotersWhoVoted);
+
+		SingleElectionDetails details = new SingleElectionDetails(numberOfDistricts, numberOfConstituencies,
+				numberOfVoters, numberOfVotersWhoVoted, percentageOfVoters, invalidVotes, percentageOfInvalidVotes,
+				validVotes, percentageOfValidVotes);
+
+		return details;
+
+	}
+
 	public Long changeNullToLong(Long parameter) {
 		if (parameter == null) {
 			return (long) 0;

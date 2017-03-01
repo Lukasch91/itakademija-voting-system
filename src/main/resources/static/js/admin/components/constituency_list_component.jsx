@@ -8,10 +8,10 @@ var ConstituencyListComponent = React.createClass( {
                 <tr key={index}>
                     <td>{constituency.title}</td>
                     <td>{constituency.districts.length}</td>
-                    <td><button type="button" className="btn btn-info" onClick={self.props.onAdministerDistricts( constituency )}>Administruoti apylinkes</button></td>
+                    <td><button type="button" className="btn btn-xs btn-info" onClick={self.props.onAdministerDistricts( constituency )}>Administruoti apylinkes</button></td>
                     <td>
                         <div>
-                            <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
+                            <button type="button" className="btn btn-xs btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
                                 <span className="glyphicon glyphicon-remove"></span>
                             </button>
                             <div className="modal fade" id={modalId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -25,8 +25,8 @@ var ConstituencyListComponent = React.createClass( {
                                             Ar tikrai norite ištrinti {constituency.title} apygardą?
                                     </div>
                                         <div className="modal-footer">
-                                            <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
-                                            <button type="button" className="btn btn-danger" onClick={self.props.onRemoveItem( constituency )} data-dismiss="modal">Ištrinti</button>
+                                            <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
+                                            <button type="button" className="btn btn-xs btn-danger" onClick={self.props.onRemoveItem( constituency )} data-dismiss="modal">Ištrinti</button>
                                         </div>
                                     </div>
                                 </div>

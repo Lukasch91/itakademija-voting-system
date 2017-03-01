@@ -60,7 +60,7 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
         return (
 
             <div>
-                <button type="button" className="btn btn-primary btn-primary" data-toggle="modal" data-target={modalIdHash}>
+                <button type="button" className="btn btn-xs btn-primary btn-primary" data-toggle="modal" data-target={modalIdHash}>
                     Pridėti kandidatus
                     </button>
 
@@ -88,8 +88,8 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={this.handleAddConstituencyCandidates} data-dismiss="modal" >Pridėti kandidatus</button>
-                                <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
+                                <button type="button" className="btn btn-xs btn-primary" onClick={this.handleAddConstituencyCandidates} data-dismiss="modal" >Pridėti kandidatus</button>
+                                <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
                             </div>
                         </div>
                     </div>

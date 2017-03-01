@@ -17,6 +17,8 @@ public class ConstituencyRepository {
 
 	private static final String FIND_BY_ID = "SELECT DISTINCT c  FROM Constituency c " + "LEFT JOIN FETCH c.districts cd "
 			+ "LEFT JOIN cd.representatives r " + "WHERE c.deletedTime IS NULL " + "AND c.id = :id " + "ORDER BY c.id";
+	
+	private static final String COUNT_ALL_CONSTITUENCIES = "SELECT COUNT(c) FROM Constituency c where c.deletedTime IS NULL";
 
 	@Autowired
 	EntityManager entityManager;
@@ -40,6 +42,13 @@ public class ConstituencyRepository {
 		}
 	}
 
+	public Long countAllConstituencies() {
+		if (entityManager.createQuery(COUNT_ALL_CONSTITUENCIES).getResultList().isEmpty()) {
+			return 0L;
+		} else
+			return (Long) entityManager.createQuery(COUNT_ALL_CONSTITUENCIES).getSingleResult();
+	}
+	
 	public Constituency findConstituencyById(Integer id) {
 		return (Constituency) entityManager.createQuery(FIND_BY_ID).setParameter("id", id).getSingleResult();
 	}

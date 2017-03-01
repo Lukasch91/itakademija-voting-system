@@ -15,20 +15,20 @@ public class DistrictRepository {
 	private static final String FIND_ALL = "SELECT d FROM District d WHERE d.deletedTime IS NULL";
 
 	private static final String GET_NUMBER_OF_DISTRICTS_BY_CONSTITUENCY = "SELECT COUNT(d) FROM District d "
-																		+ "WHERE d.constituencyId = :id "
-																		+ "AND d.deletedTime IS NULL";
+			+ "WHERE d.constituencyId = :id " + "AND d.deletedTime IS NULL";
 
 	private static final String GET_NUMBER_OF_VOTERS_IN_DISTRICTS_BY_CONSTITUENCY = "SELECT SUM(d.numberOfVoters) FROM District d "
-																		+ "WHERE d.constituencyId = :id "
-																		+ "AND d.deletedTime IS NULL";
-	
+			+ "WHERE d.constituencyId = :id " + "AND d.deletedTime IS NULL";
+
 	private static final String GET_DISTRICTS_BY_CONSTITUENCY_ID = "SELECT d FROM District d "
-																 + "WHERE d.deletedTime IS NULL "
-																 + "AND d.constituencyId=:id";
-	
+			+ "WHERE d.deletedTime IS NULL " + "AND d.constituencyId=:id";
+
 	private static final String GET_CONSTITUENCY_ID_BY_DISTRICT_ID = "SELECT d.constituencyId "
-																   + "FROM District d where d.deletedTime IS NULL "
-																   + "AND d.id=:id";
+			+ "FROM District d where d.deletedTime IS NULL " + "AND d.id=:id";
+
+	private static final String GET_NUMBER_OF_ALL_DISTRICTS = "SELECT count(d) FROM District d where d.deletedTime IS NULL";
+
+	private static final String SUM_OF_ALL_VOTERS = "SELECT SUM(d.numberOfVoters) FROM District d where d.deletedTime IS NULL";
 
 	@Autowired
 	private EntityManager entityManager;
@@ -37,13 +37,27 @@ public class DistrictRepository {
 	public List<District> findAllDistricts() {
 		return entityManager.createQuery(FIND_ALL).getResultList();
 	}
+
+	public Long countAllDistricts() {
+		if (entityManager.createQuery(GET_NUMBER_OF_ALL_DISTRICTS).getResultList().isEmpty()) {
+			return 0L;
+		} else
+			return (Long) entityManager.createQuery(GET_NUMBER_OF_ALL_DISTRICTS).getSingleResult();
+	}
 	
+	public Long countAllVoters() {
+		if (entityManager.createQuery(SUM_OF_ALL_VOTERS).getResultList().isEmpty()) {
+			return 0L;
+		} else
+			return (Long) entityManager.createQuery(SUM_OF_ALL_VOTERS).getSingleResult();
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<District> findAllDistrictsByConstituencyId(Integer id) {
 		return entityManager.createQuery(GET_DISTRICTS_BY_CONSTITUENCY_ID).setParameter("id", id).getResultList();
 	}
-	
-	public Integer getConstituencyIdByDistrictId (Integer id){
+
+	public Integer getConstituencyIdByDistrictId(Integer id) {
 		return (Integer) entityManager.createQuery(GET_CONSTITUENCY_ID_BY_DISTRICT_ID).setParameter("id", id)
 				.getSingleResult();
 	}

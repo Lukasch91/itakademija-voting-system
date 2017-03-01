@@ -18,8 +18,8 @@ var AddPartyComponent = React.createClass( {
                     <label>Trumpinys</label><br />
                     <input id="partyAbr" className="form-control" type="text" value={this.props.party.party_abbreviation} onChange={this.props.onFieldChange( 'party_abbreviation' )} /><br />
 
-                    <button id="addParty" className="btn btn-success" onClick={this.props.onAddClick}>Pridėti</button>
-                    <button id="cancelParty" className="btn btn-danger" onClick={this.props.onCancel}>Atšaukti</button>
+                    <button id="addParty" className="btn btn-xs btn-success" onClick={this.props.onAddClick}>Pridėti</button>
+                    <button id="cancelParty" className="btn btn-xs btn-danger" onClick={this.props.onCancel}>Atšaukti</button>
                 </form>
 
                 <table className="table table-condensed">

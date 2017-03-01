@@ -6,9 +6,9 @@ var RepresentativeInfoComponent = React.createClass( {
                 <p>Pavardė: {this.props.representative.surname}</p>
                 <p>Prisijungimo vardas: {this.props.representative.loginName}</p>
                 <p>El. paštas: {this.props.representative.email}</p>
-                <button id="sendLoginInfo" className="btn btn-info" disabled>Siųsti prisijungimus atstovui</button>
+                <button id="sendLoginInfo" className="btn btn-xs btn-info" disabled>Siųsti prisijungimus atstovui</button>
 
-                <button id="deleteRepresentative" type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target="#modal">
+                <button id="deleteRepresentative" type="button" className="btn btn-xs btn-primary btn-danger" data-toggle="modal" data-target="#modal">
                     Trinti atstovą
                 </button>
                 <div className="modal fade" id="modal" tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -22,15 +22,15 @@ var RepresentativeInfoComponent = React.createClass( {
                                 Ar tikrai norite ištrinti atstovą?
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
-                                <button type="button" className="btn btn-danger" onClick={this.props.onDelete} data-dismiss="modal">Ištrinti</button>
+                                <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
+                                <button type="button" className="btn btn-xs btn-danger" onClick={this.props.onDelete} data-dismiss="modal">Ištrinti</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
 
-                <button id="bakcToDistrict" className="btn btn-warning" onClick={this.props.onCancel}>Grįžti</button>
+                <button id="bakcToDistrict" className="btn btn-xs btn-warning" onClick={this.props.onCancel}>Grįžti</button>
             </div>
 
         )
