@@ -87,7 +87,7 @@ public class MultiElectionResultsService {
 
 			Long invalidVotes = changeNullToLong(corruptedVotesRepository.getMultiCorruptedVotesInConstituency(id));
 
-			Long numberOfVotersWhoVoted = changeNullToLong(multiElectionRepository.getAllPublishedVotes())
+			Long numberOfVotersWhoVoted = changeNullToLong(multiElectionRepository.getAllPublishedVotes(id))
 					+ changeNullToLong(invalidVotes);
 
 			BigDecimal percentegeOfVoted = checkForCorrectArithmetic(numberOfVotersWhoVoted, numberOfVoters);
@@ -231,8 +231,9 @@ public class MultiElectionResultsService {
 			BigDecimal percentage = multiElectionConstituency.getPercentageOfAllVotes();
 
 			if (percentage.compareTo(BigDecimal.valueOf(7)) > 0) {
-				mandates = ((sum.multiply(BigDecimal.valueOf(70)))
-						.divideToIntegralValue(multiElectionConstituency.getPercentageOfAllVotes())).longValue();
+				mandates = ((multiElectionConstituency.getPercentageOfAllVotes().multiply(BigDecimal.valueOf(70)))
+						.divideToIntegralValue(sum)).setScale(0, RoundingMode.HALF_UP)
+								.longValue();
 				multiElectionConstituency.setNumberOfMandates(mandates);
 			}
 		}
