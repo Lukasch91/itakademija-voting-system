@@ -12,13 +12,27 @@ import javax.transaction.Transactional;
 import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import vs.admin_.representative.RepresentativeRepository;
 
 @Service
-public class PasswordService {
+public class PasswordService implements PasswordEncoder{
+
+	@Override
+	public String encode(CharSequence rawPassword) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String passwordSalt = passwordEncoder.encode(rawPassword);
+		return passwordSalt;
+	}
+
+	@Override
+	public boolean matches(CharSequence rawPassword, String encodedPassword) {
+		return BCrypt.checkpw(rawPassword.toString(), encodedPassword);
+	}
 	
 
 	private String password;
@@ -79,9 +93,8 @@ public class PasswordService {
 	public boolean PasswordCheck(String loginName, String passwordToCheck) throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String passwordInDb = representativeRepository.findByLoginName(loginName).getPassword();
-		String passwordMd5 = DatatypeConverter
-				.printHexBinary(MessageDigest.getInstance("MD5").digest(passwordToCheck.getBytes("UTF-8")));
-		boolean result = passwordEncoder.matches(passwordMd5, passwordInDb);
+		
+		boolean result = passwordEncoder.matches(passwordToCheck, passwordInDb);
 		return result;
 	}
 
