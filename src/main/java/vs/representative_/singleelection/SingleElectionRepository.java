@@ -16,13 +16,13 @@ public class SingleElectionRepository {
 
 	private static final String FIND_BY_DISTRICT_ID = "SELECT s FROM SingleElection s WHERE singleDistrict is ";
 
-	private static final String FIND_VOTES_BY_CANDIDATE_ID = "SELECT s.singleVotes FROM SingleElection s LEFT Join s.singleCandidate ss "
+	private static final String FIND_VOTES_BY_CANDIDATE_ID = "SELECT sum(s.singleVotes) FROM SingleElection s LEFT Join s.singleCandidate ss "
 			+ "WHERE ss.candidateID = :id AND s.singleDeletedDate is null AND ss.candidateDeletedDate is null "
 			+ "AND s.singlePublishedDate IS NOT NULL";
 
-	private static final String COUNT_PUBLISHED_DISTRICT_RESULTS = "SELECT count(d) FROM SingleElection s "
-			+ "LEFT JOIN s.singleDistrict d " + "WHERE s.singleDeletedDate IS NULL "
-			+ "AND s.singlePublishedDate IS NOT NULL and d.constituencyId=:id";
+	private static final String COUNT_PUBLISHED_DISTRICT_RESULTS = "SELECT distinct count(distinct s.singleDistrict) FROM SingleElection s "
+			+ "LEFT JOIN s.singleDistrict d  " + "WHERE s.singleDeletedDate IS NULL "
+			+ "AND s.singlePublishedDate IS NOT NULL and d.constituencyId=:id and d.deletedTime is null ";
 
 	private static final String SUM_PUBLISHED_VOTES_IN_DISTRICTS_BY_CONSTITUENCY = "SELECT sum(s.singleVotes) FROM SingleElection s "
 			+ "LEFT JOIN s.singleCandidate c left join c.candidateConstituency cc "

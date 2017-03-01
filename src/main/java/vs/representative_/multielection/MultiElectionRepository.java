@@ -17,10 +17,13 @@ public class MultiElectionRepository {
 	private static final String FIND_VOTES_FOR_PARTY_BY_PARTY_ID = "SELECT sum(m.votes) from MultiElection m LEFT JOIN m.party mp "
 			+ "WHERE mp.id =:id AND m.published_date IS NOT NULL AND m.deleted_date is null AND mp.deletedTime is null";
 
-	private static final String FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES = "SELECT sum(m.votes) from MultiElection m LEFT JOIN m.party mp "
+	private static final String FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES_BY_CONSTITUENCY = "SELECT sum(m.votes) from MultiElection m LEFT JOIN m.party mp left join m.district md "
+			+ "WHERE mp.deletedTime is null AND m.published_date IS NOT NULL AND m.deleted_date is null and md.constituencyId=:id";
+	
+	private static final String FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES = "SELECT sum(m.votes) from MultiElection m LEFT JOIN m.party mp left join m.district md "
 			+ "WHERE mp.deletedTime is null AND m.published_date IS NOT NULL AND m.deleted_date is null";
 
-	private static final String COUNT_PUBLISHED_DISTRICT_RESULTS = "SELECT count(m) FROM MultiElection m "
+	private static final String COUNT_PUBLISHED_DISTRICT_RESULTS = "SELECT count(distinct md) FROM MultiElection m "
 			+ "LEFT JOIN m.district md " + "WHERE m.deleted_date IS NULL "
 			+ "AND m.published_date IS NOT NULL and md.constituencyId=:id";
 
@@ -44,6 +47,16 @@ public class MultiElectionRepository {
 	@SuppressWarnings("unchecked")
 	public List<MultiElection> findAllElection() {
 		return entityManager.createQuery(FIND_ALL).getResultList();
+	}
+	
+	public Long getAllPublishedVotes() {
+		if (entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES).getResultList()
+				.isEmpty()) {
+			return 0L;
+		} else {
+
+			return (Long) entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES).getSingleResult();
+		}
 	}
 	
 	public Long getVotesOfPartyByConsId(Integer consId, Integer partyId) {
@@ -110,12 +123,12 @@ public class MultiElectionRepository {
 		}
 	}
 
-	public Long getAllPublishedVotes() {
-		if (entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES).getResultList().isEmpty()) {
+	public Long getAllPublishedVotes(Integer id) {
+		if (entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES_BY_CONSTITUENCY).setParameter("id", id).getResultList().isEmpty()) {
 			return 0L;
 		} else {
 
-			return (Long) entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES).getSingleResult();
+			return (Long) entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES_BY_CONSTITUENCY).setParameter("id", id).getSingleResult();
 		}
 	}
 
