@@ -28,7 +28,7 @@ var NavigationRepComponent = React.createClass( {
             <nav className="navbar navbar-inverse">
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
-                        <NavLink to="/" onlyActiveOnIndex>Home</NavLink>
+                        <NavLink to="/home" onlyActiveOnIndex>Home</NavLink>
                         <NavLink id="multiVoteRegistration" to="/reg-votes-multi">Balsų registravimas (daug.)</NavLink>
                         <NavLink id="singleVoteRegistration" to="/reg-votes-single">Balsų registravimas (vien.)</NavLink>
                      </ul>

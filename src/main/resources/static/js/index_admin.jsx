@@ -24,6 +24,7 @@ ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={HomeComponent} />
+        <Route path="/home" component={HomeComponent} />
         <Route path="/con" component={ConstituencyListContainer} />
         <Route path="/dis/:conId" component={DistrictListContainer} />
         <Route path="/add-con" component={AddConstituencyContainer} />

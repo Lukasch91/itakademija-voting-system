@@ -24,6 +24,7 @@ ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={HomeComponent} />
+        <Route path="/home" component={HomeComponent} />
         <Route path="/candidates" component={CandidateSearchComponent} />
         <Route path="/results" component={SingleElectionsResultsContainer} />
         <Route path="/multiresults" component={MultiElectionsResultsContainer} />

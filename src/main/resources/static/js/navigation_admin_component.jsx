@@ -28,7 +28,7 @@ var NavigationAdminComponent = React.createClass( {
             <nav className="navbar navbar-inverse">
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
-                        <NavLink to="/" onlyActiveOnIndex>Home</NavLink>
+                        <NavLink to="/home" onlyActiveOnIndex>Home</NavLink>
                         <NavLink id="constituency" to="/con">Apygardos/Apylinkės</NavLink>
                         <NavLink id="party" to="/parties">Partijos</NavLink>
                         <NavLink id="singleMember" to="/upload-single-cadidates">Kandidatų įkėlimas (vien.)</NavLink>

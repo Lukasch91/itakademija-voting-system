@@ -28,10 +28,10 @@ var NavigationPubComponent = React.createClass( {
             <nav className="navbar navbar-inverse">
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
-                        <NavLink to="/" onlyActiveOnIndex>Home</NavLink>
-                        <NavLink id="candidates" to="/candidates">Kandidatai</NavLink>
-                        <NavLink id="results" to="/results">Vienmandatės rezultatai</NavLink>
-                        <NavLink id="multiresults" to="/multiresults">Daugiamandatės rezultatai</NavLink>
+                        <NavLink to="/home" onlyActiveOnIndex>Home</NavLink>
+                        <NavLink id="/candidates" to="/candidates">Kandidatai</NavLink>
+                        <NavLink id="/results" to="/results">Vienmandatės rezultatai</NavLink>
+                        <NavLink id="/multiresults" to="/multiresults">Daugiamandatės rezultatai</NavLink>
                     </ul>
                 </div>
             </nav>

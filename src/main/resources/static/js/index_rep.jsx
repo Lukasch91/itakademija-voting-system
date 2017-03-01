@@ -24,6 +24,7 @@ ReactDOM.render((
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={HomeComponent} />
+        <Route path="/home" component={HomeComponent} />
         <Route path="/reg-votes-multi" component={RegisterVotesMultiContainer} />
         <Route path="/reg-votes-single" component={RegisterVotesSingleContainer} />
       <Route path="*" component={NoMatch}/>
