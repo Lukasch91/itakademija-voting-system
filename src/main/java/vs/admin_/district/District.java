@@ -21,9 +21,11 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
 import vs.admin_.representative.Representative;
+import vs.utils_.hibernate.validators.District.UniqueDistrictInConstituency;
 
 @Entity
 @Table(name = "districts")
+@UniqueDistrictInConstituency
 public class District {
 
 	@Id
