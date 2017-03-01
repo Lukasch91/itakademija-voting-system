@@ -38,7 +38,8 @@ var PubDelVotesDistrictListContainer = React.createClass( {
         var self = this;
         return function() {
             console.log( 'publishing: ' + districtId );
-            axios.post( '/api/ADMIN/singleelectiondistrict/' + districtId ).then(function() {
+            /*axios.post( '/api/ADMIN/singleelectiondistrict/' + districtId );*/
+            axios.put('/api/ADMIN/inalidvotesistrict/' + districtId + '/false').then(function() {
                 window.location.reload();
             });
             
