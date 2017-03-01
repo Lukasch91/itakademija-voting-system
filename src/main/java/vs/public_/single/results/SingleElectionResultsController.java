@@ -59,4 +59,10 @@ public class SingleElectionResultsController {
 		return singleElectionConstitencyService.getSingleElectionResultInDistrict(id);
 	}
 
+	@RequestMapping(value = "/api/PUBLIC/singledetails/", method = RequestMethod.GET)
+	@ApiOperation(value = "[PUBLIC] - ")
+	public SingleElectionDetails getSinglElectionDetails() {
+		return singleElectionConstitencyService.getSingleElectionDetails();
+	}
+	
 }

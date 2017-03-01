@@ -32,7 +32,7 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
         var data = new FormData();
 
         data.append( 'file', file );
-        
+
         this.setState( { file: null });
 
         axios.post( '/api/ADMIN/partycandidatesFILE', data, header )
@@ -88,8 +88,8 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={this.handleAddPartyCandidates} data-dismiss="modal" >Pridėti kandidatus</button>
-                                <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
+                                <button type="button" className="btn btn-xs btn-primary" onClick={this.handleAddPartyCandidates} data-dismiss="modal" >Pridėti kandidatus</button>
+                                <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
                             </div>
                         </div>
                     </div>

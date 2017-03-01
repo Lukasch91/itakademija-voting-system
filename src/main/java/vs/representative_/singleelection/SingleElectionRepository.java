@@ -60,22 +60,31 @@ public class SingleElectionRepository {
 	private static final String GET_SINGLE_VOTES_BY_CANDIDATE_ID = "Select s.singleVotes FROM SingleElection s LEFT JOIN s.singleDistrict sd LEFT JOIN s.singleCandidate sc WHERE s.singleDeletedDate IS NULL "
 			+ "AND s.singlePublishedDate IS NOT NULL and sc.candidateID=:candidateId AND sd.id = :districtId";
 
+	private static final String COUNT_ALL_VOTES = "SELECT sum(s.singleVotes) FROM SingleElection s "
+			+ "LEFT JOIN s.singleDistrict sd  WHERE "
+			+ " s.singleDeletedDate IS NULL AND s.singlePublishedDate IS NOT NULL and sd.deletedTime is null";
+
 	@Autowired
 	private EntityManager em;
-
-
 
 	public Long getVotesOfCandidate(Integer candidateId, Integer districtId) {
 		if (em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID).setParameter("candidateId", candidateId)
 				.setParameter("districtId", districtId).getResultList().isEmpty()) {
 			return 0L;
 		} else {
-
 			return (Long) em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID).setParameter("candidateId", candidateId)
 					.setParameter("districtId", districtId).getSingleResult();
 		}
 	}
-	
+
+	public Long getAllVotes() {
+		if (em.createQuery(COUNT_ALL_VOTES).getResultList().isEmpty()) {
+			return 0L;
+		} else {
+			return (Long) em.createQuery(COUNT_ALL_VOTES).getSingleResult();
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<SingleElection> findAllSingleElectionResults() {
 		return em.createQuery(FIND_ALL).getResultList();

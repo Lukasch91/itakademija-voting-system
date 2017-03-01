@@ -32,7 +32,7 @@ var DeleteVotesComponent = React.createClass( {
                 </select>
 
 
-                <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target="#modal">
+                <button type="button" className="btn btn-xs btn-primary btn-danger" data-toggle="modal" data-target="#modal">
                     Anuliuoti rezultatus
               </button>
                 <div className="modal fade" id="modal" tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -46,8 +46,8 @@ var DeleteVotesComponent = React.createClass( {
                                 Ar tikrai norite ištrinti apygardą?
                           </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
-                                <button type="button" className="btn btn-danger" onClick={this.props.onDeleteVotes} data-dismiss="modal">Ištrinti</button>
+                                <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
+                                <button type="button" className="btn btn-xs btn-danger" onClick={this.props.onDeleteVotes} data-dismiss="modal">Ištrinti</button>
                             </div>
                         </div>
                     </div>

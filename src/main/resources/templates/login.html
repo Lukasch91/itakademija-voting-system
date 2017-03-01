@@ -10,22 +10,28 @@
 	crossorigin="anonymous" />
 </head>
 <body>
-	<div class="container"><a id="public" href="/">Viešas</a> | <a id="admin" href="/admin">Administratoriui</a> | <a id="representative" href="/rep">Atstovui</a></div>
+	<div class="container">
+		<a id="public" href="/">Viešas</a> | <a id="admin" href="/admin">Administratoriui</a>
+		| <a id="representative" href="/rep">Atstovui</a>
+	</div>
 	<div class="jumbotron vertical-center">
 		<div class="container centered">
 			<form class="form-inline" th:action="@{/login}" method="post">
 
 				<div class="form-group">
-					<label class="sr-only">User name</label> <input id="username" type="text"
-						class="form-control" placeholder="Enter user name" name="username" />
+					<label class="sr-only">User name</label> <input id="username"
+						type="text" class="form-control" placeholder="Enter user name"
+						name="username" />
 				</div>
 
 				<div class="form-group">
-					<label class="sr-only">Password</label> <input id="password" type="password"
-						class="form-control" placeholder="Password" name="password" />
+					<label class="sr-only">Password</label> <input id="password"
+						type="password" class="form-control" placeholder="Password"
+						name="password" />
 				</div>
 
-				<button id="signin" type="submit" class="btn btn-primary">Sign in</button>
+				<button id="signin" type="submit" class="btn btn-xs btn-primary">Sign
+					in</button>
 
 			</form>
 			<div th:if="${param.error}">Invalid username and password.</div>

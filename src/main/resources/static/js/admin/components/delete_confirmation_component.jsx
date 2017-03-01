@@ -6,7 +6,7 @@ var DeleteConfirmationComponent = React.createClass( {
             var modalIdHash = "#modal" + itemId;
             return (
                 <div>
-                    <button type="button" className="btn btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
+                    <button type="button" className="btn btn-xs btn-primary btn-danger" data-toggle="modal" data-target={modalIdHash}>
                         <span className="glyphicon glyphicon-remove"></span>
                     </button>
                     <div className="modal fade" id={modalId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -20,8 +20,8 @@ var DeleteConfirmationComponent = React.createClass( {
                                     Ar tikrai norite ištrinti apygardą? ({modalId})
                                     </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
-                                    <button type="button" className="btn btn-danger" onClick={deletableItem} data-dismiss="modal">Ištrinti</button>
+                                    <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
+                                    <button type="button" className="btn btn-xs btn-danger" onClick={deletableItem} data-dismiss="modal">Ištrinti</button>
                                 </div>
                             </div>
                         </div>
