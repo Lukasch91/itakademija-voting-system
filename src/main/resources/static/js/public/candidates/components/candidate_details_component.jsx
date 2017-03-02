@@ -1,79 +1,4 @@
 var CandidateDetailsComponent = React.createClass( {
-    /*
-              
-                            <th>Gimimo data</th>
-                            <th>Daugiau</th>
-                            <th>Aprašymas</th>
-                            <th>Partija</th>
-                            <th>Numeris partijoje</th>
-                            <th>Apygarda</th>
-                    
-                    <tr key={'row' + index}>
-                    <td>{candidate.candidateName}</td>
-                    <td>{candidate.candidateSurname}</td>
-                    <td>{candidate.candidateDateOfBirth}</td>
-                    <td><CandidateDetailsComponent candidateProp={candidate}/></td>
-                    <td>{candidate.candidateDescription}</td>
-                    <td>
-                    {candidate.candidateParty != null ? candidate.candidateParty.title : '-'}
-                    </td>
-                    <td>
-                    {candidate.candidateNumberInParty != null ? candidate.candidateNumberInParty : '-'}
-                    </td>
-                    <td>
-                    {candidate.candidateConstituency != null ? candidate.candidateConstituency.title : '-'}
-                    </td>
-                </tr> 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <table className="table table-hover">
-                                    <thead>
-                                        <tr>
-                
-                                            <th>Gimimo data</th>
-                                            <th>Asmens kodas</th>
-                                            <th>Aprašymas</th>
-                                            <th>Partija</th>
-                                            <th>Numeris partijoje</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       
-                                    </tbody>
-                                </table>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-    */
-    
-    
-    
-    
-    
-    
-    
     
     render: function() {
         var self = this;
@@ -98,22 +23,21 @@ var CandidateDetailsComponent = React.createClass( {
                                     <span className="sr-only">Close</span>
                                 </button>
 
-                                <h4 className="modal-title" id="myModalLabel">Kandidatas</h4>
+                                <h4 className="modal-title" id="myModalLabel">Kandidatas {candidate.candidateName} {candidate.candidateSurname}</h4>
                             </div>
 
                             <div className="modal-body">
-
-                            <p>Vardas Pavardė</p>
-                            <p>{candidate.candidateName} {candidate.candidateSurname}</p>
-
+                            <p>{candidate.candidateParty != null ? ("Priklauso partijai - " + candidate.candidateParty.title) : null}</p>
+                            <p>{candidate.candidateNumberInParty != null ? ("Numeris partijoje: "+ candidate.candidateNumberInParty) : null}</p>
+                            <p>{candidate.candidateConstituency != null ? ("Priklauso vienmandatei " + candidate.candidateConstituency.title +" apygardai") : null}</p>
+                            <br/>
                             
-                            
-                            <p>Gimimo data</p>
-                            <p>Daugiau</p>
                             <p>Aprašymas</p>
-                            <p>Partija</p>
-                            <p>Numeris partijoje</p>
-                            <p>Apygarda</p>
+                            <p>{candidate.candidateDescription}</p>
+                            <p>Gimimo data: {candidate.candidateDateOfBirth}</p>
+                            
+                            
+
 
                             </div>
                             <div className="modal-footer">
