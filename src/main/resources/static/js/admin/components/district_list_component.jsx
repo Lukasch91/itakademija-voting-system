@@ -7,7 +7,7 @@ var DistrictListComponent = React.createClass( {
             var modalIdHash = "#modal" + district.id;
             var rep_name = "nepriskirta";
             if ( district.representatives.length != 0 ) {
-                rep_name = district.representatives[0].name;
+                rep_name = district.representatives[0].name + ' ' + district.representatives[0].surname;
 
                 return (
                     <tr key={index}>

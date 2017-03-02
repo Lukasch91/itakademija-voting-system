@@ -6,7 +6,7 @@ var RepresentativeInfoComponent = React.createClass( {
                 <p>Pavardė: {this.props.representative.surname}</p>
                 <p>Prisijungimo vardas: {this.props.representative.loginName}</p>
                 <p>El. paštas: {this.props.representative.email}</p>
-                <button id="sendLoginInfo" className="btn btn-info btn-xs " disabled>Siųsti prisijungimus atstovui</button>
+                
 
                 <button id="deleteRepresentative" type="button" className="btn btn-primary btn-danger btn-xs " data-toggle="modal" data-target="#modal">
                     Trinti atstovą
