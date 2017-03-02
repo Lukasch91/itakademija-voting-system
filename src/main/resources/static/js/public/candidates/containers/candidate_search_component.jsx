@@ -26,15 +26,9 @@ var CandidateSearchComponent = React.createClass( {
             matches = true;
         } else if( candidate.candidateSurname.toLowerCase().indexOf(comparable.toLowerCase()) >=0 ) {
             matches = true;
-        } else if( candidate.candidateDateOfBirth.toLowerCase().indexOf(comparable.toLowerCase()) >=0 ) {
-            matches = true;
-        } else if( candidate.candidatePersonalID.toLowerCase().indexOf(comparable.toLowerCase()) >=0 ) {
-            matches = true;
-        } else if( candidate.candidateDescription.toLowerCase().indexOf(comparable.toLowerCase()) >=0 ) {
-            matches = true;
         } else if( (candidate.candidateParty != null ? candidate.candidateParty.title : '-').toLowerCase().indexOf(comparable.toLowerCase()) >=0 ) {
             matches = true;
-        } else if( ((candidate.candidateNumberInParty != null ? candidate.candidateNumberInParty : '-').toString()).indexOf(comparable.toLowerCase()) >=0 ) {
+        } else if( ((candidate.candidateParty != null ? candidate.candidateParty.party_abbreviation : '-').toLowerCase()).indexOf(comparable.toLowerCase()) >=0 ) {
             matches = true;
         } else if( (candidate.candidateConstituency != null ? candidate.candidateConstituency.title : '-').toLowerCase().indexOf(comparable.toLowerCase()) >=0 ) {
             matches = true;
@@ -45,10 +39,6 @@ var CandidateSearchComponent = React.createClass( {
     
     handleSearchChange: function( event ) {
       var self = this;
-      
-      //binding
-      //http://stackoverflow.com/questions/27397266/onclick-event-binding-in-react-js
-      //https://github.com/reactjs/react-art/issues/37
       
       var originalCandidates = self.state.candidatesBackup;
       var foundCandidates = [];
@@ -68,18 +58,17 @@ var CandidateSearchComponent = React.createClass( {
                 <tr key={'row' + index}>
                     <td>{candidate.candidateName}</td>
                     <td>{candidate.candidateSurname}</td>
-                    <td>{candidate.candidateDateOfBirth}</td>
-                    <td>{candidate.candidatePersonalID}</td>
-                    <td>{candidate.candidateDescription}</td>
+                    
                     <td>
                     {candidate.candidateParty != null ? candidate.candidateParty.title : '-'}
                     </td>
                     <td>
-                    {candidate.candidateNumberInParty != null ? candidate.candidateNumberInParty : '-'}
+                    {candidate.candidateParty != null ? candidate.candidateParty.party_abbreviation : '-'}
                     </td>
                     <td>
                     {candidate.candidateConstituency != null ? candidate.candidateConstituency.title : '-'}
                     </td>
+                    <td><CandidateDetailsComponent candidateProp={candidate}/></td>
                 </tr>                 
             );
         });
@@ -99,12 +88,10 @@ var CandidateSearchComponent = React.createClass( {
                         <tr>
                             <th>Vardas</th>
                             <th>Pavardė</th>
-                            <th>Gimimo data</th>
-                            <th>Asmens kodas</th>
-                            <th>Aprašymas</th>
                             <th>Partija</th>
-                            <th>Numeris partijoje</th>
+                            <th>Trumpinys</th>
                             <th>Apygarda</th>
+                            <th>Daugiau</th>
                         </tr>
                     </thead>
                         <tbody>
