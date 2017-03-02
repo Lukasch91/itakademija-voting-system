@@ -3,6 +3,7 @@ package vs.public_.multi.results;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import vs.admin_.district.District;
 import vs.admin_.district.DistrictRepository;
 import vs.admin_.party.Party;
 import vs.admin_.party.PartyRepository;
+import vs.public_.single.results.SingleElectionResultsComperator;
 import vs.representative_.corruptedvotes.CorruptedVotesRepository;
 import vs.representative_.multielection.MultiElectionRepository;
 
@@ -64,7 +66,13 @@ public class MultiElectionResultsService {
 
 			resultList.add(multiElectionConstituency);
 		}
-		return (List<MultiElectionResults>) getPartiesListWithMandates(resultList);
+
+		List<MultiElectionResults> list = getPartiesListWithMandates(resultList);
+
+		Collections.sort(list, new MultiElectionResultsComperator());
+		Collections.reverse(list);
+		return list;
+
 	}
 
 	public List<MultiElectionConstituencyList> getMultiElectionConstituencyList() {
@@ -232,8 +240,7 @@ public class MultiElectionResultsService {
 
 			if (percentage.compareTo(BigDecimal.valueOf(7)) > 0) {
 				mandates = ((multiElectionConstituency.getPercentageOfAllVotes().multiply(BigDecimal.valueOf(70)))
-						.divideToIntegralValue(sum)).setScale(0, RoundingMode.HALF_UP)
-								.longValue();
+						.divideToIntegralValue(sum)).setScale(0, RoundingMode.HALF_UP).longValue();
 				multiElectionConstituency.setNumberOfMandates(mandates);
 			}
 		}

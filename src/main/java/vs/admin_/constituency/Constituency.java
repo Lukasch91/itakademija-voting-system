@@ -34,10 +34,10 @@ public class Constituency {
 
 	@Column
 	@UniqueConstituency
-	@NotBlank(message="Pavadinimas negali būti tuščias")
-	@Length(min=2, max=70, message="Pavadinimas turi būti sudarytas iš mažiausiai {min} simbolių ir daugiausiai {max} simbolių")
-	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]$)", message = "Pavadinime naudojami netinkami simboliai")
-	@ApiModelProperty(value = "@NotBlank, @Length(min=2, max=70), @UniqueConstituency, @Pattern")
+	//@NotBlank(message="Pavadinimas negali būti tuščias")
+	@Length(min=2, max=70, message="Pavadinimą turi būti sudaryti {min} - {max} simbolių")
+	@Pattern(regexp = ".*(^$|[a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]$)", message = "Pavadinime naudojami netinkami simboliai")
+	@ApiModelProperty(value = "@Length(min=2, max=70), @UniqueConstituency, @Pattern")
 	private String title;
 
 	@Column

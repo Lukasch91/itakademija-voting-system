@@ -21,7 +21,7 @@ var SingleElectionsOneDistrictResultsContainer = React.createClass( {
 
     handleCancel: function() {
         var self = this;
-        self.context.router.push( '/results/' );
+        self.context.router.push( '/multiresults' );
     },
 
 

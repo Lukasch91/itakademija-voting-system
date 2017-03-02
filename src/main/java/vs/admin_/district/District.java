@@ -40,8 +40,8 @@ public class District {
 	private String title;
 
 	@Column
-	@Min(value = 0, message = "Per maža reikšmė")
-	@Max(value = 500000, message = "Reikšmė ribota iki {max}")
+	@Min(value = 0, message = "Minimali reikšmė {value}")
+	@Max(value = 500000, message = "Reikšmė ribota iki {value}")
 	private Long numberOfVoters;
 
 	@Column

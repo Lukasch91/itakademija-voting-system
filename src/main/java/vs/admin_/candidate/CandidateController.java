@@ -81,42 +81,86 @@ public class CandidateController {
 	
 	/* ===========================================================File=== */
 
-	@RequestMapping(value = "/api/ADMIN/districtcandidatesFILE", method = RequestMethod.POST)
+//	@RequestMapping(value = "/api/ADMIN/districtcandidatesFILE", method = RequestMethod.POST)
+//	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
+//	@ApiOperation(value = "[ADMIN] - Upload district candidates CSV")
+//	public String districtCandidatesCSV(@RequestParam("file") MultipartFile file,
+//			@RequestHeader Integer constituencyId) {
+//
+//		storageService.store(file);
+//
+//		candidateService.setCandidatesConstituency(constituencyId);
+//		candidateService.setCandidatesData(storageService.returnStoredFile(file));
+//		candidateService.saveDistrictCandidates();
+//
+//		String aaa = storageService.returnStoredFile(file);
+//
+//		storageService.deleteFile(file);
+//
+//		return aaa;
+//	}
+
+//	@RequestMapping(value = "/api/ADMIN/partycandidatesFILE", method = RequestMethod.POST)
+//	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
+//	@ApiOperation(value = "[ADMIN] - Upload party candidates CSV")
+//	public String partyCandidatesCSV(@RequestParam("file") MultipartFile file, @RequestHeader Integer partyId) {
+//
+//		storageService.store(file);
+//
+//		candidateService.setCandidatesParty(partyId);
+//		candidateService.setCandidatesData(storageService.returnStoredFile(file));
+//		candidateService.savePartyCandidates();
+//
+//		String aaa = storageService.returnStoredFile(file);
+//
+//		storageService.deleteFile(file);
+//
+//		return aaa;
+//	}
+
+	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+	
+	@RequestMapping(value = "/api/ADMIN/constituencycsv", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-	@ApiOperation(value = "[ADMIN] - Upload district candidates CSV")
-	public String districtCandidatesCSV(@RequestParam("file") MultipartFile file,
-			@RequestHeader Integer constituencyId) {
+	@ApiOperation(value = "[ADMIN] - Upload constituency candidates CSV")
+	public String districtCandidatesCSV(@RequestBody CandidateDataPackage data) {
 
-		storageService.store(file);
-
-		candidateService.setCandidatesConstituency(constituencyId);
-		candidateService.setCandidatesData(storageService.returnStoredFile(file));
+		candidateService.setCandidatesConstituency(data.getId());		
+		candidateService.setCandidatesData(data.getText());
 		candidateService.saveDistrictCandidates();
 
-		String aaa = storageService.returnStoredFile(file);
-
-		storageService.deleteFile(file);
-
-		return aaa;
+		return data.getText();
 	}
-
-	@RequestMapping(value = "/api/ADMIN/partycandidatesFILE", method = RequestMethod.POST)
+	
+	
+	@RequestMapping(value = "/api/ADMIN/partycsv", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
 	@ApiOperation(value = "[ADMIN] - Upload party candidates CSV")
-	public String partyCandidatesCSV(@RequestParam("file") MultipartFile file, @RequestHeader Integer partyId) {
+	public String partyCSV(@RequestBody CandidateDataPackage data) {
 
-		storageService.store(file);
-
-		candidateService.setCandidatesParty(partyId);
-		candidateService.setCandidatesData(storageService.returnStoredFile(file));
+		candidateService.setCandidatesParty(data.getId());
+		candidateService.setCandidatesData(data.getText());
 		candidateService.savePartyCandidates();
-
-		String aaa = storageService.returnStoredFile(file);
-
-		storageService.deleteFile(file);
-
-		return aaa;
+		
+		return data.getText();
 	}
 
 	/* ===========================================================File=== */
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

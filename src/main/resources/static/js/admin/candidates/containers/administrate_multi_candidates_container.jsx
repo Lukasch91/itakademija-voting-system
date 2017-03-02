@@ -7,7 +7,8 @@ var AdministrateMultiCandidatesContainer = React.createClass( {
         };
     },
 
-    componentWillMount: function() {
+    loadData: function() {
+        console.log( "reload3" );
         var self = this;
         axios.get( '/api/ADMIN/partyExtended' )
             .then( function( response ) {
@@ -17,11 +18,17 @@ var AdministrateMultiCandidatesContainer = React.createClass( {
             });
     },
 
+    componentWillMount: function() {
+        this.loadData();
+    },
+
 
     render: function() {
         return (
             <div>
-                <AdministrateMultiCandidatesComponent parties={this.state.parties} />
+                <AdministrateMultiCandidatesComponent
+                    reload3={this.loadData}
+                    parties={this.state.parties} />
             </div>
         )
     }

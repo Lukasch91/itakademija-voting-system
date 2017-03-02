@@ -7,7 +7,8 @@ var AdministrateSingleCandidatesContainer = React.createClass( {
         };
     },
 
-    componentWillMount: function() {
+    loadData: function() {
+        console.log( "reload3" );
         var self = this;
         axios.get( '/api/ADMIN/constituencyExtended' )
             .then( function( response ) {
@@ -17,10 +18,15 @@ var AdministrateSingleCandidatesContainer = React.createClass( {
             });
     },
 
+    componentWillMount: function() {
+        this.loadData();
+    },
+
     render: function() {
         return (
             <div>
                 <AdministrateSingleCandidatesComponent
+                    reload3={this.loadData}
                     constituencies={this.state.constituencies}
                     />
             </div>
