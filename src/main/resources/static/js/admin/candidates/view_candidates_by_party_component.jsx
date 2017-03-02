@@ -5,61 +5,63 @@ var ViewCandidatesByPartyComponent = React.createClass( {
             candidates: []
         };
     },
-    
+
     handleInitiateData: function() {
         var self = this;
-        if(self.state.candidates.length == 0) {
+        if ( self.state.candidates.length == 0 ) {
             var partyId = this.props.party.id;
-            axios.get('api/ADMIN/candidateParty/' + partyId)    
-            .then(function (response) {
-     
-                console.log(response.data);
-                
-                self.setState({ 
-                    candidates: response.data
+            axios.get( 'api/ADMIN/candidateParty/' + partyId )
+                .then( function( response ) {
+
+                    console.log( response.data );
+
+                    self.setState( {
+                        candidates: response.data
+                    });
                 });
-            });            
         }
     },
-    
-    handleRemoveItem: function() { 
-        
-        console.log("delete");
-        
+
+    handleRemoveItem: function() {
+
+        console.log( "delete" );
+
         var self = this;
         var partyId = this.props.party.id;
-        
-        axios.delete('/api/ADMIN/candidateParty/'+ partyId)
-        .then(function(response) { 
-            console.log("deletedddddd");
-            self.setState({ 
-                candidates: []
+
+        axios.delete( '/api/ADMIN/candidateParty/' + partyId )
+            .then( function( response ) {
+                self.setState( {
+                    candidates: []
+                });
+                if ( response.status == 204 ) {
+                    $( "#modal" + 1 + partyId ).modal( 'hide' );
+                    console.log( "reload1" );
+                    self.props.reload1();
+                }
             });
-            
-        });
-        window.location.reload();//!!!!!!!!improve, initialize AxiosGet
     },
-    
+
     render: function() {
 
         var modalId = "modal" + 1 + this.props.party.id;
         var modalIdHash = "#modal" + 1 + this.props.party.id;
         var self = this;
-           
+
         var candidateList = self.state.candidates.map( function( candidate, index ) {
             return (
-                    <tr key={index}>
-                        <td>{candidate.candidateName}</td>
-                        <td>{candidate.candidateSurname}</td>
-                        <td>{candidate.candidateDateOfBirth}</td>
-                        <td>{candidate.candidatePersonalID}</td>
-                        <td>{candidate.candidateDescription}</td>
-                        <td>{candidate.candidateNumberInParty}</td>
-  <td>
-  {candidate.candidateConstituency != null ? candidate.candidateConstituency.title : '-'}
-  </td>
-                    </tr>
-                );
+                <tr key={index}>
+                    <td>{candidate.candidateName}</td>
+                    <td>{candidate.candidateSurname}</td>
+                    <td>{candidate.candidateDateOfBirth}</td>
+                    <td>{candidate.candidatePersonalID}</td>
+                    <td>{candidate.candidateDescription}</td>
+                    <td>{candidate.candidateNumberInParty}</td>
+                    <td>
+                        {candidate.candidateConstituency != null ? candidate.candidateConstituency.title : '-'}
+                    </td>
+                </tr>
+            );
         });
 
         return (
@@ -83,28 +85,28 @@ var ViewCandidatesByPartyComponent = React.createClass( {
                             </div>
 
                             <div className="modal-body">
-                                
+
                                 <table className="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Vardas</th>
-                                        <th>Pavardė</th>
-                                        <th>Gimimo data</th>
-                                        <th>Asmens kodas</th>
-                                        <th>Aprašymas</th>
-                                        <th>Numeris partijoje</th>
-                                        <th>Apygarda</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {candidateList}
-                                </tbody>
-                            </table>
-                                
-                                
+                                    <thead>
+                                        <tr>
+                                            <th>Vardas</th>
+                                            <th>Pavardė</th>
+                                            <th>Gimimo data</th>
+                                            <th>Asmens kodas</th>
+                                            <th>Aprašymas</th>
+                                            <th>Numeris partijoje</th>
+                                            <th>Apygarda</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {candidateList}
+                                    </tbody>
+                                </table>
+
+
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-xs btn-danger" onClick={this.handleRemoveItem} data-dismiss="modal">Ištrinti kandidatus</button>
+                                <button type="button" className="btn btn-xs btn-danger" onClick={this.handleRemoveItem}>Ištrinti kandidatus</button>
                                 <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
                             </div>
                         </div>

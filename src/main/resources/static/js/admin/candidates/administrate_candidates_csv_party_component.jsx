@@ -2,60 +2,66 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
 
     getInitialState: function() {
         return {
-            file: null,
-            id: null
+            fileString: {},
+            id: 0
         };
     },
-    componentDidMount: function() {
-        this.setState( { id: this.props.partyId });
-    },
-    onHandleFileChange: function( file ) {
-        this.setState( { file: file });
-        console.log( '2' );
-    },
 
-    handleAddPartyCandidates: function() {
-        console.log( '3' );
-        var self = this;
-
-        var header = {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'partyId': this.state.id
-            }
-        };
-
-        var file = 'nofile.aaa';
-        if ( this.state.file != null ) {
-            file = this.state.file;
-        }
-        var data = new FormData();
-
-        data.append( 'file', file );
-
-        this.setState( { file: null });
-
-        axios.post( '/api/ADMIN/partycandidatesFILE', data, header )
-            .then( function( response ) {
-                console.log( "server_response" );
-                console.log( response );
-            });
-        window.location.reload();//!!!!!!!!improve, initialize AxiosGet
+    componentWillMount: function() {
+        var content = { text: "No content!!!", id: this.props.partyId };
+        this.setState( {
+            id: this.props.partyId,
+            fileString: content
+        });
     },
 
     onFileChange: function() {
+        var self = this;
+        var file = document.getElementById( "inputId" + self.state.id );
+        var reader = new FileReader();
 
-        var fileData = document.getElementById( 'fileId' ).files[0];
-        console.log( '1' );
-        this.onHandleFileChange( fileData );
+        reader.onload = function( evt ) {
+            if ( evt.target.readyState != 2 ) return;
+            if ( evt.target.error ) {
+                console.log( 'Error while reading file' );
+                return;
+            }
+            console.log( evt.target.result );
+            var text = self.state.fileString;
+            text.text = evt.target.result;
+            self.setState( { fileString: text });
+        };
+
+        reader.readAsText( file.files[0] );
+
+    },
+
+    handleAddPartyCandidates: function() {
+        var self = this;
+
+        var data = self.state.fileString;
+        console.log( data );
+
+        axios.post( '/api/ADMIN/partycsv', data )
+            .then( function( response ) {
+                console.log( "server_response" );
+                console.log( response );
+                if ( response.status == 201 ) {
+                    // call fathers self.componentWillMount();
+                    $( "#modal" + self.state.id ).modal( 'hide' );
+                    console.log( "reload1" );
+                    self.props.reload1();
+                }
+            })
+            .catch( function( error ) {
+                console.log( error );
+            });
     },
 
     render: function() {
-
+        var self = this;
         var modalId = "modal" + this.props.partyId;
         var modalIdHash = "#modal" + this.props.partyId;
-
-
 
         return (
 
@@ -78,7 +84,7 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
                                 <form className="form">
                                     <div>
                                         <input
-                                            id="fileId"
+                                            id={"inputId" + self.state.id}
                                             type="file"
                                             name="file"
                                             accept='.csv'
@@ -88,7 +94,7 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-xs btn-primary" onClick={this.handleAddPartyCandidates} data-dismiss="modal" >Pridėti kandidatus</button>
+                                <button type="button" className="btn btn-xs btn-primary" onClick={this.handleAddPartyCandidates}>Pridėti kandidatus</button>
                                 <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
                             </div>
                         </div>

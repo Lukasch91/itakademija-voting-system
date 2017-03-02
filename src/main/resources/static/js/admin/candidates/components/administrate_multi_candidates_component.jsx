@@ -1,5 +1,10 @@
 var AdministrateMultiCandidatesComponent = React.createClass( {
     
+    reload2: function() {
+      console.log("reload2");
+      this.props.reload3();
+    },
+    
     render: function() {
         var self = this;
         console.log( "_________________" )
@@ -11,7 +16,9 @@ var AdministrateMultiCandidatesComponent = React.createClass( {
                         <td>{party.title}</td>
                         <td>{party.party_abbreviation}</td>
                         <td>
-                            <ViewCandidatesByPartyComponent party={party} />
+                            <ViewCandidatesByPartyComponent 
+                            reload1={self.reload2}
+                            party={party} />
                         </td>
                     </tr>
                 );
@@ -21,7 +28,9 @@ var AdministrateMultiCandidatesComponent = React.createClass( {
                         <td>{party.title}</td>
                         <td>{party.party_abbreviation}</td>
                         <td>
-                            <AdministrateCandidatesCSVPartyComponent partyId={party.id} />
+                            <AdministrateCandidatesCSVPartyComponent 
+                            reload1={self.reload2} 
+                            partyId={party.id} />
                         </td>
                     </tr>
                 );

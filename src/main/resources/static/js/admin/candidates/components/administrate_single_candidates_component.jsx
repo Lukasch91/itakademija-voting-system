@@ -1,5 +1,10 @@
 var AdministrateSingleCandidatesComponent = React.createClass( {
 
+    reload2: function() {
+        console.log( "reload2" );
+        this.props.reload3();
+    },
+
     render: function() {
         var self = this;
         console.log( "_________________" )
@@ -10,7 +15,9 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
                     <tr key={index}>
                         <td>{constituency.title}</td>
                         <td>
-                            <ViewCandidatesByConstituencyComponent constituency={constituency} />
+                            <ViewCandidatesByConstituencyComponent
+                                reload1={self.reload2}
+                                constituency={constituency} />
                         </td>
                     </tr>
                 );
@@ -19,7 +26,9 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
                     <tr key={index}>
                         <td>{constituency.title}</td>
                         <td>
-                            <AdministrateCandidatesCSVConstituencyComponent constitId={constituency.id} />
+                            <AdministrateCandidatesCSVConstituencyComponent
+                                reload1={self.reload2}
+                                constitId={constituency.id} />
                         </td>
                     </tr>
                 );
