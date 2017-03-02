@@ -10,8 +10,6 @@ var AdministrateRepresentativeComponent = React.createClass( {
             );
         });
 
-        var disabled = this.props.disabledTest;
-        
         return (
             <div>
                 <form>
@@ -24,7 +22,7 @@ var AdministrateRepresentativeComponent = React.createClass( {
                     <label>Prisijungimo vardas</label><br />
                     <input id="representativeUsername" className="form-control" type="text" value={this.props.representative.loginName} onChange={this.props.onFieldChange( 'loginName' )} /><br />
 
-                    <button id="generatePassword" className="btn btn-warning btn-xs " onClick={this.props.onGeneratePass} disabled={disabled}>Generuoti slaptažodį</button><br /><br />                    
+                    <button id="generatePassword" className="btn btn-warning btn-xs " onClick={this.props.onGeneratePass}>Generuoti slaptažodį</button><br /><br />                    
 
                     <label>El. paštas</label><br />
                     <input id="email" className="form-control" type="email" value={this.props.representative.email} onChange={this.props.onFieldChange( 'email' )} /><br />
