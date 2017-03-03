@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -34,18 +35,19 @@ public class District {
 	private Integer id;
 
 	@Column
-	@NotBlank(message = "Pavadinimas negali būti tuščias")
+	//@NotBlank(message = "Pavadinimas negali būti tuščias")
 	@Size(min = 2, max = 70, message = "Pavadinimo negali sudaryti mažiau nei {min} ar daugiau nei {max} simbolių")
-	@Pattern(regexp = ".*([a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]$)", message = "Pavadinime naudojami netinkami simboliai")
+	@Pattern(regexp = ".*(^$|[a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ„“]$)", message = "Pavadinime naudojami netinkami simboliai")
 	private String title;
 
 	@Column
-	@Min(value = 0, message = "Minimali reikšmė {value}")
-	@Max(value = 500000, message = "Reikšmė ribota iki {value}")
+	@NotNull( message = "Rinkėjų skaičiaus laukas negali būti tuščias")
+	@Min(value = 0, message = "Rinkėjų skaičiaus minimali reikšmė {value}")
+	@Max(value = 500000, message = "Rinkėjų skaičiaus reikšmė ribota iki {value}")
 	private Long numberOfVoters;
 
 	@Column
-	@NotBlank(message = "Adresas negali būti tuščias")
+	//@NotBlank(message = "Adresas negali būti tuščias")
 	@Size(min = 2, max = 70, message = "Adreso negali sudaryti mažiau nei {min} ar daugiau nei {max} simbolių")
 	private String address;
 

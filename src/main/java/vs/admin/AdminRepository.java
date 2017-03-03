@@ -3,6 +3,7 @@ package vs.admin;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,11 +17,11 @@ public class AdminRepository {
 	
 	@Autowired
 	private EntityManager em;
-	
-	public List<Representative> findAllRepresentatives() {
+	@SuppressWarnings("unchecked")
+	public List<Admin> findAdmin() {
 		return em.createQuery(FIND_ALL).getResultList();
 	}
-	
+	@Transactional
 	public Admin findByLoginName(String loginName) {
 		return (Admin) em.createQuery(FIND_BY_ADMIN_LOGIN).setParameter("loginName", loginName)
 				.getSingleResult();

@@ -1,19 +1,23 @@
 package vs.admin;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.Table;
 
 @Entity
 public class Admin {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(unique = true)
 	private Integer id;
-	
+	@Column
 	private String loginName;
-	
+	@Column
 	private String password;
 	
 	public Admin() {
