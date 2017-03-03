@@ -10,7 +10,6 @@ import vs.admin_.representative.Representative;
 
 public class UserRepositoryUserDetails extends Representative implements UserDetails {
 
-
 	protected UserRepositoryUserDetails(Representative representative) {
         super(representative);
     }
