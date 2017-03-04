@@ -36,6 +36,7 @@ var NavigationAdminComponent = React.createClass( {
                         <NavLink id="resultDeletePage" to="/publish-delete-votes">Rezultatų publikavimas/anuliavimas</NavLink>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
+                        <NavLink id="changeAdminPassword" to="/change-pass">Info</NavLink>
                         <NavLink id="logout" to="/home" onClick={this.props.onLogoutClick}>Atsijungti</NavLink>
                     </ul>
                 </div>

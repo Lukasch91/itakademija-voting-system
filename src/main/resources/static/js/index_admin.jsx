@@ -38,6 +38,7 @@ ReactDOM.render((
         <Route path="/publish-delete-votes/:conId" component={PubDelVotesDistrictListContainer} />
         <Route path="/upload-single-cadidates" component={AdministrateSingleCandidatesContainer} />
         <Route path="/upload-multi-cadidates" component={AdministrateMultiCandidatesContainer} />
+        <Route path="/change-pass" component={ChangePasswordContainer} />
       <Route path="*" component={NoMatch}/>
     </Route>
   </Router>
