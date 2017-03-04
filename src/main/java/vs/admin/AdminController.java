@@ -44,7 +44,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/api/ADMIN/changepass", method = RequestMethod.POST)
-	/*@ResponseStatus(org.springframework.http.HttpStatus.OK)*/
+	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Change password")
 	public void changePassword(@CurrentUser Admin admin, @RequestParam String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		adminRepository.changePassword(admin, password);
