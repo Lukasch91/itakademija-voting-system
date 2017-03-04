@@ -32,7 +32,8 @@ public class CandidateCSVParserService {
 	/**
 	 * Method parses CSV formated String. Returns List of rows in which array of
 	 * Strings contain row cells. Optional char separator can be used (by
-	 * default <,>).
+	 * default <,>). 
+	 * Performs String.trim(), to remove whitespace from input String.
 	 * 
 	 * @param toParse
 	 * @param separator
@@ -42,7 +43,7 @@ public class CandidateCSVParserService {
 
 		this.separator = separator;
 
-		stringReader = new StringReader(toParse);
+		stringReader = new StringReader(toParse.trim());
 
 		try {
 			csvReader = new CSVReader(stringReader, this.separator);

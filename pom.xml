@@ -46,11 +46,14 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- License: Apache License Version 2.0, https://mvnrepository.com/artifact/net.minidev/json-smart -->
 		<dependency>
 			<groupId>net.minidev</groupId>
 			<artifactId>json-smart</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+
 		<!-- Testing dependencies -->
 
 		<!-- Validation dependency -->
@@ -115,7 +118,8 @@
 
 
 		<!-- CSV parsing -->
-		<!-- License: Apache License Version 2.0, January 2004 http://opencsv.sourceforge.net/license.html, http://www.apache.org/licenses/LICENSE-2.0 -->
+		<!-- License: Apache License Version 2.0, January 2004 http://opencsv.sourceforge.net/license.html, 
+			http://www.apache.org/licenses/LICENSE-2.0 -->
 		<dependency>
 			<groupId>com.opencsv</groupId>
 			<artifactId>opencsv</artifactId>
