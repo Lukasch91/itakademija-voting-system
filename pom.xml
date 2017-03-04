@@ -104,7 +104,7 @@
 			<version>2.1.2.RELEASE</version>
 		</dependency>
 		<!-- Spring Security -->
-		
+
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
 		<!-- For mail sending -->
 		<dependency>
@@ -112,6 +112,16 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 			<version>1.5.1.RELEASE</version>
 		</dependency>
+
+
+		<!-- CSV parsing -->
+		<!-- License: Apache License Version 2.0, January 2004 http://opencsv.sourceforge.net/license.html, http://www.apache.org/licenses/LICENSE-2.0 -->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>3.9</version>
+		</dependency>
+		<!-- CSV parsing -->
 
 
 	</dependencies>

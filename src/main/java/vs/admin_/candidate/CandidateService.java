@@ -16,40 +16,23 @@ public class CandidateService {
 	@Autowired
 	private CandidateRepository candidateRepository;
 
-	private String candidatesData;
+	private List<String[]> candidatesData;
 	private Integer candidatesConstituency;
 	private Integer candidatesParty;
 
-	private String[] row;
-	private String[] cell;
-
-	public void saveDistrictCandidates() {
-		parseRows();
-		for (String row : row) {
-			cell = null;
-			parseCells(row);
-			candidateRepository.createOrUpdateCandidate(createConstituencyCandidate());
+	public void saveConstituencyCandidates() {
+		for (String[] cells : candidatesData) {
+			candidateRepository.createOrUpdateCandidate(createConstituencyCandidate(cells));
 		}
 	}
 
 	public void savePartyCandidates() {
-		parseRows();
-		for (String row : row) {
-			cell = null;
-			parseCells(row);
-			candidateRepository.createOrUpdateCandidate(createPartyCandidate());
+		for (String[] cells : candidatesData) {
+			candidateRepository.createOrUpdateCandidate(createPartyCandidate(cells));
 		}
 	}
 
-	private void parseRows() {
-		this.row = this.candidatesData.split("\\r?\\n");
-	}
-
-	private void parseCells(String row) {
-		this.cell = row.split(";");
-	}
-
-	private Candidate createConstituencyCandidate() {
+	private Candidate createConstituencyCandidate(String[] cell) {
 		Candidate candidate = new Candidate();
 		candidate.setCandidateName(cell[0]);
 		candidate.setCandidateSurname(cell[1]);
@@ -63,7 +46,7 @@ public class CandidateService {
 		return candidate;
 	}
 
-	private Candidate createPartyCandidate() {
+	private Candidate createPartyCandidate(String[] cell) {
 		Candidate candidate = new Candidate();
 		candidate.setCandidateName(cell[0]);
 		candidate.setCandidateSurname(cell[1]);
@@ -78,12 +61,12 @@ public class CandidateService {
 		return candidate;
 	}
 
-	public void setCandidatesParty(Integer candidatesParty) {
-		this.candidatesParty = candidatesParty;
+	public void setCandidatesData2(List<String[]> candidates) {
+		this.candidatesData = candidates;
 	}
 
-	public void setCandidatesData(String districtCandidates) {
-		this.candidatesData = districtCandidates;
+	public void setCandidatesParty(Integer candidatesParty) {
+		this.candidatesParty = candidatesParty;
 	}
 
 	public void setCandidatesConstituency(Integer candidatesDistrict) {
@@ -99,7 +82,8 @@ public class CandidateService {
 
 		for (Candidate candidate : allCandidates) {
 			List<District> candidateDistricts = new ArrayList<District>();
-			if(candidate.getCandidateConstituency() != null && candidate.getCandidateConstituency().getDistricts() != null ) {
+			if (candidate.getCandidateConstituency() != null
+					&& candidate.getCandidateConstituency().getDistricts() != null) {
 				candidateDistricts = candidate.getCandidateConstituency().getDistricts();
 				for (District district : candidateDistricts) {
 					if (district.getId() == districtId) {

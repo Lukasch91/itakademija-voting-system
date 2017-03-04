@@ -40,29 +40,41 @@ public class Ad_PartyIT {
 
 	@Test
 	public void createParties() {
-
-//		final String party_01 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"NOVOTES\", "
-//				+ "\"title\": \"NOVOTES\"}";
-		final String party_02 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LHP\", "
-				+ "\"title\": \"Lietuvos humanistų partija\"}";
-		final String party_03 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LŽP\", "
-				+ "\"title\": \"Lietuvos žalioji partija\"}";
-		final String party_04 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"RP\", "
-				+ "\"title\": \"Respublikonų partija\"}";
-		final String party_05 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"TPP\", "
-				+ "\"title\": \"Tautos pažangos partija\"}";
-		final String party_06 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"PJL\", "
+				
+		final String party_01 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LSDP\", "
+				+ "\"title\": \"Lietuvos socialdemokratų partija\"}";
+		final String party_02 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"TS-LKD\", "
+				+ "\"title\": \"Tėvynės sąjunga - Lietuvos krikščionys demokratai\"}";
+		final String party_03 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LLS\", "
+				+ "\"title\": \"Lietuvos laisvės sąjunga (liberalai)\"}";
+		final String party_04 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"TT\", "
+				+ "\"title\": \"Partija Tvarka ir teisingumas\"}";
+		final String party_05 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LVŽS\", "
+				+ "\"title\": \"Lietuvos valstiečių ir žaliųjų sąjunga\"}";
+		final String party_06 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LRLS\", "
+				+ "\"title\": \"Lietuvos Respublikos liberalų sąjūdis\"}";
+		final String party_07 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"DP\", "
+				+ "\"title\": \"Darbo partija\"}";
+		final String party_08 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"DK\", "
+				+ "\"title\": \"„Drąsos kelias“ politinė partija\"}";
+		final String party_09 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LLSUTL\", "
+				+ "\"title\": \"Lietuvos liaudies partija\"}";
+		final String party_10 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LLRA\", "
+				+ "\"title\": \"Lietuvos lenkų rinkimų akcija-Krikščioniškų šeimų sąjunga\"}";
+		final String party_11 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LŽP\", "
+				+ "\"title\": \"Lietuvos žaliųjų partija\"}";
+		final String party_12 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LS\", "
+				+ "\"title\": \"Politinė partija „Lietuvos sąrašas“\"}";
+		final String party_13 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LCS\", "
+				+ "\"title\": \"Lietuvos centro partija\"}";
+		final String party_14 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"TS\", "
+				+ "\"title\": \"Tautininkų sąjunga\"}";
+		final String party_15 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"JL\", "
 				+ "\"title\": \"Partija „Jaunoji Lietuva“\"}";
-		final String party_07 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"KULS\", "
-				+ "\"title\": \"Kovotojų už Lietuvą sąjunga\"}";
-		final String party_08 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LLRA\", "
-				+ "\"title\": \"Lietuvos lenkų rinkimų akcija\"}";
-		final String party_09 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LPKP\", "
-				+ "\"title\": \"Lietuvos politinių kalinių partija\"}";
-		final String party_10 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LRS\", "
-				+ "\"title\": \"Lietuvos rusų sąjunga\"}";
-
-//		createOrUpdatePartyTest(stringToJson(party_01));
+		final String party_16 = "{\"deletedTime\": null, " + "\"id\": null, " + "\"party_abbreviation\": \"LPP\", "
+				+ "\"title\": \"Lietuvos pensininkų partija\"}";
+		
+		createOrUpdatePartyTest(stringToJson(party_01));
 		createOrUpdatePartyTest(stringToJson(party_02));
 		createOrUpdatePartyTest(stringToJson(party_03));
 		createOrUpdatePartyTest(stringToJson(party_04));
@@ -72,6 +84,12 @@ public class Ad_PartyIT {
 		createOrUpdatePartyTest(stringToJson(party_08));
 		createOrUpdatePartyTest(stringToJson(party_09));
 		createOrUpdatePartyTest(stringToJson(party_10));
+		createOrUpdatePartyTest(stringToJson(party_11));
+		createOrUpdatePartyTest(stringToJson(party_12));
+		createOrUpdatePartyTest(stringToJson(party_13));
+		createOrUpdatePartyTest(stringToJson(party_14));
+		createOrUpdatePartyTest(stringToJson(party_15));
+		createOrUpdatePartyTest(stringToJson(party_16));
 	}
 
 	private JSONObject stringToJson(final String jstring) {

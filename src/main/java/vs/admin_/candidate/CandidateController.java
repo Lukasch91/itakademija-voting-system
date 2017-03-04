@@ -30,13 +30,16 @@ public class CandidateController {
 	@Autowired
 	private CandidateRepository candidateRepository;
 
+	@Autowired
+	private CandidateCSVParserService csvParser;
+
 	@RequestMapping(value = "/api/PUBLIC/candidate", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[PUBLIC] - Get all undeleted candidates")
 	public List<Candidate> findAllCandidates() {
 		return candidateRepository.findAllUndeletedCandidates();
 	}
-	
+
 	@RequestMapping(value = "/api/REPRES/candidate/{districtId}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[REPRES] -Get all undeleted candidates by districtId")
@@ -57,14 +60,14 @@ public class CandidateController {
 	public List<Candidate> getCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
 		return candidateRepository.findCandidatesByConstituencyId(id);
 	}
-	
+
 	@RequestMapping(value = "/api/ADMIN/candidateConstituency/{constituencyId}", method = RequestMethod.DELETE)
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "[ADMIN] - Delete candidate by Constituency id (adds deletion date)")
 	public void deleteCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
 		candidateRepository.deleteCandidatesByConstituencyId(id);
 	}
-	
+
 	@RequestMapping(value = "/api/ADMIN/candidateParty/{partyId}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[ADMIN] - Get candidate by Party id")
@@ -78,89 +81,75 @@ public class CandidateController {
 	public void deleteCandidateByPartyId(@PathVariable("partyId") Integer id) {
 		candidateRepository.deleteCandidatesByPartyId(id);
 	}
-	
+
 	/* ===========================================================File=== */
 
-//	@RequestMapping(value = "/api/ADMIN/districtcandidatesFILE", method = RequestMethod.POST)
-//	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-//	@ApiOperation(value = "[ADMIN] - Upload district candidates CSV")
-//	public String districtCandidatesCSV(@RequestParam("file") MultipartFile file,
-//			@RequestHeader Integer constituencyId) {
-//
-//		storageService.store(file);
-//
-//		candidateService.setCandidatesConstituency(constituencyId);
-//		candidateService.setCandidatesData(storageService.returnStoredFile(file));
-//		candidateService.saveDistrictCandidates();
-//
-//		String aaa = storageService.returnStoredFile(file);
-//
-//		storageService.deleteFile(file);
-//
-//		return aaa;
-//	}
+	// @RequestMapping(value = "/api/ADMIN/districtcandidatesFILE", method =
+	// RequestMethod.POST)
+	// @ResponseStatus(org.springframework.http.HttpStatus.CREATED)
+	// @ApiOperation(value = "[ADMIN] - Upload district candidates CSV")
+	// public String districtCandidatesCSV(@RequestParam("file") MultipartFile
+	// file,
+	// @RequestHeader Integer constituencyId) {
+	//
+	// storageService.store(file);
+	//
+	// candidateService.setCandidatesConstituency(constituencyId);
+	// candidateService.setCandidatesData(storageService.returnStoredFile(file));
+	// candidateService.saveDistrictCandidates();
+	//
+	// String aaa = storageService.returnStoredFile(file);
+	//
+	// storageService.deleteFile(file);
+	//
+	// return aaa;
+	// }
 
-//	@RequestMapping(value = "/api/ADMIN/partycandidatesFILE", method = RequestMethod.POST)
-//	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-//	@ApiOperation(value = "[ADMIN] - Upload party candidates CSV")
-//	public String partyCandidatesCSV(@RequestParam("file") MultipartFile file, @RequestHeader Integer partyId) {
-//
-//		storageService.store(file);
-//
-//		candidateService.setCandidatesParty(partyId);
-//		candidateService.setCandidatesData(storageService.returnStoredFile(file));
-//		candidateService.savePartyCandidates();
-//
-//		String aaa = storageService.returnStoredFile(file);
-//
-//		storageService.deleteFile(file);
-//
-//		return aaa;
-//	}
+	// @RequestMapping(value = "/api/ADMIN/partycandidatesFILE", method =
+	// RequestMethod.POST)
+	// @ResponseStatus(org.springframework.http.HttpStatus.CREATED)
+	// @ApiOperation(value = "[ADMIN] - Upload party candidates CSV")
+	// public String partyCandidatesCSV(@RequestParam("file") MultipartFile
+	// file, @RequestHeader Integer partyId) {
+	//
+	// storageService.store(file);
+	//
+	// candidateService.setCandidatesParty(partyId);
+	// candidateService.setCandidatesData(storageService.returnStoredFile(file));
+	// candidateService.savePartyCandidates();
+	//
+	// String aaa = storageService.returnStoredFile(file);
+	//
+	// storageService.deleteFile(file);
+	//
+	// return aaa;
+	// }
 
-	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-	
+	/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
 	@RequestMapping(value = "/api/ADMIN/constituencycsv", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
 	@ApiOperation(value = "[ADMIN] - Upload constituency candidates CSV")
 	public String districtCandidatesCSV(@RequestBody CandidateDataPackage data) {
 
-		candidateService.setCandidatesConstituency(data.getId());		
-		candidateService.setCandidatesData(data.getText());
-		candidateService.saveDistrictCandidates();
+		candidateService.setCandidatesConstituency(data.getId());
+		candidateService.setCandidatesData2(csvParser.csvReader(data.getText()));
+		candidateService.saveConstituencyCandidates();
 
 		return data.getText();
 	}
-	
-	
+
 	@RequestMapping(value = "/api/ADMIN/partycsv", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
 	@ApiOperation(value = "[ADMIN] - Upload party candidates CSV")
 	public String partyCSV(@RequestBody CandidateDataPackage data) {
 
 		candidateService.setCandidatesParty(data.getId());
-		candidateService.setCandidatesData(data.getText());
+		candidateService.setCandidatesData2(csvParser.csvReader(data.getText()));
 		candidateService.savePartyCandidates();
-		
+
 		return data.getText();
 	}
 
 	/* ===========================================================File=== */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
