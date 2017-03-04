@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().headers().disable().authorizeRequests().antMatchers("/api/**", "/", "/js/**", "/test.css").permitAll()
+		http.csrf().disable().headers().disable().authorizeRequests().antMatchers("/api/**", "/", "/js/**", "/test.css", "login_style.css").permitAll()
 				/*
 				 * .antMatchers("/admin/**").hasRole("ADMIN")
 				 * .antMatchers("/rep/**").hasRole("USER")
@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password("pass").roles("ADMIN");
+		/*auth.inMemoryAuthentication().withUser("admin").password("pass").roles("ADMIN");*/
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 
 	}

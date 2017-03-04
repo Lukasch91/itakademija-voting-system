@@ -25,6 +25,23 @@ public class UserRepositoryUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {				
+		try  {
+			Representative representative = representativeRepository.findByLoginName(username);
+			return new UserRepositoryUserDetails(representative);
+		} catch (Exception e) {
+			try {
+				Admin admin = adminRepository.findByLoginName(username);
+				return new AdminRepositoryUserDetails(admin);
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+			System.out.println(e.getMessage());
+		}
+		throw new UsernameNotFoundException("Could not find user");			
+	}
+	
+	/*@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {				
 		Representative representative = representativeRepository.findByLoginName(username);		
 		if (representative == null) {
 			Admin admin = adminRepository.findByLoginName(username);
@@ -39,7 +56,7 @@ public class UserRepositoryUserDetailsService implements UserDetailsService {
 			return new UserRepositoryUserDetails(representative);
 		}
 	
-	}
+	}*/
 	
 	
 /*	@Override
