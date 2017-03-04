@@ -11,7 +11,8 @@ import org.junit.runners.Suite.SuiteClasses;
 	Ab_DistrictIT.class, 
 	Ac_RepresentativeIT.class, 
 	Ad_PartyIT.class, 
-	Ae_CandidateIT.class/*, 
+	Ae_CandidateIT.class,
+	Ah_AdminIT.class/*, 
 	Af_MultiElectionIT.class, 
 	Ag_SingleElectionIT.class*/})
 
