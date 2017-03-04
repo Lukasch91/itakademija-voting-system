@@ -1,5 +1,6 @@
 package vs.representative_.multielection;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class MultiElectionRepository {
 
 	private static final String FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES_BY_CONSTITUENCY = "SELECT sum(m.votes) from MultiElection m LEFT JOIN m.party mp left join m.district md "
 			+ "WHERE mp.deletedTime is null AND m.published_date IS NOT NULL AND m.deleted_date is null and md.constituencyId=:id";
-	
+
 	private static final String FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES = "SELECT sum(m.votes) from MultiElection m LEFT JOIN m.party mp left join m.district md "
 			+ "WHERE mp.deletedTime is null AND m.published_date IS NOT NULL AND m.deleted_date is null";
 
@@ -30,16 +31,23 @@ public class MultiElectionRepository {
 	private static final String GET_ALL_VOTES_BY_CONSTITUENCY_ID = "SELECT sum(m.votes) FROM MultiElection m "
 			+ "LEFT JOIN m.district md " + "WHERE m.deleted_date IS NULL "
 			+ "AND m.published_date IS NOT NULL and md.constituencyId=:id";
-	
+
 	private static final String GET_PARTY_VOTES_BY_CONSTITUENCY_ID = "SELECT sum(m.votes) FROM MultiElection m "
 			+ "LEFT JOIN m.district md Left join m.party mp WHERE m.deleted_date IS NULL "
 			+ "AND m.published_date IS NOT NULL and md.constituencyId=:consId and mp.deletedTime is null and mp.id=:partyId";
 
 	private static final String GET_VOTES_IN_DISTRICT = "SELECT sum(m.votes) FROM MultiElection m "
 			+ " LEFT JOIN m.district md WHERE m.deleted_date is null AND m.published_date IS NOT NULL AND md.id =:id AND md.deletedTime is null";
-	
+
 	private static final String GET_VOTES_IN_BY_DISTRICT_ID = "SELECT m.votes FROM MultiElection m "
 			+ " LEFT JOIN m.district md LEFT JOIN m.party mp WHERE m.deleted_date is null AND m.published_date IS NOT NULL AND md.id=:disId AND mp.id=:partyId AND md.deletedTime is null";
+	
+	private static final String GET_UPDATED_DATE = "SELECT m.published_date FROM MultiElection m "
+			+ " LEFT JOIN m.district md WHERE m.deleted_date is null AND m.published_date IS NOT NULL AND md.id=:disId AND md.deletedTime is null";
+
+	private static final String GET_ALL_MULTI_VOTES = "SELECT sum(m.votes) FROM MultiElection m "
+			+ "LEFT JOIN m.district md  WHERE "
+			+ " m.deleted_date IS NULL AND m.published_date IS NOT NULL and md.deletedTime is null";
 
 	@Autowired
 	private EntityManager entityManager;
@@ -48,36 +56,55 @@ public class MultiElectionRepository {
 	public List<MultiElection> findAllElection() {
 		return entityManager.createQuery(FIND_ALL).getResultList();
 	}
+
+	public Long getSumOfAllVotes() {
+		if (entityManager.createQuery(GET_ALL_MULTI_VOTES).getResultList().isEmpty()) {
+			return 0L;
+		} else {
+
+			return (Long) entityManager.createQuery(GET_ALL_MULTI_VOTES).getSingleResult();
+		}
+	}
 	
+	public Timestamp getPublishedDate(Integer disId) {
+		if (entityManager.createQuery(GET_UPDATED_DATE).setParameter("disId", disId).getResultList().isEmpty()) {
+			return null;
+		} else {
+
+			return  (Timestamp) entityManager.createQuery(GET_UPDATED_DATE).setParameter("disId", disId)
+					.getSingleResult();
+		}
+	}
+
+
 	public Long getAllPublishedVotes() {
-		if (entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES).getResultList()
-				.isEmpty()) {
+		if (entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES).getResultList().isEmpty()) {
 			return 0L;
 		} else {
 
 			return (Long) entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES).getSingleResult();
 		}
 	}
-	
+
 	public Long getVotesOfPartyByConsId(Integer consId, Integer partyId) {
-		if (entityManager.createQuery(GET_PARTY_VOTES_BY_CONSTITUENCY_ID).setParameter("consId", consId).setParameter("partyId", partyId).getResultList()
-				.isEmpty()) {
+		if (entityManager.createQuery(GET_PARTY_VOTES_BY_CONSTITUENCY_ID).setParameter("consId", consId)
+				.setParameter("partyId", partyId).getResultList().isEmpty()) {
 			return 0L;
 		} else {
 
-			return (Long) entityManager.createQuery(GET_PARTY_VOTES_BY_CONSTITUENCY_ID).setParameter("consId", consId).setParameter("partyId", partyId)
-					.getSingleResult();
+			return (Long) entityManager.createQuery(GET_PARTY_VOTES_BY_CONSTITUENCY_ID).setParameter("consId", consId)
+					.setParameter("partyId", partyId).getSingleResult();
 		}
 	}
-	
+
 	public Long getVotesOfPartyByDistrictId(Integer disId, Integer partyId) {
-		if (entityManager.createQuery(GET_VOTES_IN_BY_DISTRICT_ID).setParameter("disId", disId).setParameter("partyId", partyId).getResultList()
-				.isEmpty()) {
+		if (entityManager.createQuery(GET_VOTES_IN_BY_DISTRICT_ID).setParameter("disId", disId)
+				.setParameter("partyId", partyId).getResultList().isEmpty()) {
 			return 0L;
 		} else {
 
-			return (Long) entityManager.createQuery(GET_VOTES_IN_BY_DISTRICT_ID).setParameter("disId", disId).setParameter("partyId", partyId)
-					.getSingleResult();
+			return (Long) entityManager.createQuery(GET_VOTES_IN_BY_DISTRICT_ID).setParameter("disId", disId)
+					.setParameter("partyId", partyId).getSingleResult();
 		}
 	}
 
@@ -124,11 +151,13 @@ public class MultiElectionRepository {
 	}
 
 	public Long getAllPublishedVotes(Integer id) {
-		if (entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES_BY_CONSTITUENCY).setParameter("id", id).getResultList().isEmpty()) {
+		if (entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES_BY_CONSTITUENCY).setParameter("id", id)
+				.getResultList().isEmpty()) {
 			return 0L;
 		} else {
 
-			return (Long) entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES_BY_CONSTITUENCY).setParameter("id", id).getSingleResult();
+			return (Long) entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES_BY_CONSTITUENCY)
+					.setParameter("id", id).getSingleResult();
 		}
 	}
 

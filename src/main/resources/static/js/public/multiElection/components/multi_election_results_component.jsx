@@ -1,6 +1,7 @@
 var MultiElectionsResultsComponent = React.createClass( {
     render: function() {
         var self = this;
+        var info = this.props.info;
         var constResultsList = this.props.consituencies.map( function( constituency, index ) {
             return (
                 <tr key={index}>
@@ -13,7 +14,7 @@ var MultiElectionsResultsComponent = React.createClass( {
                     <td>{constituency.percentageOfInvalidVotes} %</td>
                     <td>{constituency.validVotes}</td>
                     <td>{constituency.percentageOfValidVotes} %</td>
-                    <td><button type="button" className="btn btn-xs btn-info" onClick={self.props.onAdministerDistricts(constituency.id)}>Apylinkių rezultatai</button></td>
+                    <td><button type="button" className="btn btn-xs btn-info" onClick={self.props.onAdministerDistricts( constituency.id )}>Apylinkių rezultatai</button></td>
 
                 </tr>
 
@@ -37,7 +38,14 @@ var MultiElectionsResultsComponent = React.createClass( {
 
         return (
             <div>
-                <h3>Balsavimo rezultatai daugiamandatėje apygardoje</h3>
+                <h2>Balsavimo rezultatai daugiamandatėse apygardose</h2>
+                <h7>
+                    Apylinkių skaičius – {info.numberOfDistricts}<br />
+                    Apygardų skaičius – {info.numberOfConstituencies}  <br />
+                    Pagal gautus iš apylinkių duomenis:<br />
+                    rinkėjų sąraše įrašyta rinkėjų – {info.numberOfVoters} , rinkimuose dalyvavo – {info.numberOfVotersWhoVoted} ({info.percentageOfVoters} %)<br />
+                    Negaliojančių biuletenių – {info.invalidVotes} ({info.percentageOfInvalidVotes} %), galiojančių biuletenių – {info.validvotes} ({info.percentageOfValidVotes} %)<br />
+                </h7>
                 <div className="panel panel-default">
                     <table className="table table-hover">
                         <thead>

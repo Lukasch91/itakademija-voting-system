@@ -24,13 +24,23 @@ public class CorruptedVotesRepository {
 	private static final String FIND_MULTI_ALL_BY_CONSTITUENCY_ID = "SELECT sum(c.votes) from CorruptedVotes c LEFT JOIN c.district cd WHERE cd.constituencyId = :id and c.typeMulti ='true' And c.published_date is not null  AND c.deleted_date IS NULL";
 	private static final String FIND_MULT_INVALID_VOTES_IN_DISTRICTS = "SELECT c.votes from CorruptedVotes c LEFT JOIN c.district cd where cd.id = :id and c.typeMulti='true' And c.published_date is not null  AND c.deleted_date IS NULL";
 	private static final String FIND_ALL_SINGLE_CORRUPTED_VOTES = "SELECT sum(c.votes) from CorruptedVotes c LEFT JOIN c.district cd WHERE c.typeMulti ='false' And c.published_date is not null  AND c.deleted_date IS NULL and cd.deletedTime IS NULL";
+	private static final String FIND_ALL_MULTI_CORRUPTED_VOTES = "SELECT sum(c.votes) from CorruptedVotes c LEFT JOIN c.district cd WHERE c.typeMulti ='true' And c.published_date is not null  AND c.deleted_date IS NULL and cd.deletedTime IS NULL";
 
+	
+	
 	@Autowired
 	private EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
 	public List<CorruptedVotes> findAllCorruptedVotes() {
 		return entityManager.createQuery(FIND_ALL).getResultList();
+	}
+	
+	public Long getAllMultiCorruptedVotes() {
+		if (entityManager.createQuery(FIND_ALL_MULTI_CORRUPTED_VOTES).getResultList().isEmpty()) {
+			return 0L;
+		} else
+			return (Long) entityManager.createQuery(FIND_ALL_MULTI_CORRUPTED_VOTES).getSingleResult();
 	}
 
 	public Long getAllSingleCorruptedVotes() {

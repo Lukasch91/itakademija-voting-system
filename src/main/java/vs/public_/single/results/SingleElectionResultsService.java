@@ -189,7 +189,7 @@ public class SingleElectionResultsService {
 		return resultList;
 	}
 
-	public SingleElectionDetails getSingleElectionDetails() {
+	public ElectionDetails getSingleElectionDetails() {
 
 		Long numberOfDistricts = changeNullToLong(districtRepository.countAllDistricts());
 
@@ -209,7 +209,7 @@ public class SingleElectionResultsService {
 
 		BigDecimal percentageOfValidVotes = checkForCorrectArithmetic(validVotes, numberOfVotersWhoVoted);
 
-		SingleElectionDetails details = new SingleElectionDetails(numberOfDistricts, numberOfConstituencies,
+		ElectionDetails details = new ElectionDetails(numberOfDistricts, numberOfConstituencies,
 				numberOfVoters, numberOfVotersWhoVoted, percentageOfVoters, invalidVotes, percentageOfInvalidVotes,
 				validVotes, percentageOfValidVotes);
 

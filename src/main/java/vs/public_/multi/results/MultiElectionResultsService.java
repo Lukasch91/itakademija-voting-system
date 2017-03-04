@@ -15,6 +15,7 @@ import vs.admin_.district.District;
 import vs.admin_.district.DistrictRepository;
 import vs.admin_.party.Party;
 import vs.admin_.party.PartyRepository;
+import vs.public_.single.results.ElectionDetails;
 import vs.public_.single.results.SingleElectionResultsComperator;
 import vs.representative_.corruptedvotes.CorruptedVotesRepository;
 import vs.representative_.multielection.MultiElectionRepository;
@@ -53,7 +54,7 @@ public class MultiElectionResultsService {
 
 			Long allPublishedVotes = changeNullToLong(multiElectionRepository.getAllPublishedVotes());
 
-			Long allinvalidVotes = changeNullToLong(corruptedVotesRepository.getAllMultiElectionInvalidVotes());
+			Long allinvalidVotes = changeNullToLong(corruptedVotesRepository.getAllMultiCorruptedVotes());
 
 			Long allVotes = allPublishedVotes + allinvalidVotes;
 
@@ -216,6 +217,77 @@ public class MultiElectionResultsService {
 			resultList.add(multiElectionConstituency);
 		}
 		return resultList;
+	}
+
+	public ElectionDetails getMultiElectionDetails() {
+
+		Long numberOfDistricts = changeNullToLong(districtRepository.countAllDistricts());
+
+		Long numberOfConstituencies = changeNullToLong(constituencyRepository.countAllConstituencies());
+
+		Long numberOfVoters = changeNullToLong(districtRepository.countAllVoters());
+
+		Long validVotes = changeNullToLong(multiElectionRepository.getSumOfAllVotes());
+
+		Long invalidVotes = changeNullToLong(corruptedVotesRepository.getAllSingleCorruptedVotes());
+
+		Long numberOfVotersWhoVoted = changeNullToLong(validVotes + invalidVotes);
+
+		BigDecimal percentageOfVoters = checkForCorrectArithmetic(numberOfVotersWhoVoted, numberOfVoters);
+
+		BigDecimal percentageOfInvalidVotes = checkForCorrectArithmetic(invalidVotes, numberOfVotersWhoVoted);
+
+		BigDecimal percentageOfValidVotes = checkForCorrectArithmetic(validVotes, numberOfVotersWhoVoted);
+
+		ElectionDetails details = new ElectionDetails(numberOfDistricts, numberOfConstituencies, numberOfVoters,
+				numberOfVotersWhoVoted, percentageOfVoters, invalidVotes, percentageOfInvalidVotes, validVotes,
+				percentageOfValidVotes);
+
+		return details;
+
+	}
+
+	public ElectionDistrictDetails getDistrictElectionDetails(Integer id) {
+
+		District district = districtRepository.findDistrictById(id);
+
+		Integer districtId = district.getId();
+
+		String districtTitle = district.getTitle();
+
+		Integer constituencyId = district.getConstituencyId();
+
+		Constituency constituency = constituencyRepository.findConstituencyById(constituencyId);
+
+		String constituencyTitle = constituency.getTitle();
+
+		Long voters = changeNullToLong(district.getNumberOfVoters());
+
+		Long validVotes = changeNullToLong(multiElectionRepository.getNumberOfVotesInDistrict(districtId));
+
+		Long invalidvotes = changeNullToLong(corruptedVotesRepository.getCorruptedVotesByDistrict(districtId));
+
+		Long allVotes = changeNullToLong(validVotes + invalidvotes);
+
+		BigDecimal percentageOfVoted = checkForCorrectArithmetic(allVotes, voters);
+
+		BigDecimal percentageOfInvalidVotes = checkForCorrectArithmetic(invalidvotes, allVotes);
+
+		BigDecimal percentageOfValidVotes = checkForCorrectArithmetic(validVotes, allVotes);
+
+		String updateDate = null;
+
+		if (multiElectionRepository.getPublishedDate(districtId) != null) {
+			updateDate = multiElectionRepository.getPublishedDate(districtId).toString();
+
+		}
+
+		ElectionDistrictDetails electionDistrictDetails = new ElectionDistrictDetails(districtId, districtTitle,
+				constituencyTitle, constituencyId, voters, validVotes, invalidvotes, allVotes, percentageOfVoted,
+				percentageOfInvalidVotes, percentageOfValidVotes, updateDate);
+
+		return electionDistrictDetails;
+
 	}
 
 	public BigDecimal getPercentageSumOver(List<MultiElectionResults> list) {

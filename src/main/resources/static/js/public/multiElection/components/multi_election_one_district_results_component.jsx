@@ -1,6 +1,7 @@
 var MultiElectionsOneDistrictResultsComponent = React.createClass( {
     render: function() {
         var self = this;
+        var info = this.props.info;
         var PartiesDistResults = this.props.parties.map( function( party, index ) {
             return (
                 <tr key={index}>
@@ -15,19 +16,21 @@ var MultiElectionsOneDistrictResultsComponent = React.createClass( {
         return (
 
             <div>
-                <h3><label> Balsavimo rezultatai {this.props.constituency.title} apygardoje</label></h3><br />
-                <h7>
-                Apylinkių skaičius - {this.props.constituency.numberOfDistricts}<br />
-                Pagal gautus iš apylinkių duomenis:<br />
-                rinkėjų sąraše įrašyta rinkėjų – {this.props.constituency.numberOfVoters} ,<br />
-                rinkimuose dalyvavo – {this.props.constituency.numberOfVotersWhoVote} ({this.props.constituency.percentageOfVotersWhoVote} %)<br />
-                negaliojančių biuletenių – {this.props.constituency.numberOfInvalidVotes} ({this.props.constituency.percentageOfInvalidVotes} %),<br />
-                galiojančių biuletenių – {this.props.constituency.numberOfValidVotes} ({this.props.constituency.percentageOfValidVotes} %).<br />
-            </h7>
+
+                Puslapis atnaujintas {info.updateDate}
+
+                <h3>{info.constituencyTitle} rinkimų apygarda</h3>
+                <h4>{info.districtTitle} rinkimų apylinkė</h4>
+                Pagal gautus iš apylinkių duomenis: <br />
+                rinkėjų sąraše įrašyta rinkėjų – {info.voters} ,<br /> 
+                rinkimuose dalyvavo – {info.allVotes} ({info.percentageOfVoted} %), <br />
+                negaliojančių biuletenių – {info.invalidVotes} ({info.percentageOfInvalidVotes} %),<br />
+                galiojančių biuletenių – {info.validVotes} ({info.percentageOfValidVotes} %).
+
                 <div className="panel panel-default">
                     <table className="table table-hover">
                         <thead>
-                                          <tr>
+                            <tr>
                                 <th>Reg. Nr.</th>
                                 <th>Partijos pavadinimas</th>
                                 <th>Balsavo</th>

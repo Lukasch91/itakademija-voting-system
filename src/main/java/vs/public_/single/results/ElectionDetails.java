@@ -2,7 +2,7 @@ package vs.public_.single.results;
 
 import java.math.BigDecimal;
 
-public class SingleElectionDetails {
+public class ElectionDetails {
 
 	private Long numberOfDistricts;
 
@@ -22,7 +22,7 @@ public class SingleElectionDetails {
 
 	private BigDecimal percentageOfValidVotes;
 
-	public SingleElectionDetails(Long numberOfDistricts, Long numberOfConstituencies, Long numberOfVoters,
+	public ElectionDetails(Long numberOfDistricts, Long numberOfConstituencies, Long numberOfVoters,
 			Long numberOfVotersWhoVoted, BigDecimal percentageOfVoters, Long invalidVotes,
 			BigDecimal percentageOfInvalidVotes, Long validvotes, BigDecimal percentageOfValidVotes) {
 		super();

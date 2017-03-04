@@ -3,7 +3,9 @@ var MultiElectionsResultsContainer = React.createClass( {
     getInitialState: function() {
         return {
             consituencies: [],
-            parties: []
+            parties: [],
+            info: {}
+
         };
     },
 
@@ -19,7 +21,14 @@ var MultiElectionsResultsContainer = React.createClass( {
             self.setState( {
                 parties: response.data
             });
-        });
+        })
+        axios.get( 'api/PUBLIC/multiDetails/' )
+            .then( function( response ) {
+                self.setState( {
+                    info: response.data
+                });
+            });
+
 
     },
 
@@ -38,6 +47,7 @@ var MultiElectionsResultsContainer = React.createClass( {
                     consituencies={this.state.consituencies}
                     onAdministerDistricts={this.handleAdministerDistricts}
                     parties={this.state.parties}
+                    info={this.state.info}
                     />
 
             </div>

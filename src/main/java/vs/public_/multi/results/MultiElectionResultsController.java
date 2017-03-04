@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
+import vs.public_.single.results.ElectionDetails;
 
 @RestController
 @CrossOrigin
@@ -35,7 +36,7 @@ public class MultiElectionResultsController {
 	public List<MultiElectionDistrictList> getDistrictsResultsList(@PathVariable Integer id) {
 		return multiElectionResultsService.getResultsOfDistricts(id);
 	}
-	
+
 	@RequestMapping(value = "/api/PUBLIC/multidis/{id}", method = RequestMethod.GET)
 	@ApiOperation(value = "[PUBLIC] - ")
 	public List<MultiElectionResults> getPartiesDistrictResultsList(@PathVariable Integer id) {
@@ -47,6 +48,17 @@ public class MultiElectionResultsController {
 	public List<MultiElectionResults> getPartiesConsResultsList(@PathVariable Integer id) {
 		return multiElectionResultsService.getConstituencyPartiesResults(id);
 	}
-	
-	
+
+	@RequestMapping(value = "/api/PUBLIC/multiDetails/", method = RequestMethod.GET)
+	@ApiOperation(value = "[PUBLIC] - ")
+	public ElectionDetails getSinglElectionDetails() {
+		return multiElectionResultsService.getMultiElectionDetails();
+	}
+
+	@RequestMapping(value = "/api/PUBLIC/multiDistrictDetails/{id}", method = RequestMethod.GET)
+	@ApiOperation(value = "[PUBLIC] - ")
+	public ElectionDistrictDetails getSinglElectionDetails(@PathVariable Integer id) {
+		return multiElectionResultsService.getDistrictElectionDetails(id);
+	}
+
 }

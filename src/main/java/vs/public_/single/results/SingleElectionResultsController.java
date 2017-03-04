@@ -61,7 +61,7 @@ public class SingleElectionResultsController {
 
 	@RequestMapping(value = "/api/PUBLIC/singledetails/", method = RequestMethod.GET)
 	@ApiOperation(value = "[PUBLIC] - ")
-	public SingleElectionDetails getSinglElectionDetails() {
+	public ElectionDetails getSinglElectionDetails() {
 		return singleElectionConstitencyService.getSingleElectionDetails();
 	}
 	
