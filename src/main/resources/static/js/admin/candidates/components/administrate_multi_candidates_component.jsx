@@ -7,7 +7,6 @@ var AdministrateMultiCandidatesComponent = React.createClass( {
     
     render: function() {
         var self = this;
-        console.log( "_________________" )
         var partyList = this.props.parties.map( function( party, index ) {
 
             if ( party.numberOfCandidatesInParty != 0 ) {
@@ -30,7 +29,7 @@ var AdministrateMultiCandidatesComponent = React.createClass( {
                         <td>
                             <AdministrateCandidatesCSVPartyComponent 
                             reload1={self.reload2} 
-                            partyId={party.id} />
+                            party={party} />
                         </td>
                     </tr>
                 );

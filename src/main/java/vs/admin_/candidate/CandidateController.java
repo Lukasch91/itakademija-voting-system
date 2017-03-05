@@ -133,7 +133,7 @@ public class CandidateController {
 	public String districtCandidatesCSV(@RequestBody CandidateDataPackage data) {
 
 		candidateService.setCandidatesConstituency(data.getId());
-		candidateService.setCandidatesData2(csvParser.csvReader(data.getText()));
+		candidateService.setCandidatesData2(csvParser.csvReader(data.getText(), data.getDelimiter()));
 		candidateService.saveConstituencyCandidates();
 
 		return data.getText();
@@ -145,7 +145,7 @@ public class CandidateController {
 	public String partyCSV(@RequestBody CandidateDataPackage data) {
 
 		candidateService.setCandidatesParty(data.getId());
-		candidateService.setCandidatesData2(csvParser.csvReader(data.getText()));
+		candidateService.setCandidatesData2(csvParser.csvReader(data.getText(), data.getDelimiter()));
 		candidateService.savePartyCandidates();
 
 		return data.getText();

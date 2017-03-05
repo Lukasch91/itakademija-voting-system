@@ -4,25 +4,29 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
         return {
             fileString: {},
             id: 0,
-            submit: false
+            submit: false,
+            loading: "",
+            checkedComma: true,
+            checkedSemiColon: false,
         };
     },
 
     componentWillMount: function() {
-        var content = { text: "No content!!!", id: this.props.constitId };
+        var content = { text: "No content!!!", id: this.props.constit.id, delimiter: ',' };
         this.setState( {
-            id: this.props.constitId,
-            fileString: content
+            id: this.props.constit.id,
+            fileString: content,
         });
     },
 
     onFileChange: function() {
-        
+
         var self = this;
         var file = document.getElementById( "inputId" + self.state.id );
         var reader = new FileReader();
-        var regex = new RegExp("(.*?)\.(csv)$");
-        
+        var regex = new RegExp( "(.*?)\.(csv)$" );
+        self.setState( { loading: "Kraunama..." });
+
         reader.onload = function( evt ) {
             if ( evt.target.readyState != 2 ) return;
             if ( evt.target.error ) {
@@ -31,37 +35,32 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
             }
             console.log( evt.target.result );
             var text = self.state.fileString;
-            
-            
             text.text = evt.target.result;
-            self.setState( { fileString: text, submit: true });
+
+            self.setState( { fileString: text, submit: true, loading: "Įkrauta" });
+            setTimeout( function() { self.setState( { loading: "" }); }, 2000 );
         };
 
-        
-        reader.onprogress = function(data) {
-            if (data.lengthComputable) {                                            
-                var progress = parseInt( ((data.loaded / data.total) * 100), 10 );
-                console.log(progress);
+        reader.onprogress = function( data ) {
+            if ( data.lengthComputable ) {
+                var progress = parseInt(( ( data.loaded / data.total ) * 100 ), 10 );
+                console.log( progress );
             }
         };
 
-        
-        
-        if( (regex.test(file.files[0].name)) ) {
-            if( (file.files[0].size <= 1048576) ) {
+        if ( ( regex.test( file.files[0].name ) ) ) {
+            if ( ( file.files[0].size <= 1048576 ) ) {
                 reader.readAsText( file.files[0] );
             } else {
                 self.setState( { submit: false });
-                console.log("=#=  File is TOOOO big for MY anus");
-            } 
+                console.log( "=#=  File is TOOOO big for MY anus" );
+            }
         } else {
             self.setState( { submit: false });
-            console.log("=#=  Wrong File Format");
+            console.log( "=#=  Wrong File Format" );
         }
-     
-
     },
-    
+
     handleAddConstituencyCandidates: function() {
         var self = this;
 
@@ -83,17 +82,35 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
                 console.log( error );
             });
     },
-    
-    xxx: function() {
-      console.log("maLE or femaLE");  
-      //pasigauti sudataski ir is to atskirti ka siusti i gala , ar ;
+
+    comma: function() {
+        var self = this;
+        var fileString = self.state.fileString;
+        fileString.delimiter = ',';
+
+        this.setState( {
+            checkedComma: true,
+            checkedSemiColon: false,
+            fileString: fileString
+        });
     },
 
-    
+    semicolon: function() {
+        var self = this;
+        var fileString = self.state.fileString;
+        fileString.delimiter = ';';
+        this.setState( {
+            checkedComma: false,
+            checkedSemiColon: true,
+            fileString: fileString
+        });
+    },
+
     render: function() {
         var self = this;
-        var modalId = "modal" + this.props.constitId;
-        var modalIdHash = "#modal" + this.props.constitId;
+        var modalId = "modal" + this.props.constit.id;
+        var modalIdHash = "#modal" + this.props.constit.id;
+        var constituency = this.props.constit;
 
         return (
 
@@ -109,11 +126,11 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
 
                                 <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
 
-                                <h4 className="modal-title" id="myModalLabel">Pasirinkite CSV bylą</h4>
+                                <h4 className="modal-title" id="myModalLabel">Pasirinkite {constituency.title} apygardos CSV bylą</h4>
                             </div>
-                                <p>Loading bar</p>
+
                             <div className="modal-body">
-                                
+
                                 <form className="form">
                                     <div>
                                         <input
@@ -122,23 +139,24 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
                                             name="file"
                                             accept='.csv'
                                             onChange={this.onFileChange}
-                                            className="form-control" />                                
-                                    </div>        
+                                            className="form-control" />
+                                    </div>
                                 </form>
-                                
-                                <form action="">
-                                    <input type="radio" name="gender" value="male" onChange={this.xxx}/> Duomenys atskirti kableliais<br/>
-                                    <input type="radio" name="gender" value="female" onChange={this.xxx}/> Duomenys atskirti kabliataškiais
+                                <p>{self.state.loading}</p>
+                                <form className="form">
+                                    <input type="radio" onChange={self.comma} checked={self.state.checkedComma} /> Duomenys atskirti kableliais<br />
+                                    <input type="radio" onChange={self.semicolon} checked={self.state.checkedSemiColon} /> Duomenys atskirti kabliataškiais
                                 </form>
-                                                
+
                             </div>
                             <div className="modal-footer">
-                                <button 
-                                id="submit" 
-                                type="button" 
-                                className="btn btn-xs btn-primary" 
-                                onClick={this.handleAddConstituencyCandidates}
-                                disabled={!self.state.submit}>Pridėti kandidatus</button>
+                                <button
+                                    id="submit"
+                                    type="button"
+                                    className="btn btn-xs btn-success"
+                                    onClick={this.handleAddConstituencyCandidates}
+                                    disabled={!self.state.submit}
+                                    >Pridėti kandidatus</button>
                                 <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
                             </div>
                         </div>

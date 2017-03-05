@@ -7,7 +7,6 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
 
     render: function() {
         var self = this;
-        console.log( "_________________" )
         var constituencyList = this.props.constituencies.map( function( constituency, index ) {
 
             if ( constituency.numberOfCandidatesInConstituency != 0 ) {
@@ -28,7 +27,7 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
                         <td>
                             <AdministrateCandidatesCSVConstituencyComponent
                                 reload1={self.reload2}
-                                constitId={constituency.id} />
+                                constit={constituency} />
                         </td>
                     </tr>
                 );

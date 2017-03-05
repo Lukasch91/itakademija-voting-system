@@ -4,6 +4,7 @@ public class CandidateDataPackage {
 
 	private String text;
 	private int id;
+	private char delimiter;
 
 	CandidateDataPackage() {
 	}
@@ -23,5 +24,15 @@ public class CandidateDataPackage {
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	public char getDelimiter() {
+		return delimiter;
+	}
+
+	public void setDelimiter(char delimiter) {
+		this.delimiter = delimiter;
+	}
+	
+	
 
 }
