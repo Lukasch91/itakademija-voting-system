@@ -1,4 +1,4 @@
-var CandidateSearchComponent = React.createClass( {
+var CandidateSearchContainer = React.createClass( {
     
     getInitialState: function() {
         return {
@@ -75,7 +75,7 @@ var CandidateSearchComponent = React.createClass( {
 
         
         return (
-            <div>          
+            <div>
                 <label>Rodoma kandidatų: { this.state.candidatesAmount }</label>
                 <input id="search" 
                          type="text" 
@@ -104,5 +104,5 @@ var CandidateSearchComponent = React.createClass( {
     }
 });
 
-window.CandidateSearchComponent = CandidateSearchComponent;
+window.CandidateSearchContainer = CandidateSearchContainer;
 

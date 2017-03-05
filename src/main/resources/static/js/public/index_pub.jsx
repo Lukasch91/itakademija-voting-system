@@ -25,7 +25,7 @@ ReactDOM.render((
     <Route path="/" component={App}>
       <IndexRoute component={HomeComponent} />
         <Route path="/home" component={HomeComponent} />
-        <Route path="/candidates" component={CandidateSearchComponent} />
+        <Route path="/candidates" component={CandidateSearchContainer} />
         <Route path="/results" component={SingleElectionsResultsContainer} />
         <Route path="/multiresults" component={MultiElectionsResultsContainer} />
         <Route path="/multidisresult/:conId" component={MultiElectionsDistrictsResultsContainer} />
