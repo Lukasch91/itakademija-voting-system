@@ -6,13 +6,13 @@ public class MultiElectionResultsComperator implements Comparator<MultiElectionR
 
 	@Override
 	public int compare(MultiElectionResults r1, MultiElectionResults r2) {
-		if (r1.getNumberOfMandates() == null) {
-			return (r2.getNumberOfMandates() == null) ? 0 : -1;
+		if (r1.getVotes() == null) {
+			return (r2.getVotes() == null) ? 0 : -1;
 		}
-		if (r2.getNumberOfMandates() == null) {
+		if (r2.getVotes() == null) {
 			return 1;
 		}
-		return r1.getNumberOfMandates().compareTo(r2.getNumberOfMandates());
+		return r1.getVotes().compareTo(r2.getVotes());
 	}
 
 }

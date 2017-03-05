@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
 import vs.admin_.district.DistrictRepository;
+import vs.public_.multi.results.ElectionDistrictDetails;
 
 @RestController
 @CrossOrigin
@@ -64,5 +65,11 @@ public class SingleElectionResultsController {
 	public ElectionDetails getSinglElectionDetails() {
 		return singleElectionConstitencyService.getSingleElectionDetails();
 	}
-	
+
+	@RequestMapping(value = "/api/PUBLIC/singleDistrictDetails/{id}", method = RequestMethod.GET)
+	@ApiOperation(value = "[PUBLIC] - ")
+	public ElectionDistrictDetails getSinglElectionDistrictDetails(@PathVariable Integer id) {
+		return singleElectionConstitencyService.getDistrictElectionDetails(id);
+	}
+
 }

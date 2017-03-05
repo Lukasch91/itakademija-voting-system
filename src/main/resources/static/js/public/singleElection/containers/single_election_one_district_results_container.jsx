@@ -3,6 +3,7 @@ var SingleElectionsOneDistrictResultsContainer = React.createClass( {
     getInitialState: function() {
         return {
             candidates: [],
+            info: {}
         };
     },
 
@@ -16,12 +17,18 @@ var SingleElectionsOneDistrictResultsContainer = React.createClass( {
                 })
 
             })
+        axios.get( '/api/PUBLIC/singleDistrictDetails/' + disId )
+            .then( function( response ) {
+                self.setState( {
+                    info: response.data,
+                })
+            })
 
     },
 
     handleCancel: function() {
         var self = this;
-        self.context.router.push( '/multiresults' );
+        self.context.router.push( '/disresult/' + this.state.info.constituencyId );
     },
 
 
@@ -30,7 +37,8 @@ var SingleElectionsOneDistrictResultsContainer = React.createClass( {
             <div>
                 <SingleElectionsOneDistrictResultsComponent
                     candidates={this.state.candidates}
-                    onCancel={this.handleCancel} />
+                    onCancel={this.handleCancel}
+                    info={this.state.info} />
             </div>
         )
     }

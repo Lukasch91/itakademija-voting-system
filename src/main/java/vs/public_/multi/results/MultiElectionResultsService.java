@@ -184,6 +184,8 @@ public class MultiElectionResultsService {
 
 			resultList.add(multiElectionResults);
 		}
+		Collections.sort(resultList, new MultiElectionResultsComperator());
+		Collections.reverse(resultList);
 		return resultList;
 	}
 

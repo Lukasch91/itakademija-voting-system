@@ -1,5 +1,6 @@
 package vs.representative_.singleelection;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -63,9 +64,23 @@ public class SingleElectionRepository {
 	private static final String COUNT_ALL_VOTES = "SELECT sum(s.singleVotes) FROM SingleElection s "
 			+ "LEFT JOIN s.singleDistrict sd  WHERE "
 			+ " s.singleDeletedDate IS NULL AND s.singlePublishedDate IS NOT NULL and sd.deletedTime is null";
+	
+	private static final String GET_UPDATED_DATE = "SELECT m.published_date FROM MultiElection m "
+			+ " LEFT JOIN m.district md WHERE m.deleted_date is null AND m.published_date IS NOT NULL AND md.id=:disId AND md.deletedTime is null";
+
 
 	@Autowired
 	private EntityManager em;
+	
+	public Timestamp getPublishedDate(Integer disId) {
+		if (em.createQuery(GET_UPDATED_DATE).setParameter("disId", disId).getResultList().isEmpty()) {
+			return null;
+		} else {
+
+			return  (Timestamp) em.createQuery(GET_UPDATED_DATE).setParameter("disId", disId)
+					.getSingleResult();
+		}
+	}
 
 	public Long getVotesOfCandidate(Integer candidateId, Integer districtId) {
 		if (em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID).setParameter("candidateId", candidateId)
