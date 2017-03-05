@@ -16,8 +16,8 @@ var PubDelVotesDistrictListContainer = React.createClass( {
         var conId = this.props.params.conId;  
         axios.all([
                   axios.get( '/api/ADMIN/constituency/' + conId ),
-                  axios.get( '/api/REPRES/reg-votes-multi'),
-                  axios.get( '/api/REPRES/singleelection')
+                  axios.get( '/api/ADMIN/reg-votes-multi'),
+                  axios.get( '/api/ADMIN/singleelection')
                   ]).then(axios.spread(function (constResponse, votesMultiResponse, votesSingleResponse) {
                       self.setState( {
                           districts: constResponse.data.districts,

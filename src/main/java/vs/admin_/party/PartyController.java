@@ -21,7 +21,7 @@ public class PartyController {
 	@Autowired
 	private PartyService partyService;
 
-	@RequestMapping(value = "/api/REPRES/party", method = RequestMethod.GET)
+	@RequestMapping(value = {"/api/ADMIN/party", "/api/REPRES/party"}, method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[REPRES] - Get all  Parties")
 	public List<Party> findAllParties() {

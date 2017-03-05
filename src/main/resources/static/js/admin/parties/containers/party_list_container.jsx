@@ -8,7 +8,7 @@ var PartyListContainer = React.createClass( {
 
     componentWillMount: function() {
         var self = this;
-        axios.get( '/api/REPRES/party' )
+        axios.get( '/api/ADMIN/party' )
             .then( function( response ) {
                 self.setState( {
                     parties: response.data

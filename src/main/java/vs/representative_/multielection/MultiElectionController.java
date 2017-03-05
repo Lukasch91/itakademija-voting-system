@@ -22,7 +22,7 @@ public class MultiElectionController {
 	@Autowired
 	private MultiElectionCreateService multiElectionCreateService;
 
-	@RequestMapping(value = "/api/REPRES/reg-votes-multi", method = RequestMethod.GET)
+	@RequestMapping(value = {"/api/REPRES/reg-votes-multi", "/api/ADMIN/reg-votes-multi"}, method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[REPRES] - Get all  Multi Election results")
 	public List<MultiElection> findAllElection() {

@@ -25,11 +25,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().headers().disable().authorizeRequests().antMatchers("/api/**", "/", "/js/**", "/test.css", "login_style.css").permitAll()
-				/*
-				 * .antMatchers("/admin/**").hasRole("ADMIN")
-				 * .antMatchers("/rep/**").hasRole("USER")
-				 */
+		http.csrf().disable().headers().disable().authorizeRequests().antMatchers("/","/api/PUBLIC/**", "/js/public/**", "/test.css", "login_style.css").permitAll()				
+				.antMatchers("/api/ADMIN/**", "/admin", "/js/admin/**", "/swagger-ui.html/**", "/h2-console/**").hasRole("ADMIN")
+				.antMatchers("/api/REPRES/**", "/rep", "/js/representative/**").hasRole("REPRESENTATIVE")	 
 				.anyRequest().authenticated().and().formLogin().loginPage("/login").permitAll().and().logout()
 				.permitAll();
 
