@@ -33,6 +33,11 @@ var NavigationPubComponent = React.createClass( {
                         <NavLink id="/results" to="/results">Vienmandatės rezultatai</NavLink>
                         <NavLink id="/multiresults" to="/multiresults">Daugiamandatės rezultatai</NavLink>
                     </ul>
+                    <ul className="nav navbar-nav navbar-right">
+                        <li>
+                        <Link id="login" href="/login">Prisijungti</Link>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         );
