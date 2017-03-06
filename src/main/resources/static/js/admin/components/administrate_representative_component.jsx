@@ -70,11 +70,11 @@ var AdministrateRepresentativeComponent = React.createClass( {
     }
 });
 
-AdministrateRepresentativeComponent.propTypes = {
+/*AdministrateRepresentativeComponent.propTypes = {
     representative: React.PropTypes.object.isRequired,
     onFieldChange: React.PropTypes.func.isRequired,
     onAddRepresentative: React.PropTypes.func.isRequired,
     validationArray: React.PropTypes.array.isRequired
-};
+};*/
 
 window.AdministrateRepresentativeComponent = AdministrateRepresentativeComponent;
