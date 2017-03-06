@@ -66,11 +66,11 @@ public class RepresentativeController {
 		return representativeRepository.findByLoginName(loginName);		
 	}
 	
-/*	@RequestMapping(value = "/api/REPRES/changepass", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/REPRES/changepass", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Change password")
 	public void changePassword(@CurrentUser Representative representative, @RequestParam String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		representativeRepository.changePassword(representative, password);
-	}*/
+	}
 	
 }

@@ -35,12 +35,12 @@ public class PasswordController {
 		return passwordService.PassHashing(password);
 	}
 
-	@RequestMapping(value = "/api/ADMIN/password/check", method = RequestMethod.POST)
+/*	@RequestMapping(value = "/api/ADMIN/password/check", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[UNUSED - ADMIN] - Check Password")
 	public boolean checkPassword(@RequestParam String loginName, @RequestParam String passwordToCheck)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		return passwordService.PasswordCheck(loginName, passwordToCheck);
-	}
+	}*/
 
 }

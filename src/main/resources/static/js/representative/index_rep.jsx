@@ -27,6 +27,7 @@ ReactDOM.render((
         <Route path="/home" component={HomeComponent} />
         <Route path="/reg-votes-multi" component={RegisterVotesMultiContainer} />
         <Route path="/reg-votes-single" component={RegisterVotesSingleContainer} />
+        <Route path="/change-pass" component={ChangePasswordContainer} />
       <Route path="*" component={NoMatch}/>
     </Route>
   </Router>

@@ -22,26 +22,7 @@ var AdministrateRepresentativeComponent = React.createClass( {
                     <label>Prisijungimo vardas</label><br />
                     <input id="representativeUsername" className="form-control" type="text" value={this.props.representative.loginName} onChange={this.props.onFieldChange( 'loginName' )} /><br />
 
-                    <button id="generatePassword" className="btn btn-warning btn-xs " data-toggle="modal" data-target="#modalPassword"  onClick={this.props.onGeneratePass}>Generuoti slaptažodį</button><br /><br />                    
-
-                    <div className="modal fade" id="modalPassword" tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
-                                <h4 className="modal-title" id="myModalLabel">Dėmesio!</h4>
-                            </div>
-                            <div className="modal-body">
-                                Slaptažodis sugeneruotas
-                            </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Puiku!</button>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    
+                  
                     
                     <label>El. paštas</label><br />
                     <input id="email" className="form-control" type="email"  value={this.props.representative.email} onChange={this.props.onFieldChange( 'email' )} /><br />

@@ -22,8 +22,8 @@ public class RepresentativeRepository {
 	@Autowired
 	private EntityManager em;
 
-/*	@Autowired
-	private PasswordService passwordService;*/
+	@Autowired
+	private PasswordService passwordService;
 	
 	@SuppressWarnings("unchecked")
 	public List<Representative> findAllRepresentatives() {
@@ -62,10 +62,10 @@ public class RepresentativeRepository {
 				.getSingleResult();
 	}
 	
-/*	@Transactional
+	@Transactional
 	public void changePassword(@CurrentUser Representative representative, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		Representative repToChange = (Representative) em.createQuery(FIND_BY_LOGIN).setParameter("loginName", representative.getLoginName()).getSingleResult();
 		repToChange.setPassword(passwordService.PassHashing(password));
-	}*/
+	}
 	
 }

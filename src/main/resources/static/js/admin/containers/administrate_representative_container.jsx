@@ -47,24 +47,26 @@ var AdministrateRepresentativeContainer = React.createClass( {
         e.preventDefault();
         var self = this;
         var success = 0;         
-        console.log('sending generated: ' + this.state.passwordList[0]);
-        console.log('sending hashed: ' + this.state.passwordHashed);           
+      
+        this.state.password = this.state.passwordList[0];
+        axios.post('http://localhost:8080/api/ADMIN/password/hash?password=' + this.state.passwordList[0]).then( function( response ) {
+            self.setState( {
+                passwordHashed: response.data
+            });
         
         
         axios.post( '/api/ADMIN/representative', {
-            name: this.state.representative.name,
-            surname: this.state.representative.surname,
-            loginName: this.state.representative.loginName,
-            password: this.state.passwordHashed,
-            email: this.state.representative.email,
-            districtId: this.props.params.disId
+            name: self.state.representative.name,
+            surname: self.state.representative.surname,
+            loginName: self.state.representative.loginName,
+            password: self.state.passwordHashed,
+            email: self.state.representative.email,
+            districtId: self.props.params.disId
 
         })
             .then( function( response ) {
                 axios.post('api/ADMIN/mail?toMail=' + self.state.representative.email + '&password=' + self.state.passwordList[0] + '&loginName=' + self.state.representative.loginName);
                 success = 1;
-                console.log( response );
-                console.log( "representative added" );
             })
             .catch( function( error ) {
                 if ( error.response.status == 400 ) {
@@ -87,21 +89,7 @@ var AdministrateRepresentativeContainer = React.createClass( {
                     self.context.router.push( '/dis/' + self.props.params.conId );
                 }
             });
-    },
-    
-    handleGeneratePass: function() {
-        
-        console.log('generated: ' + this.state.passwordList[0]);
-        console.log('hashed: ' + this.state.passwordHashed);
-        this.state.password = this.state.passwordList[0];
-        var self = this;
-        axios.post('http://localhost:8080/api/ADMIN/password/hash?password=' + this.state.passwordList[0]).then( function( response ) {
-            self.setState( {
-                passwordHashed: response.data
-            });
-            console.log('hashed2: ' + self.state.passwordHashed);
         });
-        
     },
 
     render: function() {
@@ -111,7 +99,6 @@ var AdministrateRepresentativeContainer = React.createClass( {
             onFieldChange={this.handleFieldChange}
             onAddRepresentative={this.handleAddRepresentative}
             onCancel={this.handleCancel}
-            onGeneratePass={this.handleGeneratePass}
             password={this.state.password}
         />
     }

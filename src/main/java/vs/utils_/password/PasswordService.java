@@ -39,8 +39,8 @@ public class PasswordService implements PasswordEncoder{
 	private int randNumber;
 	private StringBuilder stringBuilder;
 	private List<Integer> numberList; 
-	@Autowired
-	private RepresentativeRepository representativeRepository;
+/*	@Autowired
+	private RepresentativeRepository representativeRepository;*/
 	
 	@Transactional
 	public String PassGenerator() {
@@ -90,13 +90,13 @@ public class PasswordService implements PasswordEncoder{
 		return kodai;
 	}
 	
-	public boolean PasswordCheck(String loginName, String passwordToCheck) throws NoSuchAlgorithmException, UnsupportedEncodingException{
+/*	public boolean PasswordCheck(String loginName, String passwordToCheck) throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String passwordInDb = representativeRepository.findByLoginName(loginName).getPassword();
 		
 		boolean result = passwordEncoder.matches(passwordToCheck, passwordInDb);
 		return result;
-	}
+	}*/
 
 
 }
