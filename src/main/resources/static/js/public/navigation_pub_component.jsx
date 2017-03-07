@@ -41,7 +41,7 @@ var NavigationPubComponent = React.createClass( {
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <li>
-                        <Link id="login" href="/login">Prisijungti</Link>
+                        <Link id="login" href={this.props.onLink}>{this.props.loginText}</Link>
                         </li>
                     </ul>
                 </div>

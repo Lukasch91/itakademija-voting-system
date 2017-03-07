@@ -12,12 +12,13 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import io.swagger.annotations.ApiModelProperty;
+import vs.BasicUser;
 import vs.utils_.hibernate.validators.representative.UniqueRepresentativeEmail;
 import vs.utils_.hibernate.validators.representative.UniqueRepresentativeUsername;
 
 @Entity
 @Table(name = "representatives")
-public class Representative {
+public class Representative implements BasicUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

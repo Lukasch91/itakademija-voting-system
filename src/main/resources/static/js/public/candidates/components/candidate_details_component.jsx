@@ -1,14 +1,14 @@
 var CandidateDetailsComponent = React.createClass( {
-    
+
     render: function() {
         var self = this;
         var candidate = self.props.candidateProp;
-        
+
         var modalId = "modal" + "c" + candidate.candidatePersonalID;
         var modalIdHash = "#modal" + "c" + candidate.candidatePersonalID;
-        
+
         return (
-                <div>
+            <div>
                 <button type="button" className="btn btn-xs btn-success" data-toggle="modal" data-target={modalIdHash}>
                     Peržiurėti kandidatus
                     </button>
@@ -23,32 +23,50 @@ var CandidateDetailsComponent = React.createClass( {
                                     <span className="sr-only">Close</span>
                                 </button>
 
-                                <h4 className="modal-title" id="myModalLabel">Kandidatas {candidate.candidateName} {candidate.candidateSurname}</h4>
+                                <h4 className="modal-title" id="myModalLabel">{candidate.candidateName} {candidate.candidateSurname}</h4>
                             </div>
 
                             <div className="modal-body">
-                            <p>{candidate.candidateParty != null ? ("Priklauso partijai - " + candidate.candidateParty.title) : null}</p>
-                            <p>{candidate.candidateNumberInParty != null ? ("Numeris partijoje: "+ candidate.candidateNumberInParty) : null}</p>
-                            <p>{candidate.candidateConstituency != null ? ("Priklauso vienmandatei " + candidate.candidateConstituency.title +" apygardai") : null}</p>
-                            <br/>
-                            
-                            <p>Aprašymas</p>
-                            <p>{candidate.candidateDescription}</p>
-                            <p>Gimimo data: {candidate.candidateDateOfBirth}</p>
-                            
-                            
+                                <div className="container-fluid">
+                                    <div className="row">
 
+                                        <div className="col-md-6">
+                                            <p><b>Partija: </b>{candidate.candidateParty != null ? (candidate.candidateParty.title ) : "-"}</p>
+                                            <p><b>Numeris partijoje: </b>{candidate.candidateNumberInParty != null ? (candidate.candidateNumberInParty ) : "-"}</p>
+                                            <p><b>Vienmandatė apygarda: </b>{candidate.candidateConstituency != null ? (candidate.candidateConstituency.title ) : "-"}</p>
+                                            <br />
 
+                                            <p><b>Gimimo data: </b>{candidate.candidateDateOfBirth}</p>
+                                            <p><b>Aprašymas</b></p>
+                                            <p>{candidate.candidateDescription}</p>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                        </div>
+
+                                        <div className="col-md-6 col-md-offset-6" style={{marginLeft: '0'}}>
+                                            <img style={{ height: '250px' }} src="images/profile_photo.png" alt="profile photo" />
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
+
+
+
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Atšaukti</button>
+                                <button type="button" className="btn btn-xs btn-default" data-dismiss="modal">Uždaryti</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         );
-    
+
     }
 });
 

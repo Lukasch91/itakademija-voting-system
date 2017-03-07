@@ -30,9 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.csrf().disable()
-		.headers().disable()
-		.authorizeRequests()
-			.antMatchers("/","/api/PUBLIC/**", "/js/public/**", "/test.css", "/login_style.css", "/images/**").permitAll()				
+/*		.headers().disable() //enables h2-console
+*/		.authorizeRequests()
+			.antMatchers("/","/api/PUBLIC/**", "/js/public/**", "/test.css", "/login_style.css", "/images/**", "**/favicon.ico").permitAll()				
 				.antMatchers("/api/ADMIN/**", "/admin", "/js/admin/**", "/swagger-ui.html/**", "/h2-console/**").hasRole("ADMIN")
 				.antMatchers("/api/REPRES/**", "/rep", "/js/representative/**").hasRole("REPRESENTATIVE")	 
 				.anyRequest().authenticated().and()
@@ -43,7 +43,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	public void registerAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-		/*auth.inMemoryAuthentication().withUser("admin").password("pass").roles("ADMIN");*/
 		auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
 
 	}
