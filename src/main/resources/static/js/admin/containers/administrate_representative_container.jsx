@@ -65,7 +65,7 @@ var AdministrateRepresentativeContainer = React.createClass( {
 
         })
             .then( function( response ) {
-                axios.post('api/ADMIN/mail?toMail=' + self.state.representative.email + '&password=' + self.state.passwordList[0] + '&loginName=' + self.state.representative.loginName);
+                axios.post('api/ADMIN/mail?toMail=' + self.state.representative.email + '&loginName=' + self.state.representative.loginName, {password: self.state.password});
                 success = 1;
             })
             .catch( function( error ) {

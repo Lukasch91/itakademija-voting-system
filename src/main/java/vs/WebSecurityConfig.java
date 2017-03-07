@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf().disable()
 		.headers().disable()
 		.authorizeRequests()
-			.antMatchers("/","/api/PUBLIC/**", "/js/public/**", "/test.css", "login_style.css").permitAll()				
+			.antMatchers("/","/api/PUBLIC/**", "/js/public/**", "/test.css", "/login_style.css", "/images/**").permitAll()				
 				.antMatchers("/api/ADMIN/**", "/admin", "/js/admin/**", "/swagger-ui.html/**", "/h2-console/**").hasRole("ADMIN")
 				.antMatchers("/api/REPRES/**", "/rep", "/js/representative/**").hasRole("REPRESENTATIVE")	 
 				.anyRequest().authenticated().and()

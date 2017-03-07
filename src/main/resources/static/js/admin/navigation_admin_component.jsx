@@ -28,12 +28,19 @@ var NavigationAdminComponent = React.createClass( {
             <nav className="navbar navbar-inverse">
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
-                        <NavLink to="/home" onlyActiveOnIndex>Home</NavLink>
+                        <NavLink to="/home" onlyActiveOnIndex>Pradinis</NavLink>
                         <NavLink id="constituency" to="/con">Apygardos/Apylinkės</NavLink>
                         <NavLink id="party" to="/parties">Partijos</NavLink>
-                        <NavLink id="singleMember" to="/upload-single-cadidates">Kandidatų įkėlimas (vien.)</NavLink>
-                        <NavLink id="multiMember" to="/upload-multi-cadidates">Kandidatų įkėlimas (daug.)</NavLink>
-                        <NavLink id="resultDeletePage" to="/publish-delete-votes">Rezultatų publikavimas/anuliavimas</NavLink>
+                        <li id="addCandidates" className="dropdown">
+                        <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kandidatų įkėlimas <span className="caret"></span></a>
+                        <ul className="dropdown-menu">
+                        <NavLink id="singleMember" to="/upload-single-cadidates">Apygardoms</NavLink>
+                        <NavLink id="multiMember" to="/upload-multi-cadidates">Partijoms</NavLink>
+                        </ul>
+                      </li>
+                        
+                        
+                        <NavLink id="resultDeletePage" to="/publish-delete-votes">Rezultatai</NavLink>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <NavLink id="changeAdminPassword" to="/change-pass">Info</NavLink>

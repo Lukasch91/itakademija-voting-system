@@ -1,7 +1,8 @@
 var App = React.createClass({
   render: function() {
     return (
-      <div style={{ paddingTop: '20px' }}>
+      <div style={{ paddingTop: '10px' }}>
+            <img style={{paddingBottom: '10px'}} src="images/vrk-logo-lt.png" alt="vrk logo"/>
         <NavigationRepContainer />
         {this.props.children}
       </div>
