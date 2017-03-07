@@ -38,7 +38,7 @@ var PartyListComponent = React.createClass( {
 
 
         return (
-            <div className="panel panel-default">
+            <div>
                 <table className="table table-hover">
                     <thead>
                         <tr>

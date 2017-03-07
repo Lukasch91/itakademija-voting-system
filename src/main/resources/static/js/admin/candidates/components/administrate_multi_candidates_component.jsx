@@ -37,7 +37,7 @@ var AdministrateMultiCandidatesComponent = React.createClass( {
         });
 
         return (
-            <div className="panel panel-default">
+            <div>
                 <h4>Daugiamandatės</h4>
                 <table className="table table-hover">
                     <thead>

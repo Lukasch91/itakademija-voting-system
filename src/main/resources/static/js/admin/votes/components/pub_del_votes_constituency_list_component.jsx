@@ -12,7 +12,7 @@ var PubDelVotesConstituencyListComponent = React.createClass({
        });
 
        return (
-           <div className="panel panel-default">
+           <div>
                <table className="table">
                    <thead>
                        <tr>

@@ -2,19 +2,24 @@ var RepresentativeInfoContainer = React.createClass({
     
     getInitialState: function() {
         return {
-            representative: []
+            representative: [],
+            constituency: 'test'
         };
     },
     
     componentWillMount: function() {
         var self = this;
         var repId = this.props.params.repId;
-        axios.get('/api/ADMIN/representative/' + repId)
-        .then(function (response) {
+        var conId = this.props.params.conId;
+        
+        axios.all([axios.get('/api/ADMIN/representative/' + repId), axios.get('/api/ADMIN/constituency/' + conId)])
+        .then(axios.spread(function (repResponse, constResponse) {
             self.setState({ 
-                representative: response.data
+                representative: repResponse.data,
+                constituency: constResponse.data
             });
-        });
+        }));
+
         
 
     },
@@ -41,6 +46,7 @@ var RepresentativeInfoContainer = React.createClass({
     render: function() {
         return <RepresentativeInfoComponent 
         representative={this.state.representative}
+        constituency={this.state.constituency}
         onDelete={this.handleDelete}
         onCancel={this.handleCancel}
         />

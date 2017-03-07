@@ -35,7 +35,7 @@ var AdministrateSingleCandidatesComponent = React.createClass( {
         });
 
         return (
-            <div className="panel panel-default">
+            <div>
                 <h4>Vienmandatės</h4>
                 <table className="table table-hover">
                     <thead>

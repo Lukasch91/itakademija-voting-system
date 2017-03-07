@@ -56,19 +56,19 @@ var CandidateSearchContainer = React.createClass( {
         var candidatesList = this.state.candidates.map( function( candidate, index ) {
             return (
                 <tr key={'row' + index}>
-                    <td>{candidate.candidateName}</td>
-                    <td>{candidate.candidateSurname}</td>
+                    <td className="col-md-2" >{candidate.candidateName}</td>
+                    <td className="col-md-2" >{candidate.candidateSurname}</td>
                     
-                    <td>
+                    <td className="col-md-3" >
                     {candidate.candidateParty != null ? candidate.candidateParty.title : '-'}
                     </td>
-                    <td>
+                    <td className="col-md-1" >
                     {candidate.candidateParty != null ? candidate.candidateParty.party_abbreviation : '-'}
                     </td>
-                    <td>
+                    <td className="col-md-2" >
                     {candidate.candidateConstituency != null ? candidate.candidateConstituency.title : '-'}
-                    </td>
-                    <td><CandidateDetailsComponent candidateProp={candidate}/></td>
+                    </td >
+                    <td className="col-md-2"><CandidateDetailsComponent candidateProp={candidate}/></td>
                 </tr>                 
             );
         });
@@ -86,12 +86,12 @@ var CandidateSearchContainer = React.createClass( {
                 <table className="table table-hover">
                     <thead>
                         <tr>
-                            <th>Vardas</th>
-                            <th>Pavardė</th>
-                            <th>Partija</th>
-                            <th>Trumpinys</th>
-                            <th>Apygarda</th>
-                            <th>Daugiau</th>
+                            <th className="col-md-2">Vardas</th>
+                            <th className="col-md-2">Pavardė</th>
+                            <th className="col-md-3">Partija</th>
+                            <th className="col-md-1">Trumpinys</th>
+                            <th className="col-md-2">Apygarda</th>
+                            <th className="col-md-2">Daugiau</th>
                         </tr>
                     </thead>
                         <tbody>

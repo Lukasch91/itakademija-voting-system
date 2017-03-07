@@ -90,8 +90,8 @@ var DistrictListComponent = React.createClass( {
 
 
         return (
-            <div className="panel panel-default">
-                <h3>{this.props.constit.title}</h3>
+            <div>
+                <h4>{this.props.constit.title} apygarda</h4>
                 <table className="table">
                     <thead>
                         <tr>

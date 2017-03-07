@@ -28,7 +28,7 @@ var ConstituencyListContainer = React.createClass( {
         var self = this;
         return function() {
             axios.put( '/api/ADMIN/constituency/' + constituency.id ).then( function( response ) {
-                console.log( 'item deleted');
+                console.log( 'item deleted' );
                 axios.get( '/api/ADMIN/constituency' )
                     .then( function( response ) {
                         self.setState( {
@@ -47,6 +47,7 @@ var ConstituencyListContainer = React.createClass( {
                     onAdministerDistricts={this.handleAdministerDistricts}
                     onRemoveItem={this.handleRemoveItem} />
                 <AddNewContainer id="newConstituency" redirectTo={'/add-con'} />
+
             </div>
         )
     }
