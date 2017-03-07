@@ -12,6 +12,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import vs.admin_.constituency.Constituency;
 import vs.admin_.party.Party;
 
@@ -25,9 +27,11 @@ public class Candidate {
 	private Integer candidateID;
 
 	@Column
+	@NotBlank(message="Vardas negali būti tuščias")
 	private String candidateName;
 
 	@Column
+	@NotBlank(message="Pavardė negali būti tuščia")
 	private String candidateSurname;
 
 	@Column

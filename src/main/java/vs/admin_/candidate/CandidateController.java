@@ -3,35 +3,29 @@ package vs.admin_.candidate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import io.swagger.annotations.Api; //swagger
-import io.swagger.annotations.ApiOperation; //swagger
-import vs.utils_.storage.StorageService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @Api
 public class CandidateController {
 
 	@Autowired
-	private StorageService storageService;
-
-	@Autowired
-	private CandidateService candidateService;
+	private CandidateCreateService candidateService;
 
 	@Autowired
 	private CandidateRepository candidateRepository;
 
 	@Autowired
-	private CandidateCSVParserService csvParser;
+	private CandidateValidationService candidateValidationService;
 
 	@RequestMapping(value = "/api/PUBLIC/candidate", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
@@ -81,75 +75,18 @@ public class CandidateController {
 	public void deleteCandidateByPartyId(@PathVariable("partyId") Integer id) {
 		candidateRepository.deleteCandidatesByPartyId(id);
 	}
-
-	/* ===========================================================File=== */
-
-	// @RequestMapping(value = "/api/ADMIN/districtcandidatesFILE", method =
-	// RequestMethod.POST)
-	// @ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-	// @ApiOperation(value = "[ADMIN] - Upload district candidates CSV")
-	// public String districtCandidatesCSV(@RequestParam("file") MultipartFile
-	// file,
-	// @RequestHeader Integer constituencyId) {
-	//
-	// storageService.store(file);
-	//
-	// candidateService.setCandidatesConstituency(constituencyId);
-	// candidateService.setCandidatesData(storageService.returnStoredFile(file));
-	// candidateService.saveDistrictCandidates();
-	//
-	// String aaa = storageService.returnStoredFile(file);
-	//
-	// storageService.deleteFile(file);
-	//
-	// return aaa;
-	// }
-
-	// @RequestMapping(value = "/api/ADMIN/partycandidatesFILE", method =
-	// RequestMethod.POST)
-	// @ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-	// @ApiOperation(value = "[ADMIN] - Upload party candidates CSV")
-	// public String partyCandidatesCSV(@RequestParam("file") MultipartFile
-	// file, @RequestHeader Integer partyId) {
-	//
-	// storageService.store(file);
-	//
-	// candidateService.setCandidatesParty(partyId);
-	// candidateService.setCandidatesData(storageService.returnStoredFile(file));
-	// candidateService.savePartyCandidates();
-	//
-	// String aaa = storageService.returnStoredFile(file);
-	//
-	// storageService.deleteFile(file);
-	//
-	// return aaa;
-	// }
-
-	/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
+	
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/api/ADMIN/constituencycsv", method = RequestMethod.POST)
-	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
 	@ApiOperation(value = "[ADMIN] - Upload constituency candidates CSV")
-	public String districtCandidatesCSV(@RequestBody CandidateDataPackage data) {
-
-		candidateService.setCandidatesConstituency(data.getId());
-		candidateService.setCandidatesData2(csvParser.csvReader(data.getText(), data.getDelimiter()));
-		candidateService.saveConstituencyCandidates();
-
-		return data.getText();
+	public ResponseEntity constituencyCSV(@RequestBody CandidateDataPackage data) {
+		return candidateValidationService.validateSaveConstituencyData(data);		
 	}
 
+	@SuppressWarnings("rawtypes")
 	@RequestMapping(value = "/api/ADMIN/partycsv", method = RequestMethod.POST)
-	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
 	@ApiOperation(value = "[ADMIN] - Upload party candidates CSV")
-	public String partyCSV(@RequestBody CandidateDataPackage data) {
-
-		candidateService.setCandidatesParty(data.getId());
-		candidateService.setCandidatesData2(csvParser.csvReader(data.getText(), data.getDelimiter()));
-		candidateService.savePartyCandidates();
-
-		return data.getText();
+	public ResponseEntity partyCSV(@RequestBody CandidateDataPackage data) {
+		return candidateValidationService.validateSavePartyData(data);
 	}
-
-	/* ===========================================================File=== */
 }

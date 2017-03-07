@@ -11,7 +11,7 @@ import vs.admin_.district.District;
 import vs.admin_.party.Party;
 
 @Service
-public class CandidateService {
+public class CandidateCreateService {
 
 	@Autowired
 	private CandidateRepository candidateRepository;
@@ -20,16 +20,22 @@ public class CandidateService {
 	private Integer candidatesConstituency;
 	private Integer candidatesParty;
 
-	public void saveConstituencyCandidates() {
+	public List<Candidate> saveConstituencyCandidates() {
+		List<Candidate> candidates = new ArrayList<Candidate>();
+		
 		for (String[] cells : candidatesData) {
-			candidateRepository.createOrUpdateCandidate(createConstituencyCandidate(cells));
+			candidates.add(createConstituencyCandidate(cells));
 		}
+		return candidates;
 	}
 
-	public void savePartyCandidates() {
+	public List<Candidate> savePartyCandidates() {
+		List<Candidate> candidates = new ArrayList<Candidate>();
+		
 		for (String[] cells : candidatesData) {
-			candidateRepository.createOrUpdateCandidate(createPartyCandidate(cells));
+			candidates.add(createPartyCandidate(cells));
 		}
+		return candidates;
 	}
 
 	private Candidate createConstituencyCandidate(String[] cell) {
