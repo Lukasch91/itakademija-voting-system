@@ -27,7 +27,7 @@ var AdministrateRepresentativeComponent = React.createClass( {
                     <label>El. paštas</label><br />
                     <input id="email" className="form-control" type="email"  value={this.props.representative.email} onChange={this.props.onFieldChange( 'email' )} /><br />
 
-                    <button id="addRepresentative" className="btn btn-success btn-xs " data-toggle="modal" data-target="#modalSave"  >Pridėti</button>&nbsp;
+                    <button id="addRepresentative" type="button" className="btn btn-success btn-xs " data-toggle="modal" data-target="#modalSave"  >Pridėti</button>&nbsp;
                     
                     <div className="modal fade" id="modalSave" tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
@@ -56,7 +56,7 @@ var AdministrateRepresentativeComponent = React.createClass( {
                     
                     
                     
-                    <button id="cancelRepresentative" className="btn btn-danger btn-xs " onClick={this.props.onCancel} >Atšaukti</button>
+                    <button id="cancelRepresentative" type="button" className="btn btn-danger btn-xs " onClick={this.props.onCancel} >Atšaukti</button>
                 </form>
 
                 <table className="table table-condensed">

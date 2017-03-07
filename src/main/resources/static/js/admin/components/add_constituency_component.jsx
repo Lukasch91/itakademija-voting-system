@@ -14,8 +14,8 @@ var AddConstituencyComponent = React.createClass( {
                 <form>
                     <label>Apygardos pavadinimas</label><br />
                     <input id="constituencyName" className="form-control" type="text" value={this.props.constituency.title} onChange={this.props.onFieldChange( 'title' )} name="input1" /><br />
-                    <button id="addConstituency" className="btn btn-success btn-xs " onClick={this.props.onAddClick}>Pridėti</button>&nbsp;
-                    <button id="cancelConstituency" className="btn btn-danger btn-xs " onClick={this.props.onCancel}>Atšaukti</button>
+                    <button id="addConstituency" type="button" className="btn btn-success btn-xs " onClick={this.props.onAddClick}>Pridėti</button>&nbsp;
+                    <button id="cancelConstituency" type="button" className="btn btn-danger btn-xs " onClick={this.props.onCancel}>Atšaukti</button>
                 </form>
 
                 <table className="table table-condensed">

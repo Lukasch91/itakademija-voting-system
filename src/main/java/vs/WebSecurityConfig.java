@@ -30,8 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.csrf().disable()
-/*		.headers().disable() //enables h2-console
-*/		.authorizeRequests()
+		.headers().disable() //enables h2-console
+		.authorizeRequests()
 			.antMatchers("/","/api/PUBLIC/**", "/js/public/**", "/test.css", "/login_style.css", "/images/**", "**/favicon.ico").permitAll()				
 				.antMatchers("/api/ADMIN/**", "/admin", "/js/admin/**", "/swagger-ui.html/**", "/h2-console/**").hasRole("ADMIN")
 				.antMatchers("/api/REPRES/**", "/rep", "/js/representative/**").hasRole("REPRESENTATIVE")	 
