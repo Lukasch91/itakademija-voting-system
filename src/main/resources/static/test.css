@@ -24,6 +24,18 @@
 	padding-top: 30px;
 }
 
+.footer {
+	background: #333;
+	color: #9d9d9d;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+#root_admin, #root_pub, #root_rep {
+	margin-bottom: 50px;
+}
+
 #signin {
 	position: absolute;
 }

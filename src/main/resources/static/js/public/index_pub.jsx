@@ -4,6 +4,7 @@ var App = React.createClass({
       <div style={{ paddingTop: '10px' }}>
             <img style={{paddingBottom: '10px'}} src="images/vrk-logo-lt.png" alt="vrk logo"/>
             <NavigationPubComponent />
+            <div className="container footer navbar-fixed-bottom">&copy; KALM, 2017</div>
         {this.props.children}
       </div>
     );

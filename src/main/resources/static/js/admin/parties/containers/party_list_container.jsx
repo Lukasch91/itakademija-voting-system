@@ -22,7 +22,7 @@ var PartyListContainer = React.createClass( {
         return function() {
             axios.put( '/api/ADMIN/party/' + party.id ).then( function( response ) {
                 console.log( 'item deleted' );
-                axios.get( '/api/REPRES/party' )
+                axios.get( '/api/ADMIN/party' )
                     .then( function( response ) {
                         self.setState( {
                             parties: response.data
