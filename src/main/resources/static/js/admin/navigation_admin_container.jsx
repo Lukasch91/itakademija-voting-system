@@ -1,10 +1,7 @@
 var NavigationAdminContainer = React.createClass({
     
     handleLogout: function() {
-        axios.get('/logout').then(function () {
-            window.location.reload()
-          });
-
+        axios.get('/logout');
     },
       
     render: function() {

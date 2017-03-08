@@ -34,7 +34,9 @@ var NavigationRepComponent = React.createClass( {
                      </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <NavLink id="changeAdminPassword" to="/change-pass">Info</NavLink>
-                        <NavLink id="logout" to="/home" onClick={this.props.onLogoutClick}>Atsijungti</NavLink>
+                        <li>
+                        <Link id="logout" href="/" onClick={this.props.onLogoutClick}>Atsijungti</Link>
+                        </li>
                     </ul>
                 </div>
             </nav>
