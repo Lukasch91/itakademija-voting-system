@@ -8,6 +8,7 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
             loading: "",
             checkedComma: true,
             checkedSemiColon: false,
+            error: ""
         };
     },
 
@@ -25,12 +26,13 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
         var file = document.getElementById( "inputId" + self.state.id );
         var reader = new FileReader();
         var regex = new RegExp( "(.*?)\.(csv)$" );
-        self.setState( { loading: "Kraunama..." });
+
+        self.setState( { error: "" });
 
         reader.onload = function( evt ) {
             if ( evt.target.readyState != 2 ) return;
             if ( evt.target.error ) {
-                console.log( '=#=  Error while reading file' );
+                self.setState( { error: "Klaida nuskaitant byla" });
                 return;
             }
             console.log( evt.target.result );
@@ -50,14 +52,16 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
 
         if ( ( regex.test( file.files[0].name ) ) ) {
             if ( ( file.files[0].size <= 1048576 ) ) {
+
+                self.setState( { loading: "Kraunama..." });
                 reader.readAsText( file.files[0] );
             } else {
                 self.setState( { submit: false });
-                console.log( "=#=  File is TOOOO big for MY anus" );
+                self.setState( { error: "Pasirinkta byla per didele" });
             }
         } else {
             self.setState( { submit: false });
-            console.log( "=#=  Wrong File Format" );
+            self.setState( { error: "Pasirinktas neteisingas bylos formatas" });
         }
     },
 
@@ -79,7 +83,15 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
                 }
             })
             .catch( function( error ) {
-                console.log( error );
+                if ( error.response.status == 400 ) {
+                    console.log( error.response.data );
+                    self.setState( { error: error.response.data.error });
+                }
+                else {
+                    console.log( "___FATALITY___" );
+                    console.log( error.response );
+                    self.setState( { error: "Nenumatyta klaida" });
+                }
             });
     },
 
@@ -146,6 +158,8 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
                                     <input type="radio" onChange={self.comma} checked={self.state.checkedComma} /> Duomenys atskirti kableliais<br />
                                     <input type="radio" onChange={self.semicolon} checked={self.state.checkedSemiColon} /> Duomenys atskirti kabliataškiais
                                 </form>
+                                <br />
+                                <p>{self.state.error}</p>
                             </div>
                             <div className="modal-footer">
                                 <button
