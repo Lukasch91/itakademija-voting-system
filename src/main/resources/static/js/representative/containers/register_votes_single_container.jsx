@@ -155,7 +155,9 @@ var RegisterVotesSingleContainer = React.createClass( {
 
             return (
                 <div>
-                    <h3>Vienamandatės</h3>
+                    <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
+                        <h3>Balsavimo rezultatų įvedimas vienmandatėse apygardose</h3>
+                    </div>
                     <LoggedInRepresentativeInfoContainer />
                     <div>
                         <table className="table table-hover">
@@ -171,8 +173,8 @@ var RegisterVotesSingleContainer = React.createClass( {
                                 <tr>
                                     <td>Sugadinti balsai</td>
                                     <td>
-                                        <input key={'input-spoilt'} type="number" className="form-control" 
-                                    onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
+                                        <input key={'input-spoilt'} type="number" className="form-control"
+                                            onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
                                     </td>
                                 </tr>
                             </tbody>
@@ -182,8 +184,10 @@ var RegisterVotesSingleContainer = React.createClass( {
                             </tbody>
                         </table>
                     </div>
-                    <br />
-                    <button type="button" className="btn btn-xs btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
+                    <div style={{ textAlign: 'center' }}>
+                        <button type="button" className="btn btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
+                    </div>
+
                 </div>
             )
         } else {
@@ -199,7 +203,9 @@ var RegisterVotesSingleContainer = React.createClass( {
 
             return (
                 <form>
-                    <h3>Vienamandatės</h3>
+                    <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
+                        <h3>Balsavimo rezultatų įvedimas vienmandatėse apygardose</h3>
+                    </div>
                     <LoggedInRepresentativeInfoContainer />
                     <table className="table table-hover">
                         <thead>
