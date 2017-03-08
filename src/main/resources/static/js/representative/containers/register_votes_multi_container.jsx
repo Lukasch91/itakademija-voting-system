@@ -135,19 +135,20 @@ var RegisterVotesMultiContainer = React.createClass( {
 
             var partiesList = this.state.parties.map( function( party, index ) {
                 return (
-
-                    <tr key={'row' + index}>
-                        <td>{party.title}</td>
-                        <td>{party.party_abbreviation}</td>
-                        <td>
-                            <input key={'input' + index}
-                                type="number"
-                                className="form-control"
-                                onChange={self.handleMultiVotesChange.bind( self, party.id )} />
-                        </td>
-                        <ValidateVotesMultiContainer key={"validation" + party.id} party={party} isSpoilt={false} validation={self.state.validationArray} />
-                    </tr>
-
+                    <tbody key={'body' + index}>
+                        <tr key={'row' + index}>
+                            <td>{party.title}</td>
+                            <td>{party.party_abbreviation}</td>
+                            <td>
+                                <input key={'input' + index}
+                                    type="number"
+                                    className="form-control"
+                                    onChange={self.handleMultiVotesChange.bind( self, party.id )} />
+                            </td>
+                        </tr>
+                        <ValidateVotesMultiContainer key={"validation" + party.id} party={party}
+                            isSpoilt={false} validation={self.state.validationArray} />
+                    </tbody>
                 );
             });
 
@@ -164,16 +165,20 @@ var RegisterVotesMultiContainer = React.createClass( {
                                     <th>Balsai</th>
                                 </tr>
                             </thead>
+                            {partiesList}
+
                             <tbody>
-                                {partiesList}
                                 <tr>
                                     <td>Sugadinti balsai</td>
                                     <td></td>
                                     <td>
                                         <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
                                     </td>
-                                    <ValidateVotesMultiContainer key={'spoiltMultivote'} party={null} isSpoilt={true} validation={self.state.validationArray} />
                                 </tr>
+                            </tbody>
+                            <tbody>
+                                <ValidateVotesMultiContainer key={'spoiltMultivote'} party={null}
+                                    isSpoilt={true} validation={self.state.validationArray} />
                             </tbody>
                         </table>
                     </div>

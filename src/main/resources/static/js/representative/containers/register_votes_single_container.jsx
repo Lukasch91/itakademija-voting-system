@@ -137,16 +137,19 @@ var RegisterVotesSingleContainer = React.createClass( {
             var candidatesList = this.state.candidates.map( function( candidate, index ) {
                 return (
 
-                    <tr key={'row' + index}>
-                        <td>{candidate.candidateName} {candidate.candidateSurname}</td>
-                        <td>
-                            <input key={'input' + index}
-                                type="number"
-                                className="form-control"
-                                onChange={self.handleSingleVotesChange.bind( self, candidate.candidateID )} />
-                        </td>
-                        <ValidateVotesSingleContainer key={"validation" + candidate.candidateID} candidate={candidate} isSpoilt={false} validation={self.state.validationArray} />
-                    </tr>
+                    <tbody key={'body' + index}>
+                        <tr key={'row' + index}>
+                            <td>{candidate.candidateName} {candidate.candidateSurname}</td>
+                            <td>
+                                <input key={'input' + index}
+                                    type="number"
+                                    className="form-control"
+                                    onChange={self.handleSingleVotesChange.bind( self, candidate.candidateID )} />
+                            </td>
+                        </tr>
+                        <ValidateVotesSingleContainer key={"validation" + candidate.candidateID} candidate={candidate}
+                            isSpoilt={false} validation={self.state.validationArray} />
+                    </tbody>
                 );
             });
 
@@ -162,14 +165,20 @@ var RegisterVotesSingleContainer = React.createClass( {
                                     <th>Balsai</th>
                                 </tr>
                             </thead>
+                            {candidatesList}
+
                             <tbody>
-                                {candidatesList}
-                                <tr><td>Sugadinti balsai</td>
+                                <tr>
+                                    <td>Sugadinti balsai</td>
                                     <td>
-                                        <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
+                                        <input key={'input-spoilt'} type="number" className="form-control" 
+                                    onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
                                     </td>
-                                    <ValidateVotesSingleContainer key={'spoiltSinglevote'} candidate={null} isSpoilt={true} validation={self.state.validationArray} />
                                 </tr>
+                            </tbody>
+                            <tbody>
+                                <ValidateVotesSingleContainer key={'spoiltSinglevote'} candidate={null}
+                                    isSpoilt={true} validation={self.state.validationArray} />
                             </tbody>
                         </table>
                     </div>
