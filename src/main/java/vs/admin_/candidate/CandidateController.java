@@ -23,10 +23,8 @@ public class CandidateController {
 
 	@Autowired
 	private CandidateCreateService candidateService;
-
 	@Autowired
 	private CandidateRepository candidateRepository;
-
 	@Autowired
 	private CandidateValidationService candidateValidationService;
 
