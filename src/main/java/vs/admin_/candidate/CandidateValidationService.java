@@ -15,6 +15,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -28,9 +29,11 @@ public class CandidateValidationService {
 	@Autowired
 	private CandidateRepository candidateRepository;
 	private JSONParser parser = new JSONParser(0);
+	private static final Logger log = Logger.getLogger(CandidateValidationService.class.getName());
 
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity validateSaveConstituencyData(CandidateDataPackage data) {
+		log.debug("CandidateValidationService - validateSaveConstituencyData started...");
 		List<String[]> parsedStructure = csvParser.csvReader(data.getText(), data.getDelimiter());
 		List<Candidate> candidates = new ArrayList<Candidate>();
 		boolean dataIsValid = true;
@@ -61,12 +64,14 @@ public class CandidateValidationService {
 			for (Candidate can : candidates) {
 				candidateRepository.createOrUpdateCandidate(can);
 			}
+			log.debug("CandidateValidationService - validateSaveConstituencyData finished!");
 			return ResponseEntity.status(HttpStatus.CREATED).body(null);
 		} else if (dataIsValid == false) {
 			JSONObject json = null;
 			try {
 				json = (JSONObject) parser.parse("{\"error\": \"Bylos turinio struktura neatitinka reikalavimu\"}");
 			} catch (ParseException e) {
+				log.error("Error Parse, file structure is not valid " + e);
 				e.printStackTrace();
 			}
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(json);
@@ -75,6 +80,7 @@ public class CandidateValidationService {
 			try {
 				json = (JSONObject) parser.parse("{\"error\": \"Kandidato duomenys turi klaidu\"}");
 			} catch (ParseException e) {
+				log.error("Error Parse, candidate data has mistakes " + e);
 				e.printStackTrace();
 			}
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(json);
@@ -83,6 +89,7 @@ public class CandidateValidationService {
 
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity validateSavePartyData(CandidateDataPackage data) {
+		log.debug("CandidateValidationService - validateSavePartyData started...");
 		List<String[]> parsedStructure = csvParser.csvReader(data.getText(), data.getDelimiter());
 		List<Candidate> candidates = new ArrayList<Candidate>();
 		boolean dataIsValid = true;
@@ -107,17 +114,19 @@ public class CandidateValidationService {
 				}
 			}
 		}
-		
+
 		if (dataIsValid && candidateIsValid) {
 			for (Candidate can : candidates) {
 				candidateRepository.createOrUpdateCandidate(can);
 			}
+			log.debug("CandidateValidationService - validateSavePartyData finshed!");
 			return ResponseEntity.status(HttpStatus.CREATED).body(null);
 		} else if (dataIsValid == false) {
 			JSONObject json = null;
 			try {
 				json = (JSONObject) parser.parse("{\"error\": \"Bylos turinio struktura neatitinka reikalavimu\"}");
 			} catch (ParseException e) {
+				log.error("Error Parse, file structure is not valid " + e);
 				e.printStackTrace();
 			}
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(json);
@@ -126,6 +135,7 @@ public class CandidateValidationService {
 			try {
 				json = (JSONObject) parser.parse("{\"error\": \"Kandidato duomenys turi klaidu\"}");
 			} catch (ParseException e) {
+				log.error("Error Parse, candidate data has mistakes " + e);
 				e.printStackTrace();
 			}
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(json);
@@ -133,7 +143,7 @@ public class CandidateValidationService {
 	}
 
 	private List<String> validateCandidate(Candidate candidate) {
-
+		log.debug("CandidateValidationService - validateCandidate started...");
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 		List<String> violationMessages = new ArrayList<String>();
 
@@ -144,7 +154,7 @@ public class CandidateValidationService {
 			}
 			constraintViolationsCandidate.clear();
 		}
-
+		log.debug("CandidateValidationService - validateCandidate finished!");
 		return violationMessages;
 	}
 
