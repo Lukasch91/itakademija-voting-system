@@ -31,7 +31,7 @@ ReactDOM.render((
         <Route path="/dis/:conId" component={DistrictListContainer} />
         <Route path="/add-con" component={AddConstituencyContainer} />
         <Route path="/add-dis/:conId" component={AddDistrictContainer} />
-        <Route path="/add-rep/:conId/:disId" component={AdministrateRepresentativeContainer} />
+        <Route path="/add-rep/:conId/:disId" component={AddRepresentativeContainer} />
         
         <Route path="/repres/:conId/:repId" component={RepresentativeInfoContainer} />
         <Route path="/parties" component={PartyListContainer} />

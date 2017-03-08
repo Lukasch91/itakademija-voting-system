@@ -1,4 +1,4 @@
-var AdministrateRepresentativeComponent = React.createClass( {
+var AddRepresentativeComponent = React.createClass( {
     render: function() {
 
         var self = this;
@@ -70,11 +70,11 @@ var AdministrateRepresentativeComponent = React.createClass( {
     }
 });
 
-/*AdministrateRepresentativeComponent.propTypes = {
+AddRepresentativeComponent.propTypes = {
     representative: React.PropTypes.object.isRequired,
     onFieldChange: React.PropTypes.func.isRequired,
     onAddRepresentative: React.PropTypes.func.isRequired,
     validationArray: React.PropTypes.array.isRequired
-};*/
+};
 
-window.AdministrateRepresentativeComponent = AdministrateRepresentativeComponent;
+window.AddRepresentativeComponent = AddRepresentativeComponent;

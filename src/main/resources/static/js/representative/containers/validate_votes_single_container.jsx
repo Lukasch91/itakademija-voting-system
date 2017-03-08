@@ -32,7 +32,7 @@ var ValidateVotesSingleContainer = React.createClass( {
         });
 
         return (
-            <tr>
+            <tr style={{color: 'red'}}>
                 {listSomething}
             </tr>
 

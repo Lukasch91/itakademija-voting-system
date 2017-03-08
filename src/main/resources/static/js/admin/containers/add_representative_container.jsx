@@ -1,4 +1,4 @@
-var AdministrateRepresentativeContainer = React.createClass( {
+var AddRepresentativeContainer = React.createClass( {
 
 
 
@@ -13,7 +13,6 @@ var AdministrateRepresentativeContainer = React.createClass( {
             passwordList: [],
             password: null,
             passwordHashed: null,
-            passwordTest: '666',
             validationArray: []
         }
     },
@@ -93,7 +92,9 @@ var AdministrateRepresentativeContainer = React.createClass( {
     },
 
     render: function() {
-        return <AdministrateRepresentativeComponent
+        return (
+                <div className="col-md-4">
+                <AddRepresentativeComponent
             representative={this.state.representative}
             validationArray={this.state.validationArray}
             onFieldChange={this.handleFieldChange}
@@ -101,11 +102,13 @@ var AdministrateRepresentativeContainer = React.createClass( {
             onCancel={this.handleCancel}
             password={this.state.password}
         />
+                </div>
+                )
     }
 });
 
-AdministrateRepresentativeContainer.contextTypes = {
+AddRepresentativeContainer.contextTypes = {
     router: React.PropTypes.object.isRequired,
 };
 
-window.AdministrateRepresentativeContainer = AdministrateRepresentativeContainer;
+window.AddRepresentativeContainer = AddRepresentativeContainer;

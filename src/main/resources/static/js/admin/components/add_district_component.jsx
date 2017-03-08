@@ -9,9 +9,7 @@ var AddDistrictComponent = React.createClass( {
             );
         });
 
-
         return (
-
             <div>
                 <form>
                     <label>Apylinkės pavadinimas</label><br />

@@ -71,13 +71,17 @@ var AddDistrictContainer = React.createClass( {
     },
 
     render: function() {
-        return <AddDistrictComponent
-            district={this.state.district}
-            onFieldChange={this.handleFieldChange}
-            onAddClick={this.handleAddDistrict}
-            onCancel={this.handleCancel}
-            validationArray={this.state.validationArray}
-            />
+        return (
+            <div className="col-md-4">
+                <AddDistrictComponent
+                    district={this.state.district}
+                    onFieldChange={this.handleFieldChange}
+                    onAddClick={this.handleAddDistrict}
+                    onCancel={this.handleCancel}
+                    validationArray={this.state.validationArray}
+                    />
+            </div>
+        )
 
     }
 });

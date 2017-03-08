@@ -67,13 +67,17 @@ var AddConstituencyContainer = React.createClass( {
 
 
     render: function() {
-        return <AddConstituencyComponent
-            constituency={this.state.constituency}
-            validationArray={this.state.validationArray}
-            onFieldChange={this.handleFieldChange}
-            onAddClick={this.handleAddConstituency}
-            onCancel={this.handleCancel}
-            />
+        return (
+            <div className="col-md-4">
+                <AddConstituencyComponent
+                    constituency={this.state.constituency}
+                    validationArray={this.state.validationArray}
+                    onFieldChange={this.handleFieldChange}
+                    onAddClick={this.handleAddConstituency}
+                    onCancel={this.handleCancel}
+                    />
+            </div>
+        )
     }
 });
 
