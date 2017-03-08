@@ -12,7 +12,7 @@ var RepresentativeInfoComponent = React.createClass( {
                             </tr>
                             <tr>
                                 <th>Apylinkė:</th>
-                                <td></td>
+                                <td>{this.props.district.title}</td>
                             </tr>
                             <tr>
                                 <th>Vardas:</th>
