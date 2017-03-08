@@ -27,7 +27,7 @@ var SingleElectionsOneDistrictResultsComponent = React.createClass( {
                 rinkimuose dalyvavo – {info.allVotes} ({info.percentageOfVoted} %), <br />
                 negaliojančių biuletenių – {info.invalidVotes} ({info.percentageOfInvalidVotes} %),<br />
                 galiojančių biuletenių – {info.validVotes} ({info.percentageOfValidVotes} %).
-                <div className="panel panel-default">
+                <div>
                     <table className="table table-hover">
                         <thead>
                             <tr>

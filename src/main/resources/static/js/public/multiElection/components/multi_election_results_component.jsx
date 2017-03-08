@@ -46,7 +46,7 @@ var MultiElectionsResultsComponent = React.createClass( {
                     rinkėjų sąraše įrašyta rinkėjų – {info.numberOfVoters} , rinkimuose dalyvavo – {info.numberOfVotersWhoVoted} ({info.percentageOfVoters} %)<br />
                     Negaliojančių biuletenių – {info.invalidVotes} ({info.percentageOfInvalidVotes} %), galiojančių biuletenių – {info.validvotes} ({info.percentageOfValidVotes} %)<br />
                 </h7>
-                <div className="panel panel-default">
+                <div>
                     <table className="table table-hover">
                         <thead>
                             <tr>
@@ -63,7 +63,7 @@ var MultiElectionsResultsComponent = React.createClass( {
                     </table>
                 </div>
                 <h3>Balsavimo rezultatai apygardose</h3>
-                <div className="panel panel-default">
+                <div>
                     <table className="table table-hover">
                         <thead>
                             <tr>

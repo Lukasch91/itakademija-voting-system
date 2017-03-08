@@ -44,7 +44,7 @@ var SingleElectionsDistrictResultsComponent = React.createClass( {
                     negaliojančių biuletenių – {this.props.constituency.numberOfInvalidVotes} ({this.props.constituency.percentageOfInvalidVotes} %),<br />
                     galiojančių biuletenių – {this.props.constituency.numberOfValidVotes} ({this.props.constituency.percentageOfValidVotes} %).<br />
                 </h7>
-                <div className="panel panel-default">
+                <div>
                     <table className="table table-hover">
                         <thead>
                             <tr>
@@ -64,7 +64,7 @@ var SingleElectionsDistrictResultsComponent = React.createClass( {
 
                 <h3>Balsavimo rezultatai rinkimų apylinkėse</h3>
 
-                <div className="panel panel-default">
+                <div>
                     <table className="table table-hover">
                         <thead>
                             <tr>
