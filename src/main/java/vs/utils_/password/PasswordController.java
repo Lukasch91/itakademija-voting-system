@@ -5,6 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +31,7 @@ public class PasswordController {
 	@RequestMapping(value = "/api/ADMIN/password/hash", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[UNUSED - ADMIN] - Hash Password")
-	public String getHashedPassword(@RequestParam String password)
+	public String getHashedPassword(@RequestBody String password)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		return passwordService.PassHashing(password);
 	}
