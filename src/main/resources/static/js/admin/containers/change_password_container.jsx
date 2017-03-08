@@ -1,15 +1,16 @@
-var ChangePasswordContainer = React.createClass({
-    
+var ChangePasswordContainer = React.createClass( {
+
     getInitialState: function() {
         return {
             admin: {
                 newPass: '',
                 newPassCheck: '',
-                passwordError: ''
-            }          
+                changeStatus: '',
+                redirectTo: ''
+            }
         }
     },
-    
+
     handleFieldChange: function( fieldName ) {
         var self = this;
         return function( e ) {
@@ -18,36 +19,39 @@ var ChangePasswordContainer = React.createClass({
             self.setState( { admin: admin });
         };
     },
-    
+
     handleChangePass: function() {
         var self = this;
-        if (this.state.admin.newPass == this.state.admin.newPassCheck) {
-        axios.post( 'http://localhost:8080/api/ADMIN/changepass?password=' +  this.state.admin.newPass).then(function() {
-            alert('Slaptažodis sėkmingai pakeistas!');
-            self.context.router.push( '/');
-        });
+        if ( this.state.admin.newPass == this.state.admin.newPassCheck ) {
+            axios.post( 'http://localhost:8080/api/ADMIN/changepass?password=' + this.state.admin.newPass ).then( function() {
+                self.setState( { changeStatus: 'Slaptažodis sėkmingai pakeistas', redirectTo: '/' });
+            });
         } else {
-            alert('Slaptažodžiai nesutampa!');
+            self.setState( { changeStatus: 'Slaptažodžiai nesutampa!', redirectTo: '/change-pass' });
         }
     },
-    
-    
+    handlePassChangeRedirect: function() {
+        this.context.router.push( this.state.redirectTo );
+    },
+
+
     render: function() {
         return (
-    <div className="col-md-4">
-        <ChangePasswordComponent 
-                admin={this.state.admin}
-                passwordError={this.state.passwordError}
-                onChangePassClick={this.handleChangePass}
-                onFieldChange={this.handleFieldChange}
-                />
-                </div>
-                )
+            <div className="col-md-4">
+                <ChangePasswordComponent
+                    admin={this.state.admin}
+                    changeStatus={this.state.changeStatus}
+                    onChangePassClick={this.handleChangePass}
+                    onFieldChange={this.handleFieldChange}
+                    onPassChangeRedirect={this.handlePassChangeRedirect}
+                    />
+            </div>
+        )
     }
 });
 
 ChangePasswordContainer.contextTypes = {
-        router: React.PropTypes.object.isRequired,
-    };
+    router: React.PropTypes.object.isRequired,
+};
 
 window.ChangePasswordContainer = ChangePasswordContainer;
