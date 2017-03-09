@@ -153,18 +153,18 @@ var RegisterVotesMultiContainer = React.createClass( {
             });
 
             return (
-                <div>
+                <form>
                     <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
                         <h3>Balsavimo rezultatų įvedimas daugiamandatėje apygardoje</h3>
                     </div>
                     <LoggedInRepresentativeInfoContainer />
-                    <div>
+                    <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Partijos</th>
-                                    <th>Partijos trumpinys</th>
-                                    <th>Balsai</th>
+                                    <th className="col-sm-7">Partijos</th>
+                                    <th className="col-sm-1">Partijos trumpinys</th>
+                                    <th className="col-sm-4">Balsai</th>
                                 </tr>
                             </thead>
                             {partiesList}
@@ -188,7 +188,7 @@ var RegisterVotesMultiContainer = React.createClass( {
                         <button type="button" className="btn btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
                     </div>
 
-                </div>
+                </form>
             )
         } else {
             var multiElectionResultsList = this.state.multiResults.map( function( multi, index ) {
@@ -202,27 +202,29 @@ var RegisterVotesMultiContainer = React.createClass( {
             });
 
             return (
-                <form>
+                <div>
                     <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
-                        <h3>Balsavimo rezultatų įvedimas daugiamandatėje apygardoje</h3>
+                        <h3>Balsavimo rezultatai daugiamandatėje apygardoje</h3>
                     </div>
                     <LoggedInRepresentativeInfoContainer />
-                    <table className="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Partijos pavadinimas</th>
-                                <th>Partijos trumpinys</th>
-                                <th>Balsai</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {multiElectionResultsList}
-                            <tr><td>Sugadinti balsai</td>
-                                <td></td>
-                                <td>{self.state.spoiltVote.votes}</td></tr>
-                        </tbody>
-                    </table>
-                </form>
+                    <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
+                        <table className="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th className="col-sm-9">Partijos pavadinimas</th>
+                                    <th className="col-sm-1">Partijos trumpinys</th>
+                                    <th className="col-sm-2">Balsai</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {multiElectionResultsList}
+                                <tr><td>Sugadinti balsai</td>
+                                    <td></td>
+                                    <td>{self.state.spoiltVote.votes}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             )
         }
     }

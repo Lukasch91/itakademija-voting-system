@@ -154,21 +154,20 @@ var RegisterVotesSingleContainer = React.createClass( {
             });
 
             return (
-                <div>
+                <form>
                     <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
                         <h3>Balsavimo rezultatų įvedimas vienmandatėse apygardose</h3>
                     </div>
                     <LoggedInRepresentativeInfoContainer />
-                    <div>
+                        <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
                         <table className="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Kandidatai</th>
-                                    <th>Balsai</th>
+                                    <th className="col-sm-8">Kandidatai</th>
+                                    <th className="col-sm-4">Balsai</th>
                                 </tr>
                             </thead>
                             {candidatesList}
-
                             <tbody>
                                 <tr>
                                     <td>Sugadinti balsai</td>
@@ -188,41 +187,40 @@ var RegisterVotesSingleContainer = React.createClass( {
                         <button type="button" className="btn btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
                     </div>
 
-                </div>
+                </form>
             )
         } else {
             var singleElectionResultsList = this.state.singleResults.map( function( single, index ) {
                 return (
                     <tr key={'single' + index}>
-                        <td> {single.singleCandidate.candidateName} </td>
-                        <td> {single.singleCandidate.candidateSurname} </td>
+                        <td> {single.singleCandidate.candidateName} {single.singleCandidate.candidateSurname}</td>
                         <td> {single.singleVotes} </td>
                     </tr>
                 );
             });
 
             return (
-                <form>
+                <div>
                     <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
-                        <h3>Balsavimo rezultatų įvedimas vienmandatėse apygardose</h3>
+                        <h3>Balsavimo rezultatai vienmandatėse apygardose</h3>
                     </div>
                     <LoggedInRepresentativeInfoContainer />
-                    <table className="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Kandidato Vardas</th>
-                                <th>Kandidato Pavardė</th>
-                                <th>Balsai</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {singleElectionResultsList}
-                            <tr><td>Sugadinti balsai</td>
-                                <td></td>
-                                <td>{self.state.spoiltVote.votes}</td></tr>
-                        </tbody>
-                    </table>
-                </form>
+                    <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
+                        <table className="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Kandidatas</th>
+                                    <th>Balsai</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {singleElectionResultsList}
+                                <tr><td>Sugadinti balsai</td>
+                                    <td>{self.state.spoiltVote.votes}</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             )
         }
     }
