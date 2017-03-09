@@ -57,14 +57,14 @@ public class CandidateCSVParserService {
 			return rows;
 
 		} catch (Exception e) {
-			log.debug("CandidateCSVParserService - csvReader error " + e);
+			log.error("CandidateCSVParserService - csvReader error " + e);
 			e.printStackTrace();
 			return null;
 		} finally {
 			try {
 				stringReader.close();
 			} catch (IOException e) {
-				log.debug("CandidateCSVParserService - csvReader  IO error " + e);
+				log.error("CandidateCSVParserService - csvReader  IO error " + e);
 				e.printStackTrace();
 			}
 		}
