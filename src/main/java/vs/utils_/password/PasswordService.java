@@ -29,30 +29,16 @@ public class PasswordService implements PasswordEncoder {
 	@Override
 	public String encode(CharSequence rawPassword) {
 		log.debug("Password encode started...");
-		try {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			String passwordSalt = passwordEncoder.encode(rawPassword);
 			log.debug("Password encode success!");
 			return passwordSalt;
-		} catch (Exception e) {
-			log.error("Error encoding password!" + e.getMessage());
-			return null;
-		}
 
 	}
 
 	@Override
 	public boolean matches(CharSequence rawPassword, String encodedPassword) {
 		log.debug("Password checking started...");
-		try {
-			if ((rawPassword == null) || (encodedPassword == null)) {
-				log.error("Error.Password to check was null!");
-				return false;
-			}
-		} catch (NullPointerException e) {
-			log.error(e.getMessage());
-		}
-		log.debug("Password check success!");
 		return BCrypt.checkpw(rawPassword.toString(), encodedPassword);
 	}
 
@@ -96,16 +82,11 @@ public class PasswordService implements PasswordEncoder {
 	@Transactional
 	public String PassHashing(String password) {
 		log.debug("Password hashing for controller started...");
-		try {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			String passwordSalt = passwordEncoder.encode(password);
 			log.debug("Password hashing for controller success!");
 			// throw new EncoderException();
 			return passwordSalt;
-		} catch (Exception r) {
-			log.error("Error encoding/hashing password for controller" + r.getMessage());
-			return null;
-		}
 
 	}
 
