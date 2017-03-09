@@ -64,31 +64,29 @@ public class SingleElectionRepository {
 	private static final String COUNT_ALL_VOTES = "SELECT sum(s.singleVotes) FROM SingleElection s "
 			+ "LEFT JOIN s.singleDistrict sd  WHERE "
 			+ " s.singleDeletedDate IS NULL AND s.singlePublishedDate IS NOT NULL and sd.deletedTime is null";
-	
+
 	private static final String GET_UPDATED_DATE = "SELECT m.published_date FROM MultiElection m "
 			+ " LEFT JOIN m.district md WHERE m.deleted_date is null AND m.published_date IS NOT NULL AND md.id=:disId AND md.deletedTime is null";
 
-
 	@Autowired
 	private EntityManager em;
-	
+
 	public Timestamp getPublishedDate(Integer disId) {
 		if (em.createQuery(GET_UPDATED_DATE).setParameter("disId", disId).getResultList().isEmpty()) {
 			return null;
 		} else {
 
-			return  (Timestamp) em.createQuery(GET_UPDATED_DATE).setParameter("disId", disId)
-					.getSingleResult();
+			return (Timestamp) em.createQuery(GET_UPDATED_DATE).setParameter("disId", disId).getSingleResult();
 		}
 	}
 
 	public Long getVotesOfCandidate(Integer candidateId, Integer districtId) {
 		if (em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID).setParameter("candidateId", candidateId)
-				.setParameter("districtId", districtId).getResultList().isEmpty()) {
+				.setParameter("districtId", districtId).getResultList().get(0) == null) {
 			return 0L;
 		} else {
-			return (Long) em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID).setParameter("candidateId", candidateId)
-					.setParameter("districtId", districtId).getSingleResult();
+			return Long.parseLong((String) em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID)
+					.setParameter("candidateId", candidateId).setParameter("districtId", districtId).getSingleResult());
 		}
 	}
 
@@ -96,7 +94,7 @@ public class SingleElectionRepository {
 		if (em.createQuery(COUNT_ALL_VOTES).getResultList().isEmpty()) {
 			return 0L;
 		} else {
-			return (Long) em.createQuery(COUNT_ALL_VOTES).getSingleResult();
+			return (Long) Long.parseLong((String) em.createQuery(COUNT_ALL_VOTES).getSingleResult());
 		}
 	}
 
@@ -183,8 +181,15 @@ public class SingleElectionRepository {
 	}
 
 	public Long getSumOfPublishedVotes(Integer id) {
-		return (Long) em.createQuery(SUM_PUBLISHED_VOTES_IN_DISTRICTS_BY_CONSTITUENCY).setParameter("id", id)
-				.getSingleResult();
+
+		if (em.createQuery(SUM_PUBLISHED_VOTES_IN_DISTRICTS_BY_CONSTITUENCY).setParameter("id", id).getResultList()
+				.get(0) == null) {
+			return 0L;
+		} else {
+
+			return Long.parseLong((String) em.createQuery(SUM_PUBLISHED_VOTES_IN_DISTRICTS_BY_CONSTITUENCY)
+					.setParameter("id", id).getSingleResult());
+		}
 	}
 
 	// public Long getCandidatePublishedVotes(Integer id) {
@@ -195,25 +200,29 @@ public class SingleElectionRepository {
 	// }
 
 	public Long getNumberOfpublishedVotes(Integer id) {
-		return (Long) em.createQuery(GET_PUBLISHED_VOTES_IN_DISTRICT).setParameter("id", id).getSingleResult();
+		if (em.createQuery(GET_PUBLISHED_VOTES_IN_DISTRICT).setParameter("id", id).getResultList().get(0) == null) {
+			return 0L;
+		}
+		return Long.parseLong(
+				(String) em.createQuery(GET_PUBLISHED_VOTES_IN_DISTRICT).setParameter("id", id).getSingleResult());
 	}
 
 	public Long getNumberOfDistrictvalidVotes(Integer id) {
 
 		if (em.createQuery(GET_DISTRICTS_PUBLISHED_VOTES_IN_DISTRICT).setParameter("id", id).getResultList()
-				.isEmpty()) {
+				.get(0) == null) {
 			return 0L;
 		} else {
-			return (Long) em.createQuery(GET_DISTRICTS_PUBLISHED_VOTES_IN_DISTRICT).setParameter("id", id)
-					.getSingleResult();
+			return Long.parseLong((String) em.createQuery(GET_DISTRICTS_PUBLISHED_VOTES_IN_DISTRICT).setParameter("id", id).getSingleResult());
 		}
 	}
 
 	public Long getVotesByCandidateId(Integer id) {
-		if (em.createQuery(FIND_VOTES_BY_CANDIDATE_ID).setParameter("id", id).getResultList().isEmpty()) {
+		if (em.createQuery(FIND_VOTES_BY_CANDIDATE_ID).setParameter("id", id).getResultList().get(0) == null) {
 			return (Long) 0L;
 		} else {
-			return (Long) em.createQuery(FIND_VOTES_BY_CANDIDATE_ID).setParameter("id", id).getSingleResult();
+			return Long.parseLong(
+					(String) em.createQuery(FIND_VOTES_BY_CANDIDATE_ID).setParameter("id", id).getSingleResult());
 		}
 	}
 }

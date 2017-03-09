@@ -41,7 +41,7 @@ public class MultiElectionRepository {
 
 	private static final String GET_VOTES_IN_BY_DISTRICT_ID = "SELECT m.votes FROM MultiElection m "
 			+ " LEFT JOIN m.district md LEFT JOIN m.party mp WHERE m.deleted_date is null AND m.published_date IS NOT NULL AND md.id=:disId AND mp.id=:partyId AND md.deletedTime is null";
-	
+
 	private static final String GET_UPDATED_DATE = "SELECT m.published_date FROM MultiElection m "
 			+ " LEFT JOIN m.district md WHERE m.deleted_date is null AND m.published_date IS NOT NULL AND md.id=:disId AND md.deletedTime is null";
 
@@ -62,49 +62,49 @@ public class MultiElectionRepository {
 			return 0L;
 		} else {
 
-			return (Long) entityManager.createQuery(GET_ALL_MULTI_VOTES).getSingleResult();
+			return Long.parseLong((String) entityManager.createQuery(GET_ALL_MULTI_VOTES).getSingleResult());
 		}
 	}
-	
+
 	public Timestamp getPublishedDate(Integer disId) {
 		if (entityManager.createQuery(GET_UPDATED_DATE).setParameter("disId", disId).getResultList().isEmpty()) {
 			return null;
 		} else {
 
-			return  (Timestamp) entityManager.createQuery(GET_UPDATED_DATE).setParameter("disId", disId)
+			return (Timestamp) entityManager.createQuery(GET_UPDATED_DATE).setParameter("disId", disId)
 					.getSingleResult();
 		}
 	}
 
-
 	public Long getAllPublishedVotes() {
-		if (entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES).getResultList().isEmpty()) {
+		if (entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES).getResultList().get(0) == null) {
 			return 0L;
 		} else {
 
-			return (Long) entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES).getSingleResult();
+			return Long.parseLong(
+					(String) entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES).getSingleResult());
 		}
 	}
 
 	public Long getVotesOfPartyByConsId(Integer consId, Integer partyId) {
 		if (entityManager.createQuery(GET_PARTY_VOTES_BY_CONSTITUENCY_ID).setParameter("consId", consId)
-				.setParameter("partyId", partyId).getResultList().isEmpty()) {
+				.setParameter("partyId", partyId).getResultList().size() == 0) {
 			return 0L;
 		} else {
 
-			return (Long) entityManager.createQuery(GET_PARTY_VOTES_BY_CONSTITUENCY_ID).setParameter("consId", consId)
-					.setParameter("partyId", partyId).getSingleResult();
+			return Long.parseLong((String) entityManager.createQuery(GET_PARTY_VOTES_BY_CONSTITUENCY_ID).setParameter("consId", consId)
+					.setParameter("partyId", partyId).getSingleResult()) ;
 		}
 	}
 
 	public Long getVotesOfPartyByDistrictId(Integer disId, Integer partyId) {
 		if (entityManager.createQuery(GET_VOTES_IN_BY_DISTRICT_ID).setParameter("disId", disId)
-				.setParameter("partyId", partyId).getResultList().isEmpty()) {
+				.setParameter("partyId", partyId).getResultList().size() == 0) {
 			return 0L;
 		} else {
 
-			return (Long) entityManager.createQuery(GET_VOTES_IN_BY_DISTRICT_ID).setParameter("disId", disId)
-					.setParameter("partyId", partyId).getSingleResult();
+			return Long.parseLong((String) entityManager.createQuery(GET_VOTES_IN_BY_DISTRICT_ID).setParameter("disId", disId)
+					.setParameter("partyId", partyId).getSingleResult());
 		}
 	}
 
@@ -120,44 +120,46 @@ public class MultiElectionRepository {
 	}
 
 	public Long getNumberOfVotesInDistrict(Integer disId) {
-		if (entityManager.createQuery(GET_VOTES_IN_DISTRICT).setParameter("id", disId).getResultList().isEmpty()) {
+		if (entityManager.createQuery(GET_VOTES_IN_DISTRICT).setParameter("id", disId).getResultList().get(0) == null) {
 			return 0L;
 		} else {
 
-			return (Long) entityManager.createQuery(GET_VOTES_IN_DISTRICT).setParameter("id", disId).getSingleResult();
+			return Long.parseLong((String) entityManager.createQuery(GET_VOTES_IN_DISTRICT).setParameter("id", disId)
+					.getSingleResult());
 		}
 	}
 
 	public Long getSumOfValidVotes(Integer consId) {
 		if (entityManager.createQuery(GET_ALL_VOTES_BY_CONSTITUENCY_ID).setParameter("id", consId).getResultList()
-				.isEmpty()) {
+				.get(0) == null) {
 			return 0L;
 		} else {
 
-			return (Long) entityManager.createQuery(GET_ALL_VOTES_BY_CONSTITUENCY_ID).setParameter("id", consId)
-					.getSingleResult();
+			return Long.parseLong((String) entityManager.createQuery(GET_ALL_VOTES_BY_CONSTITUENCY_ID)
+					.setParameter("id", consId).getSingleResult());
 		}
 	}
 
 	public Long getVotesOfCandidate(Integer id) {
 		if (entityManager.createQuery(FIND_VOTES_FOR_PARTY_BY_PARTY_ID).setParameter("id", id).getResultList()
-				.isEmpty()) {
+				.get(0) == null) {
 			return 0L;
 		} else {
 
-			return (Long) entityManager.createQuery(FIND_VOTES_FOR_PARTY_BY_PARTY_ID).setParameter("id", id)
-					.getSingleResult();
+			return Long.parseLong((String) entityManager.createQuery(FIND_VOTES_FOR_PARTY_BY_PARTY_ID)
+					.setParameter("id", id).getSingleResult());
 		}
 	}
 
 	public Long getAllPublishedVotes(Integer id) {
 		if (entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES_BY_CONSTITUENCY).setParameter("id", id)
-				.getResultList().isEmpty()) {
+				.getResultList().get(0) == null) {
 			return 0L;
 		} else {
 
-			return (Long) entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES_BY_CONSTITUENCY)
-					.setParameter("id", id).getSingleResult();
+			return Long.parseLong(
+					(String) entityManager.createQuery(FIND_ALL_MULTI_ELECTION_PUBLISHED_VOTES_BY_CONSTITUENCY)
+							.setParameter("id", id).getSingleResult());
 		}
 	}
 

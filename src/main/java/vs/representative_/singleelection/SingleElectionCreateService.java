@@ -30,7 +30,7 @@ public class SingleElectionCreateService {
 	private DistrictRepository districtRepository;
 
 	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-	private Long numberOfVotes;
+	private String numberOfVotes;
 
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity validatePackage(List<SingleVotesPackage> singleVotesPackage) {
@@ -83,15 +83,21 @@ public class SingleElectionCreateService {
 			}
 		}
 
-		numberOfVotes = 0L;
+		numberOfVotes = "0";
+		Long firstParameter = Long.parseLong(numberOfVotes);
 		for (SingleElection singleElection : singleVotes) {
-			numberOfVotes += singleElection.getSingleVotes();
+			
+			Long secondParameter = Long.parseLong(singleElection.getSingleVotes()); 
+			
+			firstParameter +=  secondParameter;
 		}
 		numberOfVotes += spoiltVote.getVotes();
 		if (districtRepository.findDistrictById(spoiltVote.getDistrict().getId()).getNumberOfVoters() != null) {
 			Long votesLimitInDistrict = districtRepository.findDistrictById(spoiltVote.getDistrict().getId())
 					.getNumberOfVoters();
-			if (numberOfVotes > votesLimitInDistrict) {
+			
+			
+			if (firstParameter > votesLimitInDistrict) {
 				SEValidationMessages vMessageVoteLimit = new SEValidationMessages();
 				vMessageVoteLimit.setCandidateId(null);
 				vMessageVoteLimit.setSpoiltVote(true);

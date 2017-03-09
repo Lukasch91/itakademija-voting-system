@@ -26,8 +26,6 @@ public class CorruptedVotesRepository {
 	private static final String FIND_ALL_SINGLE_CORRUPTED_VOTES = "SELECT sum(c.votes) from CorruptedVotes c LEFT JOIN c.district cd WHERE c.typeMulti ='false' And c.published_date is not null  AND c.deleted_date IS NULL and cd.deletedTime IS NULL";
 	private static final String FIND_ALL_MULTI_CORRUPTED_VOTES = "SELECT sum(c.votes) from CorruptedVotes c LEFT JOIN c.district cd WHERE c.typeMulti ='true' And c.published_date is not null  AND c.deleted_date IS NULL and cd.deletedTime IS NULL";
 
-	
-	
 	@Autowired
 	private EntityManager entityManager;
 
@@ -35,51 +33,55 @@ public class CorruptedVotesRepository {
 	public List<CorruptedVotes> findAllCorruptedVotes() {
 		return entityManager.createQuery(FIND_ALL).getResultList();
 	}
-	
+
 	public Long getAllMultiCorruptedVotes() {
-		if (entityManager.createQuery(FIND_ALL_MULTI_CORRUPTED_VOTES).getResultList().isEmpty()) {
+		if (entityManager.createQuery(FIND_ALL_MULTI_CORRUPTED_VOTES).getResultList().get(0) == null) {
 			return 0L;
 		} else
-			return (Long) entityManager.createQuery(FIND_ALL_MULTI_CORRUPTED_VOTES).getSingleResult();
+			return Long.parseLong((String) entityManager.createQuery(FIND_ALL_MULTI_CORRUPTED_VOTES).getSingleResult()); 
 	}
 
 	public Long getAllSingleCorruptedVotes() {
 		if (entityManager.createQuery(FIND_ALL_SINGLE_CORRUPTED_VOTES).getResultList().isEmpty()) {
 			return 0L;
 		} else
-			return (Long) entityManager.createQuery(FIND_ALL_SINGLE_CORRUPTED_VOTES).getSingleResult();
+			return Long
+					.parseLong((String) entityManager.createQuery(FIND_ALL_SINGLE_CORRUPTED_VOTES).getSingleResult());
 	}
 
 	public Long getCorruptedVotesInConstituency(Integer id) {
-		if (entityManager.createQuery(FIND_BY_CONSTITUENCY_ID).setParameter("id", id).getResultList().isEmpty()) {
+		if (entityManager.createQuery(FIND_BY_CONSTITUENCY_ID).setParameter("id", id).getResultList().get(0) == null) {
 			return 0L;
 		} else
-			return (Long) entityManager.createQuery(FIND_BY_CONSTITUENCY_ID).setParameter("id", id).getSingleResult();
+			return Long.parseLong((String) entityManager.createQuery(FIND_BY_CONSTITUENCY_ID).setParameter("id", id)
+					.getSingleResult());
 	}
 
 	public Long getMultiCorruptedVotesInDistrict(Integer id) {
-		if (entityManager.createQuery(FIND_MULT_INVALID_VOTES_IN_DISTRICTS).setParameter("id", id).getResultList()
-				.isEmpty()) {
+		if (entityManager.createQuery(FIND_MULT_INVALID_VOTES_IN_DISTRICTS).setParameter("id", id).getResultList().size() == 0) {
 			return 0L;
-		} else
-			return (Long) entityManager.createQuery(FIND_MULT_INVALID_VOTES_IN_DISTRICTS).setParameter("id", id)
-					.getSingleResult();
+		} else {
+			return Long.parseLong((String) entityManager.createQuery(FIND_MULT_INVALID_VOTES_IN_DISTRICTS)
+					.setParameter("id", id).getSingleResult());
+		}
 	}
 
 	public Long getMultiCorruptedVotesInConstituency(Integer id) {
 		if (entityManager.createQuery(FIND_MULTI_ALL_BY_CONSTITUENCY_ID).setParameter("id", id).getResultList()
-				.isEmpty()) {
+				.get(0) == null) {
 			return 0L;
-		} else
-			return (Long) entityManager.createQuery(FIND_MULTI_ALL_BY_CONSTITUENCY_ID).setParameter("id", id)
-					.getSingleResult();
+		} else {
+			return Long.parseLong((String) entityManager.createQuery(FIND_MULTI_ALL_BY_CONSTITUENCY_ID)
+					.setParameter("id", id).getSingleResult());
+		}
 	}
 
 	public Long getCorruptedVotesByDistrict(Integer id) {
-		if (entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID).setParameter("id", id).getResultList().isEmpty()) {
+		if (entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID).setParameter("id", id).getResultList().get(0) == null) {
 			return 0L;
 		} else {
-			return (Long) entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID).setParameter("id", id).getSingleResult();
+			return Long.parseLong((String) entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID).setParameter("id", id)
+					.getSingleResult());
 		}
 	}
 

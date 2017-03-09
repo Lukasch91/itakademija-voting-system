@@ -86,11 +86,14 @@ public class ConsolidatedResultsService {
 		Map<String, Long> counting = consolidateResults(multiElectionResults);
 
 		List<ConsolidatedResults> consildatedResults = new ArrayList<>();
+		
 		for (Entry<String, Long> entry : counting.entrySet()) {
+			
 			ConsolidatedResults consolidatedResults = new ConsolidatedResults(entry.getKey(), entry.getValue());
 
 			consildatedResults.add(consolidatedResults);
 		}
+		
 
 		return consildatedResults;
 

@@ -36,13 +36,13 @@ public class MultiVotesPackage extends MultiElection {
 	}
 
 	@Override
-	public Long getVotes() {
+	public String getVotes() {
 		// TODO Auto-generated method stub
 		return super.getVotes();
 	}
 
 	@Override
-	public void setVotes(Long votes) {
+	public void setVotes(String votes) {
 		// TODO Auto-generated method stub
 		super.setVotes(votes);
 	}

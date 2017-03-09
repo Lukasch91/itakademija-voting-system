@@ -34,13 +34,13 @@ public class SingleVotesPackage extends SingleElection {
 	}
 
 	@Override
-	public Long getSingleVotes() {
+	public String getSingleVotes() {
 		// TODO Auto-generated method stub
 		return super.getSingleVotes();
 	}
 
 	@Override
-	public void setSingleVotes(Long singleVotes) {
+	public void setSingleVotes(String singleVotes) {
 		// TODO Auto-generated method stub
 		super.setSingleVotes(singleVotes);
 	}
