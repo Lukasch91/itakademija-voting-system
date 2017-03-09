@@ -16,8 +16,8 @@ var PubDelVotesDistrictListContainer = React.createClass( {
         var conId = this.props.params.conId;  
         axios.all([
                   axios.get( '/api/ADMIN/constituency/' + conId ),
-                  axios.get( '/api/REPRES/reg-votes-multi'),
-                  axios.get( '/api/REPRES/singleelection')
+                  axios.get( '/api/ADMIN/reg-votes-multi'),
+                  axios.get( '/api/ADMIN/singleelection')
                   ]).then(axios.spread(function (constResponse, votesMultiResponse, votesSingleResponse) {
                       self.setState( {
                           districts: constResponse.data.districts,
@@ -99,7 +99,7 @@ var PubDelVotesDistrictListContainer = React.createClass( {
                     onPublishMultiVotes={this.handlePublishMultiVotes}
                     onDeleteMultiVotes={this.handleDeleteMultiVotes}
                     />
-                <button id="backToConstituency" type="button" className="btn btn-danger btn-xs" onClick={this.handleGoBack}>Grįžti</button>
+                <button id="backToConstituency" type="button" className="btn btn-danger btn-xs" onClick={this.handleGoBack}>Atgal</button>
             </div>
         )
     }

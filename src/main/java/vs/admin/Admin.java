@@ -8,8 +8,10 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.Table;
 
+import vs.BasicUser;
+
 @Entity
-public class Admin {
+public class Admin implements BasicUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

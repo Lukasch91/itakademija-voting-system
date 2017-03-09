@@ -9,9 +9,7 @@ var AddDistrictComponent = React.createClass( {
             );
         });
 
-
         return (
-
             <div>
                 <form>
                     <label>Apylinkės pavadinimas</label><br />
@@ -23,7 +21,7 @@ var AddDistrictComponent = React.createClass( {
                     <label>Rinkėjų skaičius</label><br />
                     <input id="votersNumber" className="form-control" type="number" value={this.props.district.numberOfVoters} onChange={this.props.onFieldChange( 'numberOfVoters' )} /><br />
 
-                    <button id="addDistrict" className="btn btn-success btn-xs " onClick={this.props.onAddClick} >Pridėti</button>
+                    <button id="addDistrict" className="btn btn-success btn-xs " onClick={this.props.onAddClick} >Pridėti</button>&nbsp;
                     <button id="cancelDistrict" className="btn btn-danger btn-xs " onClick={this.props.onCancel} >Atšaukti</button>
                 </form>
 

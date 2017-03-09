@@ -233,7 +233,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
         });
 
         return (
-            <div className="panel panel-default">
+            <div>
                 <h3>{this.props.constit.title}</h3>
                 <table className="table">
                     <thead>

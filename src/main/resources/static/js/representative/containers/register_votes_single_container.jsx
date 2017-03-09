@@ -137,22 +137,27 @@ var RegisterVotesSingleContainer = React.createClass( {
             var candidatesList = this.state.candidates.map( function( candidate, index ) {
                 return (
 
-                    <tr key={'row' + index}>
-                        <td>{candidate.candidateName} {candidate.candidateSurname}</td>
-                        <td>
-                            <input key={'input' + index}
-                                type="number"
-                                className="form-control"
-                                onChange={self.handleSingleVotesChange.bind( self, candidate.candidateID )} />
-                        </td>
-                        <ValidateVotesSingleContainer key={"validation" + candidate.candidateID} candidate={candidate} isSpoilt={false} validation={self.state.validationArray} />
-                    </tr>
+                    <tbody key={'body' + index}>
+                        <tr key={'row' + index}>
+                            <td>{candidate.candidateName} {candidate.candidateSurname}</td>
+                            <td>
+                                <input key={'input' + index}
+                                    type="number"
+                                    className="form-control"
+                                    onChange={self.handleSingleVotesChange.bind( self, candidate.candidateID )} />
+                            </td>
+                        </tr>
+                        <ValidateVotesSingleContainer key={"validation" + candidate.candidateID} candidate={candidate}
+                            isSpoilt={false} validation={self.state.validationArray} />
+                    </tbody>
                 );
             });
 
             return (
                 <div>
-                    <h3>Vienamandatės</h3>
+                    <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
+                        <h3>Balsavimo rezultatų įvedimas vienmandatėse apygardose</h3>
+                    </div>
                     <LoggedInRepresentativeInfoContainer />
                     <div>
                         <table className="table table-hover">
@@ -162,19 +167,27 @@ var RegisterVotesSingleContainer = React.createClass( {
                                     <th>Balsai</th>
                                 </tr>
                             </thead>
+                            {candidatesList}
+
                             <tbody>
-                                {candidatesList}
-                                <tr><td>Sugadinti balsai</td>
+                                <tr>
+                                    <td>Sugadinti balsai</td>
                                     <td>
-                                        <input key={'input-spoilt'} type="number" className="form-control" onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
+                                        <input key={'input-spoilt'} type="number" className="form-control"
+                                            onChange={self.handleSpoiltVotesChange.bind( self, self.state.currentDistrictId )} />
                                     </td>
-                                    <ValidateVotesSingleContainer key={'spoiltSinglevote'} candidate={null} isSpoilt={true} validation={self.state.validationArray} />
                                 </tr>
+                            </tbody>
+                            <tbody>
+                                <ValidateVotesSingleContainer key={'spoiltSinglevote'} candidate={null}
+                                    isSpoilt={true} validation={self.state.validationArray} />
                             </tbody>
                         </table>
                     </div>
-                    <br />
-                    <button type="button" className="btn btn-xs btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
+                    <div style={{ textAlign: 'center' }}>
+                        <button type="button" className="btn btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
+                    </div>
+
                 </div>
             )
         } else {
@@ -190,7 +203,9 @@ var RegisterVotesSingleContainer = React.createClass( {
 
             return (
                 <form>
-                    <h3>Vienamandatės</h3>
+                    <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
+                        <h3>Balsavimo rezultatų įvedimas vienmandatėse apygardose</h3>
+                    </div>
                     <LoggedInRepresentativeInfoContainer />
                     <table className="table table-hover">
                         <thead>

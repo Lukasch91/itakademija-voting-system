@@ -22,7 +22,7 @@ public class SingleElectionController {
 	@Autowired
 	private SingleElectionCreateService singleElectionCreateService;
 	
-	@RequestMapping(value = "/api/REPRES/singleelection", method = RequestMethod.GET)
+	@RequestMapping(value = {"/api/REPRES/singleelection", "/api/ADMIN/singleelection"}, method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[REPRES] - Get all  single Election results")
 	public List<SingleElection> findAllsingleElectionResults() {

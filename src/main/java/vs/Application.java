@@ -1,37 +1,22 @@
 package vs;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;//file upload
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
 import springfox.documentation.builders.ApiInfoBuilder; //swagger
 import springfox.documentation.builders.RequestHandlerSelectors; //swagger
 import springfox.documentation.service.ApiInfo; //swagger
 import springfox.documentation.spi.DocumentationType; //swagger
 import springfox.documentation.spring.web.plugins.Docket; //swagger
 import springfox.documentation.swagger2.annotations.EnableSwagger2; //swagger
-import vs.utils_.storage.StorageProperties;
-import vs.utils_.storage.StorageService;
+
 
 @EnableSwagger2 // swagger
 @SpringBootApplication
-@EnableConfigurationProperties(StorageProperties.class) // file upload
 public class Application {
-
-	/* ===== File upload bean===== */
-	@Bean
-	CommandLineRunner init(StorageService storageService) {
-		return (args) -> {
-			storageService.deleteAll();
-			storageService.init();
-		};
-	}
-	/* ===== File upload bean===== */
 	
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {

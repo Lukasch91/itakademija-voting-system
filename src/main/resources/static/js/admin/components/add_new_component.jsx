@@ -1,6 +1,12 @@
-var AddNewComponent = React.createClass({
+var AddNewComponent = React.createClass( {
     render: function() {
-        return <button type="button" className="btn btn-success btn-xs " onClick={this.props.onAddNew}><span className="glyphicon glyphicon-plus"></span></button>
+        return (
+            <div>
+                <button id="addNew" type="button" className="btn btn-success btn-xs " onClick={this.props.onAddNew}>
+                    <span className="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+        )
     }
 });
 

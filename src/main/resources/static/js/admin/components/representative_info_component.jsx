@@ -1,16 +1,43 @@
 var RepresentativeInfoComponent = React.createClass( {
     render: function() {
         return (
-            <div>
-                <p>Vardas: {this.props.representative.name}</p>
-                <p>Pavardė: {this.props.representative.surname}</p>
-                <p>Prisijungimo vardas: {this.props.representative.loginName}</p>
-                <p>El. paštas: {this.props.representative.email}</p>
-                
+            <div className="col-md-5">
+                <h4>Apylinkės atstovo informacija</h4>
+                <div >
+                    <table className="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th className="col-md-4">Apygarda:</th>
+                                <td className="col-md-8">{this.props.constituency.title}</td>
+                            </tr>
+                            <tr>
+                                <th>Apylinkė:</th>
+                                <td>{this.props.district.title}</td>
+                            </tr>
+                            <tr>
+                                <th>Vardas:</th>
+                                <td>{this.props.representative.name}</td>
+                            </tr>
+                            <tr>
+                                <th>Pavardė:</th>
+                                <td>{this.props.representative.surname}</td>
+                            </tr>
+                            <tr>
+                                <th>Prisijungimo vardas:</th>
+                                <td>{this.props.representative.loginName}</td>
+                            </tr>
+                            <tr>
+                                <th>El. paštas:</th>
+                                <td>{this.props.representative.email}</td>
+                            </tr>
 
-                <button id="deleteRepresentative" type="button" className="btn btn-primary btn-danger btn-xs " data-toggle="modal" data-target="#modal">
+                        </tbody>
+                    </table>
+                </div>
+
+                <button id="deleteRepresentative" type="button" className="btn btn-primary btn-warning btn-xs " data-toggle="modal" data-target="#modal">
                     Trinti atstovą
-                </button>
+                </button>&nbsp;
                 <div className="modal fade" id="modal" tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -30,7 +57,7 @@ var RepresentativeInfoComponent = React.createClass( {
                 </div>
 
 
-                <button id="bakcToDistrict" className="btn btn-warning btn-xs " onClick={this.props.onCancel}>Grįžti</button>
+                <button id="bakcToDistrict" type="button" className="btn btn-danger btn-xs " onClick={this.props.onCancel}>Grįžti</button>
             </div>
 
         )

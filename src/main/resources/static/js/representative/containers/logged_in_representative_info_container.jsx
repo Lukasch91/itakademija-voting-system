@@ -25,6 +25,7 @@ var LoggedInRepresentativeInfoContainer = React.createClass( {
     render: function() {
         return (
             <LoggedInRepresentativeInfoComponent
+                
                 user={this.state.currentUser}
                 district={this.state.district}
                 />

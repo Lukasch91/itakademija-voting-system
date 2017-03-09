@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import vs.admin_.representative.Representative;
-
 @Controller
 public class LinkController {
 
@@ -28,8 +26,10 @@ public class LinkController {
 	
 	@RequestMapping(value = "/currentuser", method = RequestMethod.GET)
     @ResponseBody
-    public Representative currentUser(@CurrentUser Representative representative) {
-        return representative;
+    public BasicUser currentUser(@CurrentUser BasicUser user) {
+        return user;
     }
+	
+	
 	
 }

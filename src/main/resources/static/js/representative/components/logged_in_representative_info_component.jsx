@@ -4,9 +4,15 @@ var LoggedInRepresentativeInfoComponent = React.createClass( {
         var district = this.props.district != null ? this.props.district : {};
         var user = this.props.user != null ? this.props.user : {};
         return (
-            <div>
-                <h3>Apylinkė: {district.title} - balsuotojų: {district.numberOfVoters}</h3>
-                <h4>Atstovas:  {user.name} {user.surname} </h4><br />
+            <div className="col-sm-4 col-centered" style={{ float: 'none', margin: '0 auto' }}>
+                <div >
+                    <ul className="list-group">
+                        <li className="list-group-item"><b>Apygarda:</b> </li>
+                        <li className="list-group-item"><b>Apylinkė:</b> {district.title}</li>
+                        <li className="list-group-item"><b>Rinkėjų skaičius apylinkėje:</b> {district.numberOfVoters}</li>
+                        <li className="list-group-item"><b>Apylinkės atstovas:</b>  {user.name} {user.surname}</li>
+                    </ul>
+                </div>
             </div>
         )
 

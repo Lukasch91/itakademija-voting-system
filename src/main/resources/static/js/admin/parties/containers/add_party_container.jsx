@@ -27,7 +27,7 @@ var AddPartyContainer = React.createClass( {
         axios.post( '/api/ADMIN/party', {
             title: this.state.party.title,
             party_abbreviation: this.state.party.party_abbreviation
-            })
+        })
             .then( function( response ) {
                 success = 1;
                 console.log( "-----------------" + success );
@@ -68,12 +68,16 @@ var AddPartyContainer = React.createClass( {
 
 
     render: function() {
-        return <AddPartyComponent
-            party={this.state.party}
-            validationArray={this.state.validationArray}
-            onFieldChange={this.handleFieldChange}
-            onAddClick={this.handleAddParty}
-            onCancel={this.handleCancel} />
+        return (
+            <div className="col-md-4">
+                <AddPartyComponent
+                    party={this.state.party}
+                    validationArray={this.state.validationArray}
+                    onFieldChange={this.handleFieldChange}
+                    onAddClick={this.handleAddParty}
+                    onCancel={this.handleCancel} />
+            </div>
+        )
     }
 });
 

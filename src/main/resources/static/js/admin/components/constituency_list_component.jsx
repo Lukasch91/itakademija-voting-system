@@ -6,10 +6,10 @@ var ConstituencyListComponent = React.createClass( {
             var modalIdHash = "#modal" + constituency.id;
             return (
                 <tr key={index}>
-                    <td>{constituency.title}</td>
-                    <td>{constituency.districts.length}</td>
-                    <td><button type="button" className="btn btn-primary btn-xs " onClick={self.props.onAdministerDistricts( constituency )}>Administruoti apylinkes</button></td>
-                    <td>
+                    <td className="col-md-4">{constituency.title}</td>
+                    <td className="col-md-1">{constituency.districts.length}</td>
+                    <td className="col-md-2"><button type="button" className="btn btn-primary btn-xs " onClick={self.props.onAdministerDistricts( constituency )}>Administruoti apylinkes</button></td>
+                    <td className="col-md-1">
                         <div>
                             <button type="button" className="btn btn-primary btn-danger btn-xs " data-toggle="modal" data-target={modalIdHash}>
                                 <span className="glyphicon glyphicon-remove"></span>
@@ -38,14 +38,14 @@ var ConstituencyListComponent = React.createClass( {
         });
 
         return (
-            <div className="panel panel-default">
-                <table className="table">
+            <div >
+                <table className="table ">
                     <thead>
                         <tr>
-                            <th>Apygarda</th>
-                            <th>Apylinkės</th>
-                            <th></th>
-                            <th>Trinti</th>
+                            <th className="col-md-4">Apygarda</th>
+                            <th className="col-md-1">Apylinkės</th>
+                            <th className="col-md-2"></th>
+                            <th className="col-md-1">Trinti</th>
                         </tr>
                     </thead>
                     <tbody>
