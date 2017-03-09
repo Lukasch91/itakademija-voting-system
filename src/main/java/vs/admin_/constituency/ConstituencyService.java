@@ -3,6 +3,7 @@ package vs.admin_.constituency;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,8 @@ import vs.admin_.candidate.CandidateRepository;
 @Service
 public class ConstituencyService {
 
+	private static final Logger log = Logger.getLogger(ConstituencyRepository.class.getName());
+	
 	@Autowired
 	private CandidateRepository candidateRepository;
 
@@ -19,6 +22,7 @@ public class ConstituencyService {
 	private ConstituencyRepository constituencyRepository;
 
 	public List<ConstituencyExtension> findAllConstituenciesExtended() {
+log.debug("ConstituencyService - findAllConstituenciesExtended started...");
 		List<Constituency> constituencies = constituencyRepository.findAllConstituencies();
 		List<Candidate> candidates = candidateRepository.findAllUndeletedCandidates();
 		List<ConstituencyExtension> extendedConstituencies = new ArrayList<>();
@@ -39,6 +43,7 @@ public class ConstituencyService {
 			consExtend.setNumberOfCandidatesInConstituency(numberOfCandidates);
 			extendedConstituencies.add(consExtend);
 		}
+		log.debug("ConstituencyService - findAllConstituenciesExtended finished!");
 		return extendedConstituencies;
 	}
 }
