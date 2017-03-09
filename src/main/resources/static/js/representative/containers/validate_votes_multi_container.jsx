@@ -27,15 +27,22 @@ var ValidateVotesMultiContainer = React.createClass( {
 
         var listSomething = messages.map(( message, idx ) => {
             return (
-                <td key={'mData' + idx}>{message}</td>
+                <tr key={'mData' + idx}>
+                    <td style={{ color: 'red' }}>{message}</td>
+                </tr>
             );
         });
 
         return (
-            <tr style={{color: 'red'}}>
-                {listSomething}
+            <tr>
+                <td colSpan="2">
+                    <table className="table table-condensed">
+                        <tbody>
+                            {listSomething}
+                        </tbody>
+                    </table>
+                </td>
             </tr>
-
         );
     }
 });

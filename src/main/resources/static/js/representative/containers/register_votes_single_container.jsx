@@ -113,9 +113,7 @@ var RegisterVotesSingleContainer = React.createClass( {
                 console.log( response );
                 if ( response.status == 201 ) {
                     self.componentWillMount();
-                } else {
                 }
-
             })
             .catch( function( error ) {
                 if ( error.response.status == 400 ) {
@@ -161,7 +159,7 @@ var RegisterVotesSingleContainer = React.createClass( {
                         <h3>Balsavimo rezultatų įvedimas vienmandatėse apygardose</h3>
                     </div>
                     <LoggedInRepresentativeInfoContainer />
-                        <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
+                    <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
                         <table className="table table-hover">
                             <thead>
                                 <tr>
