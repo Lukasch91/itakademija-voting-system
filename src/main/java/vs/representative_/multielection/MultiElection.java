@@ -27,7 +27,7 @@ public class MultiElection {
 	private Integer id;
 
 	@Column
-//	@VotesMultiElection // kablelio validacija naudojant bigDecimal
+	@VotesMultiElection // kablelio validacija naudojant String
 	@NotNull(message = "Būtina įvesti balsų skaičių")
 	@Min(value = 0, message = "Minimalus balsų skaičius {value}")
 	@Max(value = 500000, message = "Maksimalus balsų skaičius {value}")

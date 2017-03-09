@@ -12,9 +12,9 @@ import javax.validation.Payload;
 
 @Target({ FIELD, METHOD, PARAMETER, ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = VotesMultiElectionValidator.class) //pakeisti
+@Constraint(validatedBy = VotesMultiElectionValidator.class)
 @Documented
-public @interface VotesMultiElection { //pakeisti
+public @interface VotesMultiElection {
 
 	String message() default "{UniqueParty - default message}";
 	
@@ -27,6 +27,6 @@ public @interface VotesMultiElection { //pakeisti
 	@Retention(RetentionPolicy.RUNTIME)
 	@Documented
 	@interface List {
-		VotesMultiElection[] value(); //pakeisti
+		VotesMultiElection[] value();
 	}
 }

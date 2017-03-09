@@ -30,7 +30,7 @@ public class SingleElectionCreateService {
 	private DistrictRepository districtRepository;
 
 	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-	private String numberOfVotes;
+	private long numberOfVotes;
 
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity validatePackage(List<SingleVotesPackage> singleVotesPackage) {
@@ -43,17 +43,17 @@ public class SingleElectionCreateService {
 		for (SingleVotesPackage unidentifiedVote : singleVotesPackage) {
 			if (unidentifiedVote.getTypeMulti() != null) {
 				spoiltVote.setDistrict(unidentifiedVote.getSingleDistrict());
-				spoiltVote.setTypeMulti(unidentifiedVote.getTypeMulti()); // false
+				spoiltVote.setTypeMulti(unidentifiedVote.getTypeMulti());
 				spoiltVote.setVotes(unidentifiedVote.getSingleVotes());
 			} else {
 				SingleElection singleVote = new SingleElection();
 				singleVote.setSingleDistrict(unidentifiedVote.getSingleDistrict());
-				singleVote.setSingleCandidate(unidentifiedVote.getSingleCandidate());//       setParty(unidentifiedVote.getParty());
+				singleVote.setSingleCandidate(unidentifiedVote.getSingleCandidate());
 				singleVote.setSingleVotes(unidentifiedVote.getSingleVotes());
 				singleVotes.add(singleVote);
 			}
 		}
-
+		// validate spoiltVotes with hibernate
 		if (validator.validate(spoiltVote).isEmpty() == false) {
 			Set<ConstraintViolation<CorruptedVotes>> constraintViolationsSpoilt = validator.validate(spoiltVote);
 			SEValidationMessages vMessagesSpoilt = new SEValidationMessages();
@@ -66,11 +66,12 @@ public class SingleElectionCreateService {
 			jsonArray.add(vMessagesSpoilt);
 			constraintViolationsSpoilt.clear();
 		}
-
+		// validate singleVotes with hibernate
 		for (SingleElection singleElection : singleVotes) {
 			if (validator.validate(singleElection).isEmpty() == false) {
 
-				Set<ConstraintViolation<SingleElection>> constraintViolationsSingle = validator.validate(singleElection);
+				Set<ConstraintViolation<SingleElection>> constraintViolationsSingle = validator
+						.validate(singleElection);
 				SEValidationMessages vMessagesSingle = new SEValidationMessages();
 				vMessagesSingle.setCandidateId(singleElection.getSingleCandidate().getCandidateID());
 				vMessagesSingle.setSpoiltVote(false);
@@ -82,30 +83,27 @@ public class SingleElectionCreateService {
 				constraintViolationsSingle.clear();
 			}
 		}
-
-		numberOfVotes = "0";
-		Long firstParameter = Long.parseLong(numberOfVotes);
-		for (SingleElection singleElection : singleVotes) {
-			
-			Long secondParameter = Long.parseLong(singleElection.getSingleVotes()); 
-			
-			firstParameter +=  secondParameter;
-		}
-		numberOfVotes += spoiltVote.getVotes();
-		if (districtRepository.findDistrictById(spoiltVote.getDistrict().getId()).getNumberOfVoters() != null) {
-			Long votesLimitInDistrict = districtRepository.findDistrictById(spoiltVote.getDistrict().getId())
-					.getNumberOfVoters();
-			
-			
-			if (firstParameter > votesLimitInDistrict) {
-				SEValidationMessages vMessageVoteLimit = new SEValidationMessages();
-				vMessageVoteLimit.setCandidateId(null);
-				vMessageVoteLimit.setSpoiltVote(true);
-				vMessageVoteLimit.setOneMessage("Balsų kiekis viršija apylinkės rinkėjų skaičių");
-				jsonArray.add(vMessageVoteLimit);
+		// validate number of votes entered
+		if (jsonArray.isEmpty()) {
+			numberOfVotes = 0L;
+			for (SingleElection singleElection : singleVotes) {
+				Long singleVoted = Long.parseLong(singleElection.getSingleVotes());
+				numberOfVotes += singleVoted;
+			}
+			Long spoiltVoted = Long.parseLong(spoiltVote.getVotes());
+			numberOfVotes += spoiltVoted;
+			if (districtRepository.findDistrictById(spoiltVote.getDistrict().getId()).getNumberOfVoters() != null) {
+				Long votesLimitInDistrict = districtRepository.findDistrictById(spoiltVote.getDistrict().getId())
+						.getNumberOfVoters();
+				if (numberOfVotes > votesLimitInDistrict) {
+					SEValidationMessages vMessageVoteLimit = new SEValidationMessages();
+					vMessageVoteLimit.setCandidateId(null);
+					vMessageVoteLimit.setSpoiltVote(true);
+					vMessageVoteLimit.setOneMessage("Balsų kiekis viršija apylinkės rinkėjų skaičių");
+					jsonArray.add(vMessageVoteLimit);
+				}
 			}
 		}
-
 		if (jsonArray.isEmpty()) {
 			singleElectionRepository.saveSingleElection(singleVotes);
 			corruptedVotesRepository.saveOrUpdate(spoiltVote);

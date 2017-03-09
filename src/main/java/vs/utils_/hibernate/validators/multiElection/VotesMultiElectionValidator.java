@@ -1,6 +1,5 @@
 package vs.utils_.hibernate.validators.multiElection;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -13,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import vs.admin_.party.Party;
 import vs.admin_.representative.Representative;
 
-public class VotesMultiElectionValidator implements ConstraintValidator<VotesMultiElection, BigDecimal> {
+public class VotesMultiElectionValidator implements ConstraintValidator<VotesMultiElection, String> {
 
 	// ===============================================
 	// private static final String FIND_ALL = "SELECT x FROM MultiElection x";
@@ -26,7 +25,7 @@ public class VotesMultiElectionValidator implements ConstraintValidator<VotesMul
 	}
 
 	@Override
-	public boolean isValid(BigDecimal value, ConstraintValidatorContext context) {
+	public boolean isValid(String value, ConstraintValidatorContext context) {
 		// System.out.println(value instanceof BigDecimal);
 		// System.out.println(value);
 
@@ -38,11 +37,11 @@ public class VotesMultiElectionValidator implements ConstraintValidator<VotesMul
 		@SuppressWarnings("unchecked")
 		// List<Party> party = em.createQuery(FIND_ALL).getResultList();
 		boolean duplicate = false;
-		String regex = "[1-9][0-9]*";
+		String regex = "[0-9][0-9]*";
 		//System.out.println("-------------------------------****--------------------------------------");
 		//System.out.println("Before if. value = " + stringas);
 		//System.out.println(Pattern.compile(regex).matcher(stringas).matches());
-		if (!Pattern.compile(regex).matcher(stringas).matches()) {
+		if (!Pattern.compile(regex).matcher(value).matches()) { /* !!! cia buvo ponas "stringas", bet as padaviau "value" */
 			//System.out.println("Check pattern: " + !Pattern.compile(regex).matcher(stringas).matches());
 			//System.out.println("duplicate = true :" + stringas);
 			duplicate = true;

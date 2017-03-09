@@ -60,7 +60,8 @@ var RegisterVotesSingleContainer = React.createClass( {
                                 resultsTemplate.push( {
                                     singleId: null,
                                     singleCandidate: { candidateID: self.state.candidates[i].candidateID },
-                                    singleDistrict: { id: self.state.currentDistrictId }
+                                    singleDistrict: { id: self.state.currentDistrictId },
+                                    singleVotes: ""
                                 })
 
                             }
@@ -70,7 +71,8 @@ var RegisterVotesSingleContainer = React.createClass( {
                             spoiltVoteObject = ( {
                                 singleId: null,
                                 typeMulti: false,
-                                singleDistrict: { id: self.state.currentDistrictId }
+                                singleDistrict: { id: self.state.currentDistrictId },
+                                singleVotes: ""
                             });
                             self.setState( { enteredSpoiltVote: spoiltVoteObject });
                         }

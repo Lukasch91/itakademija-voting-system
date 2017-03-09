@@ -60,7 +60,8 @@ var RegisterVotesMultiContainer = React.createClass( {
                                 resultsTemplate.push( {
                                     id: null,
                                     party: { id: self.state.parties[i].id },
-                                    district: { id: self.state.currentDistrictId }
+                                    district: { id: self.state.currentDistrictId },
+                                    votes: ""
                                 })
 
                             }
@@ -70,7 +71,8 @@ var RegisterVotesMultiContainer = React.createClass( {
                             spoiltVoteObject = ( {
                                 id: null,
                                 typeMulti: true,
-                                district: { id: self.state.currentDistrictId }
+                                district: { id: self.state.currentDistrictId },
+                                votes: ""
                             });
                             self.setState( { enteredSpoiltVote: spoiltVoteObject });
                         }

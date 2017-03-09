@@ -30,7 +30,7 @@ public class MultiElectionCreateService {
 	private DistrictRepository districtRepository;
 
 	private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
-	private String numberOfVotes;
+	private Long numberOfVotes;
 
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity validatePackage(List<MultiVotesPackage> multiVotesPackage) {
@@ -53,7 +53,7 @@ public class MultiElectionCreateService {
 				multiVotes.add(multiVote);
 			}
 		}
-
+		// validate spoiltVotes with hibernate
 		if (validator.validate(spoiltVote).isEmpty() == false) {
 			Set<ConstraintViolation<CorruptedVotes>> constraintViolationsSpoilt = validator.validate(spoiltVote);
 			MEValidationMessages vMessagesSpoilt = new MEValidationMessages();
@@ -66,7 +66,7 @@ public class MultiElectionCreateService {
 			jsonArray.add(vMessagesSpoilt);
 			constraintViolationsSpoilt.clear();
 		}
-
+		// validate multiVotes with hibernate
 		for (MultiElection multiElection : multiVotes) {
 			if (validator.validate(multiElection).isEmpty() == false) {
 
@@ -82,35 +82,27 @@ public class MultiElectionCreateService {
 				constraintViolationsMulti.clear();
 			}
 		}
-
-		numberOfVotes = "0";
-		Long firstParamter = Long.parseLong(numberOfVotes);
-		
-		for (MultiElection multiElection : multiVotes) {
-			
-			Long secondParameter = Long.parseLong(multiElection.getVotes());
-			
-			firstParamter += secondParameter;
-		}
-		
-		Long secondParameter = Long.parseLong(spoiltVote.getVotes());
-		firstParamter += secondParameter;
-		if (districtRepository.findDistrictById(spoiltVote.getDistrict().getId()).getNumberOfVoters() != null) {
-			Long votesLimitInDistrict = districtRepository.findDistrictById(spoiltVote.getDistrict().getId())
-					.getNumberOfVoters();
-			
-			Long firstParameter = Long.parseLong(numberOfVotes);
-			
-			
-			if (firstParameter > votesLimitInDistrict) {
-				MEValidationMessages vMessageVoteLimit = new MEValidationMessages();
-				vMessageVoteLimit.setPartyId(null);
-				vMessageVoteLimit.setSpoiltVote(true);
-				vMessageVoteLimit.setOneMessage("Balsų kiekis viršija apylinkės rinkėjų skaičių");
-				jsonArray.add(vMessageVoteLimit);
+		// validate number of votes entered
+		if (jsonArray.isEmpty()) {
+			numberOfVotes = 0L;
+			for (MultiElection multiElection : multiVotes) {
+				Long multiVoted = Long.parseLong(multiElection.getVotes());
+				numberOfVotes += multiVoted;
+			}
+			Long spoitVoted = Long.parseLong(spoiltVote.getVotes());
+			numberOfVotes += spoitVoted;
+			if (districtRepository.findDistrictById(spoiltVote.getDistrict().getId()).getNumberOfVoters() != null) {
+				Long votesLimitInDistrict = districtRepository.findDistrictById(spoiltVote.getDistrict().getId())
+						.getNumberOfVoters();
+				if (numberOfVotes > votesLimitInDistrict) {
+					MEValidationMessages vMessageVoteLimit = new MEValidationMessages();
+					vMessageVoteLimit.setPartyId(null);
+					vMessageVoteLimit.setSpoiltVote(true);
+					vMessageVoteLimit.setOneMessage("Balsų kiekis viršija apylinkės rinkėjų skaičių");
+					jsonArray.add(vMessageVoteLimit);
+				}
 			}
 		}
-
 		if (jsonArray.isEmpty()) {
 			multiElectionRepository.saveOrUpdate(multiVotes);
 			corruptedVotesRepository.saveOrUpdate(spoiltVote);
