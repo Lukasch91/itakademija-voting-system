@@ -31,9 +31,9 @@ public class PasswordController {
 	@RequestMapping(value = "/api/ADMIN/password/hash", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[UNUSED - ADMIN] - Hash Password")
-	public String getHashedPassword(@RequestBody String password)
+	public String getHashedPassword(@RequestParam String p)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		return passwordService.PassHashing(password);
+		return passwordService.PassHashing(p);
 	}
 
 /*	@RequestMapping(value = "/api/ADMIN/password/check", method = RequestMethod.POST)

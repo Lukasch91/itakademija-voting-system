@@ -19,10 +19,10 @@ public class MailSendController {
 	@RequestMapping(value = "/api/ADMIN/mail", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[UNUSED - ADMIN] - Sending mail to representative")
-	public void MailSending(@RequestParam String toMail, @RequestBody String password,
+	public void MailSending(@RequestParam String toMail, @RequestParam String p,
 			@RequestParam String loginName) {
 		try {
-			mailSendService.SendMail(toMail, password, loginName);
+			mailSendService.SendMail(toMail, p, loginName);
 		} catch (MailException ex) {
 			System.err.println("***KLAIDA*** " + ex);
 		}

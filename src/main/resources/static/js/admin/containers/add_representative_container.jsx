@@ -48,7 +48,7 @@ var AddRepresentativeContainer = React.createClass( {
         var success = 0;         
       
         this.state.password = this.state.passwordList[0];
-        axios.post('http://localhost:8080/api/ADMIN/password/hash?password=' + this.state.passwordList[0]).then( function( response ) {
+        axios.post('http://localhost:8080/api/ADMIN/password/hash?p=' + this.state.passwordList[0]).then( function( response ) {
             self.setState( {
                 passwordHashed: response.data
             });
@@ -64,7 +64,7 @@ var AddRepresentativeContainer = React.createClass( {
 
         })
             .then( function( response ) {
-                axios.post('api/ADMIN/mail?toMail=' + self.state.representative.email + '&loginName=' + self.state.representative.loginName, {password: self.state.password});
+                axios.post('api/ADMIN/mail?toMail=' + self.state.representative.email + '&loginName=' + self.state.representative.loginName + '&p=' + self.state.password);
                 success = 1;
             })
             .catch( function( error ) {
