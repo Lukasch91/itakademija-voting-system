@@ -38,15 +38,19 @@ public class CorruptedVotesRepository {
 		if (entityManager.createQuery(FIND_ALL_MULTI_CORRUPTED_VOTES).getResultList().get(0) == null) {
 			return 0L;
 		} else
-			return Long.parseLong((String) entityManager.createQuery(FIND_ALL_MULTI_CORRUPTED_VOTES).getSingleResult()); 
+			return Long.parseLong((String) entityManager.createQuery(FIND_ALL_MULTI_CORRUPTED_VOTES).getSingleResult());
 	}
 
 	public Long getAllSingleCorruptedVotes() {
 		if (entityManager.createQuery(FIND_ALL_SINGLE_CORRUPTED_VOTES).getResultList().isEmpty()) {
 			return 0L;
-		} else
-			return Long
-					.parseLong((String) entityManager.createQuery(FIND_ALL_SINGLE_CORRUPTED_VOTES).getSingleResult());
+		} else { 
+		String aaa = (String) entityManager.createQuery(FIND_ALL_SINGLE_CORRUPTED_VOTES).getSingleResult();
+		Long bbb = aaa == null ? 0L :  Long.parseLong(aaa);
+		return bbb;	
+		
+//			return Long.parseLong((String) entityManager.createQuery(FIND_ALL_SINGLE_CORRUPTED_VOTES).getSingleResult());
+		}
 	}
 
 	public Long getCorruptedVotesInConstituency(Integer id) {
@@ -58,7 +62,8 @@ public class CorruptedVotesRepository {
 	}
 
 	public Long getMultiCorruptedVotesInDistrict(Integer id) {
-		if (entityManager.createQuery(FIND_MULT_INVALID_VOTES_IN_DISTRICTS).setParameter("id", id).getResultList().size() == 0) {
+		if (entityManager.createQuery(FIND_MULT_INVALID_VOTES_IN_DISTRICTS).setParameter("id", id).getResultList()
+				.size() == 0) {
 			return 0L;
 		} else {
 			return Long.parseLong((String) entityManager.createQuery(FIND_MULT_INVALID_VOTES_IN_DISTRICTS)

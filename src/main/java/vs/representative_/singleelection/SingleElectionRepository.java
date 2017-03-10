@@ -94,7 +94,10 @@ public class SingleElectionRepository {
 		if (em.createQuery(COUNT_ALL_VOTES).getResultList().isEmpty()) {
 			return 0L;
 		} else {
-			return (Long) Long.parseLong((String) em.createQuery(COUNT_ALL_VOTES).getSingleResult());
+			String xxx = (String) em.createQuery(COUNT_ALL_VOTES).getSingleResult();
+			Long yyy = xxx == null ? 0L :  Long.parseLong(xxx);
+			return yyy;
+//			return (Long) Long.parseLong((String) em.createQuery(COUNT_ALL_VOTES).getSingleResult());
 		}
 	}
 
