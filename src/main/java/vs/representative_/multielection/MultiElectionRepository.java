@@ -61,8 +61,10 @@ public class MultiElectionRepository {
 		if (entityManager.createQuery(GET_ALL_MULTI_VOTES).getResultList().isEmpty()) {
 			return 0L;
 		} else {
-
-			return Long.parseLong((String) entityManager.createQuery(GET_ALL_MULTI_VOTES).getSingleResult());
+			String xxx = (String) entityManager.createQuery(GET_ALL_MULTI_VOTES).getSingleResult();
+			Long yyy = xxx == null ? 0L :  Long.parseLong(xxx);
+			return yyy;
+//			return Long.parseLong((String) entityManager.createQuery(GET_ALL_MULTI_VOTES).getSingleResult());
 		}
 	}
 
@@ -91,9 +93,12 @@ public class MultiElectionRepository {
 				.setParameter("partyId", partyId).getResultList().size() == 0) {
 			return 0L;
 		} else {
-
-			return Long.parseLong((String) entityManager.createQuery(GET_PARTY_VOTES_BY_CONSTITUENCY_ID).setParameter("consId", consId)
-					.setParameter("partyId", partyId).getSingleResult()) ;
+			String xxx = (String) entityManager.createQuery(GET_PARTY_VOTES_BY_CONSTITUENCY_ID).setParameter("consId", consId)
+					.setParameter("partyId", partyId).getSingleResult();
+			Long yyy = xxx == null ? 0L :  Long.parseLong(xxx);
+			return yyy;
+//			return Long.parseLong((String) entityManager.createQuery(GET_PARTY_VOTES_BY_CONSTITUENCY_ID).setParameter("consId", consId)
+//					.setParameter("partyId", partyId).getSingleResult()) ;
 		}
 	}
 

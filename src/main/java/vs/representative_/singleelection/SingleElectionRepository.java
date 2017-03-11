@@ -82,11 +82,15 @@ public class SingleElectionRepository {
 
 	public Long getVotesOfCandidate(Integer candidateId, Integer districtId) {
 		if (em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID).setParameter("candidateId", candidateId)
-				.setParameter("districtId", districtId).getResultList().get(0) == null) {
+				.setParameter("districtId", districtId).getResultList().size() == 0) { //.get(0)
 			return 0L;
 		} else {
-			return Long.parseLong((String) em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID)
-					.setParameter("candidateId", candidateId).setParameter("districtId", districtId).getSingleResult());
+			String xxx = (String) em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID)
+					.setParameter("candidateId", candidateId).setParameter("districtId", districtId).getSingleResult();
+			Long yyy = xxx == null ? 0L :  Long.parseLong(xxx);
+			return yyy;
+//			return Long.parseLong((String) em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID)
+//					.setParameter("candidateId", candidateId).setParameter("districtId", districtId).getSingleResult());
 		}
 	}
 
