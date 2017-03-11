@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,8 @@ import vs.public_.single.results.SingleElectionResultsService;
 
 @Service
 public class ConsolidatedResultsService {
+	
+	private static final Logger log = Logger.getLogger(ConsolidatedResultsService.class.getName());
 
 	@Autowired
 	ConstituencyRepository constituencyRepository;
@@ -29,6 +32,7 @@ public class ConsolidatedResultsService {
 	MultiElectionResultsService multiElectionResultsService;
 
 	public List<ConsolidatedResults> getMultiResults() {
+		log.info("||--> Started...");
 
 		List<ConsolidatedResults> consolidatedResultsList = new ArrayList<>();
 
@@ -45,11 +49,14 @@ public class ConsolidatedResultsService {
 			}
 
 		}
+		log.info("||--> Finished!");
 		return consolidatedResultsList;
 	}
 
 	public List<ConsolidatedResults> getSingleResults() {
 
+		log.info("||--> Started...");
+		
 		List<Constituency> conList = constituencyRepository.findAllConstituencies();
 
 		List<ConsolidatedResults> consResultList = new ArrayList<>();
@@ -71,12 +78,15 @@ public class ConsolidatedResultsService {
 			}
 
 		}
+		log.info("||--> Finished!");
 		return consResultList;
 
 	}
 
 	public List<ConsolidatedResults> getAllResults() {
 
+		log.info("||--> Started...");
+		
 		List<ConsolidatedResults> singleElectionResults = getSingleResults();
 
 		List<ConsolidatedResults> multiElectionResults = getMultiResults();
@@ -95,12 +105,13 @@ public class ConsolidatedResultsService {
 		}
 		
 
+		log.info("||--> Finished!");
 		return consildatedResults;
 
 	}
 
 	private Map<String, Long> consolidateResults(List<ConsolidatedResults> multiElectionResults) {
-
+		log.info("||--> was used...");
 		Map<String, Long> counting = multiElectionResults.stream().collect(Collectors.groupingBy(
 				ConsolidatedResults::getPartyTitle, Collectors.summingLong(ConsolidatedResults::getMandates)));
 

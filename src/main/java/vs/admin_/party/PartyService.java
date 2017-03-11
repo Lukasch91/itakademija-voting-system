@@ -25,7 +25,7 @@ public class PartyService {
 	private PartyRepository partyRepository;
 
 	public List<PartyExtension> findAllPartiesExtended() {
-		log.debug("start ");
+		log.info("||--> start ");
 		List<Party> parties = partyRepository.findAllParties();
 		List<Candidate> candidates = candidateRepository.findAllUndeletedCandidates();
 		List<PartyExtension> extendedParties = new ArrayList<>();
@@ -46,7 +46,7 @@ public class PartyService {
 			partyExtend.setNumberOfCandidatesInParty(numberOfCandidates);
 			extendedParties.add(partyExtend);
 		}
-		log.debug(" end");
+		log.info("||--> end");
 		return extendedParties;
 	}
 }

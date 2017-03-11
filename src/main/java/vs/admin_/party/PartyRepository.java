@@ -33,32 +33,32 @@ public class PartyRepository {
 
 	@Transactional
 	public Party saveOrUpdate(Party party) {
-		log.debug("|||||--> Started...");
+		log.info("||--> Started...");
 		if (party.getId() == null) {
 			entityManager.persist(party);
-			log.debug("|||||--> Finshed! Party was saved.Party name: " + party.getTitle().toString());
+			log.info("||--> Finshed! Party was saved.Party name: " + party.getTitle().toString());
 			return party;
 		} else {
 			Party merged = entityManager.merge(party);
 			entityManager.persist(merged);
-			log.debug("|||||--> Finshed! Party was updated.Party name: " +  party.getTitle().toString());
+			log.info("||--> Finshed! Party was updated.Party name: " +  party.getTitle().toString());
 			return merged;
 		}
 	}
 
 	public Party findPartyById(Integer id) {
-		log.debug("|||||--> Party id: " + id);
+		log.info("||--> Party id: " + id);
 		return (Party) entityManager.createQuery(FIND_PARTY_BY_ID).setParameter("id", id);
 	}
 
 	@Transactional
 	public void deleteParty(Integer id) {
-		log.info("|||||--> Start... Party id: " + id);
+		log.info("||--> Start... Party id: " + id);
 		Party party = entityManager.find(Party.class, id);
-		log.info("|||||--> Founded party by id to delete: " + party.getTitle().toString());
+		log.info("||--> Founded party by id to delete: " + party.getTitle().toString());
 		Date date = new Date();
 		party.setDeletedTime(date);
 		entityManager.persist(party);
-		log.info("|||||--> Finished! ");
+		log.info("||--> Finished! ");
 	}
 }

@@ -5,6 +5,8 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import com.opencsv.CSVWriter;
 @Service
 public class DownloadResultsService {
 
+	private static final Logger log = Logger.getLogger(DownloadResultsService.class.getName());
+	
 	public DownloadResultsService() {
 	}
 
@@ -25,6 +29,8 @@ public class DownloadResultsService {
 
 	public String returnSelector(Integer request) {
 
+		log.info("||--> was used." );
+		
 		switch (request) {
 		case 1:
 			return request1();
@@ -37,7 +43,7 @@ public class DownloadResultsService {
 	}
 
 	public String request2() {
-
+		log.info("||--> Started..." );
 		List<SingleElectionResultsAll> all = new ArrayList<SingleElectionResultsAll>();
 
 		List<SingleElectionConstituency> singleConstituencyResultsList = singleElectionConstitencyService
@@ -80,10 +86,13 @@ public class DownloadResultsService {
 			tableData.add(singleElectionResultsAllToStringArray(sERA));
 		}
 		String result = listArrayToCSVSting(tableData);
+		log.info("||--> Finished!" );
 		return result;
 	}
 
 	private String request1() {
+		log.info("||--> Started..." );
+		
 		List<SingleElectionConstituency> singleConstituencyResultsList = singleElectionConstitencyService
 				.singleElectionConstituencyResults();
 
@@ -94,16 +103,18 @@ public class DownloadResultsService {
 		}
 
 		String result = listArrayToCSVSting(tableData);
-
+		log.info("||--> Finished!" );
 		return result;
 	}
 
 	public String[] singleElectionResultsAllHeader() {
+		log.info("||--> was used." );
 		return new String[] { "Apygarda", "Apylinkė", "Kandidato vardas", "Kandidato pavardė", "Kandidato partija",
 				"Balsavo rinkėjų", "Gerų balsų %", "Visų balsų % ??? :D" };
 	}
 
 	public String[] singleElectionResultsAllToStringArray(SingleElectionResultsAll singleElectionResultsAll) {
+		log.info("||--> was used." );
 		return new String[] { singleElectionResultsAll.getConTitle(), singleElectionResultsAll.getDistTitle(),
 				singleElectionResultsAll.getResCandidateFirstname(), singleElectionResultsAll.getResCandidateSurname(),
 				singleElectionResultsAll.getResParty(), singleElectionResultsAll.getResVoted().toString(),
@@ -112,6 +123,7 @@ public class DownloadResultsService {
 	}
 
 	public String[] singleElectionConstituencyToStringArray(SingleElectionConstituency singleConstituencyResult) {
+		log.info("||--> was used." );
 		return new String[] { singleConstituencyResult.getTitle(),
 				singleConstituencyResult.getNumberOfDistricts().toString(),
 				singleConstituencyResult.getNumberOfDistrictsPublishedResults().toString(),
@@ -125,14 +137,17 @@ public class DownloadResultsService {
 	}
 
 	public String listArrayToCSVSting(List<String[]> listRows) {
+		log.info("||--> Started..." );
 		Writer stringWriter = new StringWriter();
 		CSVWriter writer = new CSVWriter(stringWriter, ',');
 		writer.writeAll(listRows);
 		try {
 			writer.close();
 		} catch (IOException e) {
+			log.error("||--> IO exception trying to close. " + e);
 			e.printStackTrace();
 		}
+		log.info("||--> Finished!" );
 		return stringWriter.toString();
 	}
 
