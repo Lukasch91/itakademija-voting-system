@@ -3,6 +3,7 @@ package vs.admin_.party;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,8 @@ import vs.admin_.party.PartyRepository;
 @Service
 public class PartyService {
 
+	private static final Logger log = Logger.getLogger(PartyService.class.getName());
+	
 	@Autowired
 	private CandidateRepository candidateRepository;
 
@@ -22,6 +25,7 @@ public class PartyService {
 	private PartyRepository partyRepository;
 
 	public List<PartyExtension> findAllPartiesExtended() {
+		log.debug("start ");
 		List<Party> parties = partyRepository.findAllParties();
 		List<Candidate> candidates = candidateRepository.findAllUndeletedCandidates();
 		List<PartyExtension> extendedParties = new ArrayList<>();
@@ -42,6 +46,7 @@ public class PartyService {
 			partyExtend.setNumberOfCandidatesInParty(numberOfCandidates);
 			extendedParties.add(partyExtend);
 		}
+		log.debug(" end");
 		return extendedParties;
 	}
 }
