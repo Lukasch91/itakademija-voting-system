@@ -7,7 +7,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import vs.admin.AdminController;
 import vs.admin_.constituency.Constituency;
 import vs.admin_.district.District;
 import vs.admin_.party.Party;
@@ -80,7 +79,7 @@ public class CandidateCreateService {
 		return candidate;
 	}
 
-	public void setCandidatesData2(List<String[]> candidates) {
+	public void setCandidatesData(List<String[]> candidates) {
 		this.candidatesData = candidates;
 	}
 

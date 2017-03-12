@@ -13,7 +13,7 @@ var AdministrateCandidatesCSVConstituencyComponent = React.createClass( {
     },
 
     componentWillMount: function() {
-        var content = { text: "No content!!!", id: this.props.constit.id, delimiter: ',' };
+        var content = { text: "No content!!!", id: this.props.constit.id, delimiter: ',', hasHeader: true };
         this.setState( {
             id: this.props.constit.id,
             fileString: content,

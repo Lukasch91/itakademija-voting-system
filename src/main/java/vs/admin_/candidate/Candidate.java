@@ -35,9 +35,11 @@ public class Candidate {
 	private String candidateSurname;
 
 	@Column
+//	@NotBlank(message="Kandidato gimimo data negali būti tuščia")
 	private String candidateDateOfBirth; // Date or String???
 
 	@Column
+//	@NotBlank(message="Asmens kodas negali būti tuščias")
 	private String candidatePersonalID;
 
 	@Lob
