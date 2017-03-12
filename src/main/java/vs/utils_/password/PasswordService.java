@@ -1,26 +1,18 @@
 package vs.utils_.password;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import javax.websocket.EncodeException;
 import javax.xml.bind.DatatypeConverter;
 
 import org.apache.log4j.Logger;
-import org.apache.tomcat.util.codec.EncoderException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import vs.admin_.representative.RepresentativeRepository;
 
 @Service
 public class PasswordService implements PasswordEncoder {
@@ -28,18 +20,58 @@ public class PasswordService implements PasswordEncoder {
 
 	@Override
 	public String encode(CharSequence rawPassword) {
-		log.debug("Password encode started...");
-			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			String passwordSalt = passwordEncoder.encode(rawPassword);
-			log.debug("Password encode success!");
+		log.info("Password encode started...");
+
+		String hashValue = "";
+		try {
+			long time = System.currentTimeMillis();
+			
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+			messageDigest.update(rawPassword.toString().getBytes());
+			byte[] digestBytes = messageDigest.digest();
+			hashValue = DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
+			
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(13);
+			String passwordSalt = passwordEncoder.encode(hashValue);
+			time = System.currentTimeMillis() - time;
+			log.info("Password encode success! Time ms:" + time);
+			
 			return passwordSalt;
+			
+		} catch (NoSuchAlgorithmException e) {
+			log.error("Password encoding probblem: " + e);
+			e.printStackTrace();
+			return null;
+		}
 
 	}
 
 	@Override
 	public boolean matches(CharSequence rawPassword, String encodedPassword) {
-		log.debug("Password checking started...");
-		return BCrypt.checkpw(rawPassword.toString(), encodedPassword);
+		log.info("Password checking started...");
+		
+		String hashValue = "";
+		try {
+			long time = System.currentTimeMillis();
+			
+			
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+			messageDigest.update(rawPassword.toString().getBytes());
+			byte[] digestBytes = messageDigest.digest();
+			hashValue = DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
+
+			boolean passCheck = BCrypt.checkpw(hashValue, encodedPassword);
+			
+			time = System.currentTimeMillis() - time;
+			log.info("Password encode success! Time ms:" + time);
+			
+			return passCheck;
+			
+		} catch (NoSuchAlgorithmException e) {
+			log.info("Password encode problem! :" + e);
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	private String password;
@@ -51,7 +83,7 @@ public class PasswordService implements PasswordEncoder {
 	 */
 
 	@Transactional
-	public String PassGenerator() {
+	public String passGenerator() {
 		this.numberList = new ArrayList<>();
 		this.stringBuilder = new StringBuilder();
 		// log.info("PassGenerator method started...");
@@ -81,25 +113,45 @@ public class PasswordService implements PasswordEncoder {
 
 	@Transactional
 	public String PassHashing(String password) {
-		log.debug("Password hashing for controller started...");
-			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			String passwordSalt = passwordEncoder.encode(password);
-			log.debug("Password hashing for controller success!");
-			// throw new EncoderException();
+		log.info("Password encode started...");
+
+		String hashValue = "";
+		try {
+			long time = System.currentTimeMillis();
+			
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+			messageDigest.update(password.toString().getBytes());
+			byte[] digestBytes = messageDigest.digest();
+			hashValue = DatatypeConverter.printHexBinary(digestBytes).toLowerCase();
+			
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(13);
+			String passwordSalt = passwordEncoder.encode(hashValue);
+
+			time = System.currentTimeMillis() - time;
+			log.info("Password encode success! Time ms: " + time);
+			
 			return passwordSalt;
+			
+		} catch (NoSuchAlgorithmException e) {
+			log.error("Problem with password hashing, encoding: " + e);
+			e.printStackTrace();
+			return null;
+		}
+
+
 
 	}
 
 	@Transactional
 	public ArrayList<String> GeneratedPasswordList() {
-		log.debug("Password list generating started...");
+		log.info("Password list generating started...");
 		PasswordService passwordService = new PasswordService();
 		ArrayList<String> kodai = new ArrayList<String>();
 		for (int a = 0; a < 20; a++) {
-			String pass = passwordService.PassGenerator();
+			String pass = passwordService.passGenerator();
 			kodai.add(pass);
 		}
-		log.debug("Password list generated successfully!");
+		log.info("Password list generated successfully!");
 		return kodai;
 	}
 

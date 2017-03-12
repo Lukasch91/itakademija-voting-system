@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -46,8 +49,10 @@ public class Representative implements BasicUser {
 
 	@Column
 	@NotEmpty(message = "Slaptažodis negali būti tuščias")
-	@Size(max = 60, message = "Slaptažodzio ilgis negali būti ilgesnis negu {max} simbolių")
-	@ApiModelProperty(value = "@NotEmpty, @Size(max=60)")
+	//@Max(value = 60, message = "Slaptažodzio ilgis negali būti ilgesnis negu {value} simbolių")
+	//@Min(value = 12, message = "Slaptažodzio ilgis negali būti trumpesnis negu {value} simbolių")
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[`~!@#$%^&*=-?.])(?=\\S+$).{12,60}$", message="Slaptažodį turi sudaryti 12-60 simbolių, jame turi būti bent viena mažoji raidė, didžioji raidė, skaičius ir bent vienas nurodytas simbolis `~!@#$%^&*=-?. ")
+	@ApiModelProperty(value = "@NotEmpty, @Max(value = 60), @Min(value = 12)")
 	private String password;
 
 	@Column

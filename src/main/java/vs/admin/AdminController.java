@@ -29,7 +29,7 @@ public class AdminController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Get Admin")
 	public List<Admin> findAdmin() {
-		log.debug("Admin - findAdmin controller started, result:  " + adminRepository.findAdmin());
+		log.info("Admin - findAdmin controller started, result:  " + adminRepository.findAdmin());
 		return adminRepository.findAdmin();
 	}
 
@@ -37,7 +37,7 @@ public class AdminController {
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
 	@ApiOperation(value = "Create or update admin")
 	public Admin saveOrUpdateAdmin(@Valid @RequestBody Admin admin) {
-		log.debug("Admin - saveOrUpdateAdmin controller started, result: " + adminRepository.saveOrUpdateAdmin(admin));
+		log.info("Admin - saveOrUpdateAdmin controller started, result: " + adminRepository.saveOrUpdateAdmin(admin));
 		return adminRepository.saveOrUpdateAdmin(admin);
 	}
 
@@ -45,7 +45,7 @@ public class AdminController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Find By LoginName")
 	public Admin findByLogin(@RequestBody String loginName) {
-		log.debug("Admin - findByLogin controller started, result: " + adminRepository.findByLoginName(loginName));
+		log.info("Admin - findByLogin controller started, result: " + adminRepository.findByLoginName(loginName));
 		return adminRepository.findByLoginName(loginName);
 	}
 
@@ -54,8 +54,8 @@ public class AdminController {
 	@ApiOperation(value = "Change password")
 	public void changePassword(@CurrentUser Admin admin, @RequestParam String password)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		log.debug("Admin - changePassword controller started... ");
+		log.info("Admin - changePassword controller started... ");
 		adminRepository.changePassword(admin, password);
-		log.debug("Admin - changePassword controller finished! ");
+		log.info("Admin - changePassword controller finished! ");
 	}
 }

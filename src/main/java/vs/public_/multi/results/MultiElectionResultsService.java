@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,8 @@ import vs.representative_.multielection.MultiElectionRepository;
 
 @Service
 public class MultiElectionResultsService {
+	
+	private static final Logger log = Logger.getLogger(MultiElectionResultsService.class.getName());
 
 	@Autowired
 	PartyRepository partyRepository;
@@ -40,6 +43,8 @@ public class MultiElectionResultsService {
 
 	public List<MultiElectionResults> getMultiElectionResults() {
 
+		log.info("||--> Started..." );
+		
 		List<Party> partyList = partyRepository.findAllParties();
 
 		List<MultiElectionResults> resultList = new ArrayList<>();
@@ -72,12 +77,13 @@ public class MultiElectionResultsService {
 
 		Collections.sort(list, new MultiElectionResultsComperator());
 		Collections.reverse(list);
+		log.info("||--> Finished!" );
 		return list;
 
 	}
 
 	public List<MultiElectionConstituencyList> getMultiElectionConstituencyList() {
-
+		log.info("||--> Started..." );
 		List<Constituency> constituencyList = constituencyRepository.findAllConstituencies();
 
 		List<MultiElectionConstituencyList> resultList = new ArrayList<>();
@@ -114,12 +120,14 @@ public class MultiElectionResultsService {
 			resultList.add(multiElectionConstituencyList);
 
 		}
-
+		log.info("||--> Finished!" );
 		return resultList;
 
 	}
 
 	public List<MultiElectionDistrictList> getResultsOfDistricts(Integer consId) {
+		
+		log.info("||--> Started...Constituency id : " + consId );
 		List<District> districtList = districtRepository.findAllDistrictsByConstituencyId(consId);
 		List<MultiElectionDistrictList> resultList = new ArrayList<>();
 
@@ -151,12 +159,15 @@ public class MultiElectionResultsService {
 
 		}
 
+		log.info("||--> Finished!" );
 		return resultList;
 
 	}
 
 	public List<MultiElectionResults> getConstituencyPartiesResults(Integer consId) {
 
+		log.info("||--> Started...Constituency id : " + consId );
+		
 		List<Party> partyList = partyRepository.findAllParties();
 
 		List<MultiElectionResults> resultList = new ArrayList<>();
@@ -186,11 +197,14 @@ public class MultiElectionResultsService {
 		}
 		Collections.sort(resultList, new MultiElectionResultsComperator());
 		Collections.reverse(resultList);
+		log.info("||--> Finished!" );
 		return resultList;
 	}
 
 	public List<MultiElectionResults> getDistrictPartiesResults(Integer disId) {
 
+		log.info("||--> Started...District id : " + disId );
+		
 		List<Party> partyList = partyRepository.findAllParties();
 
 		List<MultiElectionResults> resultList = new ArrayList<>();
@@ -218,10 +232,15 @@ public class MultiElectionResultsService {
 
 			resultList.add(multiElectionConstituency);
 		}
+		
+		log.info("||--> Finished!" );
+		
 		return resultList;
 	}
 
 	public ElectionDetails getMultiElectionDetails() {
+		
+		log.info("||--> Started...");
 
 		Long numberOfDistricts = changeNullToLong(districtRepository.countAllDistricts());
 
@@ -245,12 +264,15 @@ public class MultiElectionResultsService {
 				numberOfVotersWhoVoted, percentageOfVoters, invalidVotes, percentageOfInvalidVotes, validVotes,
 				percentageOfValidVotes);
 
+		log.info("||--> Finished!" );
 		return details;
 
 	}
 
 	public ElectionDistrictDetails getDistrictElectionDetails(Integer id) {
 
+		log.info("||--> Started...District id: " + id);
+		
 		District district = districtRepository.findDistrictById(id);
 
 		Integer districtId = district.getId();
@@ -288,11 +310,13 @@ public class MultiElectionResultsService {
 				constituencyTitle, constituencyId, voters, validVotes, invalidvotes, allVotes, percentageOfVoted,
 				percentageOfInvalidVotes, percentageOfValidVotes, updateDate);
 
+		log.info("||--> Finished!" );
 		return electionDistrictDetails;
 
 	}
 
 	public BigDecimal getPercentageSumOver(List<MultiElectionResults> list) {
+		log.info("||--> Started...");
 		BigDecimal sum = BigDecimal.valueOf(0.00);
 		for (MultiElectionResults multiElectionConstituency : list) {
 			if (multiElectionConstituency.getPercentageOfAllVotes() != null) {
@@ -303,10 +327,12 @@ public class MultiElectionResultsService {
 			}
 
 		}
+		log.info("||--> Finished! sum: " + sum);
 		return sum;
 	}
 
 	public List<MultiElectionResults> getPartiesListWithMandates(List<MultiElectionResults> list) {
+		log.info("||--> Started...");
 		BigDecimal sum = getPercentageSumOver(list);
 		Long mandates = 0L;
 		for (MultiElectionResults multiElectionConstituency : list) {
@@ -318,10 +344,12 @@ public class MultiElectionResultsService {
 				multiElectionConstituency.setNumberOfMandates(mandates);
 			}
 		}
+		log.info("||--> Finished!");
 		return list;
 	}
 
 	public Long changeNullToLong(Long parameter) {
+		log.info("||--> was used. Long parameter: " + parameter);
 		if (parameter == null) {
 			return 0L;
 		}
@@ -329,10 +357,17 @@ public class MultiElectionResultsService {
 	}
 
 	public BigDecimal checkForCorrectArithmetic(Long firstParameter, Long secondParamter) {
+		
+		log.info("||--> Started...FirstParameter|SecondParameter: " + firstParameter + " | " + secondParamter);
+		
 		if (firstParameter == 0 || secondParamter == 0) {
 			return new BigDecimal(0.00);
 		}
+		
 		BigDecimal percentage = new BigDecimal(firstParameter * 100.0 / secondParamter);
+		
+		log.info("||--> Finished! result: " + percentage.setScale(2, RoundingMode.HALF_UP));
+		
 		return percentage.setScale(2, RoundingMode.HALF_UP);
 	}
 
