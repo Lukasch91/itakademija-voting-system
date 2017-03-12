@@ -10,18 +10,16 @@ var RegisterVotesMultiContainer = React.createClass( {
             enteredSpoiltVote: {},
 
             currentDistrictId: 0,
-            validationArray: []
+            validationArray: [],
+            currentUser: {},
         };
     },
 
     componentWillMount: function() {
         var self = this;
-        //bad design??? maybe pass a prop by rendering this element 
-        //from <LoggedInRepresentativeInfoContainer /> as it knows the districtId
-        //also maybe possible to split into 2 lifecycle methods
         axios.get( '/currentuser' )
             .then( function( response ) {
-                self.setState( { currentDistrictId: response.data.districtId });
+                self.setState( { currentDistrictId: response.data.districtId, currentUser: response.data });
                 axios.all( [
                     axios.get( '/api/REPRES/party/' ),
                     axios.get( '/api/REPRES/reg-votes-multi' ),
@@ -159,7 +157,7 @@ var RegisterVotesMultiContainer = React.createClass( {
                     <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
                         <h3>Balsavimo rezultatų įvedimas daugiamandatėje apygardoje</h3>
                     </div>
-                    <LoggedInRepresentativeInfoContainer />
+                    <LoggedInRepresentativeInfoContainer currentUser={self.state.currentUser} />
                     <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
                         <table className="table table-hover">
                             <thead>

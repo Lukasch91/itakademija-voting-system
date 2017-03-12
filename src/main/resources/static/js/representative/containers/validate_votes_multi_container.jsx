@@ -33,17 +33,21 @@ var ValidateVotesMultiContainer = React.createClass( {
             );
         });
 
-        return (
-            <tr>
-                <td colSpan="2">
-                    <table className="table table-condensed">
-                        <tbody>
-                            {listSomething}
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        );
+        if ( messages[0] == null ) {
+            return ( <tr></tr> );
+        } else {
+            return (
+                <tr>
+                    <td colSpan="3">
+                        <table className="table table-condensed">
+                            <tbody>
+                                {listSomething}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            );
+        }
     }
 });
 
