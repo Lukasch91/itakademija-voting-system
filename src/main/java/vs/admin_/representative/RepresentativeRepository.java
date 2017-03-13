@@ -3,9 +3,12 @@ package vs.admin_.representative;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,10 +77,18 @@ public class RepresentativeRepository {
 	}
 	
 	@Transactional
-	public void changePassword(@CurrentUser Representative representative, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public boolean changePassword(@CurrentUser Representative representative, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		log.info("||--> was used! Representative surname: " + representative.getSurname());
-		Representative repToChange = (Representative) em.createQuery(FIND_BY_LOGIN).setParameter("loginName", representative.getLoginName()).getSingleResult();
-		repToChange.setPassword(passwordService.PassHashing(password));
+		String regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[`~!@#$%^&*=-?.])(?=\\S+$).{12,60}$";
+		Pattern pattern = Pattern.compile(regexp);
+		Matcher matcher = pattern.matcher(password);
+		if (matcher.find()){
+			Representative repToChange = (Representative) em.createQuery(FIND_BY_LOGIN).setParameter("loginName", representative.getLoginName()).getSingleResult();
+			repToChange.setPassword(passwordService.PassHashing(password));
+			return true;
+		}
+		return false;
+
 	}
 	
 }

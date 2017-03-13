@@ -78,9 +78,17 @@ public class RepresentativeController {
 	@RequestMapping(value = "/api/REPRES/changepass", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Change password")
-	public void changePassword(@CurrentUser Representative representative, @RequestParam String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public boolean changePassword(@CurrentUser Representative representative, @RequestParam String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		log.info("||--> was used");
-		representativeRepository.changePassword(representative, password);
+		boolean check = representativeRepository.changePassword(representative, password);
+		if (check){
+			log.warn("Password was changed!");
+			return true;
+		
+		}
+		log.warn("Password was to weak!");
+		return false;
+		
 	}
 	
 }
