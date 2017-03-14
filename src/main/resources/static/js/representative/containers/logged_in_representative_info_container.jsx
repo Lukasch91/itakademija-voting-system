@@ -3,33 +3,59 @@ var LoggedInRepresentativeInfoContainer = React.createClass( {
     getInitialState: function() {
         return {
             currentUser: {},
-            district: {}
+            district: {},
+            constituencyOfDistrict: {}
         };
+    },
+
+    propPreloader: function() {
+
+        var self = this;
+        var p1 = new Promise( function( resolve, reject ) {
+                                                        console.log("2");console.log(self.props.currentUser.name);
+            var currentUser = self.props.currentUser;
+            self.setState( { currentUser: currentUser });
+
+            resolve( 'Success!' );
+            // or
+            // reject ("Error!");
+        });
+        return p1;
+
     },
 
     componentWillMount: function() {
         var self = this;
 
-        axios.get( '/currentuser' )
-            .then( function( responseU ) {
-                self.setState( { currentUser: responseU.data });
-            })
-            .then( function( e ) {
-                axios.get( '/api/REPRES/district/' + self.state.currentUser.districtId )
-                    .then( function( responseD ) {
-                        self.setState( { district: responseD.data });
-                    });
-            });
+        self.propPreloader().then( function() {
+
+            var districtId = self.state.currentUser.districtId;
+
+            if ( districtId != null ) {
+                axios.all( [
+                    axios.get( '/api/REPRES/district/' + districtId ),
+                    axios.get( '/api/PUBLIC/constresultsdis/' + districtId )
+                ] )
+                    .then( axios.spread( function( districtResponse, constituencyResponse ) {
+                        self.setState( {
+                            district: districtResponse.data,
+                            constituencyOfDistrict: constituencyResponse.data
+                        });
+                    }) );
+            }
+        });
+
     },
 
     render: function() {
+                                                              console.log("3");console.log(this.state.currentUser.name);
         return (
             <LoggedInRepresentativeInfoComponent
-                
                 user={this.state.currentUser}
                 district={this.state.district}
+                constituency={this.state.constituencyOfDistrict}
                 />
-        )
+        )  
     }
 });
 

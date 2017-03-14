@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,12 +21,15 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import vs.CurrentUser;
 import vs.admin.Admin;
+import vs.admin_.party.PartyRepository;
 
 @RestController
 @Api
 @CrossOrigin
 public class RepresentativeController {
 
+	private static final Logger log = Logger.getLogger(RepresentativeController.class.getName());
+	
 	@Autowired
 	private RepresentativeRepository representativeRepository;
 
@@ -33,6 +37,7 @@ public class RepresentativeController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[UNUSED - ADMIN] - Get all representatives")
 	public List<Representative> findAllRepresentatives() {
+		log.info("||--> was used");
 		return representativeRepository.findAllRepresentatives();
 	}
 
@@ -42,6 +47,7 @@ public class RepresentativeController {
 			+ "\"email\": \"Sablonskis@gmail.com\", \"id\": null, \"loginName\": \"Sab\", "
 			+ "\"name\": \"Sablonius\", \"password\": \"xxx\", \"surname\": \"SABLONSKIS\"}")
 	public Representative createOrUpdateRepresentative(@Valid @RequestBody Representative representative) {
+		log.info("||--> was used");
 		return representativeRepository.saveOrUpdateRepresentative(representative);		
 	}
 
@@ -49,6 +55,7 @@ public class RepresentativeController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[ADMIN] - Get representative by id")
 	public Representative getRepresentativeById(@PathVariable("id") Integer id) {
+		log.info("||--> was used");
 		return representativeRepository.findRepresentativeById(id);
 	}
 
@@ -56,6 +63,7 @@ public class RepresentativeController {
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "[ADMIN] - Delete representative by id(realDelete)")
 	public void deleteRepresentativeById(@PathVariable("id") Integer id) {
+		log.info("||--> was used");
 		representativeRepository.deleteRepresentative(id);
 	}
 	
@@ -63,14 +71,24 @@ public class RepresentativeController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[UNUSED - ADMIN] - Find By LoginName")
 	public Representative findByLogin( @RequestBody String loginName) {
+		log.info("||--> was used");
 		return representativeRepository.findByLoginName(loginName);		
 	}
 	
 	@RequestMapping(value = "/api/REPRES/changepass", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Change password")
-	public void changePassword(@CurrentUser Representative representative, @RequestParam String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		representativeRepository.changePassword(representative, password);
+	public boolean changePassword(@CurrentUser Representative representative, @RequestParam String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		log.info("||--> was used");
+		boolean check = representativeRepository.changePassword(representative, password);
+		if (check){
+			log.warn("Password was changed!");
+			return true;
+		
+		}
+		log.warn("Password was to weak!");
+		return false;
+		
 	}
 	
 }

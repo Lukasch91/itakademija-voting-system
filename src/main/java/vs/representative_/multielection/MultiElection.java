@@ -28,7 +28,7 @@ public class MultiElection {
 
 	@Column
 	@VotesMultiElection // kablelio validacija naudojant String
-	@NotNull(message = "Būtina įvesti balsų skaičių")
+	//@NotNull(message = "Būtina įvesti balsų skaičių")
 	@Min(value = 0, message = "Minimalus balsų skaičius {value}")
 	@Max(value = 500000, message = "Maksimalus balsų skaičius {value}")
 	private String votes;

@@ -34,7 +34,8 @@ public class CandidateValidationService {
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity validateSaveConstituencyData(CandidateDataPackage data) {
 		log.debug("CandidateValidationService - validateSaveConstituencyData started...");
-		List<String[]> parsedStructure = csvParser.csvReader(data.getText(), data.getDelimiter());
+		List<String[]> parsedStructure = headerRemover(csvParser.csvReader(data.getText(), data.getDelimiter()),
+				data.isHasHeader());
 		List<Candidate> candidates = new ArrayList<Candidate>();
 		boolean dataIsValid = true;
 		boolean candidateIsValid = true;
@@ -47,17 +48,17 @@ public class CandidateValidationService {
 
 		if (dataIsValid) {
 			candidateService.setCandidatesConstituency(data.getId());
-			candidateService.setCandidatesData2(parsedStructure);
+			candidateService.setCandidatesData(parsedStructure);
 			candidates = candidateService.saveConstituencyCandidates();
 
 			for (Candidate can : candidates) {
 				validateCandidate(can);
 				if (validateCandidate(can).isEmpty() == false) {
+					// collect hibernate messages here
 					// System.out.println(candidateValidationService2.validateCandidate(can).get(0).toString());
 					candidateIsValid = false;
 				}
 			}
-
 		}
 
 		if (dataIsValid && candidateIsValid) {
@@ -90,7 +91,8 @@ public class CandidateValidationService {
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity validateSavePartyData(CandidateDataPackage data) {
 		log.debug("CandidateValidationService - validateSavePartyData started...");
-		List<String[]> parsedStructure = csvParser.csvReader(data.getText(), data.getDelimiter());
+		List<String[]> parsedStructure = headerRemover(csvParser.csvReader(data.getText(), data.getDelimiter()),
+				data.isHasHeader());
 		List<Candidate> candidates = new ArrayList<Candidate>();
 		boolean dataIsValid = true;
 		boolean candidateIsValid = true;
@@ -103,12 +105,13 @@ public class CandidateValidationService {
 
 		if (dataIsValid) {
 			candidateService.setCandidatesParty(data.getId());
-			candidateService.setCandidatesData2(parsedStructure);
+			candidateService.setCandidatesData(parsedStructure);
 			candidates = candidateService.savePartyCandidates();
 
 			for (Candidate can : candidates) {
 				validateCandidate(can);
 				if (validateCandidate(can).isEmpty() == false) {
+					// collect hibernate messages here
 					// System.out.println(candidateValidationService2.validateCandidate(can).get(0).toString());
 					candidateIsValid = false;
 				}
@@ -158,4 +161,12 @@ public class CandidateValidationService {
 		return violationMessages;
 	}
 
+	private List<String[]> headerRemover(List<String[]> parsedStructure, boolean header) {
+		boolean hasHeader = false;
+		hasHeader = header;
+		if (hasHeader) {
+			parsedStructure.remove(0);
+		}
+		return parsedStructure;
+	}
 }

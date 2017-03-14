@@ -7,13 +7,15 @@ import javax.persistence.EntityManager;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import vs.admin.AdminController;
 import vs.admin_.party.Party;
 import vs.admin_.representative.Representative;
 
 public class VotesMultiElectionValidator implements ConstraintValidator<VotesMultiElection, String> {
-
+	//private static final Logger log = Logger.getLogger(VotesMultiElectionValidator.class.getName());
 	// ===============================================
 	// private static final String FIND_ALL = "SELECT x FROM MultiElection x";
 	@Autowired
@@ -28,8 +30,10 @@ public class VotesMultiElectionValidator implements ConstraintValidator<VotesMul
 	public boolean isValid(String value, ConstraintValidatorContext context) {
 		// System.out.println(value instanceof BigDecimal);
 		// System.out.println(value);
-
-		String stringas = String.valueOf(value);
+		String stringas = "0";
+		if (value!=""){
+			stringas = String.valueOf(value);
+		}
 		
 		// System.err.println(stringas instanceof String);
 		// System.err.println();
@@ -41,7 +45,7 @@ public class VotesMultiElectionValidator implements ConstraintValidator<VotesMul
 		//System.out.println("-------------------------------****--------------------------------------");
 		//System.out.println("Before if. value = " + stringas);
 		//System.out.println(Pattern.compile(regex).matcher(stringas).matches());
-		if (!Pattern.compile(regex).matcher(value).matches()) { /* !!! cia buvo ponas "stringas", bet as padaviau "value" */
+		if (!Pattern.compile(regex).matcher(stringas).matches()) { /* !!! cia buvo ponas "stringas", bet as padaviau "value" */
 			//System.out.println("Check pattern: " + !Pattern.compile(regex).matcher(stringas).matches());
 			//System.out.println("duplicate = true :" + stringas);
 			duplicate = true;
@@ -50,7 +54,7 @@ public class VotesMultiElectionValidator implements ConstraintValidator<VotesMul
 		if (duplicate) {
 			//System.out.println("-------------------------------****--------------------------------------");
 			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("Įvestas blogas balsų skaičius <" + value + ">, prašome patikrinti.")
+			context.buildConstraintViolationWithTemplate("Įvestas blogas balsų skaičius <" + stringas + ">, prašome patikrinti.")
 					.addConstraintViolation();
 			return false;
 		} else {

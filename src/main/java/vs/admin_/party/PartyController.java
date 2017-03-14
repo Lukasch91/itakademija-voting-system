@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
+import vs.admin_.district.DistrictController;
 
 @RestController
 public class PartyController {
 
+	private static final Logger log = Logger.getLogger(PartyController.class.getName());
+	
 	@Autowired
 	private PartyRepository partyRepository;
 	@Autowired
@@ -25,6 +29,7 @@ public class PartyController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[REPRES] - Get all  Parties")
 	public List<Party> findAllParties() {
+		log.info("||--> was used");
 		return partyRepository.findAllParties();
 	}
 
@@ -32,6 +37,7 @@ public class PartyController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[ADMIN] - Save or update Party")
 	public Party createOrUpdateParty(@Valid @RequestBody Party party) {
+		log.info("||--> was used");
 		return partyRepository.saveOrUpdate(party);
 	}
 
@@ -39,6 +45,7 @@ public class PartyController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[UNUSED - ADMIN] - Find Party by id")
 	public Party getPartyById(@PathVariable("id") Integer id) {
+		log.info("||--> was used. Id: " + id);
 		return partyRepository.findPartyById(id);
 	}
 
@@ -46,6 +53,7 @@ public class PartyController {
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "[ADMIN] - Delete Party by id")
 	public void detelePartyById(@PathVariable("id") Integer id) {
+		log.info("||--> was used. Id: " + id);
 		partyRepository.deleteParty(id);
 	}
 
@@ -53,6 +61,7 @@ public class PartyController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[ADMIN] - Find Parties and add Number of candidates")
 	public List<PartyExtension> findAllPartiesExtended() {
+		log.debug("||--> add number of candidates was used.");
 		return partyService.findAllPartiesExtended();
 	}
 

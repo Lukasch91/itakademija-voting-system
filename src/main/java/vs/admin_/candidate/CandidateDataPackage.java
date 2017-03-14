@@ -5,6 +5,7 @@ public class CandidateDataPackage {
 	private String text;
 	private int id;
 	private char delimiter;
+	private boolean hasHeader;
 
 	CandidateDataPackage() {
 	}
@@ -32,6 +33,15 @@ public class CandidateDataPackage {
 	public void setDelimiter(char delimiter) {
 		this.delimiter = delimiter;
 	}
+
+	public boolean isHasHeader() {
+		return hasHeader;
+	}
+
+	public void setHasHeader(boolean hasHeader) {
+		this.hasHeader = hasHeader;
+	}
+	
 	
 	
 

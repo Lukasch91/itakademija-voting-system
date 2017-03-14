@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,8 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 public class PasswordController {
 
+	private static final Logger log = Logger.getLogger(PasswordController.class.getName());
+	
 	@Autowired
 	private PasswordService passwordService;
 
@@ -25,6 +28,7 @@ public class PasswordController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[UNUSED - ADMIN] - Get Password")
 	public @ResponseBody ArrayList<String> getGeneratedPassword() {
+		log.debug("PasswordController - getGeneratedPassword was used!");
 		return passwordService.GeneratedPasswordList();
 	}
 
@@ -33,6 +37,7 @@ public class PasswordController {
 	@ApiOperation(value = "[UNUSED - ADMIN] - Hash Password")
 	public String getHashedPassword(@RequestParam String p)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		log.debug("PasswordController - getHashedPassword was used!");
 		return passwordService.PassHashing(p);
 	}
 

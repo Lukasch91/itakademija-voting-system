@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 
 import vs.admin_.candidate.Candidate;
 import vs.admin_.district.District;
+import vs.utils_.hibernate.validators.multiElection.VotesMultiElection;
 
 @Entity
 @Table(name = "single_member_votes")
@@ -27,7 +28,8 @@ public class SingleElection {
 	private Integer singleId;
 
 	@Column
-	@NotNull(message = "Būtina įvesti balsų skaičių")
+	//@NotNull(message = "Būtina įvesti balsų skaičių")
+	@VotesMultiElection
 	@Min(value = 0, message = "Minimalus balsų skaičius {value}")
 	@Max(value = 500000, message = "Maksimalus balsų skaičius {value}")
 	private String singleVotes;

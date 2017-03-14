@@ -10,18 +10,17 @@ var RegisterVotesSingleContainer = React.createClass( {
             enteredSpoiltVote: {},
 
             currentDistrictId: 0,
-            validationArray: []
+            validationArray: [],
+            currentUser: {},
+            hasErrors: ""
         };
     },
 
     componentWillMount: function() {
         var self = this;
-        //bad design??? maybe pass a prop by rendering this element 
-        //from <LoggedInRepresentativeInfoContainer /> as it knows the districtId
-        //also maybe possible to split into 2 lifecycle methods
         axios.get( '/currentuser' )
             .then( function( response ) {
-                self.setState( { currentDistrictId: response.data.districtId });
+                self.setState( { currentDistrictId: response.data.districtId, currentUser: response.data });
                 axios.all( [
                     axios.get( '/api/REPRES/candidate/' + response.data.districtId ),
                     axios.get( '/api/REPRES/singleelection' ),
@@ -84,8 +83,7 @@ var RegisterVotesSingleContainer = React.createClass( {
         var self = this;
         var spoiltVoteUpdate = self.state.enteredSpoiltVote;
         spoiltVoteUpdate.singleVotes = event.target.value;
-        self.setState( { enteredSpoiltVote: spoiltVoteUpdate });
-
+        self.setState( { enteredSpoiltVote: spoiltVoteUpdate, hasErrors: "" });
     },
 
     handleSingleVotesChange: function( passCandId, event ) {
@@ -96,7 +94,7 @@ var RegisterVotesSingleContainer = React.createClass( {
                 updateResults[i].singleVotes = event.target.value;
             }
         }
-        self.setState( { enteredResults: updateResults });
+        self.setState( { enteredResults: updateResults, hasErrors: "" });
     },
 
     handleExport: function() {
@@ -105,7 +103,7 @@ var RegisterVotesSingleContainer = React.createClass( {
         var singleVotesPackage = [];
         singleVotesPackage = self.state.enteredResults.slice();
         singleVotesPackage.push( self.state.enteredSpoiltVote );
-
+        
         axios.post( '/api/REPRES/singleelection', singleVotesPackage )
             .then( function( response ) {
 
@@ -117,7 +115,7 @@ var RegisterVotesSingleContainer = React.createClass( {
             })
             .catch( function( error ) {
                 if ( error.response.status == 400 ) {
-                    self.setState( { validationArray: error.response.data });
+                    self.setState( { validationArray: error.response.data, hasErrors: "Balsai turi klaidų, peržiūrėkite sąraša!" });
                     console.log( "___Error messages:___" );
                     console.log( error.response.data );
                 }
@@ -158,7 +156,7 @@ var RegisterVotesSingleContainer = React.createClass( {
                     <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
                         <h3>Balsavimo rezultatų įvedimas vienmandatėse apygardose</h3>
                     </div>
-                    <LoggedInRepresentativeInfoContainer />
+                    <LoggedInRepresentativeInfoContainer currentUser={self.state.currentUser}/>
                     <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
                         <table className="table table-hover">
                             <thead>
@@ -184,13 +182,28 @@ var RegisterVotesSingleContainer = React.createClass( {
                         </table>
                     </div>
                     <div style={{ textAlign: 'center' }}>
+                        <p>{self.state.hasErrors}</p>
                         <button type="button" className="btn btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
                     </div>
 
                 </form>
             )
         } else {
+            /*
+             * 
+             * nepagauna situ funkciju, bet atvaizduoja wtf?
+             * 
+             * 
+             */
+            console.log("1");console.log(self.state.currentUser.name);
+             /* 
+             * 
+             * 
+             * 
+             * 
+             */
             var singleElectionResultsList = this.state.singleResults.map( function( single, index ) {
+             
                 return (
                     <tr key={'single' + index}>
                         <td> {single.singleCandidate.candidateName} {single.singleCandidate.candidateSurname}</td>
@@ -198,13 +211,13 @@ var RegisterVotesSingleContainer = React.createClass( {
                     </tr>
                 );
             });
-
+            
             return (
                 <div>
                     <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
                         <h3>Balsavimo rezultatai vienmandatėse apygardose</h3>
                     </div>
-                    <LoggedInRepresentativeInfoContainer />
+                    <LoggedInRepresentativeInfoContainer currentUser={self.state.currentUser}/>
                     <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
                         <table className="table table-hover">
                             <thead>

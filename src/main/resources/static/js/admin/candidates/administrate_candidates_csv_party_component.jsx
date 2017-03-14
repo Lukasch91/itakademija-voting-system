@@ -8,12 +8,13 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
             loading: "",
             checkedComma: true,
             checkedSemiColon: false,
+            checkedHeader: false,
             error: ""
         };
     },
 
     componentWillMount: function() {
-        var content = { text: "No content!!!", id: this.props.party.id, delimiter: ',' };
+        var content = { text: "No content!!!", id: this.props.party.id, delimiter: ',', hasHeader: false };
         this.setState( {
             id: this.props.party.id,
             fileString: content
@@ -118,6 +119,26 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
         });
     },
 
+    header: function() {
+        var self = this;
+        var fileString = self.state.fileString;
+        var checked = self.state.checkedHeader;
+
+        if ( !checked ) {
+            fileString.hasHeader = true;
+            this.setState( {
+                checkedHeader: true,
+                fileString: fileString
+            });
+        } else {
+            fileString.hasHeader = false;
+            this.setState( {
+                checkedHeader: false,
+                fileString: fileString
+            });
+        }
+    },
+
     render: function() {
         var self = this;
         var modalId = "modal" + this.props.party.id;
@@ -153,13 +174,14 @@ var AdministrateCandidatesCSVPartyComponent = React.createClass( {
                                             className="form-control" />
                                     </div>
                                 </form>
-                                <p>{self.state.loading}</p>
+                                <p className="bg-success text-black" >{self.state.loading}</p>
                                 <form className="form">
                                     <input type="radio" onChange={self.comma} checked={self.state.checkedComma} /> Duomenys atskirti kableliais<br />
-                                    <input type="radio" onChange={self.semicolon} checked={self.state.checkedSemiColon} /> Duomenys atskirti kabliataškiais
+                                    <input type="radio" onChange={self.semicolon} checked={self.state.checkedSemiColon} /> Duomenys atskirti kabliataškiais<br />
+                                    <input type="checkbox" onChange={self.header} /> Duomenys turi antraštės
                                 </form>
                                 <br />
-                                <p>{self.state.error}</p>
+                                <p className="bg-danger text-black" >{self.state.error}</p>
                             </div>
                             <div className="modal-footer">
                                 <button

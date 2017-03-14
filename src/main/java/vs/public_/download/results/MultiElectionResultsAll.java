@@ -3,27 +3,27 @@ package vs.public_.download.results;
 
 import java.math.BigDecimal;
 
-public class SingleElectionResultsAll {
+public class MultiElectionResultsAll {
 
-	/* constituency | class SingleElectionConstituency */
+	/* constituency | class MultiElectionConstituencyList */
 	private Integer conId;
 	private String conTitle;
 	private Long conNumberOfDistricts;
-	private Long conNumberOfDistrictsPublishedResults;
+	private Long conDistrictsPublishedResults;
 	private Long conNumberOfVoters;
-	private Long conNumberOfVotersWhoVote;
-	private BigDecimal conPercentageOfVotersWhoVote;
-	private Long conNumberOfInvalidVotes;
+	private Long conNumberOfVotersWhoVoted;
+	private BigDecimal conPercentegeOfVoted;
+	private Long conInvalidVotes;
 	private BigDecimal conPercentageOfInvalidVotes;
-	private Long conNumberOfValidVotes;
+	private Long conValidVotes;
 	private BigDecimal conPercentageOfValidVotes;
 	/* constituency */
 
-	/* district | class SingleElectionDistrict */
+	/* district | class MultiElectionDistrictList */
 	private Integer distId;
 	private String distTitle;
 	private Long distNumberOfVoters;
-	private Long distVoted;
+	private Long distNumberOfVotersWhoVoted;
 	private BigDecimal distPercentageOfVoted;
 	private Long distInvalidVotes;
 	private BigDecimal distPercentageOfInvalidVotes;
@@ -31,18 +31,15 @@ public class SingleElectionResultsAll {
 	private BigDecimal distPercentageOfValidVotes;
 	/* district */
 
-	/* result | class SingleElectionResult */
-	private Integer resCandidateId;
-	private String resCandidateFirstname;
-	private String resCandidateSurname;
-	private String resParty;
-	private Long resVoted;
-	private BigDecimal resPercentageOfValidVotes;
+	/* result | class MultiElectionResults */
+	private Integer resId;
+	private String resPartyTitle;
+	private Long resVotes;
 	private BigDecimal resPercentageOfAllVotes;
-	private Integer resConsId;
+	private Long resNumberOfMandates;
 	/* result */
 
-	public SingleElectionResultsAll() {
+	public MultiElectionResultsAll() {
 	}
 
 	public Integer getConId() {
@@ -69,12 +66,12 @@ public class SingleElectionResultsAll {
 		this.conNumberOfDistricts = conNumberOfDistricts;
 	}
 
-	public Long getConNumberOfDistrictsPublishedResults() {
-		return conNumberOfDistrictsPublishedResults;
+	public Long getConDistrictsPublishedResults() {
+		return conDistrictsPublishedResults;
 	}
 
-	public void setConNumberOfDistrictsPublishedResults(Long conNumberOfDistrictsPublishedResults) {
-		this.conNumberOfDistrictsPublishedResults = conNumberOfDistrictsPublishedResults;
+	public void setConDistrictsPublishedResults(Long conDistrictsPublishedResults) {
+		this.conDistrictsPublishedResults = conDistrictsPublishedResults;
 	}
 
 	public Long getConNumberOfVoters() {
@@ -85,28 +82,28 @@ public class SingleElectionResultsAll {
 		this.conNumberOfVoters = conNumberOfVoters;
 	}
 
-	public Long getConNumberOfVotersWhoVote() {
-		return conNumberOfVotersWhoVote;
+	public Long getConNumberOfVotersWhoVoted() {
+		return conNumberOfVotersWhoVoted;
 	}
 
-	public void setConNumberOfVotersWhoVote(Long conNumberOfVotersWhoVote) {
-		this.conNumberOfVotersWhoVote = conNumberOfVotersWhoVote;
+	public void setConNumberOfVotersWhoVoted(Long conNumberOfVotersWhoVoted) {
+		this.conNumberOfVotersWhoVoted = conNumberOfVotersWhoVoted;
 	}
 
-	public BigDecimal getConPercentageOfVotersWhoVote() {
-		return conPercentageOfVotersWhoVote;
+	public BigDecimal getConPercentegeOfVoted() {
+		return conPercentegeOfVoted;
 	}
 
-	public void setConPercentageOfVotersWhoVote(BigDecimal conPercentageOfVotersWhoVote) {
-		this.conPercentageOfVotersWhoVote = conPercentageOfVotersWhoVote;
+	public void setConPercentegeOfVoted(BigDecimal conPercentegeOfVoted) {
+		this.conPercentegeOfVoted = conPercentegeOfVoted;
 	}
 
-	public Long getConNumberOfInvalidVotes() {
-		return conNumberOfInvalidVotes;
+	public Long getConInvalidVotes() {
+		return conInvalidVotes;
 	}
 
-	public void setConNumberOfInvalidVotes(Long conNumberOfInvalidVotes) {
-		this.conNumberOfInvalidVotes = conNumberOfInvalidVotes;
+	public void setConInvalidVotes(Long conInvalidVotes) {
+		this.conInvalidVotes = conInvalidVotes;
 	}
 
 	public BigDecimal getConPercentageOfInvalidVotes() {
@@ -117,12 +114,12 @@ public class SingleElectionResultsAll {
 		this.conPercentageOfInvalidVotes = conPercentageOfInvalidVotes;
 	}
 
-	public Long getConNumberOfValidVotes() {
-		return conNumberOfValidVotes;
+	public Long getConValidVotes() {
+		return conValidVotes;
 	}
 
-	public void setConNumberOfValidVotes(Long conNumberOfValidVotes) {
-		this.conNumberOfValidVotes = conNumberOfValidVotes;
+	public void setConValidVotes(Long conValidVotes) {
+		this.conValidVotes = conValidVotes;
 	}
 
 	public BigDecimal getConPercentageOfValidVotes() {
@@ -157,12 +154,12 @@ public class SingleElectionResultsAll {
 		this.distNumberOfVoters = distNumberOfVoters;
 	}
 
-	public Long getDistVoted() {
-		return distVoted;
+	public Long getDistNumberOfVotersWhoVoted() {
+		return distNumberOfVotersWhoVoted;
 	}
 
-	public void setDistVoted(Long distVoted) {
-		this.distVoted = distVoted;
+	public void setDistNumberOfVotersWhoVoted(Long distNumberOfVotersWhoVoted) {
+		this.distNumberOfVotersWhoVoted = distNumberOfVotersWhoVoted;
 	}
 
 	public BigDecimal getDistPercentageOfVoted() {
@@ -205,52 +202,28 @@ public class SingleElectionResultsAll {
 		this.distPercentageOfValidVotes = distPercentageOfValidVotes;
 	}
 
-	public Integer getResCandidateId() {
-		return resCandidateId;
+	public Integer getResId() {
+		return resId;
 	}
 
-	public void setResCandidateId(Integer resCandidateId) {
-		this.resCandidateId = resCandidateId;
+	public void setResId(Integer resId) {
+		this.resId = resId;
 	}
 
-	public String getResCandidateFirstname() {
-		return resCandidateFirstname;
+	public String getResPartyTitle() {
+		return resPartyTitle;
 	}
 
-	public void setResCandidateFirstname(String resCandidateFirstname) {
-		this.resCandidateFirstname = resCandidateFirstname;
+	public void setResPartyTitle(String resPartyTitle) {
+		this.resPartyTitle = resPartyTitle;
 	}
 
-	public String getResCandidateSurname() {
-		return resCandidateSurname;
+	public Long getResVotes() {
+		return resVotes;
 	}
 
-	public void setResCandidateSurname(String resCandidateSurname) {
-		this.resCandidateSurname = resCandidateSurname;
-	}
-
-	public String getResParty() {
-		return resParty;
-	}
-
-	public void setResParty(String resParty) {
-		this.resParty = resParty;
-	}
-
-	public Long getResVoted() {
-		return resVoted;
-	}
-
-	public void setResVoted(Long resVoted) {
-		this.resVoted = resVoted;
-	}
-
-	public BigDecimal getResPercentageOfValidVotes() {
-		return resPercentageOfValidVotes;
-	}
-
-	public void setResPercentageOfValidVotes(BigDecimal resPercentageOfValidVotes) {
-		this.resPercentageOfValidVotes = resPercentageOfValidVotes;
+	public void setResVotes(Long resVotes) {
+		this.resVotes = resVotes;
 	}
 
 	public BigDecimal getResPercentageOfAllVotes() {
@@ -261,11 +234,12 @@ public class SingleElectionResultsAll {
 		this.resPercentageOfAllVotes = resPercentageOfAllVotes;
 	}
 
-	public Integer getResConsId() {
-		return resConsId;
+	public Long getResNumberOfMandates() {
+		return resNumberOfMandates;
 	}
 
-	public void setResConsId(Integer resConsId) {
-		this.resConsId = resConsId;
+	public void setResNumberOfMandates(Long resNumberOfMandates) {
+		this.resNumberOfMandates = resNumberOfMandates;
 	}
+
 }

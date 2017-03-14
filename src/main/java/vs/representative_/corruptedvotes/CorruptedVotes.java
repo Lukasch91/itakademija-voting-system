@@ -15,6 +15,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import vs.admin_.district.District;
+import vs.utils_.hibernate.validators.multiElection.VotesMultiElection;
 
 @Entity
 @Table
@@ -30,7 +31,8 @@ public class CorruptedVotes {
 	private District district = new District();
 
 	@Column
-	@NotNull(message = "Būtina įvesti balsų skaičių")
+	//@NotNull(message = "Būtina įvesti balsų skaičių")
+	@VotesMultiElection
 	@Min(value = 0, message = "Minimalus balsų skaičius {value}")
 	@Max(value = 500000, message = "Maksimalus balsų skaičius {value}")
 	private String votes;
