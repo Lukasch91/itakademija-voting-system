@@ -42,6 +42,13 @@ public class CorruptedVotesController {
 		return corruptedVotesRepository.findCorruptedVotesById(id);
 	}
 	
+	@RequestMapping(value = "/api/ADMIN/invalid-votes-dist/{id}/{typeMulti}", method = RequestMethod.GET)
+	@ResponseStatus(org.springframework.http.HttpStatus.OK)
+	@ApiOperation(value = "Get invalid votes by district id")
+	public CorruptedVotes getCorruptedVotesByDistrictAndType(@PathVariable("id") Integer id, @PathVariable("typeMulti") Boolean typeMulti) {
+		return corruptedVotesRepository.getCorruptedVotesByDistrictAndType(id, typeMulti);
+	}
+	
 	@RequestMapping(value = "/api/ADMIN/invalid/{id}", method = RequestMethod.GET)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[UNUSED - ADMIN] - Get invalid votes by id")

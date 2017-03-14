@@ -21,8 +21,6 @@ var PubDelVotesDistrictListComponent = React.createClass( {
         return multiVotesList;
     },
 
-
-
     render: function() {
 
         var self = this;
@@ -72,7 +70,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                     </tr>
                 )
             });
-            
+
             var multiVotesList = self.getMultiVotesByDistrict( district.id ).map( function( multiVote, index ) {
                 return (
                     <tr key={index}>
@@ -104,9 +102,12 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                                             </thead>
                                             <tbody>
                                                 {singleVotesList}
+                                                <tr>
+                                                    <td>SUGADINTI BALSAI</td>
+                                                    <td>0</td>
+                                                </tr>
                                             </tbody>
                                         </table>
-                                        <p>Sugadinti balsai: {self.props.invalidVotes(district.id )}</p>
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-default" data-dismiss="modal">Uždaryti</button>
@@ -137,23 +138,23 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                     </td>
 
                     <td><button type="button" className="btn btn-xs btn-danger" data-toggle="modal" data-target={modalSingleDeleteIdHash} disabled={disabledSingleDelete} >Trinti balsus</button>
-                    <div className="modal fade" id={modalSingleDeleteId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
-                                <h4 className="modal-title" id="myModalLabel">Dėmesio!</h4>
-                            </div>
-                            <div className="modal-body">
-                                Ar tikrai norite trinti {district.title} apylinkės balsus vienmandatėje apygardoje?
+                        <div className="modal fade" id={modalSingleDeleteId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div className="modal-dialog">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <button type="button" className="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span className="sr-only">Close</span></button>
+                                        <h4 className="modal-title" id="myModalLabel">Dėmesio!</h4>
+                                    </div>
+                                    <div className="modal-body">
+                                        Ar tikrai norite trinti {district.title} apylinkės balsus vienmandatėje apygardoje?
                 </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
-                                <button type="button" className="btn btn-default" data-dismiss="modal" onClick={self.props.onDeleteSingleVotes( district.id )} >Trinti</button>
+                                    <div className="modal-footer">
+                                        <button type="button" className="btn btn-default" data-dismiss="modal">Atšaukti</button>
+                                        <button type="button" className="btn btn-default" data-dismiss="modal" onClick={self.props.onDeleteSingleVotes( district.id )} >Trinti</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
                     </td>
 
                     <td><button type="button" className="btn btn-xs btn-success" data-toggle="modal" data-target={modalMultiListIdHash} disabled={disabledMultiList}>Peržiūrėti balsus</button>
@@ -248,7 +249,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                         {districtList}
                     </tbody>
                 </table>
-                            
+
             </div>
         )
     }
