@@ -24,18 +24,19 @@ var ChangePasswordContainer = React.createClass( {
 
     handleChangePass: function() {
         var self = this;
-        if ( this.state.representative.newPass == this.state.representative.newPassCheck ) {
+        if ( this.state.representative.newPass != this.state.representative.newPassCheck ) {
+            self.setState( { changeStatus: 'Slaptažodžiai nesutampa!', redirectTo: '/change-pass' });
+            
+        } else {
             axios.post( 'http://localhost:8080/api/REPRES/changepass?password=' + this.state.representative.newPass ).then( function( response ) {
                 self.setState( { passwordValidation: response.data });
                 console.log(self.state.passwordValidation);
-                if ( self.state.passwordValidation == true ) {
-                    self.setState( { changeStatus: 'Slaptažodis sėkmingai pakeistas', redirectTo: '/' });
+                if ( self.state.passwordValidation == false ) {
+                    self.setState( { changeStatus: 'Slaptažodis per silpnas!', redirectTo: '/change-pass' });      
                 } else {
-                    self.setState( { changeStatus: 'Slaptažodis per silpnas!', redirectTo: '/change-pass' });
+                    self.setState( { changeStatus: 'Slaptažodis sėkmingai pakeistas', redirectTo: '/' });
                 }
             });
-        } else {
-            self.setState( { changeStatus: 'Slaptažodžiai nesutampa!', redirectTo: '/change-pass' });
         }
 
     },

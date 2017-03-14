@@ -5,7 +5,7 @@ var App = React.createClass( {
                 <a href="/"><img style={{ paddingBottom: '10px' }} src="images/vrk-logo-lt.png" alt="vrk logo" /></a>
                 <NavigationAdminContainer />
                 {this.props.children}
-                <div className="container footer navbar-fixed-bottom">&copy; KALM, 2017</div>
+                <div className="container footer navbar-fixed-bottom" style={{backgroundColor: '#660000'}}>&copy; KALM, 2017</div>
             </div>
         );
     }

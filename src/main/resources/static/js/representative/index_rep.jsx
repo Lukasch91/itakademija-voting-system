@@ -6,7 +6,7 @@ var App = React.createClass( {
                 <NavigationRepContainer />
 
                 {this.props.children}
-                <div className="container footer navbar-fixed-bottom">&copy; KALM, 2017</div>
+                <div className="container footer navbar-fixed-bottom" style={{backgroundColor: '#006600'}}>&copy; KALM, 2017</div>
             </div>
         );
     }
