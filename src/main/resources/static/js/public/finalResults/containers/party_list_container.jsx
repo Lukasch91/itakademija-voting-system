@@ -3,6 +3,8 @@ var PartyListContainer = React.createClass( {
     getInitialState: function() {
         return {
             parties: [],
+            mandates: [],
+            labels: [],
         };
     },
 
@@ -12,17 +14,18 @@ var PartyListContainer = React.createClass( {
             .then( function( response ) {
                 self.setState( {
                     parties: response.data,
+                    
                 });
-
-            }).then( function() {
                 var ctx = document.getElementById( "myChart" );
                 var myChart = new Chart( ctx, {
                     type: 'bar',
                     data: {
-                        labels: [self.state.parties[0].partyTitle, this.state.parties[1].partyTitle],
+// CIA REIKIA PADUOTI PARTY TITLES MASYVA                       
+                        labels: [this.state.parties],
                         datasets: [{
                             label: '# of Votes',
-                            data: [self.state.parties[0].mandates, this.state.parties[1].mandates],
+// CIA REIKIA PADUOTI MANDATU MASYVA     
+                            data: [this.state.parties],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
@@ -53,6 +56,8 @@ var PartyListContainer = React.createClass( {
                     }
                 });
             })
+             
+            
     },
 
     render: function() {
@@ -60,6 +65,8 @@ var PartyListContainer = React.createClass( {
             <div>
                 <PartyListComponent
                     parties={this.state.parties}
+                    labels={this.state.labels}
+                    mandates={this.state.mandates}
                     />
                 <canvas id="myChart" width="400" height="400"></canvas>
             </div>

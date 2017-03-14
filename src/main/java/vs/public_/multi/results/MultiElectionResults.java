@@ -8,7 +8,7 @@ public class MultiElectionResults {
 
 	private String partyTitle;
 
-	private Long Votes;
+	private Long votes;
 
 	private BigDecimal percentageOfAllVotes;
 
@@ -19,7 +19,7 @@ public class MultiElectionResults {
 		super();
 		this.id = id;
 		this.partyTitle = partyTitle;
-		Votes = votes;
+		this.votes = votes;
 		this.percentageOfAllVotes = percentageOfAllVotes;
 		this.numberOfMandates = numberOfMandates;
 	}
@@ -41,11 +41,11 @@ public class MultiElectionResults {
 	}
 
 	public Long getVotes() {
-		return Votes;
+		return votes;
 	}
 
 	public void setVotes(Long votes) {
-		Votes = votes;
+		this.votes = votes;
 	}
 
 	public BigDecimal getPercentageOfAllVotes() {
