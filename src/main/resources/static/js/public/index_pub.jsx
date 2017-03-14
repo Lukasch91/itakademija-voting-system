@@ -1,3 +1,24 @@
+var Link = window.ReactRouter.Link;
+var NavLink = function( props, context ) {
+    var isActive = context.router.isActive( props.to );
+    var className = isActive ? 'active' : '';
+
+    return (
+        <li className={className}>
+            <Link {...props}>
+                {props.children}
+            </Link>
+        </li>
+    );
+};
+NavLink.contextTypes = {
+        router: React.PropTypes.object,
+    };
+
+    NavLink.propTypes = {
+        children: React.PropTypes.node.isRequired,
+        to: React.PropTypes.string.isRequired,
+    };
 var App = React.createClass( {
     
 
@@ -7,7 +28,11 @@ var App = React.createClass( {
                 <img style={{ paddingBottom: '10px' }} src="images/vrk-logo-lt.png" alt="vrk logo" />
                 <NavigationPubContainer />
                 {this.props.children}
-                <div className="container footer navbar-fixed-bottom">&copy; KALM, 2017</div>
+                <div className="container footer ">
+                <ul id="apiid"><NavLink  id="apiresults" to="/apiresults">API Servisas</NavLink></ul>
+                <p>&copy; KALM, 2017</p>
+                
+                </div>
             </div>
         );
     }
@@ -41,7 +66,8 @@ ReactDOM.render((
             <Route path="/finresults" component={PartyListContainer} />
             <Route path="/members" component={MembersOfParliamentContainer} />
 
-
+            <Route path="/apiresults" component={ApiComponent} />
+        
             <Route path="*" component={NoMatch} />
         </Route>
     </Router>

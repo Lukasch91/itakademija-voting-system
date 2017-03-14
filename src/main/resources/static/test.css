@@ -2,6 +2,23 @@
 	width: 100&;
 }
 
+
+#apiid{
+	position:absolute;
+	display:block;
+	list-style-type: none;	
+list-style: none;
+
+}
+#apiresults{
+		text-decoration:none;
+		color:#9d9d9d;
+}
+#apiresults:hover{
+		color:white;
+}
+
+
 .absolute-center {
   margin: auto;
   position: absolute;

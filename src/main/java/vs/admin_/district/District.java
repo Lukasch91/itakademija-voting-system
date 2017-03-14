@@ -24,6 +24,8 @@ import org.hibernate.validator.constraints.NotBlank;
 import vs.admin_.representative.Representative;
 import vs.utils_.hibernate.validators.District.UniqueDistrictInConstituency;
 
+import vs.utils_.hibernate.validators.multiElection.VotesMultiElection;
+
 @Entity
 @Table(name = "districts")
 @UniqueDistrictInConstituency
@@ -41,8 +43,8 @@ public class District {
 	private String title;
 
 	@Column
-	@NotNull( message = "Rinkėjų skaičiaus laukas negali būti tuščias")
-	@Min(value = 0, message = "Rinkėjų skaičiaus minimali reikšmė {value}")
+	@NotNull( message = "Prašome patikrinti rinkėjų skaičių")
+	@Min(value = 1, message = "Rinkėjų skaičiaus minimali reikšmė {value}")
 	@Max(value = 500000, message = "Rinkėjų skaičiaus reikšmė ribota iki {value}")
 	private Long numberOfVoters;
 
