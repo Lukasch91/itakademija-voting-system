@@ -6,7 +6,8 @@ var ChangePasswordContainer = React.createClass( {
                 newPass: '',
                 newPassCheck: '',
                 changeStatus: '',
-                redirectTo: ''
+                redirectTo: '',
+                passwordValidation: '',
             }
 
         }
@@ -24,11 +25,17 @@ var ChangePasswordContainer = React.createClass( {
     handleChangePass: function() {
         var self = this;
         if ( this.state.representative.newPass == this.state.representative.newPassCheck ) {
-            axios.post( 'http://localhost:8080/api/REPRES/changepass?password=' + this.state.representative.newPass ).then( function() {
-                self.setState( { changeStatus: 'Slaptažodis sėkmingai pakeistas', redirectTo: '/' });
+            axios.post( 'http://localhost:8080/api/REPRES/changepass?password=' + this.state.representative.newPass ).then( function( response ) {
+                self.setState( { passwordValidation: response.data });
+                console.log(self.state.passwordValidation);
+                if ( self.state.passwordValidation == true ) {
+                    self.setState( { changeStatus: 'Slaptažodis sėkmingai pakeistas', redirectTo: '/' });
+                } else {
+                    self.setState( { changeStatus: 'Slaptažodis per silpnas!', redirectTo: '/change-pass' });
+                }
             });
         } else {
-            self.setState( { changeStatus: 'Slaptažodžiai nesutampa!', redirectTo: '/change-pass'  });
+            self.setState( { changeStatus: 'Slaptažodžiai nesutampa!', redirectTo: '/change-pass' });
         }
 
     },
@@ -39,15 +46,15 @@ var ChangePasswordContainer = React.createClass( {
 
     render: function() {
         return (
-                <div className="col-md-4">
-            <ChangePasswordComponent
-                representative={this.state.representative}
-                changeStatus={this.state.changeStatus}
-                onChangePassClick={this.handleChangePass}
-                onFieldChange={this.handleFieldChange}
-                onPassChangeRedirect={this.handlePassChangeRedirect}
-                />
-                </div>
+            <div className="col-md-4">
+                <ChangePasswordComponent
+                    representative={this.state.representative}
+                    changeStatus={this.state.changeStatus}
+                    onChangePassClick={this.handleChangePass}
+                    onFieldChange={this.handleFieldChange}
+                    onPassChangeRedirect={this.handlePassChangeRedirect}
+                    />
+            </div>
         )
     }
 });

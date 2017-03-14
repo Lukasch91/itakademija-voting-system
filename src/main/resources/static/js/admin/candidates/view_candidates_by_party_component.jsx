@@ -72,7 +72,7 @@ var ViewCandidatesByPartyComponent = React.createClass( {
                     </button>
 
                 <div className="modal fade" id={modalId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div className="modal-dialog">
+                    <div className="modal-dialog modal-lg">
                         <div className="modal-content">
                             <div className="modal-header">
 
