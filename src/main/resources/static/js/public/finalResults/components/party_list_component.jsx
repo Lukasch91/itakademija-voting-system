@@ -1,7 +1,5 @@
 var PartyListComponent = React.createClass( {
 
-
-
     render: function() {
         var self = this;
         var partiesList = this.props.parties.map( function( party, index ) {
@@ -32,7 +30,6 @@ var PartyListComponent = React.createClass( {
                         </tbody>
                     </table>
                 </div>
-                <LineChart data={this.props.parties}  width="600" height="250" />
             </div>
         )
     }

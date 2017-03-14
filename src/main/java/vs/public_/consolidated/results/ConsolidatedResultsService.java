@@ -24,7 +24,7 @@ import vs.public_.single.results.SingleElectionResult;
 import vs.public_.single.results.SingleElectionResultsService;
 import vs.representative_.singleelection.SingleElectionRepository;
 
-
+@Service
 public class ConsolidatedResultsService {
 	
 	private static final Logger log = Logger.getLogger(ConsolidatedResultsService.class.getName());
