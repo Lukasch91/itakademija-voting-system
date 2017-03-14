@@ -26,7 +26,7 @@ import vs.representative_.singleelection.SingleElectionRepository;
 
 @Service
 public class ConsolidatedResultsService {
-	
+
 	private static final Logger log = Logger.getLogger(ConsolidatedResultsService.class.getName());
 
 	@Autowired
@@ -64,7 +64,7 @@ public class ConsolidatedResultsService {
 	public List<ConsolidatedResults> getSingleResults() {
 
 		log.info("||--> Started...");
-		
+
 		List<Constituency> conList = constituencyRepository.findAllConstituencies();
 		List<ConsolidatedResults> consResultList = new ArrayList<>();
 		for (Constituency constituency : conList) {
@@ -87,7 +87,7 @@ public class ConsolidatedResultsService {
 	public List<ConsolidatedResults> getAllResults() {
 
 		log.info("||--> Started...");
-		
+
 		List<ConsolidatedResults> singleElectionResults = getSingleResults();
 		List<ConsolidatedResults> multiElectionResults = getMultiResults();
 		multiElectionResults.addAll(singleElectionResults);
@@ -182,9 +182,13 @@ public class ConsolidatedResultsService {
 
 		for (Candidate candidate : consolidatedMemberList) {
 
-			MemberOfParliament member = new MemberOfParliament(candidate.getCandidateName(),
-					candidate.getCandidateSurname(), candidate.getCandidateParty().getTitle());
-			newList.add(member);
+			if (candidate.getCandidateSurname() != null && candidate.getCandidateName() != null && candidate.getCandidateParty() != null) {
+
+				MemberOfParliament member = new MemberOfParliament(candidate.getCandidateName(),
+						candidate.getCandidateSurname(), candidate.getCandidateParty().getTitle());
+				newList.add(member);
+
+			}
 		}
 
 		return newList;

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
+import vs.admin_.candidate.Candidate;
 import vs.admin_.representative.RepresentativeRepository;
 
 @RestController

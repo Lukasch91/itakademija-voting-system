@@ -2,6 +2,9 @@ var PartyListComponent = React.createClass( {
 
     render: function() {
         var self = this;
+
+
+
         var partiesList = this.props.parties.map( function( party, index ) {
             return (
                 <tr key={index}>
@@ -30,6 +33,9 @@ var PartyListComponent = React.createClass( {
                         </tbody>
                     </table>
                 </div>
+
+
+
             </div>
         )
     }
