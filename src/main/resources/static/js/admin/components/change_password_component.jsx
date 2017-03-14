@@ -4,7 +4,7 @@ var ChangePasswordComponent = React.createClass( {
             <div>
 
                 <form>
-                    <label>Pasikeiskite slaptažodį</label><br />
+                    <label>Įveskite naują slaptažodį</label><br />
                     <input id="newAdminPass" className="form-control" type="password" value={this.props.admin.newPass} onChange={this.props.onFieldChange( 'newPass' )} name="input" /><br />
                     <label>Pakartokite slaptažodį</label><br />
                     <input id="newAdminPassCheck" className="form-control" type="password" value={this.props.admin.newPassCheck} onChange={this.props.onFieldChange( 'newPassCheck' )} name="input" /><br />

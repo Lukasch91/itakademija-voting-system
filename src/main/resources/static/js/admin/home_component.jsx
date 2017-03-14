@@ -13,7 +13,7 @@ var HomeComponent = React.createClass( {
                             <p>Pirmą kartą prisijungus rekomenduojama pasikeistį slaptažodį, paspaudus ant <span className="glyphicon glyphicon-cog"></span>.</p>
                             <p>Norėdami pridėti/ištrinti apygardą, apylinkę ar apylinkės atstovą viršutiniame meniu pasirinkite “Apygardos/Apylinkės”.</p>
                             <p>Meniu pasirinkę “Partijos” galėsite pridėti/trinti partijas, dalyvausiančias rinkimuose.</p>
-                            <p>Norėdami įkelti kaldinatus tiek vienmandatėms apygardoms, tiek daugiamantasėe apygardose partijoms, pasirinkite “Kandidatų įkėlimas”.</p>
+                            <p>Norėdami įkelti kaldinatus tiek vienmandatėms apygardoms, tiek daugiamandatėse apygardose partijoms, pasirinkite “Kandidatų įkėlimas”.</p>
                             <p>Peržiūrėti apylinkės atstovo įvestus balsus galima meniu pasirinkus “Rezultatai”. Pasirinktos apylinkės rezultatus galima publikuoti ir trinti.</p>
                         </div>
                     </div>

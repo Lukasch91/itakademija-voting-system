@@ -71,6 +71,12 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                 )
             });
 
+            var singleVotesDate = self.getSingleVotesByDistrict( district.id ).map( function( singleVote, index ) {
+                return (
+                    <span>{singleVote.singleEnteredDate}</span>
+                )
+            });
+
             var multiVotesList = self.getMultiVotesByDistrict( district.id ).map( function( multiVote, index ) {
                 return (
                     <tr key={index}>
@@ -79,6 +85,14 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                     </tr>
                 )
             });
+
+            var multiVotesDate = self.getMultiVotesByDistrict( district.id ).map( function( multiVote, index ) {
+                return (
+                    <span>{multiVote.enteredDate}</span>
+                )
+            });
+            console.log(singleVotesDate);
+            console.log(multiVotesDate);
             var testDisabled = self.props.disableTest;
             return (
 
@@ -108,6 +122,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        Rezultatai pateikti: {singleVotesDate[0]}
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-default" data-dismiss="modal">Uždaryti</button>
@@ -175,8 +190,13 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                                             </thead>
                                             <tbody>
                                                 {multiVotesList}
+                                                <tr>
+                                                    <td>SUGADINTI BALSAI</td>
+                                                    <td>0</td>
+                                                </tr>
                                             </tbody>
                                         </table>
+                                        Rezultatai pateikti: {multiVotesDate.length}
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-default" data-dismiss="modal">Uždaryti</button>
