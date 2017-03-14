@@ -10,21 +10,26 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import vs.admin_.candidate.CandidateRepository;
+
 @Repository
 public class ConstituencyRepository {
 
 	private static final Logger log = Logger.getLogger(ConstituencyRepository.class.getName());
-	
+
 	private static final String FIND_ALL = "SELECT DISTINCT c FROM Constituency c " + "LEFT JOIN FETCH c.districts cd "
 			+ "LEFT JOIN cd.representatives r " + "WHERE c.deletedTime IS NULL " + "ORDER BY c.id";
 
-	private static final String FIND_BY_ID = "SELECT DISTINCT c  FROM Constituency c " + "LEFT JOIN FETCH c.districts cd "
-			+ "LEFT JOIN cd.representatives r " + "WHERE c.deletedTime IS NULL " + "AND c.id = :id " + "ORDER BY c.id";
-	
+	private static final String FIND_BY_ID = "SELECT DISTINCT c  FROM Constituency c "
+			+ "LEFT JOIN FETCH c.districts cd " + "LEFT JOIN cd.representatives r " + "WHERE c.deletedTime IS NULL "
+			+ "AND c.id = :id " + "ORDER BY c.id";
+
 	private static final String COUNT_ALL_CONSTITUENCIES = "SELECT COUNT(c) FROM Constituency c where c.deletedTime IS NULL";
 
 	@Autowired
 	EntityManager entityManager;
+	@Autowired
+	CandidateRepository candidateRepository;
 
 	@Transactional
 	@SuppressWarnings("unchecked")
@@ -56,17 +61,20 @@ public class ConstituencyRepository {
 			return 0L;
 		} else
 			log.debug("ConstituencyRepository - countAllConstituencies (else stm) finished!");
-			return (Long) entityManager.createQuery(COUNT_ALL_CONSTITUENCIES).getSingleResult();
+		return (Long) entityManager.createQuery(COUNT_ALL_CONSTITUENCIES).getSingleResult();
 	}
-	
+
 	public Constituency findConstituencyById(Integer id) {
-		log.debug("ConstituencyRepository - findConstituencyById was used! Id: " +id);
+		log.debug("ConstituencyRepository - findConstituencyById was used! Id: " + id);
 		return (Constituency) entityManager.createQuery(FIND_BY_ID).setParameter("id", id).getSingleResult();
 	}
 
 	@Transactional
 	public void deleteConstituency(Integer id) {
-		log.debug("ConstituencyRepository - deleteConstituency started! Id: " +id);
+		log.debug("ConstituencyRepository - deleteConstituency started! Id: " + id);
+		log.debug("ConstituencyRepository - deleteCandidatesByConstituencyId started! Id: " + id);
+		candidateRepository.deleteCandidatesByConstituencyId(id);
+		log.debug("ConstituencyRepository - deleteCandidatesByConstituencyId finished!");
 		Constituency constituency = entityManager.find(Constituency.class, id);
 		Date date = new Date();
 		constituency.setDeletedTime(date);
