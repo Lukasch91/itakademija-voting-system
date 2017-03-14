@@ -131,9 +131,9 @@ var RegisterVotesMultiContainer = React.createClass( {
 
     render: function() {
         var self = this;
+        var show;
 
         if ( ( self.state.multiResults[0] == null ) && ( self.state.spoiltVote == null ) ) {
-
             var partiesList = this.state.parties.map( function( party, index ) {
                 return (
                     <tbody key={'body' + index}>
@@ -152,13 +152,8 @@ var RegisterVotesMultiContainer = React.createClass( {
                     </tbody>
                 );
             });
-
-            return (
+            show = (
                 <form>
-                    <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
-                        <h3>Balsavimo rezultatų įvedimas daugiamandatėje apygardoje</h3>
-                    </div>
-                    <LoggedInRepresentativeInfoContainer currentUser={self.state.currentUser} />
                     <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
                         <table className="table table-hover">
                             <thead>
@@ -185,14 +180,13 @@ var RegisterVotesMultiContainer = React.createClass( {
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div style={{ textAlign: 'center' }}>
                         <p>{self.state.hasErrors}</p>
                         <button type="button" className="btn btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
                     </div>
 
-                </form>
-            )
+                </form> );
         } else {
             var multiElectionResultsList = this.state.multiResults.map( function( multi, index ) {
                 return (
@@ -203,13 +197,8 @@ var RegisterVotesMultiContainer = React.createClass( {
                     </tr>
                 );
             });
-
-            return (
+            show = (
                 <div>
-                    <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
-                        <h3>Balsavimo rezultatai daugiamandatėje apygardoje</h3>
-                    </div>
-                    <LoggedInRepresentativeInfoContainer currentUser={self.state.currentUser} />
                     <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
                         <table className="table table-hover">
                             <thead>
@@ -227,9 +216,18 @@ var RegisterVotesMultiContainer = React.createClass( {
                             </tbody>
                         </table>
                     </div>
-                </div>
-            )
+                </div> );
         }
+
+        return (
+            <div>
+                <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
+                    <h3>Balsavimo rezultatų įvedimas daugiamandatėje apygardoje</h3>
+                </div>
+                <LoggedInRepresentativeInfoContainer />
+                <div>{show}</div>
+            </div>
+        );
     }
 });
 

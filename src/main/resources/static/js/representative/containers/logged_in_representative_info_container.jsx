@@ -8,54 +8,37 @@ var LoggedInRepresentativeInfoContainer = React.createClass( {
         };
     },
 
-    propPreloader: function() {
-
-        var self = this;
-        var p1 = new Promise( function( resolve, reject ) {
-                                                        console.log("2");console.log(self.props.currentUser.name);
-            var currentUser = self.props.currentUser;
-            self.setState( { currentUser: currentUser });
-
-            resolve( 'Success!' );
-            // or
-            // reject ("Error!");
-        });
-        return p1;
-
-    },
-
     componentWillMount: function() {
         var self = this;
 
-        self.propPreloader().then( function() {
+        axios.get( '/currentuser' )
+            .then( function( response ) {
+                self.setState( { currentUser: response.data });
+                var districtId = response.data.districtId;
 
-            var districtId = self.state.currentUser.districtId;
-
-            if ( districtId != null ) {
-                axios.all( [
-                    axios.get( '/api/REPRES/district/' + districtId ),
-                    axios.get( '/api/PUBLIC/constresultsdis/' + districtId )
-                ] )
-                    .then( axios.spread( function( districtResponse, constituencyResponse ) {
-                        self.setState( {
-                            district: districtResponse.data,
-                            constituencyOfDistrict: constituencyResponse.data
-                        });
-                    }) );
-            }
-        });
-
+                if ( districtId != null ) {
+                    axios.all( [
+                        axios.get( '/api/REPRES/district/' + districtId ),
+                        axios.get( '/api/PUBLIC/constresultsdis/' + districtId )
+                    ] )
+                        .then( axios.spread( function( districtResponse, constituencyResponse ) {
+                            self.setState( {
+                                district: districtResponse.data,
+                                constituencyOfDistrict: constituencyResponse.data
+                            });
+                        }) );
+                }
+            });
     },
 
     render: function() {
-                                                              console.log("3");console.log(this.state.currentUser.name);
         return (
             <LoggedInRepresentativeInfoComponent
                 user={this.state.currentUser}
                 district={this.state.district}
                 constituency={this.state.constituencyOfDistrict}
                 />
-        )  
+        )
     }
 });
 
