@@ -67,6 +67,18 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
             );
         });
 
+        
+/*        <!-- Large modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              ...
+            </div>
+          </div>
+        </div> */
+        
         return (
 
             <div>
@@ -75,7 +87,7 @@ var ViewCandidatesByConstituencyComponent = React.createClass( {
                     </button>
 
                 <div className="modal fade" id={modalId} tabIndex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div className="modal-dialog">
+                    <div className="modal-dialog modal-lg">
                         <div className="modal-content">
                             <div className="modal-header">
 
