@@ -106,6 +106,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                                                 {singleVotesList}
                                             </tbody>
                                         </table>
+                                        <p>Sugadinti balsai: {self.props.invalidVotes(district.id )}</p>
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-default" data-dismiss="modal">Uždaryti</button>

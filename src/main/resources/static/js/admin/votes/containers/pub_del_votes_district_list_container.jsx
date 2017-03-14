@@ -27,6 +27,11 @@ var PubDelVotesDistrictListContainer = React.createClass( {
                       })
                   }));
     },
+    
+    invalidVotes: function(districtId) {
+        return 'test ' + districtId;
+       
+    },
 
     handleGoBack: function() {
         console.log( 'click' );
@@ -98,6 +103,7 @@ var PubDelVotesDistrictListContainer = React.createClass( {
                     onDeleteSingleVotes={this.handleDeleteSingleVotes}
                     onPublishMultiVotes={this.handlePublishMultiVotes}
                     onDeleteMultiVotes={this.handleDeleteMultiVotes}
+                invalidVotes={this.invalidVotes}
                     />
                 <button id="backToConstituency" type="button" className="btn btn-danger btn-xs" onClick={this.handleGoBack}>Atgal</button>
             </div>
