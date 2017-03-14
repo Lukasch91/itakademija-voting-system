@@ -89,6 +89,15 @@ public class CorruptedVotesRepository {
 					.getSingleResult());
 		}
 	}
+	
+	public CorruptedVotes getCorruptedVotesByDistrictAndType(Integer id, Boolean typeMulti) {
+		if (entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID_AND_TYPE).setParameter("id", id).setParameter("typeMulti", typeMulti).getResultList().get(0) == null) {
+			return null;
+		} else {
+			return (CorruptedVotes) entityManager.createQuery(FIND_FIND_BY_DISTRICT_ID_AND_TYPE).setParameter("id", id).setParameter("typeMulti", typeMulti)
+					.getSingleResult();
+		}
+	}
 
 	public Long getAllMultiElectionInvalidVotes() {
 		if (entityManager.createQuery(FIND_ALL_MULTI_INVALID_VOTES).getResultList().isEmpty()) {

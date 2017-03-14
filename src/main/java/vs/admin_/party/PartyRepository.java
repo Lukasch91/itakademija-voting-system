@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import vs.admin_.district.DistrictController;
+import vs.admin_.candidate.CandidateRepository;
 
 @Repository
 public class PartyRepository {
@@ -25,6 +25,8 @@ public class PartyRepository {
 												 + "AND p.id =:id";
 	@Autowired
 	private EntityManager entityManager;
+	@Autowired
+	CandidateRepository candidateRepository;
 
 	@SuppressWarnings("unchecked")
 	public List<Party> findAllParties() {
@@ -54,6 +56,9 @@ public class PartyRepository {
 	@Transactional
 	public void deleteParty(Integer id) {
 		log.info("||--> Start... Party id: " + id);
+		log.debug("PartyRepository - deleteCandidatesByPartyId started! Id: " + id);
+		candidateRepository.deleteCandidatesByPartyId(id);
+		log.debug("PartyRepository - deleteCandidatesByPartyId finished!");
 		Party party = entityManager.find(Party.class, id);
 		log.info("||--> Founded party by id to delete: " + party.getTitle().toString());
 		Date date = new Date();

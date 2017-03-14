@@ -33,11 +33,7 @@ public class DeletePrefillDb {
 		String user = "sa";
 		String pass = "";
 		final String JDBC_DRIVER = "org.h2.Driver";
-		final String
-		// url =
-		// "jdbc:h2:/home/giedrius/Projects/Eclipse/itakademija-voting-system-master/db/h2/database-dev;MV_STORE=true;AUTO_SERVER=TRUE;IFEXISTS=TRUE";
-//		url = "jdbc:h2:C:\\Users\\Sagg\\Desktop\\Prgrmmng\\_JAVA\\Practice\\voting-system\\db\\h2\\database-dev;MV_STORE=true;AUTO_SERVER=TRUE;IFEXISTS=TRUE";
-		url = "jdbc:h2:C:\\Users\\Sagg\\Desktop\\Prgrmmng\\_JAVA\\Practice\\voting-system\\db\\h2\\database-dev;MV_STORE=true;AUTO_SERVER=TRUE;IFEXISTS=TRUE";
+		final String url = "jdbc:h2:./db/h2/database-dev;MV_STORE=true;AUTO_SERVER=TRUE;IFEXISTS=TRUE";
 		
 		
 		
@@ -69,9 +65,9 @@ public class DeletePrefillDb {
 		
 		
 		
-		// for (String aaa : adm) {
+		// for (String sqlValues : admin) {
 		// stmt.execute("INSERT INTO ADMIN (ID , LOGIN_NAME, PASSWORD ) VALUES
-		// ("+ aaa +");");
+		// ("+ sqlValues +");");
 		// }
 		for (String sqlValues : constituencies) {
 			stmt.execute("INSERT INTO CONSTITUENCY(ID, TITLE) VALUES (" + sqlValues + ");");
@@ -158,16 +154,16 @@ public class DeletePrefillDb {
 	private void deleteAllDataInDataBase() throws ClassNotFoundException, SQLException, InterruptedException {
 		stmt = conn.createStatement();
 
-		// turim 9 lenteles db // trinam 8 - admin paliekam
-		stmt.execute("DELETE FROM SINGLE_MEMBER_VOTES;"); //-
-		stmt.execute("DELETE FROM MULTI_MEMBER_VOTES;"); //-
-		stmt.execute("DELETE FROM CORRUPTED_VOTES;"); //-
-		stmt.execute("DELETE FROM CANDIDATES;"); //+
-		stmt.execute("DELETE FROM REPRESENTATIVES;"); //+
-		stmt.execute("DELETE FROM DISTRICTS;"); //+
-		stmt.execute("DELETE FROM CONSTITUENCY;"); //+
-		stmt.execute("DELETE FROM PARTIES;"); //+
-
+		stmt.execute("DELETE FROM SINGLE_MEMBER_VOTES;");
+		stmt.execute("DELETE FROM MULTI_MEMBER_VOTES;");
+		stmt.execute("DELETE FROM CORRUPTED_VOTES;");
+		stmt.execute("DELETE FROM CANDIDATES;");
+		stmt.execute("DELETE FROM REPRESENTATIVES;");
+		stmt.execute("DELETE FROM DISTRICTS;");
+		stmt.execute("DELETE FROM CONSTITUENCY;");
+		stmt.execute("DELETE FROM PARTIES;");
+//		stmt.execute("DELETE FROM ADMIN;");
+		
 		conn.commit();
 		conn.setAutoCommit(true);
 	}

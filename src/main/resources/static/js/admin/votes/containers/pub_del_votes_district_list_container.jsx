@@ -7,7 +7,8 @@ var PubDelVotesDistrictListContainer = React.createClass( {
             multiVotes: [],
             singleVotes: [],
             disableTest: true,
-            theTestingState: 0
+            theTestingState: 0,
+            corruptedVote: 0
         };
     },
 
@@ -28,10 +29,15 @@ var PubDelVotesDistrictListContainer = React.createClass( {
                   }));
     },
     
-    invalidVotes: function(districtId) {
-        return 'test ' + districtId;
-       
-    },
+/*    invalidVotes: function(districtId) {
+        var self = this;
+        axios.get('/api/ADMIN/invalid-votes-dist/' + districtId + '/false').then(function (response) {
+            self.setState({ 
+                corruptedVote: response.data.votes
+            });
+        });
+        return 666;   
+    },*/
 
     handleGoBack: function() {
         console.log( 'click' );

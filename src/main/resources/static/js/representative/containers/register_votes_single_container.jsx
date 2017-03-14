@@ -103,7 +103,7 @@ var RegisterVotesSingleContainer = React.createClass( {
         var singleVotesPackage = [];
         singleVotesPackage = self.state.enteredResults.slice();
         singleVotesPackage.push( self.state.enteredSpoiltVote );
-        
+
         axios.post( '/api/REPRES/singleelection', singleVotesPackage )
             .then( function( response ) {
 
@@ -128,10 +128,9 @@ var RegisterVotesSingleContainer = React.createClass( {
 
     render: function() {
         var self = this;
+        var show;
 
         if ( ( self.state.singleResults[0] == null ) && ( self.state.spoiltVote == null ) ) {
-
-
             var candidatesList = this.state.candidates.map( function( candidate, index ) {
                 return (
 
@@ -150,13 +149,8 @@ var RegisterVotesSingleContainer = React.createClass( {
                     </tbody>
                 );
             });
-
-            return (
+            show = (
                 <form>
-                    <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
-                        <h3>Balsavimo rezultatų įvedimas vienmandatėse apygardose</h3>
-                    </div>
-                    <LoggedInRepresentativeInfoContainer currentUser={self.state.currentUser}/>
                     <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
                         <table className="table table-hover">
                             <thead>
@@ -185,25 +179,11 @@ var RegisterVotesSingleContainer = React.createClass( {
                         <p>{self.state.hasErrors}</p>
                         <button type="button" className="btn btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
                     </div>
+                </form> );
 
-                </form>
-            )
         } else {
-            /*
-             * 
-             * nepagauna situ funkciju, bet atvaizduoja wtf?
-             * 
-             * 
-             */
-            console.log("1");console.log(self.state.currentUser.name);
-             /* 
-             * 
-             * 
-             * 
-             * 
-             */
             var singleElectionResultsList = this.state.singleResults.map( function( single, index ) {
-             
+
                 return (
                     <tr key={'single' + index}>
                         <td> {single.singleCandidate.candidateName} {single.singleCandidate.candidateSurname}</td>
@@ -211,13 +191,8 @@ var RegisterVotesSingleContainer = React.createClass( {
                     </tr>
                 );
             });
-            
-            return (
+            show = (
                 <div>
-                    <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
-                        <h3>Balsavimo rezultatai vienmandatėse apygardose</h3>
-                    </div>
-                    <LoggedInRepresentativeInfoContainer currentUser={self.state.currentUser}/>
                     <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
                         <table className="table table-hover">
                             <thead>
@@ -233,9 +208,19 @@ var RegisterVotesSingleContainer = React.createClass( {
                             </tbody>
                         </table>
                     </div>
-                </div>
-            )
+                </div> );
+
         }
+
+        return (
+            <div>
+                <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
+                    <h3>Balsavimo rezultatai vienmandatėse apygardose</h3>
+                </div>
+                <LoggedInRepresentativeInfoContainer />
+                <div>{show}</div>
+            </div>
+        );
     }
 });
 
