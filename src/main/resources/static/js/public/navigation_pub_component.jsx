@@ -30,6 +30,9 @@ var NavigationPubComponent = React.createClass( {
                     <ul className="nav navbar-nav">
                         <NavLink to="/home" onlyActiveOnIndex>Pradinis</NavLink>
                         <NavLink id="candidates" to="/candidates">Kandidatai</NavLink>
+                        <NavLink id="finresults" to="/finresults">Gal. Rezultatai</NavLink>
+                        <NavLink id="members" to="/members">Sąrašas</NavLink>
+
                         <li id="results" className="dropdown">
                         <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rezultatai <span className="caret"></span></a>
                         <ul className="dropdown-menu">

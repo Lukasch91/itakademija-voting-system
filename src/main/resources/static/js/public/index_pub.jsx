@@ -1,4 +1,18 @@
+
+
+module.exports = {
+  Bar: require('./lib/bar'),
+  Doughnut: require('./lib/doughnut'),
+  Line: require('./lib/line'),
+  Pie: require('./lib/pie'),
+  PolarArea: require('./lib/polar-area'),
+  Radar: require('./lib/radar'),
+  createClass: require('./lib/core').createClass
+};
+
 var App = React.createClass( {
+    
+
     render: function() {
         return (
             <div style={{ paddingTop: '10px' }}>
@@ -35,6 +49,9 @@ ReactDOM.render((
 
             <Route path="/disresult/:conId" component={SingleElectionsDistrictResultsContainer} />
             <Route path="/onedisresult/:disId" component={SingleElectionsOneDistrictResultsContainer} />
+
+            <Route path="/finresults" component={PartyListContainer} />
+            <Route path="/members" component={MembersOfParliamentContainer} />
 
 
             <Route path="*" component={NoMatch} />

@@ -20,7 +20,12 @@ public class ConsolidatedResultsController {
 	@RequestMapping(value = "/api/PUBLIC/consolidatedResults/", method = RequestMethod.GET)
 	@ApiOperation(value = "[PUBLIC] - ")
 	public List<ConsolidatedResults> getConsolidatedResults() {
-		return consolidatedResultsService.getAllResults();
+		return consolidatedResultsService.getSortedPartyList();
 	}
 
+	@RequestMapping(value = "/api/PUBLIC/members/", method = RequestMethod.GET)
+	@ApiOperation(value = "[PUBLIC] - ")
+	public List<MemberOfParliament> getMembersOfParliament() {
+		return consolidatedResultsService.getSortedMemberOfParlList();
+	}
 }

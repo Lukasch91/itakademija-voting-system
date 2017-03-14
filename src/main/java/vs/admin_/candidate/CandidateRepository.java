@@ -20,7 +20,7 @@ public class CandidateRepository {
 			+ "LEFT JOIN c.candidateConstituency cc " + "WHERE c.candidateDeletedDate is null " + "AND cc.id=:id";
 
 	private static final String FIND_ALL_PARTY = "SELECT c FROM Candidate c " + "LEFT JOIN c.candidateParty cp "
-			+ "WHERE c.candidateDeletedDate is NULL " + "AND cp.id=:id";
+			+ "WHERE c.candidateDeletedDate is NULL " + "AND cp.id=:id ORDER BY c.candidateNumberInParty ASC";
 
 	@Autowired
 	private EntityManager em;

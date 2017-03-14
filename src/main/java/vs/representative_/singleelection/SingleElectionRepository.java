@@ -10,6 +10,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import vs.admin_.candidate.Candidate;
+
 @Repository
 public class SingleElectionRepository {
 
@@ -68,6 +70,9 @@ public class SingleElectionRepository {
 	private static final String GET_UPDATED_DATE = "SELECT m.published_date FROM MultiElection m "
 			+ " LEFT JOIN m.district md WHERE m.deleted_date is null AND m.published_date IS NOT NULL AND md.id=:disId AND md.deletedTime is null";
 
+	private static final String GET_WINNER_OF_DISTRICT = "SELECT s.singleCandidate from SingleElection s LEFT JOIN s.singleDistrict sd LEFT JOIN s.singleCandidate sc WHERE s.singleDeletedDate IS NULL "
+			+ "AND s.singlePublishedDate IS NOT NULL AND s.singleVotes IS NOT NULL AND sd.constituencyId = :conId ORDER BY s.singleVotes DESC";
+
 	@Autowired
 	private EntityManager em;
 
@@ -80,17 +85,30 @@ public class SingleElectionRepository {
 		}
 	}
 
+	public Candidate getWinnerOfDistrict(Integer conId) {
+
+		if (em.createQuery(GET_WINNER_OF_DISTRICT).setParameter("conId", conId).getResultList().isEmpty()) {
+			return null;
+		} else {
+			return (Candidate) em.createQuery(GET_WINNER_OF_DISTRICT).setParameter("conId", conId).setMaxResults(1)
+					.getSingleResult();
+		}
+	}
+
 	public Long getVotesOfCandidate(Integer candidateId, Integer districtId) {
 		if (em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID).setParameter("candidateId", candidateId)
-				.setParameter("districtId", districtId).getResultList().size() == 0) { //.get(0)
+				.setParameter("districtId", districtId).getResultList().size() == 0) { // .get(0)
 			return 0L;
 		} else {
 			String xxx = (String) em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID)
 					.setParameter("candidateId", candidateId).setParameter("districtId", districtId).getSingleResult();
-			Long yyy = xxx == null ? 0L :  Long.parseLong(xxx);
+			Long yyy = xxx == null ? 0L : Long.parseLong(xxx);
 			return yyy;
-//			return Long.parseLong((String) em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID)
-//					.setParameter("candidateId", candidateId).setParameter("districtId", districtId).getSingleResult());
+			// return Long.parseLong((String)
+			// em.createQuery(GET_SINGLE_VOTES_BY_CANDIDATE_ID)
+			// .setParameter("candidateId",
+			// candidateId).setParameter("districtId",
+			// districtId).getSingleResult());
 		}
 	}
 
@@ -99,9 +117,10 @@ public class SingleElectionRepository {
 			return 0L;
 		} else {
 			String xxx = (String) em.createQuery(COUNT_ALL_VOTES).getSingleResult();
-			Long yyy = xxx == null ? 0L :  Long.parseLong(xxx);
+			Long yyy = xxx == null ? 0L : Long.parseLong(xxx);
 			return yyy;
-//			return (Long) Long.parseLong((String) em.createQuery(COUNT_ALL_VOTES).getSingleResult());
+			// return (Long) Long.parseLong((String)
+			// em.createQuery(COUNT_ALL_VOTES).getSingleResult());
 		}
 	}
 
@@ -220,7 +239,8 @@ public class SingleElectionRepository {
 				.get(0) == null) {
 			return 0L;
 		} else {
-			return Long.parseLong((String) em.createQuery(GET_DISTRICTS_PUBLISHED_VOTES_IN_DISTRICT).setParameter("id", id).getSingleResult());
+			return Long.parseLong((String) em.createQuery(GET_DISTRICTS_PUBLISHED_VOTES_IN_DISTRICT)
+					.setParameter("id", id).getSingleResult());
 		}
 	}
 
