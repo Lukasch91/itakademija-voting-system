@@ -3,8 +3,6 @@ var PartyListContainer = React.createClass( {
     getInitialState: function() {
         return {
             parties: [],
-            mandates: [],
-            labels: [],
         };
     },
 
@@ -12,30 +10,21 @@ var PartyListContainer = React.createClass( {
         var self = this;
         axios.get( '/api/PUBLIC/consolidatedResults/' )
             .then( function( response ) {
-                self.setState( {
-                    parties: response.data,
-                    
-                });
+                self.setState( { parties: response.data });
+            }).then( function() {
+
+                var titles = self.partiesTitle( self.state.parties );
+                var mandates = self.partiesMandates( self.state.parties );
+
                 var ctx = document.getElementById( "myChart" );
                 var myChart = new Chart( ctx, {
                     type: 'bar',
                     data: {
-
-// CIA REIKIA PADUOTI PARTY TITLES MASYVA                       
-                        labels: [this.state.parties],
+                        labels: titles,
                         datasets: [{
-                            label: '# of Votes',
-// CIA REIKIA PADUOTI MANDATU MASYVA     
-                            data: [this.state.parties],
-
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255,99,132,1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
+                            label: 'Mandatų skaičius',
+                            data: mandates,
+                            backgroundColor: "rgba(153,255,51,0.4)",
                             borderWidth: 1
                         }]
                     },
@@ -50,20 +39,40 @@ var PartyListContainer = React.createClass( {
                     }
                 });
             })
-             
-            
+    },
+
+    partiesTitle: function( parties ) {
+        var titleList = parties.map( function( party, index ) {
+            return ( party.partyTitle );
+        });
+        return titleList;
+    },
+
+    partiesMandates: function( parties ) {
+        var mandatesList = parties.map( function( party, index ) {
+            return ( party.mandates );
+        });
+        return mandatesList;
     },
 
     render: function() {
         return (
             <div>
-                <PartyListComponent
-                    parties={this.state.parties}
-                    labels={this.state.labels}
-                    mandates={this.state.mandates}
-                    />
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <div className="row">
+                    <div className="col-sm-12">
+                        <h3>Balsavimo rezultatai rinkimų apylinkėse</h3>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-5"><PartyListComponent
+                        parties={this.state.parties}
+                        />
+                    </div>
+                    <div className="col-sm-6"><canvas id="myChart"></canvas></div>
+                    <div className="col-sm-1"></div>
+                </div>
             </div>
+
         )
     }
 });

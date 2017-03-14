@@ -18,7 +18,6 @@ var PartyListComponent = React.createClass( {
 
         return (
             <div>
-                <h3>Balsavimo rezultatai rinkimų apylinkėse</h3>
                 <div>
                     <table className="table table-hover">
                         <thead>
