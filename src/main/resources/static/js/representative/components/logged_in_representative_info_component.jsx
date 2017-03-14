@@ -1,9 +1,9 @@
 var LoggedInRepresentativeInfoComponent = React.createClass( {
     render: function() {
         var self = this;
-        var district = this.props.district != null ? this.props.district : {};
-        var user = this.props.user != null ? this.props.user : {};
-        var constituency = this.props.constituency != null ? this.props.constituency : {};
+        var district = this.props.district;
+        var user = this.props.user;
+        var constituency = this.props.constituency;
 
         return (
             <div className="col-sm-4 col-centered" style={{ float: 'none', margin: '0 auto' }}>

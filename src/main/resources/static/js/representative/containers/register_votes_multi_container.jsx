@@ -12,6 +12,7 @@ var RegisterVotesMultiContainer = React.createClass( {
             currentDistrictId: 0,
             validationArray: [],
             currentUser: {},
+            hasErrors: ""
         };
     },
 
@@ -82,7 +83,7 @@ var RegisterVotesMultiContainer = React.createClass( {
         var self = this;
         var spoiltVoteUpdate = self.state.enteredSpoiltVote;
         spoiltVoteUpdate.votes = event.target.value;
-        self.setState( { enteredSpoiltVote: spoiltVoteUpdate });
+        self.setState( { enteredSpoiltVote: spoiltVoteUpdate, hasErrors: "" });
 
     },
 
@@ -94,7 +95,7 @@ var RegisterVotesMultiContainer = React.createClass( {
                 updateResults[i].votes = event.target.value;
             }
         }
-        self.setState( { enteredResults: updateResults });
+        self.setState( { enteredResults: updateResults, hasErrors: "" });
     },
 
     handleExport: function() {
@@ -117,7 +118,7 @@ var RegisterVotesMultiContainer = React.createClass( {
             })
             .catch( function( error ) {
                 if ( error.response.status == 400 ) {
-                    self.setState( { validationArray: error.response.data });
+                    self.setState( { validationArray: error.response.data, hasErrors: "Balsai turi klaidų, peržiūrėkite sąraša!" });
                     console.log( "___Error messages:___" );
                     console.log( error.response.data );
                 }
@@ -184,7 +185,9 @@ var RegisterVotesMultiContainer = React.createClass( {
                             </tbody>
                         </table>
                     </div>
+                    
                     <div style={{ textAlign: 'center' }}>
+                        <p>{self.state.hasErrors}</p>
                         <button type="button" className="btn btn-success" onClick={this.handleExport}>Siųsti rezultatus</button>
                     </div>
 
@@ -206,7 +209,7 @@ var RegisterVotesMultiContainer = React.createClass( {
                     <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
                         <h3>Balsavimo rezultatai daugiamandatėje apygardoje</h3>
                     </div>
-                    <LoggedInRepresentativeInfoContainer />
+                    <LoggedInRepresentativeInfoContainer currentUser={self.state.currentUser} />
                     <div className="col-sm-6 col-centered" style={{ float: 'none', margin: '0 auto' }}>
                         <table className="table table-hover">
                             <thead>

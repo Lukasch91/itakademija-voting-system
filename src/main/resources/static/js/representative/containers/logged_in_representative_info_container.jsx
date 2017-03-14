@@ -12,7 +12,7 @@ var LoggedInRepresentativeInfoContainer = React.createClass( {
 
         var self = this;
         var p1 = new Promise( function( resolve, reject ) {
-
+                                                        console.log("2");console.log(self.props.currentUser.name);
             var currentUser = self.props.currentUser;
             self.setState( { currentUser: currentUser });
 
@@ -29,7 +29,7 @@ var LoggedInRepresentativeInfoContainer = React.createClass( {
 
         self.propPreloader().then( function() {
 
-            var districtId = self.state.currentUser != null ? self.state.currentUser.districtId : null;
+            var districtId = self.state.currentUser.districtId;
 
             if ( districtId != null ) {
                 axios.all( [
@@ -48,15 +48,14 @@ var LoggedInRepresentativeInfoContainer = React.createClass( {
     },
 
     render: function() {
-
+                                                              console.log("3");console.log(this.state.currentUser.name);
         return (
             <LoggedInRepresentativeInfoComponent
-
                 user={this.state.currentUser}
                 district={this.state.district}
                 constituency={this.state.constituencyOfDistrict}
                 />
-        )
+        )  
     }
 });
 
