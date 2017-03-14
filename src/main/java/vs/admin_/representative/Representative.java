@@ -51,8 +51,8 @@ public class Representative implements BasicUser {
 	@NotEmpty(message = "Slaptažodis negali būti tuščias")
 	//@Max(value = 60, message = "Slaptažodzio ilgis negali būti ilgesnis negu {value} simbolių")
 	//@Min(value = 12, message = "Slaptažodzio ilgis negali būti trumpesnis negu {value} simbolių")
-	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[`~!@#$%^&*=-?.])(?=\\S+$).{12,60}$", message="Slaptažodį turi sudaryti 12-60 simbolių, jame turi būti bent viena mažoji raidė, didžioji raidė, skaičius ir bent vienas nurodytas simbolis `~!@#$%^&*=-?. ")
-	@ApiModelProperty(value = "@NotEmpty, @Max(value = 60), @Min(value = 12)")
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,60}$", message="Slaptažodį turi sudaryti 12-60 simbolių, jame turi būti bent viena mažoji raidė, didžioji raidė, skaičius ir bent vienas nurodytas simbolis `~!@#$%^&*=-?. ")
+	@ApiModelProperty(value = "@NotEmpty, @Pattern")
 	private String password;
 
 	@Column

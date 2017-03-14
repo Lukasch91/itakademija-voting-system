@@ -79,7 +79,7 @@ public class RepresentativeRepository {
 	@Transactional
 	public boolean changePassword(@CurrentUser Representative representative, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		log.info("||--> was used! Representative surname: " + representative.getSurname());
-		String regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[`~!@#$%^&*=-?.])(?=\\S+$).{12,60}$";
+		String regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,60}$";
 		Pattern pattern = Pattern.compile(regexp);
 		Matcher matcher = pattern.matcher(password);
 		if (matcher.find()){
