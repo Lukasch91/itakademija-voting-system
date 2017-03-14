@@ -30,18 +30,17 @@ public class DeletePrefillDb {
 	}
 
 	private boolean fillDb() throws ClassNotFoundException, SQLException {
-		final String constituencies = "db/DATA/Constituencies.txt";
-		final String districts = "db/DATA/Districts.txt";
-		final String admin = "db/DATA/Admin.txt";
-
 		String user = "sa";
 		String pass = "";
 		final String JDBC_DRIVER = "org.h2.Driver";
 		final String
 		// url =
 		// "jdbc:h2:/home/giedrius/Projects/Eclipse/itakademija-voting-system-master/db/h2/database-dev;MV_STORE=true;AUTO_SERVER=TRUE;IFEXISTS=TRUE";
+//		url = "jdbc:h2:C:\\Users\\Sagg\\Desktop\\Prgrmmng\\_JAVA\\Practice\\voting-system\\db\\h2\\database-dev;MV_STORE=true;AUTO_SERVER=TRUE;IFEXISTS=TRUE";
 		url = "jdbc:h2:C:\\Users\\Sagg\\Desktop\\Prgrmmng\\_JAVA\\Practice\\voting-system\\db\\h2\\database-dev;MV_STORE=true;AUTO_SERVER=TRUE;IFEXISTS=TRUE";
-
+		
+		
+		
 		Class.forName(JDBC_DRIVER);
 		System.out.println("Connecting to database...");
 		conn = DriverManager.getConnection(url, user, pass);
@@ -57,25 +56,72 @@ public class DeletePrefillDb {
 		// ============================================================================
 
 		@SuppressWarnings("unused")
-		List<String> adm = getTestDataFromTxtFile(admin);
-		List<String> constit = getTestDataFromTxtFile(constituencies);
-		List<String> dist = getTestDataFromTxtFile(districts);
-
+		List<String> admin = getTestDataFromTxtFile("db/DATA/Admin.txt");
+		List<String> constituencies = getTestDataFromTxtFile("db/DATA/Constituencies.txt");
+		List<String> districts = getTestDataFromTxtFile("db/DATA/Districts.txt");
+		List<String> parties = getTestDataFromTxtFile("db/DATA/Parties.txt");
+		List<String> representatives = getTestDataFromTxtFile("db/DATA/Representatives.txt");
+		List<String> consCandidates = getTestDataFromTxtFile("db/DATA/ConsCandidates.txt");
+		List<String> partyCandidates = getTestDataFromTxtFile("db/DATA/PartyCandidates.txt");
+		List<String> multiVotes = getTestDataFromTxtFile("db/DATA/MultiVotes.txt");
+		List<String> singleVotes = getTestDataFromTxtFile("db/DATA/SingleVotes.txt");
+		List<String> spoiltVotes = getTestDataFromTxtFile("db/DATA/SpoiltVotes.txt");
+		
+		
+		
 		// for (String aaa : adm) {
 		// stmt.execute("INSERT INTO ADMIN (ID , LOGIN_NAME, PASSWORD ) VALUES
 		// ("+ aaa +");");
 		// }
-
-		for (String sqlValues : constit) {
+		for (String sqlValues : constituencies) {
 			stmt.execute("INSERT INTO CONSTITUENCY(ID, TITLE) VALUES (" + sqlValues + ");");
 		}
-
-		for (String sqlValues : dist) {
+		for (String sqlValues : districts) {
 			stmt.execute(
 					"INSERT INTO DISTRICTS " + "(ID, ADDRESS, CONSTITUENCY_ID, DELETED_TIME, NUMBER_OF_VOTERS, TITLE ) "
 							+ "VALUES (" + sqlValues + ");");
 		}
-
+		for (String sqlValues : representatives) {
+			stmt.execute(
+					"INSERT INTO REPRESENTATIVES (ID, DISTRICT_ID, EMAIL, LOGIN_NAME, NAME, PASSWORD, SURNAME) "
+							+ "VALUES (" + sqlValues + ");");
+		}
+		for (String sqlValues : parties) {
+			stmt.execute(
+					"INSERT INTO PARTIES (ID, DELETED_TIME, PARTY_ABBREVIATION, TITLE) "
+							+ "VALUES (" + sqlValues + ");");
+		}
+		for (String sqlValues : consCandidates) {
+			stmt.execute(
+					"INSERT INTO CANDIDATES (CANDIDATEID, CANDIDATE_DATE_OF_BIRTH, CANDIDATE_DELETED_DATE, CANDIDATE_DESCRIPTION, CANDIDATE_NAME, CANDIDATE_NUMBER_IN_PARTY, CANDIDATE_PERSONALID, CANDIDATE_SURNAME, CANDIDATE_CONSTITUENCY, CANDIDATE_PARTY) "
+							+ "VALUES (" + sqlValues + ");");
+		}
+		for (String sqlValues : partyCandidates) {
+		stmt.execute(
+				"INSERT INTO CANDIDATES (CANDIDATEID, CANDIDATE_DATE_OF_BIRTH, CANDIDATE_DELETED_DATE, CANDIDATE_DESCRIPTION, CANDIDATE_NAME, CANDIDATE_NUMBER_IN_PARTY, CANDIDATE_PERSONALID, CANDIDATE_SURNAME, CANDIDATE_CONSTITUENCY, CANDIDATE_PARTY) "
+						+ "VALUES (" + sqlValues + ");");
+		}
+		for (String sqlValues : multiVotes) {
+		stmt.execute(
+				"INSERT INTO MULTI_MEMBER_VOTES (ID, DELETED_DATE, ENTERED_DATE, PUBLISHED_DATE, VOTES, DISTRICT_ID, PARTY_ID) "
+						+ "VALUES (" + sqlValues + ");");
+		}
+		for (String sqlValues : singleVotes) {
+		stmt.execute(
+				"INSERT INTO SINGLE_MEMBER_VOTES (SINGLE_ID,SINGLE_DELETED_DATE, SINGLE_ENTERED_DATE, SINGLE_PUBLISHED_DATE, SINGLE_VOTES, SINGLE_CANDIDATE, SINGLE_DISTRICT ) "
+						+ "VALUES (" + sqlValues + ");");
+		}		
+		for (String sqlValues : spoiltVotes) {
+		stmt.execute(
+				"INSERT INTO CORRUPTED_VOTES (ID, DELETED_DATE, ENTERED_DATE, PUBLISHED_DATE, TYPE_MULTI, VOTES, DISTRICT_ID) "
+						+ "VALUES (" + sqlValues + ");");		
+		}		
+		
+		
+		
+		
+		
+		
 		// ============================================================================
 		conn.commit();
 		conn.setAutoCommit(true);
@@ -113,14 +159,14 @@ public class DeletePrefillDb {
 		stmt = conn.createStatement();
 
 		// turim 9 lenteles db // trinam 8 - admin paliekam
-		stmt.execute("DELETE FROM SINGLE_MEMBER_VOTES;");
-		stmt.execute("DELETE FROM MULTI_MEMBER_VOTES;");
-		stmt.execute("DELETE FROM CORRUPTED_VOTES;");
-		stmt.execute("DELETE FROM CANDIDATES;");
-		stmt.execute("DELETE FROM REPRESENTATIVES;");
-		stmt.execute("DELETE FROM DISTRICTS;");
-		stmt.execute("DELETE FROM CONSTITUENCY;");
-		stmt.execute("DELETE FROM PARTIES;");
+		stmt.execute("DELETE FROM SINGLE_MEMBER_VOTES;"); //-
+		stmt.execute("DELETE FROM MULTI_MEMBER_VOTES;"); //-
+		stmt.execute("DELETE FROM CORRUPTED_VOTES;"); //-
+		stmt.execute("DELETE FROM CANDIDATES;"); //+
+		stmt.execute("DELETE FROM REPRESENTATIVES;"); //+
+		stmt.execute("DELETE FROM DISTRICTS;"); //+
+		stmt.execute("DELETE FROM CONSTITUENCY;"); //+
+		stmt.execute("DELETE FROM PARTIES;"); //+
 
 		conn.commit();
 		conn.setAutoCommit(true);
