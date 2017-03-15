@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.is;
 
 import java.util.List;
 import org.junit.FixMethodOrder;//JUnit4.11+ test method ordering
+import org.junit.Ignore;
 import org.junit.runners.*;//JUnit4.11+ test method ordering
 import org.junit.Assert;
 
@@ -76,40 +77,36 @@ public class Bf_MultiElectionIT {
 				Void.class);
 		Assert.assertThat(response.getStatusCode(), is(HttpStatus.NO_CONTENT));
 	}
-/*
-	@Test
-	public void testPriority() {
-		findAllUndeletedElection(5);
-		findElectionById(3);
-		deleteElection(2);
-		findAllUndeletedElection(4);
-	}
-*/
+
+	@Ignore
 	@Test
 	public void t01_findAllUndeletedElection() {
-
 		List<MultiElection> multiElection = findAllElectionTest();
 		int expected = 5;
 		Assert.assertThat(expected, is(multiElection.size()));
 	}
-
+	
+	@Ignore
 	@Test
 	public void t02_findElectionById() {
 		MultiElection foundById = findMultiElectionByIdTest(3);
 		Assert.assertThat(foundById.getVotes(), is(300));
 	}
 
+	@Ignore
 	@Test
 	public void t03_deleteElection() {
 		MultiElection deletedById = deleteMultiElectionByIdTest(2); 	// Delete election if ok , PASS															
 		Assert.assertNull(deletedById); 								// Check is election having Delete Date if ok , PASS
 	}
 	
+	@Ignore
 	@Test
 	public void t04_publishMultiElectionResultsById() {
 		publishMultiElectionResultsByIdTest(1);
 	}
 	
+	@Ignore
 	@Test
 	public void t05_deleteMultiElectionResultsById() {
 		deleteMultiElectionResultsByIdTest(5);

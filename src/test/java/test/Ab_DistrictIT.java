@@ -2,6 +2,7 @@ package test;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class Ab_DistrictIT {
 		// Verify
 		Assert.assertThat(response.getStatusCode(), CoreMatchers.is(HttpStatus.OK)); // keisti++
 	}
-
+	@Ignore
 	@Test
 	public void createConstituencies() {
 

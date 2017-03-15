@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.FixMethodOrder;//JUnit4.11+ test method ordering
+import org.junit.Ignore;
 import org.junit.runners.*;//JUnit4.11+ test method ordering
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -71,28 +72,33 @@ public class Bg_SingleElectionIT {
 		Assert.assertThat(response.getStatusCode(), is(HttpStatus.NO_CONTENT));
 	}
 	
+	@Ignore
 	@Test
 	public void t01_findAllUndeletedSingleElectionResults() {
 		List<SingleElection> singleElections = findAllUndeletedSingleElectionResultsTest();
 		Assert.assertThat(singleElections.size(), is(6));
 	}
-
+	
+	@Ignore
 	@Test
 	public void t02_findSingleElectionById() {
 		SingleElection foundById = findSingleElectionByIdTest(1);
 		Assert.assertThat(foundById.getSingleVotes(), is(1000));
 	}
-
+	
+	@Ignore
 	@Test
 	public void t03_deleteSingleElectionById() {
 		deleteSingleElectionByIdTest(1);
 	}
-
+	
+	@Ignore
 	@Test
 	public void t04_publishSingleElectionResultsById() {
 		publishSingleElectionResultsByIdTest(7);
 	}
 	
+	@Ignore
 	@Test
 	public void t05_deleteSingleElectionResultsById() {
 		deleteSingleElectionResultsByIdTest(7);

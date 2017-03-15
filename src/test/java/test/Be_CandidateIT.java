@@ -25,7 +25,7 @@ import vs.admin_.candidate.Candidate;
 import vs.admin_.candidate.CandidateRepository;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {Be_CandidateIT.Config.class,
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = { Be_CandidateIT.Config.class,
 		Application.class })
 public class Be_CandidateIT {
 
@@ -68,23 +68,11 @@ public class Be_CandidateIT {
 		Assert.assertThat(candidates.size(), is(8));
 	}
 
-	
-	@Ignore
-	@Test
-	public void deleteCandidate() {
-
-		//
-	}
-
-
 	@Ignore
 	@Test
 	public void findCandidate() {
-
 		Candidate foundById = findCandidateByIdTest(1);
-
 		// Assert.assertThat(foundById.getId(), is(null));
-
 	}
 
 	@TestConfiguration

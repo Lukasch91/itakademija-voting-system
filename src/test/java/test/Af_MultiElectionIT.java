@@ -2,7 +2,7 @@ package test;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
-
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class Af_MultiElectionIT {
 		ResponseEntity<Void> response = restTemplate.postForEntity(URI, createMultiElection, Void.class); // Exercise
 		Assert.assertThat(response.getStatusCode(), CoreMatchers.is(HttpStatus.OK)); // Verify
 	}
-	
+	@Ignore
 	@Test
 	public void createElection() {
 

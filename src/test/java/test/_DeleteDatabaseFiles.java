@@ -9,12 +9,14 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class _DeleteDatabaseFiles {
 
 	private static final Path directoryPath = Paths.get("db/h2");
 
+	@Ignore
 	@Test
 	public void deleteH2Database() {
 

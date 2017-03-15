@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -24,6 +25,7 @@ public class DeletePrefillDbMin {
 	Connection conn = null;
 	Statement stmt = null;
 
+//	@Ignore
 	@Test
 	public void prefillH2Database() throws ClassNotFoundException, SQLException {
 		Assert.assertTrue(fillDb());

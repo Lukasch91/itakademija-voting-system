@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.is;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class Ba_ConstituencyIT {
 
 		return response.getBody();
 	}
-
+	@Ignore
 	@Test
 	public void findAllUndeletedConstituencies() {
 
@@ -66,7 +67,7 @@ public class Ba_ConstituencyIT {
 
 		Assert.assertThat(constituencies.size(), is(8));
 	}
-
+	@Ignore
 	@Test
 	public void findConstituency() {
 

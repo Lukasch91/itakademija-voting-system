@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.FixMethodOrder;//JUnit4.11+ test method ordering
+import org.junit.Ignore;
 import org.junit.runners.*;//JUnit4.11+ test method ordering
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -62,26 +63,21 @@ public class Bc_RepresentativeIT {
 		return response.getBody();
 	}
 
-//	@Test
-//	public void testPriority() {
-//		findAllUndeletedRepresentatives();
-//		findRepresentative();
-//		deleteRepresentative();
-//	}
-	
+
+	@Ignore
 	@Test
 	public void t01_findAllUndeletedRepresentatives() {
 		List<Representative> representatives = findAllRepresentativesTest();
 		Assert.assertThat(representatives.size(), is(12));
 	}
-
+	@Ignore
 	@Test
 	public void t02_findRepresentative() {
 		Representative foundById = findRepresentativeByIdTest(1);
 		Assert.assertThat(foundById.getName(), is("Zenonas"));
 	}
 
-
+	@Ignore
 	@Test
 	public void t03_deleteRepresentative() {
 		deleteRepresentativeByIdTest(1); 

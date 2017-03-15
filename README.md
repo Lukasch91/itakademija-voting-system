@@ -1,29 +1,35 @@
 # itakademija-voting-system
 
-Prisijungiama kai programa paleista
+##Launching the app
+###No tests
+	mvn clean spring-boot:run
+	
+###With tests
+	mvn clean verify spring-boot:run
 
-###Duomenu baze (h2 connection console):
+###Adress
+	http://localhost:8080/
 
-  http://localhost:8080/h2-console/
-
-  jdbc:h2:/home/arnoldasurbelis/Desktop/RinkSis/db/h2/database-dev;IFEXISTS=TRUE
-
-###Swagger dokumentacija (vietoj Postman):
-
-  http://localhost:8080/swagger-ui.html#/
-
-###Integraciniai testai:
+##Data base (h2 connection console):
+	http://localhost:8080/h2-console/
+	jdbc:h2:/home/arnoldasurbelis/Desktop/RinkSis/db/h2/database-dev;IFEXISTS=TRUE
   
-  Eclipse aplinkoje pasileidziame testu bendrines klases arba pavienius testus.
+##Swagger documentation:
+	http://localhost:8080/swagger-ui.html#/
 
-###Login
-Admin - Admin
-Password - pass
+##DataPreloading
+	/voting-system/src/test/java/preloader/DeletePrefillDbMin.java
+	1) cleans DB but leaves admin:pass
+	2) then fills DB with data
+  
+##Login
+	Login - admin
+	Password - pass
 
-Representive - ZV, AM - and others
-Password - 123
+	Representive - ZV, OB - and others
+	Password - 123
 
-###El.paštas
-LINK:		https://www.zoho.com/mail/login.html
-LOGIN:		vrk.sistema@zoho.com
-PASSWORD:	sistema.vrk
+##Email
+	LINK:		https://www.zoho.com/mail/login.html
+	LOGIN:		vrk.sistema@zoho.com
+	PASSWORD:	sistema.vrk

@@ -4,6 +4,7 @@ package test;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class Ag_SingleElectionIT {
 		ResponseEntity<Void> response = restTemplate.postForEntity(URI, createSingleElectionResult, Void.class);
 		Assert.assertThat(response.getStatusCode(), CoreMatchers.is(HttpStatus.CREATED));
 	}
-	
+	@Ignore
 	@Test
 	public void createSingleElectionResults() {
 
