@@ -91,8 +91,9 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                     <span>{multiVote.enteredDate}</span>
                 )
             });
-            console.log(singleVotesDate);
-            console.log(multiVotesDate);
+            console.log(singleVotesDate[0]);
+            console.log('A');
+            console.log(multiVotesDate[0]);
             var testDisabled = self.props.disableTest;
             return (
 
@@ -196,7 +197,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        Rezultatai pateikti: {multiVotesDate.length}
+                                        Rezultatai pateikti: {multiVotesDate[0]}
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-default" data-dismiss="modal">Uždaryti</button>
