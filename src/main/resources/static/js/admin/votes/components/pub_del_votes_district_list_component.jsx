@@ -21,6 +21,31 @@ var PubDelVotesDistrictListComponent = React.createClass( {
         return multiVotesList;
     },
 
+    timeConverter: function( timestamp ) {
+        var date = new Date( timestamp );
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        if (month < 10) {
+            month = '0' + month;
+        }
+        var day = date.getDate();
+        if (day < 10) {
+            day = '0' + day;
+        }
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        if (min < 10) {
+            min = '0' + min;
+        }
+        var sec = date.getSeconds();
+        if (sec < 10) {
+            sec = '0' + sec;
+        }
+        var time = year + '-' + month + '-' + day + ' ' + hour + ':' + min + ':' + sec;
+        return time;
+    },
+    
+    
     render: function() {
 
         var self = this;
@@ -71,10 +96,22 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                 )
             });
 
-            var singleVotesDate = self.getSingleVotesByDistrict( district.id ).map( function( singleVote, index ) {
+            var singleVotesDateEntered = self.getSingleVotesByDistrict( district.id ).map( function( singleVote, index ) {
                 return (
-                    <span>{singleVote.singleEnteredDate}</span>
+                    <span>{self.timeConverter(singleVote.singleEnteredDate)}</span>
                 )
+            });
+            
+            var singleVotesDatePublished = self.getSingleVotesByDistrict( district.id ).map( function( singleVote, index ) {
+                if (singleVote.singlePublishedDate == null) {
+                    return (
+                    <span>nepublikuota</span>        
+                    )
+                } else {
+                return (
+                    <span>{self.timeConverter(singleVote.singlePublishedDate)}</span>
+                )
+                }
             });
 
             var multiVotesList = self.getMultiVotesByDistrict( district.id ).map( function( multiVote, index ) {
@@ -86,14 +123,24 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                 )
             });
 
-            var multiVotesDate = self.getMultiVotesByDistrict( district.id ).map( function( multiVote, index ) {
+            var multiVotesDateEntered = self.getMultiVotesByDistrict( district.id ).map( function( multiVote, index ) {
                 return (
-                    <span>{multiVote.enteredDate}</span>
+                    <span>{self.timeConverter(multiVote.entered_date)}</span>
                 )
             });
-            console.log(singleVotesDate[0]);
-            console.log('A');
-            console.log(multiVotesDate[0]);
+            
+            var multiVotesDatePublished = self.getMultiVotesByDistrict( district.id ).map( function( multiVote, index ) {
+                if (multiVote.published_date == null) {
+                    return (
+                    <span>nepublikuota</span>        
+                    )
+                } else {
+                return (
+                    <span>{self.timeConverter(multiVote.published_date)}</span>
+                )
+                }
+            });
+
             var testDisabled = self.props.disableTest;
             return (
 
@@ -123,7 +170,8 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        Rezultatai pateikti: {singleVotesDate[0]}
+                                        Duomenys pateikti: {singleVotesDateEntered[0]}<br />
+                                        Duomenys publikuoti: {singleVotesDatePublished[0]}
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-default" data-dismiss="modal">Uždaryti</button>
@@ -197,7 +245,8 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        Rezultatai pateikti: {multiVotesDate[0]}
+                                        Duomenys pateikti: {multiVotesDateEntered[0]}<br />
+                                        Duomenys publikuoti: {multiVotesDatePublished[0]}
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-default" data-dismiss="modal">Uždaryti</button>
