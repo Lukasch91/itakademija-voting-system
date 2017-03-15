@@ -2,23 +2,6 @@
 	width: 100&;
 }
 
-
-#apiid{
-	position:absolute;
-	display:block;
-	list-style-type: none;	
-list-style: none;
-
-}
-#apiresults{
-		text-decoration:none;
-		color:#9d9d9d;
-}
-#apiresults:hover{
-		color:white;
-}
-
-
 .absolute-center {
   margin: auto;
   position: absolute;
@@ -38,10 +21,27 @@ list-style: none;
 .footer {
 	background: #333;
 	color: #9d9d9d;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 	text-align: center;
 }
+
+#apiid{
+	position:absolute;
+	display:block;
+	list-style-type: none;	
+list-style: none;
+
+}
+#apiresults{
+		text-decoration:none;
+		color:#9d9d9d;
+}
+#apiresults:hover{
+		color:white;
+}
+
+
 
 #root_admin, #root_pub, #root_rep {
 	margin-bottom: 50px;
@@ -133,3 +133,4 @@ tr:last-of-type td:first-child {
 tr:last-of-type td:last-child {
 	box-shadow: inset -1px -1px 0 #fff;
 }	
+

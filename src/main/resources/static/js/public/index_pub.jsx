@@ -28,9 +28,9 @@ var App = React.createClass( {
                 <img style={{ paddingBottom: '10px' }} src="images/vrk-logo-lt.png" alt="vrk logo" />
                 <NavigationPubContainer />
                 {this.props.children}
-                <div className="container footer ">
-                <ul id="apiid"><NavLink  id="apiresults" to="/apiresults">API Servisas</NavLink></ul>
-                <p>&copy; KALM, 2017</p>
+                <div className="container footer navbar-fixed-bottom">
+                &copy; KALM, 2017 <br/>
+                <a id="apiresults" href="http://localhost:8080/#/apiresults">API SERVISAS</a>
                 
                 </div>
             </div>
