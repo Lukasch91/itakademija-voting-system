@@ -3,6 +3,8 @@ package vs.admin;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -53,12 +55,20 @@ public class AdminRepository {
 	}
 
 	@Transactional
-	public void changePassword(@CurrentUser Admin admin, String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public boolean changePassword(@CurrentUser Admin admin, String password)
+			throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		log.debug("AdminRep changePassword started...");
-		Admin adminToChange = (Admin) em.createQuery(FIND_BY_ADMIN_LOGIN)
-				.setParameter("loginName", admin.getLoginName()).getSingleResult();
-		adminToChange.setPassword(passwordService.PassHashing(password));
-		log.debug("AdminRep changePassword success!");
+		String regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,60}$";
+		Pattern pattern = Pattern.compile(regexp);
+		Matcher matcher = pattern.matcher(password);
+
+		if (matcher.find()) {
+			Admin adminToChange = (Admin) em.createQuery(FIND_BY_ADMIN_LOGIN)
+					.setParameter("loginName", admin.getLoginName()).getSingleResult();
+			adminToChange.setPassword(passwordService.PassHashing(password));
+			return true;
+		}
+		return false;
 	}
 
 }

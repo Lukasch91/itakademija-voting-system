@@ -29,7 +29,7 @@ public class AdminController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Get Admin")
 	public List<Admin> findAdmin() {
-		log.info("Admin - findAdmin controller started, result:  " + adminRepository.findAdmin());
+		log.info("started, result:  " + adminRepository.findAdmin());
 		return adminRepository.findAdmin();
 	}
 
@@ -37,7 +37,7 @@ public class AdminController {
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
 	@ApiOperation(value = "Create or update admin")
 	public Admin saveOrUpdateAdmin(@Valid @RequestBody Admin admin) {
-		log.info("Admin - saveOrUpdateAdmin controller started, result: " + adminRepository.saveOrUpdateAdmin(admin));
+		log.info("started.." );
 		return adminRepository.saveOrUpdateAdmin(admin);
 	}
 
@@ -45,17 +45,23 @@ public class AdminController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Find By LoginName")
 	public Admin findByLogin(@RequestBody String loginName) {
-		log.info("Admin - findByLogin controller started, result: " + adminRepository.findByLoginName(loginName));
+		log.info("started, result: " + adminRepository.findByLoginName(loginName));
 		return adminRepository.findByLoginName(loginName);
 	}
 
 	@RequestMapping(value = "/api/ADMIN/changepass", method = RequestMethod.POST)
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Change password")
-	public void changePassword(@CurrentUser Admin admin, @RequestParam String password)
+	public boolean changePassword(@CurrentUser Admin admin, @RequestParam String password)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		log.info("Admin - changePassword controller started... ");
-		adminRepository.changePassword(admin, password);
-		log.info("Admin - changePassword controller finished! ");
+		log.info("started... ");
+		boolean check = adminRepository.changePassword(admin, password);
+		if (check){
+			log.info("Password was changed!");
+			return true;
+		
+		}
+		log.info("Password was to weak!");
+		return false;
 	}
 }

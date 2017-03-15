@@ -82,11 +82,11 @@ public class RepresentativeController {
 		log.info("||--> was used");
 		boolean check = representativeRepository.changePassword(representative, password);
 		if (check){
-			log.warn("Password was changed!");
+			log.info("Password was changed!");
 			return true;
 		
 		}
-		log.warn("Password was to weak!");
+		log.info("Password was to weak!");
 		return false;
 		
 	}
