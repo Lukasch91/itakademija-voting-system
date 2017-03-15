@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	
 <head>
 <title>RinkSis</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
-	
+	<meta charset="UTF-8">
 <!-- <link rel="icon" href="/images/favicon.ico" /> -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="test.css">
 
 </head>
 <body>
+
+
+  <script type="text/javascript">
+  console.log( 'aaaaaaaaaaaa  ' + navigator.userAgent.indexOf("MSIE"));
+  console.log( 'aaaaaaaaaaaa  ' + navigator.userAgent.indexOf("Safari"));
+      if (( navigator.userAgent.indexOf("MSIE")>-1) || (navigator.userAgent.indexOf("Safari")==91))
+      {
+          alert('Atsiprašome, sistema jūsų naršyklės nepalaiko. \n Palaikomos naršyklės: Google Chrome, Microsoft Edge, Opera, Mozilla Firefox');
+      }
+  </script>
+
 <!-- 	<div class="container">
-		<a id="public" href="/">Viešas</a> | <a id="admin" href="/admin">Administratoriui</a>
+		<a id="public" href="/">VieÅ�as</a> | <a id="admin" href="/admin">Administratoriui</a>
 		| <a id="representative" href="/rep">Atstovui</a>
 	</div> -->
 
