@@ -14,7 +14,7 @@ var App = React.createClass( {
 
 var NoMatch = React.createClass( {
     render: function() {
-        return <div>Route did not match</div>;
+        return <div><h4>Atsiprašome puslapis nerastas</h4></div>;
     }
 });
 
