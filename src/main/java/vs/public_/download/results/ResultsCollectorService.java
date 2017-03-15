@@ -30,7 +30,6 @@ public class ResultsCollectorService {
 	@Autowired
 	private MultiElectionResultsService multiElectionResultsService;
 	
-	
 	/**
 	 * Method prepares all the data of multi elections as an MultiElectionResultsAll object List. For
 	 * that it assembles MultiElectionConstituencyList, MultiElectionDistrictList and
@@ -168,36 +167,36 @@ public class ResultsCollectorService {
 
 	public String[] multiElectionResultsAllHeader() {
 		log.info("||--> was used." );
-		return new String[] {
+		return new String[] {	
 				/* constituency */			
 				"Apygardos Id",
-				"Apygardos pavadinimas",
-				"Apygardos apylinkiu skaicius",
-				"Apygardos apylinkes paskelbusios rezultatus",
-				"Apygardos balsuotoju skaicius",
-				"Apygardos balsavusiuju skaicius",
-				"Apygardos balsavusiuju % nuo apygardos balsuotoju",
+				"Apygarda",
+				"Apygardos apylinkės",
+				"Apygardos apylinkės paskelbusios rezultatus",
+				"Apygardos rinkėjų sk.",
+				"Apygardos balsavusiųjų skaičius",
+				"Apygardos balsavusiųjų % nuo apygardos balsuotojų",
 				"Apygardos sugadinti balsai",
-				"Apygardos sugadintu balsu % nuo apygarodos balsuotoju",
-				"Apygardos geru balsu skaicius",
-				"Apygardos geru balsu % nuo apygardos balsuotoju",
+				"Apygardos sugadintų balsų % nuo apygarodos balsuotojų",
+				"Apygardos gerų balsų skaičius",
+				"Apygardos gerų balsų % nuo apygardos balsuotojų",
 				/* constituency */
 				/* district */
-				"Apylinkes Id",
-				"Apylinkes pavadinimas",
-				"Apylinkes balsuotoju skaicius",
-				"Apylinkes balsavusiuju skaicius",
-				"Apylinkes balsavusiuju % nuo apylinkes balsuotoju",
-				"Apylinkes sugadinti balsai",
-				"Apylinkes sugadintu balsu % nuo apylinkes balsuotoju",
-				"Apylinkes geru balsu skaicius",
-				"Apylinkes geru balsu % nuo apylinkes balsuotoju",
+				"Apylinkės Id",
+				"Apylinkė",
+				"Apylinkės rinkėjų sk.",
+				"Apylinkės balsavusiųjų skaičius",
+				"Apylinkės balsavusiųjų % nuo apylinkės balsuotojų",
+				"Apylinkės sugadinti balsai",
+				"Apylinkės sugadintų balsų % nuo apylinkės balsuotojų",
+				"Apylinkės gerų balsų skaičius",
+				"Apylinkės gerų balsų % nuo apylinkės balsuotojų",				
 				/* district */
 				/* result */
 				"Partijos Id",
 				"Partijos pavadinimas",
-				"Partijos balsu skaicius",
-				"Partijos geru balsu % nuo apylinkes balsuotoju???"
+				"Partijos balsų skaičius",
+				"Partijos gerų balsų % nuo apylinkės balsuotojų"
 //				"Partijos mandatai"
 				/* result */	
 				};	
@@ -206,39 +205,39 @@ public class ResultsCollectorService {
 	public String[] singleElectionResultsAllHeader() {
 		log.info("||--> was used." );
 		return new String[] {
-				/* constituency */				
+				/* constituency */	
 				"Apygardos Id",
-				"Apygardos pavadinimas",
-				"Apygardos apylinkiu skaicius",
-				"Apygardos apylinkes paskelbusios rezultatus",
-				"Apygardos balsuotoju skaicius",
-				"Apygardos balsavusiuju skaicius",
-				"Apygardos balsavusiuju % nuo apygardos balsuotoju",
+				"Apygarda",
+				"Apygardos apylinkės",
+				"Apygardos apylinkės paskelbusios rezultatus",
+				"Apygardos rinkėjų sk.",
+				"Apygardos balsavusiųjų skaičius",
+				"Apygardos balsavusiųjų % nuo apygardos balsuotojų",
 				"Apygardos sugadinti balsai",
-				"Apygardos sugadintu balsu % nuo apygarodos balsuotoju",
-				"Apygardos geru balsu skaicius",
-				"Apygardos geru balsu % nuo apygardos balsuotoju",
+				"Apygardos sugadintų balsų % nuo apygarodos balsuotojų",
+				"Apygardos gerų balsų skaičius",
+				"Apygardos gerų balsų % nuo apygardos balsuotojų",
 				/* constituency */
 				/* district */
-				"Apylinkes Id",
-				"Apylinkes pavadinimas",
-				"Apylinkes balsuotoju skaicius",
-				"Apylinkes balsavusiuju skaicius",
-				"Apylinkes balsavusiuju % nuo apylinkes balsuotoju",
-				"Apylinkes sugadinti balsai",
-				"Apylinkes sugadintu balsu % nuo apylinkes balsuotoju",
-				"Apylinkes geru balsu skaicius",
-				"Apylinkes geru balsu % nuo apylinkes balsuotoju",
+				"Apylinkės Id",
+				"Apylinkė",
+				"Apylinkės rinkėjų sk.",
+				"Apylinkės balsavusiųjų skaičius",
+				"Apylinkės balsavusiųjų % nuo apylinkės balsuotojų",
+				"Apylinkės sugadinti balsai",
+				"Apylinkės sugadintų balsų % nuo apylinkės balsuotojų",
+				"Apylinkės gerų balsų skaičius",
+				"Apylinkės gerų balsų % nuo apylinkės balsuotojų",
 				/* district */
 				/* result */
 				"Kandidato Id",
 				"Kandidato vardas",
-				"Kandidato pavarde",
+				"Kandidato pavardė",
 				"Kandidato partija",
-				"Kandidato balsu skaicius",
-				"Kandidato geru balsu % nuo apylinkes balsuotoju???",
-				"Kandidato geru balsu % nuo visu balsuotoju???",
-				"Kandidato Apygardos Id",
+				"Kandidato balsų skaičius",
+				"Kandidato gerų balsų % nuo apylinkės balsuotojų",
+				"Kandidato gerų balsų % nuo visų balsuotojų",
+				"Kandidato Apygardos Id"
 				/* result */	
 				};	
 	}
@@ -248,7 +247,7 @@ public class ResultsCollectorService {
 		return new String[] {		
 				"Vardas",
 				"Pavardė",
-				"Partija"
+				"Partinė priklausomybė"
 				};	
 	}
 	

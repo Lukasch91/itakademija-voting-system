@@ -63,8 +63,7 @@ public class DownloadResultsService {
 			tableData.add(rCS.singleElectionResultsAllToStringArray(sERA));
 		}
 
-		int[] have = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
-				27 };
+		int[] have = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26 };
 
 		String result = listArrayToCSVSting(dataLimiter(tableData, have));
 		log.info("||--> Finished!");
@@ -82,7 +81,7 @@ public class DownloadResultsService {
 			tableData.add(rCS.multiElectionResultsAllToStringArray(mERA));
 		}
 
-		int[] have = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 };
+		int[] have = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23 };
 
 		String result = listArrayToCSVSting(dataLimiter(tableData, have));
 		log.info("||--> Finished!");
@@ -100,7 +99,7 @@ public class DownloadResultsService {
 			tableData.add(rCS.singleElectionResultsAllToStringArray(sERA));
 		}
 
-		int[] have = { 1, 12, 21, 22, 23, 24, 25, 26, 27 };
+		int[] have = { 1, 12, 21, 22, 23, 24, 25, 26 };
 
 		String result = listArrayToCSVSting(dataLimiter(tableData, have));
 		log.info("||--> Finished!");
