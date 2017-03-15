@@ -29,7 +29,7 @@ public class SingleElectionRepository {
 
 	private static final String SUM_PUBLISHED_VOTES_IN_DISTRICTS_BY_CONSTITUENCY = "SELECT sum(s.singleVotes) FROM SingleElection s "
 			+ "LEFT JOIN s.singleCandidate c left join c.candidateConstituency cc "
-			+ "WHERE s.singleDeletedDate IS NULL " + "AND s.singlePublishedDate IS NOT NULL and cc.id = :id ";
+			+ "WHERE s.singleDeletedDate IS NULL " + "AND s.singlePublishedDate IS NOT NULL and cc.id = :id and cc.deletedTime is null ";
 
 	// private static final String SUM_PUBLISHED_VOTES_IN_DISTRICT = "SELECT
 	// sum(s.singleVotes) FROM SingleElection s "

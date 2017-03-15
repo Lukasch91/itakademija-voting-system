@@ -45,7 +45,7 @@ var MultiElectionsResultsComponent = React.createClass( {
                 </div>
                 <div className="row">
                     <div className="col-sm-4">
-                        <h7>
+                        <h7><br />
                             Apylinkių skaičius – {info.numberOfDistricts}<br />
                             Apygardų skaičius – {info.numberOfConstituencies}  <br />
                             Pagal gautus iš apylinkių duomenis:<br />

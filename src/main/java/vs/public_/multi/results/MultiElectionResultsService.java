@@ -314,6 +314,29 @@ public class MultiElectionResultsService {
 		return electionDistrictDetails;
 
 	}
+	
+//	public Long getSumVotes(List<MultiElectionResults> list){
+//		Long sum = null;
+//		for (MultiElectionResults multiElectionResults : list) {
+//			if (multiElectionResults.getVotes() != null && multiElectionResults.getPercentageOfAllVotes().compareTo(BigDecimal.valueOf(5)) > 0){
+//				sum = sum + multiElectionResults.getVotes();
+//			}
+//		}
+//		return sum;
+//	}
+//	
+//	public List<MultiElectionResults> getPartiesListWithMandates2(List<MultiElectionResults> list) {
+//		Long sum = getSumVotes(list);
+//		Long mandates = null;
+//		
+//		for (MultiElectionResults multiElectionResults : list) {
+//			
+//			if (multiElectionResults.getPercentageOfAllVotes().compareTo(BigDecimal.valueOf(5)) > 0){
+////				mandates = 
+//			}
+//		}
+//		return list;
+//	}
 
 	public BigDecimal getPercentageSumOver(List<MultiElectionResults> list) {
 		log.info("||--> Started...");
@@ -340,7 +363,7 @@ public class MultiElectionResultsService {
 
 			if (percentage.compareTo(BigDecimal.valueOf(5)) > 0) {
 				mandates = ((multiElectionConstituency.getPercentageOfAllVotes().multiply(BigDecimal.valueOf(70)))
-						.divideToIntegralValue(sum)).setScale(0, RoundingMode.HALF_UP).longValue();
+						.divide(sum,0, RoundingMode.HALF_UP)).longValue();
 				multiElectionConstituency.setNumberOfMandates(mandates);
 			}
 		}
