@@ -30,6 +30,9 @@ var PartyListContainer = React.createClass( {
                     },
                     options: {
                         scales: {
+                            xAxes: [{
+                                display: false
+                            }],
                             yAxes: [{
                                 ticks: {
                                     beginAtZero: true
@@ -64,12 +67,11 @@ var PartyListContainer = React.createClass( {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-sm-5"><PartyListComponent
+                    <div className="col-sm-6"><PartyListComponent
                         parties={this.state.parties}
                         />
                     </div>
                     <div className="col-sm-6"><canvas id="myChart"></canvas></div>
-                    <div className="col-sm-1"></div>
                 </div>
             </div>
 
