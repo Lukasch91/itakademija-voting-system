@@ -37,7 +37,7 @@ public class PartyController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[ADMIN] - Save or update Party")
 	public Party createOrUpdateParty(@Valid @RequestBody Party party) {
-		log.info("||--> was used");
+		log.info("||--> was used. party: " + party.getTitle());
 		return partyRepository.saveOrUpdate(party);
 	}
 

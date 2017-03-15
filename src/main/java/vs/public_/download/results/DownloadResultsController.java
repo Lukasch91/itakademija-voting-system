@@ -24,7 +24,7 @@ public class DownloadResultsController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[PUBLIC] - Get table data as CSV string")
 	public String downloadcsv(@PathVariable("request") Integer request) {
-		log.info("||--> was used. Request: " + request);
+		log.debug("||--> was used. Request: " + request);
 		return downloadResultsService.returnSelector(request);
 	}
 }

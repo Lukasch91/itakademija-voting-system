@@ -39,24 +39,24 @@ public class RepresentativeRepository {
 
 	@Transactional
 	public Representative saveOrUpdateRepresentative(Representative representative) {
-		log.info("||--> Started...");
+		log.debug("||--> Started...");
 		if (representative.getId() == null) {
 			em.persist(representative);
-			log.info("||--> Finished! Representative added: " + representative.getSurname());
+			log.debug("||--> Finished! Representative added: " + representative.getSurname());
 			return representative;
 		} else {
 			Representative merged = em.merge(representative);
 			em.persist(merged);
-			log.info("||--> Finished! Representative updated: " + representative.getSurname());
+			log.debug("||--> Finished! Representative updated: " + representative.getSurname());
 			return merged;
 		}
 	}
 
 	public Representative findRepresentativeById(Integer id) {
-		log.info("||--> was used! Representative id: " + id);
+		log.debug("||--> was used! Representative id: " + id);
 		Representative representative = em.find(Representative.class, id);
 		if (representative != null) {
-			log.info("||--> was used! Representative surname: " + representative.getSurname());
+			log.debug("||--> was used! Representative surname: " + representative.getSurname());
 			return representative;
 		} else {
 			return null;
@@ -66,12 +66,12 @@ public class RepresentativeRepository {
 	@Transactional
 	public void deleteRepresentative(Integer id) {
 		Representative representative = em.find(Representative.class, id);
-		log.info("||--> was used! Deleted representative: " + representative.getSurname());
+		log.debug("||--> was used! Deleted representative: " + representative.getSurname());
 		em.remove(representative);
 	}
 	
 	public Representative findByLoginName(String loginName) {
-		log.info("||--> was used! Login name for search: " + loginName);
+		log.debug("||--> was used! Login name for search: " + loginName);
 		return (Representative) em.createQuery(FIND_BY_LOGIN).setParameter("loginName", loginName)
 				.getSingleResult();
 	}
@@ -85,8 +85,10 @@ public class RepresentativeRepository {
 		if (matcher.find()){
 			Representative repToChange = (Representative) em.createQuery(FIND_BY_LOGIN).setParameter("loginName", representative.getLoginName()).getSingleResult();
 			repToChange.setPassword(passwordService.PassHashing(password));
+			log.info("||--> password was changed");
 			return true;
 		}
+		log.info("||--> password was Not changed. to weak");
 		return false;
 
 	}

@@ -50,14 +50,14 @@ public class AdminRepository {
 
 	@Transactional
 	public Admin findByLoginName(String loginName) {
-		log.debug("Admin findByLoginName" + loginName);
+		log.debug("was used. Login Name: " + loginName);
 		return (Admin) em.createQuery(FIND_BY_ADMIN_LOGIN).setParameter("loginName", loginName).getSingleResult();
 	}
 
 	@Transactional
 	public boolean changePassword(@CurrentUser Admin admin, String password)
 			throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		log.debug("AdminRep changePassword started...");
+		log.debug("started...");
 		String regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,60}$";
 		Pattern pattern = Pattern.compile(regexp);
 		Matcher matcher = pattern.matcher(password);
@@ -66,8 +66,10 @@ public class AdminRepository {
 			Admin adminToChange = (Admin) em.createQuery(FIND_BY_ADMIN_LOGIN)
 					.setParameter("loginName", admin.getLoginName()).getSingleResult();
 			adminToChange.setPassword(passwordService.PassHashing(password));
+			log.debug("finished, password is safe!");
 			return true;
 		}
+		log.debug("finished, password not changed,  not safe!");
 		return false;
 	}
 

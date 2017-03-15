@@ -23,18 +23,18 @@ public class CandidateCreateService {
 	private Integer candidatesParty;
 
 	public List<Candidate> saveConstituencyCandidates() {
-		log.debug("CandidateCreateService - saveConstituencyCandidates started...");
+		log.debug("was started...");
 		List<Candidate> candidates = new ArrayList<Candidate>();
 		
 		for (String[] cells : candidatesData) {
 			candidates.add(createConstituencyCandidate(cells));
 		}
-		log.debug("CandidateCreateService - saveConstituencyCandidates finished!");
+		log.debug("was finished!");
 		return candidates;
 	}
 
 	public List<Candidate> savePartyCandidates() {
-		log.debug("CandidateCreateService - savePartyCandidates started...");
+		log.debug("was started...");
 		
 		List<Candidate> candidates = new ArrayList<Candidate>();
 		
@@ -42,12 +42,12 @@ public class CandidateCreateService {
 			candidates.add(createPartyCandidate(cells));
 		}
 		
-		log.debug("CandidateCreateService - savePartyCandidates finished!");
+		log.debug("was finished!");
 		return candidates;
 	}
 
 	private Candidate createConstituencyCandidate(String[] cell) {
-		log.debug("CandidateCreateService - createConstituencyCandidate started...");
+		log.debug("was started...");
 		Candidate candidate = new Candidate();
 		candidate.setCandidateName(cell[0]);
 		candidate.setCandidateSurname(cell[1]);
@@ -58,12 +58,12 @@ public class CandidateCreateService {
 		idSetter.setId(candidatesConstituency);
 		candidate.setCandidateConstituency(idSetter);
 		candidate.setCandidateParty(null);
-		log.debug("CandidateCreateService - createConstituencyCandidate finished!");
+		log.debug("was finished!");
 		return candidate;
 	}
 
 	private Candidate createPartyCandidate(String[] cell) {
-		log.debug("CandidateCreateService - createPartyCandidate started...");
+		log.debug("was started...");
 		Candidate candidate = new Candidate();
 		candidate.setCandidateName(cell[0]);
 		candidate.setCandidateSurname(cell[1]);
@@ -75,7 +75,7 @@ public class CandidateCreateService {
 		Party idSetter = new Party();
 		idSetter.setId(candidatesParty);
 		candidate.setCandidateParty(idSetter);
-		log.debug("CandidateCreateService - createPartyCandidate finished!");
+		log.debug("was finished!");
 		return candidate;
 	}
 
@@ -89,12 +89,12 @@ public class CandidateCreateService {
 	}
 
 	public void setCandidatesConstituency(Integer candidatesDistrict) {
-		log.debug("setCandidatesConstituency result: " + candidatesDistrict);
+		log.debug("setwas used. result: " + candidatesDistrict);
 		this.candidatesConstituency = candidatesDistrict;
 	}
 
 	public List<Candidate> findAllCandidatesByDistrictId(Integer districtId) {
-		log.debug("CandidateCreateService - findAllCandidatesByDistrictId started.. district id: " + districtId);
+		log.debug("was started.. district id: " + districtId);
 		// can be changed to a well written SQL or something
 
 		List<Candidate> allCandidates = candidateRepository.findAllUndeletedCandidates();
@@ -112,7 +112,7 @@ public class CandidateCreateService {
 				}
 			}
 		}
-		log.debug("CandidateCreateService - findAllCandidatesByDistrictId finished!");
+		log.debug(" finished!");
 		return candidatesInDistrict;
 	}
 

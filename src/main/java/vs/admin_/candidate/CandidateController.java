@@ -32,7 +32,7 @@ public class CandidateController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[PUBLIC] - Get all undeleted candidates")
 	public List<Candidate> findAllCandidates() {
-		log.debug("CandidateController - findAllCandidates used.");
+		log.debug("was used.");
 		return candidateRepository.findAllUndeletedCandidates();
 	}
 
@@ -40,7 +40,7 @@ public class CandidateController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[REPRES] -Get all undeleted candidates by districtId")
 	public List<Candidate> findAllCandidatesByDistrictId(@PathVariable("districtId") Integer districtId) {
-		log.debug("CandidateController - findAllCandidatesByDistrictId used. District id: " + districtId);
+		log.debug("was used. District id: " + districtId);
 		return candidateService.findAllCandidatesByDistrictId(districtId);
 	}
 
@@ -48,7 +48,7 @@ public class CandidateController {
 	@ResponseStatus(org.springframework.http.HttpStatus.CREATED)
 	@ApiOperation(value = "[FORTEST - ADMIN] - Create or update candidate")
 	public Candidate createOrUpdateCandidate(@RequestBody Candidate candidate) {
-		log.debug("CandidateController - createOrUpdateCandidate used. Candidate: " + candidate);
+		log.debug("was used. Candidate: " + candidate.getCandidateSurname());
 		return candidateRepository.createOrUpdateCandidate(candidate);
 	}
 
@@ -56,7 +56,7 @@ public class CandidateController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[ADMIN] - Get candidate by Constituency id")
 	public List<Candidate> getCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
-		log.debug("CandidateController - getCandidateByConstituencyId used. Constituency id: " + id);
+		log.debug("was used. Constituency id: " + id);
 		return candidateRepository.findCandidatesByConstituencyId(id);
 	}
 
@@ -64,7 +64,7 @@ public class CandidateController {
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "[ADMIN] - Delete candidate by Constituency id (adds deletion date)")
 	public void deleteCandidateByConstituencyId(@PathVariable("constituencyId") Integer id) {
-		log.debug("CandidateController - deleteCandidateByConstituencyId used. Constituency id: " + id);
+		log.debug("was used. Constituency id: " + id);
 		candidateRepository.deleteCandidatesByConstituencyId(id);
 	}
 
@@ -72,7 +72,7 @@ public class CandidateController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[ADMIN] - Get candidate by Party id")
 	public List<Candidate> getCandidateByPartyId(@PathVariable("partyId") Integer id) {
-		log.debug("CandidateController - getCandidateByPartyId used. Party id: " + id);
+		log.debug("was used. Party id: " + id);
 		return candidateRepository.findCandidatesByPartyId(id);
 	}
 
@@ -80,7 +80,7 @@ public class CandidateController {
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "[ADMIN] - Delete candidate by Party id (adds deletion date)")
 	public void deleteCandidateByPartyId(@PathVariable("partyId") Integer id) {
-		log.debug("CandidateController - deleteCandidateByPartyId used. Party id: " + id);
+		log.debug("was used. Party id: " + id);
 		candidateRepository.deleteCandidatesByPartyId(id);
 	}
 
@@ -88,7 +88,7 @@ public class CandidateController {
 	@RequestMapping(value = "/api/ADMIN/constituencycsv", method = RequestMethod.POST)
 	@ApiOperation(value = "[ADMIN] - Upload constituency candidates CSV")
 	public ResponseEntity constituencyCSV(@RequestBody CandidateDataPackage data) {
-		log.debug("CandidateController - constituencyCSV used.");
+		log.debug("was used.");
 		return candidateValidationService.validateSaveConstituencyData(data);
 	}
 
@@ -96,7 +96,7 @@ public class CandidateController {
 	@RequestMapping(value = "/api/ADMIN/partycsv", method = RequestMethod.POST)
 	@ApiOperation(value = "[ADMIN] - Upload party candidates CSV")
 	public ResponseEntity partyCSV(@RequestBody CandidateDataPackage data) {
-		log.debug("CandidateController - partyCSV used.");
+		log.debug("was used.");
 		return candidateValidationService.validateSavePartyData(data);
 	}
 }

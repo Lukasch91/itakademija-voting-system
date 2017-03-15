@@ -47,7 +47,7 @@ public class RepresentativeController {
 			+ "\"email\": \"Sablonskis@gmail.com\", \"id\": null, \"loginName\": \"Sab\", "
 			+ "\"name\": \"Sablonius\", \"password\": \"xxx\", \"surname\": \"SABLONSKIS\"}")
 	public Representative createOrUpdateRepresentative(@Valid @RequestBody Representative representative) {
-		log.info("||--> was used");
+		log.info("||--> was used. representative: " + representative.getSurname());
 		return representativeRepository.saveOrUpdateRepresentative(representative);		
 	}
 
@@ -55,7 +55,7 @@ public class RepresentativeController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[ADMIN] - Get representative by id")
 	public Representative getRepresentativeById(@PathVariable("id") Integer id) {
-		log.info("||--> was used");
+		log.debug("||--> was used. id: " + id);
 		return representativeRepository.findRepresentativeById(id);
 	}
 
@@ -63,7 +63,7 @@ public class RepresentativeController {
 	@ResponseStatus(org.springframework.http.HttpStatus.NO_CONTENT)
 	@ApiOperation(value = "[ADMIN] - Delete representative by id(realDelete)")
 	public void deleteRepresentativeById(@PathVariable("id") Integer id) {
-		log.info("||--> was used");
+		log.debug("||--> was used. id: " + id);
 		representativeRepository.deleteRepresentative(id);
 	}
 	
@@ -71,7 +71,7 @@ public class RepresentativeController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[UNUSED - ADMIN] - Find By LoginName")
 	public Representative findByLogin( @RequestBody String loginName) {
-		log.info("||--> was used");
+		log.debug("||--> was used");
 		return representativeRepository.findByLoginName(loginName);		
 	}
 	
@@ -79,14 +79,14 @@ public class RepresentativeController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "Change password")
 	public boolean changePassword(@CurrentUser Representative representative, @RequestParam String password) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		log.info("||--> was used");
+		log.debug("||--> was used");
 		boolean check = representativeRepository.changePassword(representative, password);
 		if (check){
-			log.info("Password was changed!");
+			log.debug("Password was changed!");
 			return true;
 		
 		}
-		log.info("Password was to weak!");
+		log.debug("Password was to weak!");
 		return false;
 		
 	}

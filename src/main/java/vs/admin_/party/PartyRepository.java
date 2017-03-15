@@ -56,11 +56,8 @@ public class PartyRepository {
 	@Transactional
 	public void deleteParty(Integer id) {
 		log.info("||--> Start... Party id: " + id);
-		log.debug("PartyRepository - deleteCandidatesByPartyId started! Id: " + id);
 		candidateRepository.deleteCandidatesByPartyId(id);
-		log.debug("PartyRepository - deleteCandidatesByPartyId finished!");
 		Party party = entityManager.find(Party.class, id);
-		log.info("||--> Founded party by id to delete: " + party.getTitle().toString());
 		Date date = new Date();
 		party.setDeletedTime(date);
 		entityManager.persist(party);
