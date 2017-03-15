@@ -2,129 +2,79 @@ var ApiComponent = React.createClass( {
     render: function() {
         return (
             <div>
-                <h1>API</h1>
-                
-                <h3>Konsoliduoti rezultatai:</h3>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>Description</td>
-                                <td>
-                                    <a href="http://localhost:8080/api/PUBLIC/consolidatedResults/">getSortedPartyList()</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Description</td>
-                                <td>
-                                    <a href="http://localhost:8080/api/PUBLIC/members/">getSortedMemberOfParlList()</a>
-                                </td>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                
-                <h3>Rezultatai vienmandatės apygardose:</h3>
+                <h2>API</h2>
+
+
                 <table>
                     <tbody>
                         <tr>
-                            <td>Description</td>
+                            <th colspan="1">Konsoliduoti rezultatai:</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>Konsoliduoti balsavimo rezultatai (partijos ir mandatai)</td>
                             <td>
-                                <a href="http://localhost:8080/api/PUBLIC/constresults">singleElectionConstituencyResults</a>
+                                <a href="http://localhost:8080/api/PUBLIC/consolidatedResults/">http://localhost:8080/api/PUBLIC/consolidatedResults/</a>
                             </td>
                         </tr>
                         <tr>
-                            <td>Description</td>
+                            <td>Išrinktų seimo narių sarašas</td>
                             <td>
-                                <a href="http://localhost:8080/api/PUBLIC/districtresults/{id}">singleElectionDistrictResults(id)</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Description</td>
-                            <td>
-                                <a href="http://localhost:8080/api/PUBLIC/candidatesresults/{id}">getSingleElectionResults(id)</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Description</td>
-                            <td>
-                                <a href="http://localhost:8080/api/PUBLIC/constresults/{id}">getConstiteuncyResult(id)</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Description</td>
-                            <td>
-                                <a href="http://localhost:8080/api/PUBLIC/constresultsdis/{id}">getConstituencyIdByDistrictId(id)</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Description</td>
-                            <td>
-                                <a href="http://localhost:8080/api/PUBLIC/districtdetails/{id}">getSingleElectionResultInDistrict(id)</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Description</td>
-                            <td>
-                                <a href="http://localhost:8080/api/PUBLIC/singledetails/">getSingleElectionDetails()</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Description</td>
-                            <td>
-                                <a href="http://localhost:8080/api/PUBLIC/singleDistrictDetails/{id}">getDistrictElectionDetails(id)</a>
+                                <a href="http://localhost:8080/api/PUBLIC/members/">http://localhost:8080/api/PUBLIC/members/</a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-        
-        <h3>Rezultatai daugiamandatėse apygardose:</h3>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>Description</td>
-                        <td>
-                            <a href="http://localhost:8080/api/PUBLIC/multicons">getMultiElectionResults()</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td>
-                            <a href="http://localhost:8080/api/PUBLIC/multiconslist">getMultiElectionConstituencyList()</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td>
-                            <a href="http://localhost:8080/api/PUBLIC/multidistlist/{id}">getResultsOfDistricts(id)</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td>
-                            <a href="http://localhost:8080/api/PUBLIC/multidis/{id}">getDistrictPartiesResults(id)</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td>
-                            <a href="http://localhost:8080/api/PUBLIC/multicons/{id}">getConstituencyPartiesResults(id)</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td>
-                            <a href="http://localhost:8080/api/PUBLIC/multiDetails/">getMultiElectionDetails()</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Description</td>
-                        <td>
-                            <a href="http://localhost:8080/api/PUBLIC/multiDistrictDetails/{id}">getDistrictElectionDetails(id)</a>
-                        </td>
-                    </tr>
-                    
-                </tbody>
-            </table>
+
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <th colspan="1">Rezultatai vienmandatės apygardose:</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>Vienmandačių apygardų balsavimo suvestinė</td>
+                            <td>
+                                <a href="http://localhost:8080/api/PUBLIC/constresults">http://localhost:8080/api/PUBLIC/constresults</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Vienmandačių apygardų balsavimo informacija</td>
+                            <td>
+                                <a href="http://localhost:8080/api/PUBLIC/singledetails/">http://localhost:8080/api/PUBLIC/singledetails/</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <th colspan="1">Rezultatai daugiamandatėse apygardose:</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>Daugiamandačių apygardų balsavimo suvestinė</td>
+                            <td>
+                                <a href="http://localhost:8080/api/PUBLIC/multicons">http://localhost:8080/api/PUBLIC/multicons</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Daugiamandačių apygardų balsavimo suvestinė</td>
+                            <td>
+                                <a href="http://localhost:8080/api/PUBLIC/multiconslist">http://localhost:8080/api/PUBLIC/multiconslist</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Daugiamandačių apygardų balsavimo informacija</td>
+                            <td>
+                                <a href="http://localhost:8080/api/PUBLIC/multiDetails/">http://localhost:8080/api/PUBLIC/multiDetails/</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
             </div>
         )
