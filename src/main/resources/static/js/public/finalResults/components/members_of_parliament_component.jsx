@@ -32,9 +32,9 @@ var MembersOfParliamentListComponent = React.createClass( {
                     </table>
                 </div>
                 <DownloadCSVContainer
-                buttonName="Sarasas"
+                buttonName="Laimėtojų sąrašas"
                 request="5"
-                fileName="Sarasas.csv" />
+                fileName="Laimėtojų sąrašas.csv" />
             <br />
             </div>
 
