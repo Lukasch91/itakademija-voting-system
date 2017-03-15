@@ -1,0 +1,1 @@
+INSERT INTO PARTIES VALUES (1, null, 'LSDP', 'Lietuvos socialdemokratų partija');

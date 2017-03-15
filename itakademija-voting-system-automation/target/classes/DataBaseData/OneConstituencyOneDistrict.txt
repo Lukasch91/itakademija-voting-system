@@ -1,0 +1,4 @@
+INSERT INTO CONSTITUENCY VALUES (1, null, 'Vilnius'); 
+INSERT INTO DISTRICTS VALUES (1, 'J. Jasinskio g. 11, Vilnius', 1, null, 255,  'Vyto');
+INSERT INTO DISTRICTS VALUES (2, 'J. Jono g. 11, Vilnius', 1, null, 255,  'Jono');
+INSERT INTO REPRESENTATIVES VALUES (1, 1, 'Zenonas@gmail.com', 'ZV',  'Zenonas', '$2a$13$oD1RyvAij7rGYxerxFU65.eb.r8dDa3GS.VwNBXDa7l/B9ZGciQDm', 'VAIGAUSKAS');

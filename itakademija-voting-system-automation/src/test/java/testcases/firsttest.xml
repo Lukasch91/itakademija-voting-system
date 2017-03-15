@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="test">
+	<test name="Candidate Search Test Cases">
+<parameter name="name" value="Benas"/> 
+		<classes>
+
+			<class name="testclasses._public.CandidateSearchTest">
+				<methods>
+					<include name="candidateSearchLoadPageTest" />
+					<include name="candidateSearchByNameTest" />
+
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

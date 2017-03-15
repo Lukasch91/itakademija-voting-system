@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [test]">
+  <parameter name="name" value="Benas"/>
+  <test name="Candidate Search Test Cases">
+    <parameter name="name" value="Benas"/>
+    <classes>
+      <class name="testclasses._public.CandidateSearchTest">
+        <methods>
+          <include name="candidateSearchLoadPageTest"/>
+          <include name="candidateSearchByNameTest"/>
+        </methods>
+      </class> <!-- testclasses._public.CandidateSearchTest -->
+    </classes>
+  </test> <!-- Candidate Search Test Cases -->
+</suite> <!-- Failed suite [test] -->

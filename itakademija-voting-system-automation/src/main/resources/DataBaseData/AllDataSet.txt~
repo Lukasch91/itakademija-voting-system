@@ -1,0 +1,20 @@
+INSERT INTO CONSTITUENCY(TITLE) VALUES ('Kaunas');
+INSERT INTO CONSTITUENCY(TITLE) VALUES ('Vilnius');
+INSERT INTO DISTRICTS VALUES (1, 'J. Jasinskio g. 11, Vilnius', 1, null, 255,  'Vyto');
+INSERT INTO DISTRICTS VALUES (2, 'Mindaugo g. 9, Vilnius', 1, null, 15,  'Sėlių');
+INSERT INTO DISTRICTS VALUES (3, 'Studentų g. 39, Vilnius', 1, null, 50,  'Gėlių');
+INSERT INTO DISTRICTS VALUES (4, 'Kauno g. 3, Vilnius', 2, null, 622,  'Žemaitės');
+INSERT INTO DISTRICTS VALUES (5, 'Statybininkų g. 5, Vilnius', 2, null, 75,  'Algirdo');
+INSERT INTO REPRESENTATIVES VALUES (1, 1, 'Zenonas@gmail.com', 'ZV',  'Zenonas', '$2a$10$..5tXNokn2XPFtHXuz49zuwEeYEiNvxE8aMyo092Ac3TQdVX4LhdO', 'VAIGAUSKAS');
+INSERT INTO REPRESENTATIVES VALUES (2, 2, 'Jurate@gmail.com', 'JD',  'Jūratė', '$2a$10$fyt6QAs5TTsPvzP0XLEXNOzBM1IpyIdwcquzCLtQykgdc4WSa/lbK', 'DRUNGILAITĖ');
+INSERT INTO REPRESENTATIVES VALUES (3, 4, 'Antanas@gmail.com', 'AM',  'Antanas', '$2a$10$F1S8ih8UPPnGjScpd.TGIOMfWnM7vX/mSaO/mtTn41xa3oXs9EBBa', 'MARCIJONAS');
+INSERT INTO PARTIES(PARTY_ABBREVIATION, TITLE) VALUES ('LSDP', 'Lietuvos socialdemokratų partija');
+INSERT INTO PARTIES(PARTY_ABBREVIATION, TITLE) VALUES ('TS-LKD', 'Tėvynės sąjunga - Lietuvos krikščionys demokratai');
+
+INSERT INTO PARTIES VALUES (3, null, 'LPP', 'Lietuvos pensininkų partija');
+INSERT INTO CANDIDATES  VALUES (1, '2010-01-21', null, 'Reikia viska išbandyti', 'Linutis', 3, 41001010000, 'Šalaševičius', 1, 1);
+INSERT INTO CANDIDATES  VALUES (2, '1970-02-08', null, 'Nuuu kaaa, ir vel valdzioj busiu?', 'TOMAS', 3, 37006010000, 'AMBRAZAS', 1, 2);
+INSERT INTO CANDIDATES  VALUES (3, '1901-01-01', null, 'Reikia viska išbandyti', 'ARTŪRAS', 3, 30108190000, 'TITOV', null, 1);
+INSERT INTO CANDIDATES  VALUES (4, '1989-12-11', null, 'Reikia viska išbandyti', 'VIAČESLAV', 3, 38907160000, 'ČIGRIEJIENĖ', null, 3);
+INSERT INTO CANDIDATES  VALUES (5, '1991-03-09', null, 'Reikia viska išbandyti', 'MARIJA', 3, 36504050000, 'DUMČIUS', 2, null);
+INSERT INTO CANDIDATES  VALUES (6, '1953-01-03', null, 'Reikia viska išbandyti', 'VIDA', 3, 39111290000, 'PALECKIS', 2, null);

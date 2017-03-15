@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="3" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="30392" started-at="2017-03-15T11:13:49Z" finished-at="2017-03-15T11:14:19Z">
+    <groups>
+      <group name="p1">
+        <method signature="CsvUploadMultiTest.csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="csvUploadLoadPageTest" class="testclasses.admin.CsvUploadMultiTest"/>
+      </group> <!-- p1 -->
+      <group name="p2">
+        <method signature="CsvUploadMultiTest.csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="csvUploadButtonTest" class="testclasses.admin.CsvUploadMultiTest"/>
+      </group> <!-- p2 -->
+      <group name="csv3">
+        <method signature="CsvUploadMultiTest.csvUploadCommasTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="csvUploadCommasTest" class="testclasses.admin.CsvUploadMultiTest"/>
+      </group> <!-- csv3 -->
+    </groups>
+    <test name="Default test" duration-ms="30392" started-at="2017-03-15T11:13:49Z" finished-at="2017-03-15T11:14:19Z">
+      <class name="testclasses.admin.CsvUploadMultiTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="open" is-config="true" duration-ms="204" started-at="2017-03-15T13:13:49Z" finished-at="2017-03-15T13:13:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="setUp" is-config="true" duration-ms="15797" started-at="2017-03-15T13:13:49Z" finished-at="2017-03-15T13:14:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="csvUploadLoadPageTest" duration-ms="6372" started-at="2017-03-15T13:14:05Z" data-provider="loginAsAdmin" finished-at="2017-03-15T13:14:11Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadLoadPageTest -->
+        <test-method status="PASS" signature="csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="csvUploadButtonTest" duration-ms="772" started-at="2017-03-15T13:14:11Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest" finished-at="2017-03-15T13:14:12Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadButtonTest -->
+        <test-method status="PASS" signature="csvUploadCommasTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="csvUploadCommasTest" duration-ms="6396" started-at="2017-03-15T13:14:12Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvUploadButtonTest" finished-at="2017-03-15T13:14:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadCommasTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="tearDown" is-config="true" duration-ms="714" started-at="2017-03-15T13:14:19Z" finished-at="2017-03-15T13:14:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="close" is-config="true" duration-ms="27" started-at="2017-03-15T13:14:19Z" finished-at="2017-03-15T13:14:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.CsvUploadMultiTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
