@@ -23,7 +23,7 @@ var ApiComponent = React.createClass( {
                         </tbody>
                     </table>
                 
-                <h3>Vienmandačių rezultatai:</h3>
+                <h3>Rezultatai vienmandatės apygardose:</h3>
                 <table>
                     <tbody>
                         <tr>
@@ -77,7 +77,7 @@ var ApiComponent = React.createClass( {
                     </tbody>
                 </table>
         
-        <h3>Daugiamandačių rezultatai:</h3>
+        <h3>Rezultatai daugiamandatėse apygardose:</h3>
             <table>
                 <tbody>
                     <tr>
