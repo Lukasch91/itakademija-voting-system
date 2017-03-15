@@ -6,12 +6,17 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import vs.admin_.constituency.ConstituencyController;
 
 @Repository
 public class CorruptedVotesRepository {
 
+	private static final Logger log = Logger.getLogger(CorruptedVotesRepository.class.getName());
+	
 	private static final String FIND_ALL = "Select e FROM CorruptedVotes e where deleted_date is null";
 
 	private static final String FIND_BY_TYPE = "SELECT e FROM CorruptedVotes e WHERE deleted_date is null AND typeMulti IS ";
@@ -47,6 +52,7 @@ public class CorruptedVotesRepository {
 		} else { 
 		String aaa = (String) entityManager.createQuery(FIND_ALL_SINGLE_CORRUPTED_VOTES).getSingleResult();
 		Long bbb = aaa == null ? 0L :  Long.parseLong(aaa);
+		log.info("was used, long bbb: " + bbb);
 		return bbb;	
 		
 //			return Long.parseLong((String) entityManager.createQuery(FIND_ALL_SINGLE_CORRUPTED_VOTES).getSingleResult());

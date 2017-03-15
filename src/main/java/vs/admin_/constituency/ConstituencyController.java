@@ -39,28 +39,28 @@ public class ConstituencyController {
 	@ResponseStatus(org.springframework.http.HttpStatus.OK)
 	@ApiOperation(value = "[ADMIN] - Find Constituencies and add Number of candidates")
 	public List<ConstituencyExtension> findAllConstituenciesExtended() {
-		log.debug("ConstituencyController - findAllConstituenciesExtended was used.");
+		log.debug("was used.");
 		return constituencyService.findAllConstituenciesExtended();
 	}
 
 	@RequestMapping(value = "/api/ADMIN/constituency", method = RequestMethod.POST)
 	@ApiOperation(value = "[ADMIN] - ")
 	public Constituency createOrUpdateConstituency(@Valid @RequestBody Constituency con) {
-		log.debug("ConstituencyController - createOrUpdateConstituency was used.");
+		log.debug("was used.");
 		return constituencyRepository.saveOrUpdate(con);
 	}
 
 	@RequestMapping(value = "/api/ADMIN/constituency/{id}", method = RequestMethod.GET)
 	@ApiOperation(value = "[ADMIN] - ")
 	public Constituency getConstituencyById(@PathVariable("id") Integer id) {
-		log.debug("ConstituencyController - getConstituencyById was used. Id : " + id);
+		log.debug("was used. Id : " + id);
 		return constituencyRepository.findConstituencyById(id);
 	}
 
 	@RequestMapping(value = "/api/ADMIN/constituency/{id}", method = RequestMethod.PUT)
 	@ApiOperation(value = "[ADMIN] - ")
 	public void deteleConstituencyById(@PathVariable("id") Integer id) {
-		log.debug("ConstituencyController - deteleConstituencyById was used. Id : " + id);
+		log.debug("was used. Id : " + id);
 		constituencyRepository.deleteConstituency(id);
 	}
 }
