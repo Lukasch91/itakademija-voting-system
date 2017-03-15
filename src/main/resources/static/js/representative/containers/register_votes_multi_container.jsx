@@ -222,7 +222,7 @@ var RegisterVotesMultiContainer = React.createClass( {
         return (
             <div>
                 <div style={{ textAlign: 'center', paddingBottom: '10px' }}>
-                    <h3>Balsavimo rezultatų įvedimas daugiamandatėje apygardoje</h3>
+                    <h3>Balsavimo rezultatai daugiamandatėse apygardose</h3>
                 </div>
                 <LoggedInRepresentativeInfoContainer />
                 <div>{show}</div>
