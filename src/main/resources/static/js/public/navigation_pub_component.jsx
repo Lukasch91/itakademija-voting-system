@@ -25,7 +25,7 @@ NavLink.propTypes = {
 var NavigationPubComponent = React.createClass( {
     render: function() {
         return (
-            <nav className="navbar navbar-inverse">
+            <nav className="navbar navbar-inverse" style={{borderStyle: 'none'}}>
                 <div className="container-fluid">
                     <ul className="nav navbar-nav">
                         <NavLink to="/home" onlyActiveOnIndex>Pradinis</NavLink>

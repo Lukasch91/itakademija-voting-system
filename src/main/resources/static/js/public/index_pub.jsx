@@ -1,27 +1,4 @@
-var Link = window.ReactRouter.Link;
-var NavLink = function( props, context ) {
-    var isActive = context.router.isActive( props.to );
-    var className = isActive ? 'active' : '';
-
-    return (
-        <li className={className}>
-            <Link {...props}>
-                {props.children}
-            </Link>
-        </li>
-    );
-};
-NavLink.contextTypes = {
-        router: React.PropTypes.object,
-    };
-
-    NavLink.propTypes = {
-        children: React.PropTypes.node.isRequired,
-        to: React.PropTypes.string.isRequired,
-    };
 var App = React.createClass( {
-    
-
     render: function() {
         return (
             <div style={{ paddingTop: '10px' }}>
@@ -30,7 +7,7 @@ var App = React.createClass( {
                 {this.props.children}
                 <div className="container footer navbar-fixed-bottom">
                 &copy; KALM, 2017 <br/>
-                <a id="apiresults" href="http://localhost:8080/#/apiresults">API SERVISAS</a>
+                <a id="apiresults" href="/#/apiresults">API SERVISAS</a>
                 
                 </div>
             </div>
