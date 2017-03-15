@@ -8,7 +8,7 @@ var PubDelVotesDistrictListContainer = React.createClass( {
             singleVotes: [],
             disableTest: true,
             theTestingState: 0,
-            corruptedVote: 0
+            corruptedVotes: []
         };
     },
 
@@ -18,13 +18,15 @@ var PubDelVotesDistrictListContainer = React.createClass( {
         axios.all([
                   axios.get( '/api/ADMIN/constituency/' + conId ),
                   axios.get( '/api/ADMIN/reg-votes-multi'),
-                  axios.get( '/api/ADMIN/singleelection')
-                  ]).then(axios.spread(function (constResponse, votesMultiResponse, votesSingleResponse) {
+                  axios.get( '/api/ADMIN/singleelection'),
+                  axios.get( '/api/ADMIN/invalid-votes')
+                  ]).then(axios.spread(function (constResponse, votesMultiResponse, votesSingleResponse, invalidVotesResponse) {
                       self.setState( {
                           districts: constResponse.data.districts,
                           constit: constResponse.data,
                           multiVotes: votesMultiResponse.data,
-                          singleVotes: votesSingleResponse.data
+                          singleVotes: votesSingleResponse.data,
+                          corruptedVotes: invalidVotesResponse.data
                       })
                   }));
     },
@@ -105,11 +107,11 @@ var PubDelVotesDistrictListContainer = React.createClass( {
                     constit={this.state.constit}
                     multiVotes={this.state.multiVotes}
                     singleVotes={this.state.singleVotes}
+                invalidVotes={this.state.corruptedVotes}
                     onPublishSingleVotes={this.handlePublishSingleVotes}
                     onDeleteSingleVotes={this.handleDeleteSingleVotes}
                     onPublishMultiVotes={this.handlePublishMultiVotes}
                     onDeleteMultiVotes={this.handleDeleteMultiVotes}
-                invalidVotes={this.invalidVotes}
                     />
                 <button id="backToConstituency" type="button" className="btn btn-danger btn-xs" onClick={this.handleGoBack}>Atgal</button>
             </div>

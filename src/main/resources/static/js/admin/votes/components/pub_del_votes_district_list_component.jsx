@@ -20,6 +20,26 @@ var PubDelVotesDistrictListComponent = React.createClass( {
         });
         return multiVotesList;
     },
+    
+    getSingleInvalidVotesByDistrict: function (districtId) {
+        var singleInvalidVotesList = [];
+        this.props.invalidVotes.map( function( singleInvalidVote, index ) {
+            if ( singleInvalidVote.district.id == districtId && singleInvalidVote.deleted_date == null && singleInvalidVote.typeMulti == false) {
+                singleInvalidVotesList.push( singleInvalidVote.votes );
+            }
+        });
+        return singleInvalidVotesList;
+    },
+    
+    getMultiInvalidVotesByDistrict: function (districtId) {
+        var multiInvalidVotesList = [];
+        this.props.invalidVotes.map( function( multiInvalidVote, index ) {
+            if ( multiInvalidVote.district.id == districtId && multiInvalidVote.deleted_date == null && multiInvalidVote.typeMulti == true) {
+                multiInvalidVotesList.push( multiInvalidVote.votes );
+            }
+        });
+        return multiInvalidVotesList;
+    },
 
     timeConverter: function( timestamp ) {
         var date = new Date( timestamp );
@@ -166,7 +186,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                                                 {singleVotesList}
                                                 <tr>
                                                     <td>SUGADINTI BALSAI</td>
-                                                    <td>0</td>
+                                                    <td>{self.getSingleInvalidVotesByDistrict(district.id)[0]}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -241,7 +261,7 @@ var PubDelVotesDistrictListComponent = React.createClass( {
                                                 {multiVotesList}
                                                 <tr>
                                                     <td>SUGADINTI BALSAI</td>
-                                                    <td>0</td>
+                                                    <td>{self.getMultiInvalidVotesByDistrict(district.id)[0]}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
