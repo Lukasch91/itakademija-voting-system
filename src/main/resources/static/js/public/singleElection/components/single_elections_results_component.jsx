@@ -51,6 +51,16 @@ var SingleElectionsResultsComponent = React.createClass( {
                         </tbody>
                     </table>
                 </div>
+                    <DownloadCSVContainer
+                    buttonName="Visi vienmandačių rezultatai"
+                    request="1"
+                    fileName="Visi vienmandačių rezultatai.csv" />
+                <br />
+                    <DownloadCSVContainer
+                    buttonName="Esminiai vienmandačių rezultatai"
+                    request="3"
+                    fileName="Esminiai vienmandačių rezultatai.csv" />
+                <br />
             </div>
         )
     }

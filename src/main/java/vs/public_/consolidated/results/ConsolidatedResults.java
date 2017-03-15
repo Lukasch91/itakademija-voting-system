@@ -3,7 +3,7 @@ package vs.public_.consolidated.results;
 public class ConsolidatedResults {
 
 	private String partyTitle;
-
+	
 	private Long mandates;
 
 	public ConsolidatedResults(String partyTitle, Long mandates) {

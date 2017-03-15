@@ -32,9 +32,11 @@ var PartyListComponent = React.createClass( {
                         </tbody>
                     </table>
                 </div>
-
-
-
+                <DownloadCSVContainer
+                    buttonName="Galutiniai rezultatai"
+                    request="6"
+                    fileName="Galutiniai rezultatai.csv" />
+                <br />
             </div>
         )
     }

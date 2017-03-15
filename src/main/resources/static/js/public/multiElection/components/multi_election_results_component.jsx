@@ -38,14 +38,26 @@ var MultiElectionsResultsComponent = React.createClass( {
 
         return (
             <div>
-                <h2>Balsavimo rezultatai daugiamandatėse apygardose</h2>
-                <h7>
-                    Apylinkių skaičius – {info.numberOfDistricts}<br />
-                    Apygardų skaičius – {info.numberOfConstituencies}  <br />
-                    Pagal gautus iš apylinkių duomenis:<br />
-                    rinkėjų sąraše įrašyta rinkėjų – {info.numberOfVoters} , rinkimuose dalyvavo – {info.numberOfVotersWhoVoted} ({info.percentageOfVoters} %)<br />
-                    Negaliojančių biuletenių – {info.invalidVotes} ({info.percentageOfInvalidVotes} %), galiojančių biuletenių – {info.validvotes} ({info.percentageOfValidVotes} %)<br />
-                </h7>
+                <div className="row">
+                    <div className="col-sm-12">
+                        <h2>Balsavimo rezultatai daugiamandatėse apygardose</h2>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-4">
+                        <h7>
+                            Apylinkių skaičius – {info.numberOfDistricts}<br />
+                            Apygardų skaičius – {info.numberOfConstituencies}  <br />
+                            Pagal gautus iš apylinkių duomenis:<br />
+                            rinkėjų sąraše įrašyta rinkėjų – {info.numberOfVoters} , <br />
+                            rinkimuose dalyvavo – {info.numberOfVotersWhoVoted} ({info.percentageOfVoters} %)<br />
+                            Negaliojančių biuletenių – {info.invalidVotes} ({info.percentageOfInvalidVotes} %),<br />
+                            galiojančių biuletenių – {info.validvotes} ({info.percentageOfValidVotes} %)<br />
+                        </h7>
+                    </div>
+                    <div className="col-sm-8"><canvas id="myChart" height="75"></canvas></div>
+                </div>
+
                 <div>
                     <table className="table table-hover">
                         <thead>
@@ -84,6 +96,16 @@ var MultiElectionsResultsComponent = React.createClass( {
                         </tbody>
                     </table>
                 </div>
+                <DownloadCSVContainer
+                    buttonName="Visi daugiamandačių rezultatai"
+                    request="2"
+                    fileName="Visi daugiamandačių rezultatai.csv" />
+                <br />
+                <DownloadCSVContainer
+                    buttonName="Esminiai daugiamandačių rezultatai"
+                    request="4"
+                    fileName="Esminiai daugiamandačių rezultatai.csv" />
+                <br />
             </div>
         )
     }

@@ -13,15 +13,27 @@ public class MultiElectionResults {
 	private BigDecimal percentageOfAllVotes;
 
 	private Long numberOfMandates;
+	
+	private String shortTitle;
+
 
 	public MultiElectionResults(Integer id, String partyTitle, Long votes, BigDecimal percentageOfAllVotes,
-			Long numberOfMandates) {
+			Long numberOfMandates, String shortTitle) {
 		super();
 		this.id = id;
 		this.partyTitle = partyTitle;
 		this.votes = votes;
 		this.percentageOfAllVotes = percentageOfAllVotes;
 		this.numberOfMandates = numberOfMandates;
+		this.shortTitle = shortTitle;
+	}
+
+	public String getShortTitle() {
+		return shortTitle;
+	}
+
+	public void setShortTitle(String shortTitle) {
+		this.shortTitle = shortTitle;
 	}
 
 	public Integer getId() {

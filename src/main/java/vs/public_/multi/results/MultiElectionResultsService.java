@@ -68,7 +68,7 @@ public class MultiElectionResultsService {
 			BigDecimal percentageOfAllVotes = checkForCorrectArithmetic(votes, allVotes);
 
 			MultiElectionResults multiElectionConstituency = new MultiElectionResults(partyId, partyTitle, votes,
-					percentageOfAllVotes, mandates);
+					percentageOfAllVotes, mandates, party.getParty_abbreviation());
 
 			resultList.add(multiElectionConstituency);
 		}
@@ -191,7 +191,7 @@ public class MultiElectionResultsService {
 			BigDecimal percentageOfAllVotes = checkForCorrectArithmetic(votes, allVotes);
 
 			MultiElectionResults multiElectionResults = new MultiElectionResults(partyId, partyTitle, votes,
-					percentageOfAllVotes, mandates);
+					percentageOfAllVotes, mandates, party.getParty_abbreviation());
 
 			resultList.add(multiElectionResults);
 		}
@@ -228,7 +228,7 @@ public class MultiElectionResultsService {
 			BigDecimal percentageOfAllVotes = checkForCorrectArithmetic(votes, allVotes);
 
 			MultiElectionResults multiElectionConstituency = new MultiElectionResults(partyId, partyTitle, votes,
-					percentageOfAllVotes, mandates);
+					percentageOfAllVotes, mandates, party.getParty_abbreviation());
 
 			resultList.add(multiElectionConstituency);
 		}
@@ -321,7 +321,7 @@ public class MultiElectionResultsService {
 		for (MultiElectionResults multiElectionConstituency : list) {
 			if (multiElectionConstituency.getPercentageOfAllVotes() != null) {
 				BigDecimal percentage = multiElectionConstituency.getPercentageOfAllVotes();
-				if (percentage.compareTo(BigDecimal.valueOf(7)) > 0) {
+				if (percentage.compareTo(BigDecimal.valueOf(5)) > 0) {
 					sum = sum.add(percentage);
 				}
 			}
@@ -338,7 +338,7 @@ public class MultiElectionResultsService {
 		for (MultiElectionResults multiElectionConstituency : list) {
 			BigDecimal percentage = multiElectionConstituency.getPercentageOfAllVotes();
 
-			if (percentage.compareTo(BigDecimal.valueOf(7)) > 0) {
+			if (percentage.compareTo(BigDecimal.valueOf(5)) > 0) {
 				mandates = ((multiElectionConstituency.getPercentageOfAllVotes().multiply(BigDecimal.valueOf(70)))
 						.divideToIntegralValue(sum)).setScale(0, RoundingMode.HALF_UP).longValue();
 				multiElectionConstituency.setNumberOfMandates(mandates);
