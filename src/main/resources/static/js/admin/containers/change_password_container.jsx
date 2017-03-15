@@ -6,7 +6,8 @@ var ChangePasswordContainer = React.createClass( {
                 newPass: '',
                 newPassCheck: '',
                 changeStatus: '',
-                redirectTo: ''
+                redirectTo: '',
+                passwordValidation: ''
             }
         }
     },
@@ -22,14 +23,22 @@ var ChangePasswordContainer = React.createClass( {
 
     handleChangePass: function() {
         var self = this;
-        if ( this.state.admin.newPass == this.state.admin.newPassCheck ) {
-            axios.post( 'http://localhost:8080/api/ADMIN/changepass?password=' + this.state.admin.newPass ).then( function() {
-                self.setState( { changeStatus: 'Slaptažodis sėkmingai pakeistas', redirectTo: '/' });
-            });
-        } else {
+        if ( this.state.admin.newPass != this.state.admin.newPassCheck ) {
             self.setState( { changeStatus: 'Slaptažodžiai nesutampa!', redirectTo: '/change-pass' });
+            
+        } else {
+            axios.post( 'http://localhost:8080/api/ADMIN/changepass?password=' + this.state.admin.newPass ).then( function( response ) {
+                self.setState( { passwordValidation: response.data });
+                console.log(self.state.passwordValidation);
+                if ( self.state.passwordValidation == false ) {
+                    self.setState( { changeStatus: 'Slaptažodis per silpnas!', redirectTo: '/change-pass' });      
+                } else {
+                    self.setState( { changeStatus: 'Slaptažodis sėkmingai pakeistas', redirectTo: '/' });
+                }
+            });
         }
     },
+    
     handlePassChangeRedirect: function() {
         this.context.router.push( this.state.redirectTo );
     },

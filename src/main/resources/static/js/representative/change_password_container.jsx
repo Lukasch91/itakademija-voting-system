@@ -7,7 +7,7 @@ var ChangePasswordContainer = React.createClass( {
                 newPassCheck: '',
                 changeStatus: '',
                 redirectTo: '',
-                passwordValidation: '',
+                passwordValidation: ''
             }
 
         }
