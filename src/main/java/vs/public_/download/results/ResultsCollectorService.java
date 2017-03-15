@@ -5,6 +5,9 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import vs.public_.consolidated.results.ConsolidatedResults;
+import vs.public_.consolidated.results.MemberOfParliament;
 import vs.public_.multi.results.MultiElectionConstituencyList;
 import vs.public_.multi.results.MultiElectionDistrictList;
 import vs.public_.multi.results.MultiElectionResults;
@@ -240,7 +243,41 @@ public class ResultsCollectorService {
 				};	
 	}
 	
-	public String[] multiElectionResultsAllToStringArray(MultiElectionResultsAll multiElectionResultsAll) {
+	public String[] memberOfParliamentHeader() {
+		log.info("||--> was used." );
+		return new String[] {		
+				"Vardas",
+				"Pavardė",
+				"Partija"
+				};	
+	}
+	
+	public String[] consolidatedResultsHeader() {
+		log.info("||--> was used." );
+		return new String[] {		
+				"Partija",
+				"Mandatai"
+		};	
+	}
+	
+	public String[] consolidatedResultsToStringArray(ConsolidatedResults consolidatedResults) {
+		log.info("||--> was used." );
+		return new String[] {
+				consolidatedResults.getPartyTitle(),
+				consolidatedResults.getMandates().toString()
+		};
+	}
+	
+	public String[] memberOfParliamentToStringArray(MemberOfParliament memberOfParliament) {
+		log.info("||--> was used." );
+		return new String[] {
+				memberOfParliament.getFirstname(),
+				memberOfParliament.getSurname(),
+				memberOfParliament.getParty()	
+		};
+	}
+	
+ 	public String[] multiElectionResultsAllToStringArray(MultiElectionResultsAll multiElectionResultsAll) {
 		log.info("||--> was used." );
 		return new String[] { 
 				/* constituency */

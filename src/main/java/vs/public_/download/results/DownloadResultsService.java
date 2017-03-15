@@ -10,6 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.opencsv.CSVWriter;
 
+import vs.public_.consolidated.results.ConsolidatedResults;
+import vs.public_.consolidated.results.ConsolidatedResultsService;
+import vs.public_.consolidated.results.ConsolidatetPartyListService;
+import vs.public_.consolidated.results.MemberOfParliament;
+
 @Service
 public class DownloadResultsService {
 
@@ -20,6 +25,10 @@ public class DownloadResultsService {
 
 	@Autowired
 	private ResultsCollectorService rCS;
+	@Autowired
+	private ConsolidatetPartyListService cPS;
+	@Autowired
+	private ConsolidatedResultsService cRS;
 
 	public String returnSelector(Integer request) {
 
@@ -34,8 +43,12 @@ public class DownloadResultsService {
 			return request3();
 		case 4:
 			return request4();
+		case 5:
+			return request5();
+		case 6:
+			return request6();
 		default:
-			return null;
+			return "Klaida";
 		}
 	}
 
@@ -108,6 +121,34 @@ public class DownloadResultsService {
 		int[] have = { 1, 12, 21, 22, 23 };
 
 		String result = listArrayToCSVSting(dataLimiter(tableData, have));
+		log.info("||--> Finished!");
+		return result;
+	}
+
+	private String request5() {
+		log.info("||--> Started...");
+		List<String[]> tableData = new ArrayList<String[]>();
+		List<MemberOfParliament> memberOfParliament = cRS.getSortedMemberOfParlList();
+
+		tableData.add(rCS.memberOfParliamentHeader());
+		for (MemberOfParliament mOP : memberOfParliament) {
+			tableData.add(rCS.memberOfParliamentToStringArray(mOP));
+		}
+		String result = listArrayToCSVSting(tableData);
+		log.info("||--> Finished!");
+		return result;
+	}
+
+	private String request6() {
+		log.info("||--> Started...");
+		List<String[]> tableData = new ArrayList<String[]>();
+		List<ConsolidatedResults> consolidatedResults = cPS.getSortedPartyList();
+
+		tableData.add(rCS.consolidatedResultsHeader());
+		for (ConsolidatedResults cR : consolidatedResults) {
+			tableData.add(rCS.consolidatedResultsToStringArray(cR));
+		}
+		String result = listArrayToCSVSting(tableData);
 		log.info("||--> Finished!");
 		return result;
 	}
