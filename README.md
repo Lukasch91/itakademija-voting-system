@@ -26,3 +26,15 @@
 	LINK:		https://www.zoho.com/mail/login.html
 	LOGIN:		vrk.sistema@zoho.com
 	PASSWORD:	sistema.vrk
+	
+### Launching the tests
+
+#### itakademija-voting-system/itakademija-voting-system-automation/src/test/java/testcases/
+
+#### Use the xml files to run tests in IDE
+	regression-test-suite.xml
+	smoke-test-suite.xml
+	testng.xml
+	
+##### Use the command to run tests(May not take parameters)
+	mvn clean install -Pselenium-tests
