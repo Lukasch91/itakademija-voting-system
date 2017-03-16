@@ -25,7 +25,7 @@ public class DistrictTest extends BaseTest {
 	@Test(groups = { "p2" }, dependsOnMethods = "districtLoadPageTest")
 	public void addNewDistrictButtonTest() {
 		adminDistrict.assertAddNewConstituencyButtonWorks();
-	}// Testas ar veikia atsaukimo mygtukas PRIDETI!!!!
+	}
 
 	@Parameters({ "districtName", "districtAdress", "votersCount" })
 	@Test(groups = { "p2" }, dependsOnMethods = "addNewDistrictButtonTest")

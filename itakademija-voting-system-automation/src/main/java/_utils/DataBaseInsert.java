@@ -13,7 +13,7 @@ public class DataBaseInsert {
 	private static Connection conn = null;
 	private static Statement stmt = null;
 
-	private static String url = "jdbc:h2: ../../../db/h2/database-dev;MV_STORE=true;AUTO_SERVER=TRUE;IFEXISTS=TRUE";
+	private static String url = "jdbc:h2:/home/giedrius/Projects/Eclipse/itakademija-voting-system-master/db/h2/database-dev;MV_STORE=true;AUTO_SERVER=TRUE;IFEXISTS=TRUE";
 
 	public static void openDataBase() throws ClassNotFoundException, SQLException {
 
@@ -48,8 +48,6 @@ public class DataBaseInsert {
 		conn.commit();
 		conn.setAutoCommit(true);
 	}
-	
-
 
 	public static void deleteAllDataInDataBase() throws ClassNotFoundException, SQLException, InterruptedException {
 

@@ -11,21 +11,20 @@ import org.openqa.selenium.support.FindBy;
 import _base.BasePage;
 import _utils.CsvFilesList;
 
-public class AdminCandidateUploadMulti extends BasePage{
+public class AdminCandidateUploadMulti extends BasePage {
 
-	
 	private String candidatePreviewRows = "//div[3]/..//tr";
 	private String addCandidatesButton = "//td/div/button[text()='Pridėti kandidatus']";
 	private String previewCandidatesButton = "//td/div/button[text()='Peržiurėti kandidatus']";
-	
-	//--ELEMENTS--
+
+	// --ELEMENTS--
 
 	@FindBy(xpath = "//*[text()='Peržiurėti kandidatus']")
 	private WebElement button_PreviewCandidates;
 
 	@FindBy(xpath = "//*[text()='Pridėti kandidatus']")
 	private WebElement button_AddCandidates;
-	
+
 	// preview modal
 	@FindBy(xpath = "//*[text()='Ištrinti kandidatus']")
 	private WebElement button_DeleteCandidates;
@@ -43,28 +42,26 @@ public class AdminCandidateUploadMulti extends BasePage{
 
 	@FindBy(xpath = "//form/../../div//button[2]")
 	private WebElement button_CancelCandidatesUpload;
-	
+
 	@FindBy(xpath = "//input[2]")
 	private WebElement radioButton_DataWithSemicolon;
-		
+
 	@FindBy(xpath = "//input[2]")
 	private WebElement checkBox_CsvWithTitles;
-	
-	//--CONSTRUCTOR--
+
+	// --CONSTRUCTOR--
 	public AdminCandidateUploadMulti(WebDriver webDriver) {
 		super(webDriver);
 		this.PAGE_TITLE = "Rinkimai";
 		this.PAGE_URL = "http://localhost:8080/admin#/upload-multi-cadidates";
 	}
 
-
-	
 	// ----------METHODS---------
 
 	// ---------ASSERTS----------
 	public void assertCorrectPage() {
 		assertTrue(button_PreviewCandidates.isDisplayed(), "You are not in Candidates Upload Multi page");
-		
+
 	}
 
 	// PREVIEW
@@ -77,12 +74,7 @@ public class AdminCandidateUploadMulti extends BasePage{
 	public void assertDeleteCandidatesWorks() {
 		clickElement(button_DeleteCandidates);
 		waitUntilElementToBeClickable(By.xpath("//*[text()='Pridėti kandidatus']"));
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		waitOrNotToWait(500);
 		assertTrue(getAddCandidatesButtonCount() == 2, "Candidates havn`t been deleted");
 
 	}
@@ -117,41 +109,25 @@ public class AdminCandidateUploadMulti extends BasePage{
 
 	public void assertCsvUploadWithCommasWorks() {
 		setElementTextNoAssert(button_ChooseFile, CsvFilesList.partyCanComma);
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		waitOrNotToWait(3000);
 		clickElement(button_UploadCandidates);
 		waitForJavascript();
 		waitUntilElementToBeClickable(By.xpath("//*[text()='Peržiurėti kandidatus']"));
 		waitForJavascript();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		waitOrNotToWait(1000);
 		assertEquals(getPreviewCandidatesButtonCount(), 2, "Candidates havn`t been added");
 
 	}
-	
+
 	public void assertCsvUploadWithSemicolonWorks() {
 		clickElement(radioButton_DataWithSemicolon);
 		setElementTextNoAssert(button_ChooseFile, CsvFilesList.partyCanSemicolon);
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		waitOrNotToWait(3000);
 		clickElement(button_UploadCandidates);
 		waitForJavascript();
 		waitUntilElementToBeClickable(By.xpath("//*[text()='Peržiurėti kandidatus']"));
 		waitForJavascript();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		waitOrNotToWait(1000);
 		assertEquals(getPreviewCandidatesButtonCount(), 2, "Candidates havn`t been added");
 
 	}
@@ -169,6 +145,5 @@ public class AdminCandidateUploadMulti extends BasePage{
 	public int getPreviewCandidatesButtonCount() {
 		return webDriver.findElements(By.xpath(previewCandidatesButton)).size();
 	}
-	
-	
+
 }

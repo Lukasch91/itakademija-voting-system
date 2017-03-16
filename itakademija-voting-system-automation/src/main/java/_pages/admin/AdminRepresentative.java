@@ -8,12 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import _base.BasePage;
 
-public class AdminRepresentative extends BasePage{
-	
+public class AdminRepresentative extends BasePage {
 
-	
-	//--ELEMENTS--
-	
+	// --ELEMENTS--
+
 	private String textConstituencyName = "//tr[1]/td[1]";
 	private String textDistrictName = "//tr[2]/td[1]";
 	private String textFirstName = "//tr[3]/td[1]";
@@ -22,60 +20,57 @@ public class AdminRepresentative extends BasePage{
 	private String textEmail = "//tr[6]/td[1]";
 	private By reviewRep = By.xpath("//*[text()='Peržiūrėti atstovą']");
 	private By addRep = By.xpath("//*[text()='Pridėti atstovą']");
-
+	private By confirmAddingRep = By.xpath("//*[@class='btn btn-xs btn-danger']");
 
 	@FindBy(id = "deleteRepresentative")
 	private WebElement button_DeleteRepresentative;
-	
+
 	@FindBy(id = "bakcToDistrict")
 	private WebElement button_BackToDistrict;
-	
-	//REGISTER
+
+	// REGISTER
 	@FindBy(id = "representativeName")
 	private WebElement field_RepresentativeName;
-	
+
 	@FindBy(id = "representativeSurname")
 	private WebElement field_RepresentativeSurname;
-	
+
 	@FindBy(id = "representativeUsername")
 	private WebElement field_RepresentativeUsername;
-	
+
 	@FindBy(id = "email")
 	private WebElement field_RepresentativeEmail;
-	
+
 	@FindBy(id = "addRepresentative")
 	private WebElement button_AddRepresentative;
-	
+
 	@FindBy(id = "cancelRepresentative")
 	private WebElement button_CancelAddingRepresentative;
-	
-	//MODAL
+
+	// MODAL
 	@FindBy(xpath = "//*[@class='btn btn-xs btn-danger']")
 	private WebElement button_ModalConfirmAddingRepresentative;
-	
+
 	@FindBy(xpath = "//*[@class='btn btn-xs btn-default']")
 	private WebElement button_ModalCancelAddingRepresentative;
-	
+
 	@FindBy(xpath = "//*[@class='//*[@class='close']")
 	private WebElement button_ModalClose;
-	
-	//-----------CONSTRUCTOR--------------
+
+	// -----------CONSTRUCTOR--------------
 	public AdminRepresentative(WebDriver webDriver) {
 		super(webDriver);
 	}
-	
 
 	// ---------METHODS--------
-	
 
-	
-	//--------------ASSERTS-------------
+	// --------------ASSERTS-------------
 
 	public void assertCorrectRepresentativeRegistrationPage() {
 		waitForElementToBeInDOM(webDriver.findElement(reviewRep));
 		assertTrue(webDriver.findElement(addRep).isDisplayed(), "You are not in Reprentative register page");
 	}
-	
+
 	public void assertRepresentativeRegistrationWorks(String name, String surname, String username, String email) {
 		waitForElementToBeInDOM(field_RepresentativeName);
 		setElementText(field_RepresentativeName, name);
@@ -85,20 +80,21 @@ public class AdminRepresentative extends BasePage{
 		clickElement(button_AddRepresentative);
 		waitForJavascript();
 		waitForElementToBeInDOM(button_ModalConfirmAddingRepresentative);
+		waitUntilElementToBeClickable(confirmAddingRep);
 		clickElement(button_ModalConfirmAddingRepresentative);
 		waitForJavascript();
 		waitUntilElementToBeClickable(reviewRep);
 		assertTrue(webDriver.findElement(reviewRep).isDisplayed());
-		
+
 	}
-	
+
 	public void assertCorrectPreviewPage() {
 		clickElement(webDriver.findElement(reviewRep));
 		waitForElementToBeInDOM(button_DeleteRepresentative);
 		assertTrue(button_DeleteRepresentative.isDisplayed(), "You are not in Reprentative preview page");
-		
+
 	}
-	
+
 	public void assertRepresentativeDeletionWorks() {
 		clickElement(webDriver.findElement(reviewRep));
 		waitForElementToBeInDOM(button_DeleteRepresentative);
@@ -108,12 +104,11 @@ public class AdminRepresentative extends BasePage{
 		waitForJavascript();
 		waitUntilElementToBeClickable(addRep);
 		assertTrue(webDriver.findElement(addRep).isDisplayed());
-		
+
 	}
-	
-	
-	//-------------GETTERS---------------
-	
+
+	// -------------GETTERS---------------
+
 	public String getTextConstituencyName() {
 		return webDriver.findElement(By.xpath(textConstituencyName)).getText();
 	}
@@ -137,8 +132,5 @@ public class AdminRepresentative extends BasePage{
 	public String getTextEmail() {
 		return webDriver.findElement(By.xpath(textEmail)).getText();
 	}
-
-
-
 
 }

@@ -11,30 +11,28 @@ import org.openqa.selenium.support.FindBy;
 
 import _base.BasePage;
 
-public class AdminParties extends BasePage{
-	
+public class AdminParties extends BasePage {
+
 	private By rows = By.xpath("//tr");
-	private By partyName =  By.xpath("//*[text()='Partijos pavadinimas']");
+	private By partyName = By.xpath("//*[text()='Partijos pavadinimas']");
 	private By addNew = By.id("addNew");
 
-	
-	//--ELEMENTS--
+	// --ELEMENTS--
 
 	@FindBy(id = "addNew")
 	@CacheLookup
 	private WebElement button_AddNewParty;
-	
-	
+
 	@FindBy(xpath = "//*[@class='glyphicon glyphicon-remove']")
 	@CacheLookup
 	private WebElement button_RemoveParty;
-	
-	//register
+
+	// register
 
 	@FindBy(id = "partyName")
 	@CacheLookup
 	private WebElement fields_PartyName;
-	
+
 	@FindBy(id = "partyAbr")
 	@CacheLookup
 	private WebElement fields_PartyAbbreviation;
@@ -42,39 +40,36 @@ public class AdminParties extends BasePage{
 	@FindBy(id = "addParty")
 	@CacheLookup
 	private WebElement button_AddParty;
-	
+
 	@FindBy(id = "cancelParty")
 	@CacheLookup
 	private WebElement button_CancelAddingParty;
-	
-	//--CONSTRUCTOR--
+
+	// --CONSTRUCTOR--
 	public AdminParties(WebDriver webDriver) {
 		super(webDriver);
 		this.PAGE_TITLE = "RinkSis";
 		this.PAGE_URL = "http://localhost:8080/admin#/parties";
 	}
-	
-	//--METHODS--
+
+	// --METHODS--
 	public void clickAddNew() {
 		clickElement(button_AddNewParty);
 	}
-	
+
 	public void clickRemove() {
 		clickElement(button_RemoveParty);
 	}
-	
+
 	private int partyCount() {
 		return webDriver.findElements(rows).size() - 1;
 	}
-	
 
-
-	
 	// ---------ASSERTS----------
-	
+
 	public void assertCorrectPage() {
 		assertTrue(webDriver.findElement(partyName).isDisplayed(), "You are not in Parties page");
-		
+
 	}
 
 	public void assertAddNewPartyButtonWorks() {
@@ -84,7 +79,7 @@ public class AdminParties extends BasePage{
 		clickAddNew();
 		waitForElementToBeInDOM(fields_PartyName);
 		assertTrue(fields_PartyName.isDisplayed(), "You are not in Party registration page");
-		
+
 	}
 
 	public void assertAddNewPartyWorks(String partyName, String partyAbbreviation) {
@@ -95,7 +90,7 @@ public class AdminParties extends BasePage{
 		waitForJavascript();
 		waitForElementToBeInDOM(button_RemoveParty);
 		assertEquals(partyCount(), 3);
-		
+
 	}
 
 	public void assertPartyRemoveWorks() throws InterruptedException {
@@ -105,8 +100,7 @@ public class AdminParties extends BasePage{
 		waitUntilElementToBeClickable(addNew);
 		waitOrNotToWait(500);
 		assertEquals(partyCount(), 1);
-		
-	}
 
+	}
 
 }

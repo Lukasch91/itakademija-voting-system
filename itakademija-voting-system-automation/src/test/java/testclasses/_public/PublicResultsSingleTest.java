@@ -17,7 +17,7 @@ import _utils.DataBaseInsert;
 
 public class PublicResultsSingleTest extends BaseTest{
 
-	@Test(groups = { "p1" })
+	@Test(groups = { "smoke" })
 	public void resultPreviewSingleTest() {
 		try {
 			DataBaseInsert.insertDataToDataBaseFromFile(DataBaseCommands.allData2Parties4Candidates);
@@ -28,12 +28,12 @@ public class PublicResultsSingleTest extends BaseTest{
 		publicResultsSingle.assertCorrectPage();
 	}
 	
-	@Test(groups = { "p1" }, dependsOnMethods = "resultPreviewSingleTest")
+	@Test(groups = { "reg" }, dependsOnMethods = "resultPreviewSingleTest")
 	public void resultPreviewForSingleConsituencyTest() {
 		publicResultsSingle.assertConstituencyPreviewPage();
 	}
 	
-	@Test(groups = { "p1" }, dependsOnMethods = "resultPreviewForSingleConsituencyTest")
+	@Test(groups = { "reg" }, dependsOnMethods = "resultPreviewForSingleConsituencyTest")
 	public void resultPreviewForSingleConsituencyDistrictTest() {
 		publicResultsSingle.assertDistrictPreviewPage();
 	}

@@ -11,52 +11,52 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import _base.BasePage;
 
 public class LoginPage extends BasePage {
-	
-	//--ELEMENTS--
+
+	// --ELEMENTS--
 	@FindBy(id = "username")
 	private WebElement field_UsernameLogin;
-	
+
 	@FindBy(id = "password")
 	private WebElement field_PasswordLogin;
-	
+
 	@FindBy(id = "signin")
 	private WebElement button_SignIn;
-	
+
 	@FindBy(css = ".login-message")
 	private WebElement errorMessage;
 
-	
-	//--CONSTRUCTOR--
+	// --CONSTRUCTOR--
 	public LoginPage(WebDriver webDriver) {
 		super(webDriver);
 		this.PAGE_TITLE = "RinkSis";
 		this.PAGE_URL = "http://localhost:8080/login";
 	}
-	
-	//--METHODS--
+
+	// --METHODS--
 	public void setText_UsernameLogin(String text) {
 		checkIsLoaded();
 		setElementText(field_UsernameLogin, text);
 	}
-	
+
 	public void setText_PasswordLogin(String text) {
 		checkIsLoaded();
 		setElementText(field_PasswordLogin, text);
 	}
-	
+
 	public void clickLogin() {
 		checkIsLoaded();
 		clickElement(button_SignIn);
 	}
+
 	public void login(String username, String password) {
 		loadPage();
 		setText_UsernameLogin(username);
 		setText_PasswordLogin(password);
 		clickLogin();
-		
+
 	}
-	
-	//---------------ASSERTS---------------
+
+	// ---------------ASSERTS---------------
 	public boolean checkErrorMessage(String text) {
 		try {
 			waitForElementToBeInDOM(field_UsernameLogin);
@@ -66,5 +66,4 @@ public class LoginPage extends BasePage {
 		}
 	}
 
-	
 }

@@ -9,26 +9,24 @@ import org.openqa.selenium.support.ui.Select;
 
 import _base.BasePage;
 
-public class AdminHomePage extends BasePage{
-	
-	//--ELEMENTS--
+public class AdminHomePage extends BasePage {
+
+	// --ELEMENTS--
 
 	@FindBy(xpath = "//h5")
 	@CacheLookup
 	private WebElement text_Welcome;
 
-	
-	//--CONSTRUCTOR--
+	// --CONSTRUCTOR--
 	public AdminHomePage(WebDriver webDriver) {
 		super(webDriver);
 		this.PAGE_TITLE = "RinSis";
 		this.PAGE_URL = "http://localhost:8080/admin";
 	}
-	
-	//--ASSERTS--
-	
-	
-	//--METHODS--
+
+	// --ASSERTS--
+
+	// --METHODS--
 	public String getWelcomeText() {
 		return text_Welcome.getText();
 	}

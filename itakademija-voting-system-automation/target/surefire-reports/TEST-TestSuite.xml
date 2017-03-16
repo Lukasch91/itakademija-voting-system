@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="82.95" tests="68" errors="0" skipped="41" failures="22">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-jdk/jre/lib/amd64"/>
+    <property name="java.vm.version" value="25.121-b13"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="/home/giedrius/Projects/Eclipse/itakademija-voting-system-automation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/home/giedrius/Projects/Eclipse/itakademija-voting-system-automation"/>
+    <property name="groups" value="p1"/>
+    <property name="java.runtime.version" value="1.8.0_121-b13"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-jdk/jre/lib/endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Linux"/>
+    <property name="classworlds.conf" value="/opt/maven/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="4.9.13-1-MANJARO"/>
+    <property name="user.home" value="/home/giedrius"/>
+    <property name="user.timezone" value="Europe/Vilnius"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="giedrius"/>
+    <property name="java.class.path" value="/opt/maven/boot/plexus-classworlds-2.5.2.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/usr/lib/jvm/java-8-jdk/jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dgroups=p1 test"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_121"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-jdk/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="securerandom.source" value="file:/dev/./urandom"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-jdk/jre/lib/resources.jar:/usr/lib/jvm/java-8-jdk/jre/lib/rt.jar:/usr/lib/jvm/java-8-jdk/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-jdk/jre/lib/jsse.jar:/usr/lib/jvm/java-8-jdk/jre/lib/jce.jar:/usr/lib/jvm/java-8-jdk/jre/lib/charsets.jar:/usr/lib/jvm/java-8-jdk/jre/lib/jfr.jar:/usr/lib/jvm/java-8-jdk/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/opt/maven"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase name="candidateSearchLoadPageTest" classname="testclasses._public.CandidateSearchTest" time="0.469">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses._public.CandidateSearchTest.candidateSearchLoadPageTest(CandidateSearchTest.java:24)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 6374
+Only local connections are allowed.
+Mar 15, 2017 3:29:26 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:29:51 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="candidateSearchByNameTest" classname="testclasses._public.CandidateSearchTest" time="0">
+    <skipped message="Method CandidateSearchTest.candidateSearchByNameTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@6108b2d7] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="candidateSearchBySurnameTest" classname="testclasses._public.CandidateSearchTest" time="0">
+    <skipped message="Method CandidateSearchTest.candidateSearchBySurnameTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@6108b2d7] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="candidateSearchByPartyTest" classname="testclasses._public.CandidateSearchTest" time="0">
+    <skipped message="Method CandidateSearchTest.candidateSearchByPartyTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@6108b2d7] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="candidateSearchByAbbreviationTest" classname="testclasses._public.CandidateSearchTest" time="0">
+    <skipped message="Method CandidateSearchTest.candidateSearchByAbbreviationTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@6108b2d7] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="candidateSearchByConstituencyTest" classname="testclasses._public.CandidateSearchTest" time="0">
+    <skipped message="Method CandidateSearchTest.candidateSearchByConstituencyTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@6108b2d7] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="resultPreviewSingleTest" classname="testclasses._public.PublicResultsSingleTest" time="0">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses._public.PublicResultsSingleTest.resultPreviewSingleTest(PublicResultsSingleTest.java:23)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 21290
+Only local connections are allowed.
+Mar 15, 2017 3:29:55 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:29:58 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="resultPreviewForSingleConsituencyTest" classname="testclasses._public.PublicResultsSingleTest" time="0">
+    <skipped message="Method PublicResultsSingleTest.resultPreviewForSingleConsituencyTest()[pri:0, instance:testclasses._public.PublicResultsSingleTest@13fee20c] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="resultPreviewForSingleConsituencyDistrictTest" classname="testclasses._public.PublicResultsSingleTest" time="0">
+    <skipped message="Method PublicResultsSingleTest.resultPreviewForSingleConsituencyDistrictTest()[pri:0, instance:testclasses._public.PublicResultsSingleTest@13fee20c] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="resultPreviewMultiTest" classname="testclasses._public.PublicResultsMultiTest" time="0.002">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses._public.PublicResultsMultiTest.resultPreviewMultiTest(PublicResultsMultiTest.java:24)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 24699
+Only local connections are allowed.
+Mar 15, 2017 3:29:58 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:00 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="resultPreviewForMultiConsituencyTest" classname="testclasses._public.PublicResultsMultiTest" time="0">
+    <skipped message="Method PublicResultsMultiTest.resultPreviewForMultiConsituencyTest()[pri:0, instance:testclasses._public.PublicResultsMultiTest@246ae04d] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="resultPreviewForMultiConsituencyDistrictTest" classname="testclasses._public.PublicResultsMultiTest" time="0">
+    <skipped message="Method PublicResultsMultiTest.resultPreviewForMultiConsituencyDistrictTest()[pri:0, instance:testclasses._public.PublicResultsMultiTest@246ae04d] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="testLoginPage" classname="testclasses.rep.RepresentativeLoginTest" time="5.371"/>
+  <testcase name="testLoginPage" classname="testclasses.rep.RepresentativeLoginTest" time="1.807"/>
+  <testcase name="voteRegistrationLoadPageTest" classname="testclasses.rep.VoteRegistrationSingleTest" time="0.001">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.rep.VoteRegistrationSingleTest.voteRegistrationLoadPageTest(VoteRegistrationSingleTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 3946
+Only local connections are allowed.
+Mar 15, 2017 3:30:09 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:11 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="voteRegistrationForSingleTest" classname="testclasses.rep.VoteRegistrationSingleTest" time="0">
+    <skipped message="Method VoteRegistrationSingleTest.voteRegistrationForSingleTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.VoteRegistrationSingleTest@327471b5] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="voteRegistrationLoadPageTest" classname="testclasses.rep.VoteRegistrationMultiTest" time="0">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.rep.VoteRegistrationMultiTest.voteRegistrationLoadPageTest(VoteRegistrationMultiTest.java:18)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 16484
+Only local connections are allowed.
+Mar 15, 2017 3:30:11 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:13 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="voteRegistrationForMultiTest" classname="testclasses.rep.VoteRegistrationMultiTest" time="0">
+    <skipped message="Method VoteRegistrationMultiTest.voteRegistrationForMultiTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.VoteRegistrationMultiTest@6615435c] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="testLoginPage" classname="testclasses.admin.AdminLoginTest" time="3.634"/>
+  <testcase name="testLoginPage" classname="testclasses.admin.AdminLoginTest" time="1.335"/>
+  <testcase name="testLoginPage" classname="testclasses.admin.AdminLoginTest" time="1.372"/>
+  <testcase name="constituencyLoadPageTest" classname="testclasses.admin.ConstituencyTest" time="0">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.ConstituencyTest.constituencyLoadPageTest(ConstituencyTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 17824
+Only local connections are allowed.
+Mar 15, 2017 3:30:21 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:22 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="constituencyLoadPageTest" classname="testclasses.admin.ConstituencyTest" time="0.01">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.ConstituencyTest.constituencyLoadPageTest(ConstituencyTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 30316
+Only local connections are allowed.
+Mar 15, 2017 3:30:22 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:23 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="addNewConstituencyButtonTest" classname="testclasses.admin.ConstituencyTest" time="0">
+    <skipped message="Method ConstituencyTest.addNewConstituencyButtonTest()[pri:0, instance:testclasses.admin.ConstituencyTest@5a61f5df] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="addNewConstituencyTest" classname="testclasses.admin.ConstituencyTest" time="0">
+    <skipped message="Method ConstituencyTest.addNewConstituencyTest(java.lang.String)[pri:0, instance:testclasses.admin.ConstituencyTest@5a61f5df] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="removeConstituencyTest" classname="testclasses.admin.ConstituencyTest" time="0">
+    <skipped message="Method ConstituencyTest.removeConstituencyTest()[pri:0, instance:testclasses.admin.ConstituencyTest@234bef66] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="districtLoadPageTest" classname="testclasses.admin.DistrictTest" time="0.001">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.DistrictTest.districtLoadPageTest(DistrictTest.java:18)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 22958
+Only local connections are allowed.
+Mar 15, 2017 3:30:23 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:25 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="districtLoadPageTest" classname="testclasses.admin.DistrictTest" time="0.001">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.DistrictTest.districtLoadPageTest(DistrictTest.java:18)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 9219
+Only local connections are allowed.
+Mar 15, 2017 3:30:25 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:26 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="addNewDistrictButtonTest" classname="testclasses.admin.DistrictTest" time="0">
+    <skipped message="Method DistrictTest.addNewDistrictButtonTest()[pri:0, instance:testclasses.admin.DistrictTest@97e1986] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="addNewConstituencyTest" classname="testclasses.admin.DistrictTest" time="0">
+    <skipped message="Method DistrictTest.addNewConstituencyTest(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.DistrictTest@97e1986] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="removeDistrictTest" classname="testclasses.admin.DistrictTest" time="0">
+    <skipped message="Method DistrictTest.removeDistrictTest()[pri:0, instance:testclasses.admin.DistrictTest@337d0578] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="reprentativeLoadPageTest" classname="testclasses.admin.ReprentativeTest" time="0">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.ReprentativeTest.reprentativeLoadPageTest(ReprentativeTest.java:28)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 3152
+Only local connections are allowed.
+Mar 15, 2017 3:30:26 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:28 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="reprentativeLoadPageTest" classname="testclasses.admin.ReprentativeTest" time="0.001">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.ReprentativeTest.reprentativeLoadPageTest(ReprentativeTest.java:28)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 26174
+Only local connections are allowed.
+Mar 15, 2017 3:30:28 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:29 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="reprentativeLoadPageTest" classname="testclasses.admin.ReprentativeTest" time="0.001">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.ReprentativeTest.reprentativeLoadPageTest(ReprentativeTest.java:28)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 7414
+Only local connections are allowed.
+Mar 15, 2017 3:30:29 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:30 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="addNewReprentativeTest" classname="testclasses.admin.ReprentativeTest" time="0">
+    <skipped message="Method ReprentativeTest.addNewReprentativeTest(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ReprentativeTest@b97c004] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="correctPreviewTest" classname="testclasses.admin.ReprentativeTest" time="0">
+    <skipped message="Method ReprentativeTest.correctPreviewTest()[pri:0, instance:testclasses.admin.ReprentativeTest@2344fc66] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="deleteRepresntativeTest" classname="testclasses.admin.ReprentativeTest" time="0">
+    <skipped message="Method ReprentativeTest.deleteRepresntativeTest()[pri:0, instance:testclasses.admin.ReprentativeTest@174d20a] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="partyLoadPageTest" classname="testclasses.admin.PartiesTest" time="0.001">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.PartiesTest.partyLoadPageTest(PartiesTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 18291
+Only local connections are allowed.
+Mar 15, 2017 3:30:31 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:32 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="partyLoadPageTest" classname="testclasses.admin.PartiesTest" time="0.001">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.PartiesTest.partyLoadPageTest(PartiesTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 31734
+Only local connections are allowed.
+Mar 15, 2017 3:30:32 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:33 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="addPartyButtonTest" classname="testclasses.admin.PartiesTest" time="0">
+    <skipped message="Method PartiesTest.addPartyButtonTest()[pri:2, instance:testclasses.admin.PartiesTest@48eff760] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="addNewPartyTest" classname="testclasses.admin.PartiesTest" time="0">
+    <skipped message="Method PartiesTest.addNewPartyTest(java.lang.String, java.lang.String)[pri:3, instance:testclasses.admin.PartiesTest@48eff760] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="removePartyTest" classname="testclasses.admin.PartiesTest" time="0">
+    <skipped message="Method PartiesTest.removePartyTest()[pri:4, instance:testclasses.admin.PartiesTest@6d78f375] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvUploadLoadPageTest" classname="testclasses.admin.CsvUploadSingleTest" time="0.017">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.CsvUploadSingleTest.csvUploadLoadPageTest(CsvUploadSingleTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 15635
+Only local connections are allowed.
+Mar 15, 2017 3:30:34 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:35 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="csvUploadLoadPageTest" classname="testclasses.admin.CsvUploadSingleTest" time="0.016">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.CsvUploadSingleTest.csvUploadLoadPageTest(CsvUploadSingleTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 18425
+Only local connections are allowed.
+Mar 15, 2017 3:30:35 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:36 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="csvUploadLoadPageTest" classname="testclasses.admin.CsvUploadSingleTest" time="0.014">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.CsvUploadSingleTest.csvUploadLoadPageTest(CsvUploadSingleTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 9102
+Only local connections are allowed.
+Mar 15, 2017 3:30:36 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:38 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="csvUploadLoadPageTest" classname="testclasses.admin.CsvUploadSingleTest" time="0.015">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.CsvUploadSingleTest.csvUploadLoadPageTest(CsvUploadSingleTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 11628
+Only local connections are allowed.
+Mar 15, 2017 3:30:38 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:39 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="csvPreviewButtonTest" classname="testclasses.admin.CsvUploadSingleTest" time="0">
+    <skipped message="Method CsvUploadSingleTest.csvPreviewButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@23ceabc1] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvPreviewButtonTest" classname="testclasses.admin.CsvUploadSingleTest" time="0">
+    <skipped message="Method CsvUploadSingleTest.csvPreviewButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@2ef5e5e3] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvPreviewListWithCandidatesDisplayedTest" classname="testclasses.admin.CsvUploadSingleTest" time="0">
+    <skipped message="Method CsvUploadSingleTest.csvPreviewListWithCandidatesDisplayedTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@23ceabc1] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvPreviewCancelButtonTest" classname="testclasses.admin.CsvUploadSingleTest" time="0">
+    <skipped message="Method CsvUploadSingleTest.csvPreviewCancelButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@23ceabc1] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvDeleteCandidatesTest" classname="testclasses.admin.CsvUploadSingleTest" time="0">
+    <skipped message="Method CsvUploadSingleTest.csvDeleteCandidatesTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@2ef5e5e3] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvUploadButtonTest" classname="testclasses.admin.CsvUploadSingleTest" time="0">
+    <skipped message="Method CsvUploadSingleTest.csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@7f9a81e8] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvUploadButtonTest" classname="testclasses.admin.CsvUploadSingleTest" time="0">
+    <skipped message="Method CsvUploadSingleTest.csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@7dc7cbad] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvUploadCommasTest" classname="testclasses.admin.CsvUploadSingleTest" time="0">
+    <skipped message="Method CsvUploadSingleTest.csvUploadCommasTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@7f9a81e8] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvUploadSimcolonTest" classname="testclasses.admin.CsvUploadSingleTest" time="0">
+    <skipped message="Method CsvUploadSingleTest.csvUploadSimcolonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@7dc7cbad] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvUploadLoadPageTest" classname="testclasses.admin.CsvUploadMultiTest" time="0">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest(CsvUploadMultiTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 17079
+Only local connections are allowed.
+Mar 15, 2017 3:30:39 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:41 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="csvUploadLoadPageTest" classname="testclasses.admin.CsvUploadMultiTest" time="0.001">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest(CsvUploadMultiTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 11261
+Only local connections are allowed.
+Mar 15, 2017 3:30:41 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:42 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="csvUploadLoadPageTest" classname="testclasses.admin.CsvUploadMultiTest" time="0">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest(CsvUploadMultiTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 28729
+Only local connections are allowed.
+Mar 15, 2017 3:30:42 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:44 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="csvUploadLoadPageTest" classname="testclasses.admin.CsvUploadMultiTest" time="0.003">
+    <failure type="java.lang.NullPointerException">java.lang.NullPointerException
+	at testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest(CsvUploadMultiTest.java:26)
+</failure>
+    <system-err><![CDATA[Starting ChromeDriver 2.27.440175 (9bc1d90b8bfa4dd181fbbf769a5eb5e575574320) on port 13169
+Only local connections are allowed.
+Mar 15, 2017 3:30:44 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Attempting bi-dialect session, assuming Postel's Law holds true on the remote end
+Mar 15, 2017 3:30:45 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: OSS
+]]></system-err>
+  </testcase>
+  <testcase name="csvPreviewButtonTest" classname="testclasses.admin.CsvUploadMultiTest" time="0">
+    <skipped message="Method CsvUploadMultiTest.csvPreviewButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@20e2cbe0] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvPreviewButtonTest" classname="testclasses.admin.CsvUploadMultiTest" time="0">
+    <skipped message="Method CsvUploadMultiTest.csvPreviewButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@1b604f19] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvPreviewListWithCandidatesDisplayedTest" classname="testclasses.admin.CsvUploadMultiTest" time="0">
+    <skipped message="Method CsvUploadMultiTest.csvPreviewListWithCandidatesDisplayedTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@20e2cbe0] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvPreviewCancelButtonTest" classname="testclasses.admin.CsvUploadMultiTest" time="0">
+    <skipped message="Method CsvUploadMultiTest.csvPreviewCancelButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@20e2cbe0] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvDeleteCandidatesTest" classname="testclasses.admin.CsvUploadMultiTest" time="0">
+    <skipped message="Method CsvUploadMultiTest.csvDeleteCandidatesTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@1b604f19] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvUploadButtonTest" classname="testclasses.admin.CsvUploadMultiTest" time="0">
+    <skipped message="Method CsvUploadMultiTest.csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@4678c730] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvUploadButtonTest" classname="testclasses.admin.CsvUploadMultiTest" time="0">
+    <skipped message="Method CsvUploadMultiTest.csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@18be83e4] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvUploadCommasTest" classname="testclasses.admin.CsvUploadMultiTest" time="0">
+    <skipped message="Method CsvUploadMultiTest.csvUploadCommasTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@4678c730] depends on not successfully finished methods"/>
+  </testcase>
+  <testcase name="csvUploadSimcolonTest" classname="testclasses.admin.CsvUploadMultiTest" time="0">
+    <skipped message="Method CsvUploadMultiTest.csvUploadSimcolonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@18be83e4] depends on not successfully finished methods"/>
+  </testcase>
+</testsuite>

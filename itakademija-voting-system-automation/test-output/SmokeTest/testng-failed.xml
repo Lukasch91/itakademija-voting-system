@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [SmokeTest]">
+  <parameter name="" value=""/>
+  <test name="PublicRoleSmokeTest">
+    <classes>
+      <class name="smoketest.PublicSmokeTest"/>
+    </classes>
+  </test> <!-- PublicRoleSmokeTest -->
+  <test name="AdminRoleSmokeTest">
+    <classes>
+      <class name="smoketest.AdminSmokeTest"/>
+    </classes>
+  </test> <!-- AdminRoleSmokeTest -->
+  <test name="RepresentativeRoleSmokeTest">
+    <parameter name="" value=""/>
+    <classes>
+      <class name="smoketest.RespresentativeSmokeTest"/>
+    </classes>
+  </test> <!-- RepresentativeRoleSmokeTest -->
+  <test name="RepresentativeRoleSmokeTest(failed)">
+    <parameter name="" value=""/>
+    <classes>
+      <class name="smoketest.PublicSmokeTest">
+        <methods>
+          <include name="close"/>
+          <include name="tearDown"/>
+          <include name="open"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- smoketest.PublicSmokeTest -->
+      <class name="smoketest.RespresentativeSmokeTest">
+        <methods>
+          <include name="testRepresentativeLogOut"/>
+          <include name="close"/>
+          <include name="tearDown"/>
+          <include name="open"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- smoketest.RespresentativeSmokeTest -->
+      <class name="smoketest.AdminSmokeTest">
+        <methods>
+          <include name="close"/>
+          <include name="tearDown"/>
+          <include name="open"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- smoketest.AdminSmokeTest -->
+    </classes>
+  </test> <!-- RepresentativeRoleSmokeTest(failed) -->
+</suite> <!-- Failed suite [SmokeTest] -->

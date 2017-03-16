@@ -18,7 +18,7 @@ import _utils.DataBaseInsert;
 
 public class PublicResultsMultiTest extends BaseTest {
 
-	@Test(groups = { "p1" })
+	@Test(groups = { "smoke" })
 	public void resultPreviewMultiTest() {
 		try {
 			DataBaseInsert.insertDataToDataBaseFromFile(DataBaseCommands.allData2Parties4Candidates);
@@ -29,12 +29,12 @@ public class PublicResultsMultiTest extends BaseTest {
 		publicResultsMulti.assertCorrectPage();
 	}
 
-	@Test(groups = { "p1" }, dependsOnMethods = "resultPreviewMultiTest")
+	@Test(groups = { "reg" }, dependsOnMethods = "resultPreviewMultiTest")
 	public void resultPreviewForMultiConsituencyTest() {
 		publicResultsMulti.assertConstituencyPreviewPage();
 	}
 
-	@Test(groups = { "p1" }, dependsOnMethods = "resultPreviewForMultiConsituencyTest")
+	@Test(groups = { "reg" }, dependsOnMethods = "resultPreviewForMultiConsituencyTest")
 	public void resultPreviewForMultiConsituencyDistrictTest() {
 		publicResultsMulti.assertDistrictPreviewPage();
 	}

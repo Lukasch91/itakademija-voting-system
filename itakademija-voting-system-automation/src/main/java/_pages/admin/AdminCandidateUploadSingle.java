@@ -102,6 +102,8 @@ public class AdminCandidateUploadSingle extends BasePage {
 	public void assertUploadCsvButtonWorks() {
 		waitForElementToBeInDOM(button_AddCandidates);
 		clickElement(button_AddCandidates);
+		waitForJavascript();
+		checkIsLoaded();
 		waitUntilElementToBeClickable(By.xpath("//*[@type='file']"));
 		assertTrue(button_ChooseFile.isEnabled(), "Not in candates upload modal window");
 	}
@@ -116,12 +118,12 @@ public class AdminCandidateUploadSingle extends BasePage {
 
 	public void assertCsvUploadWithCommasWorks() {
 		setElementTextNoAssert(button_ChooseFile, CsvFilesList.constituencyCanComma);
-		waitOrNotToWait(7000);
+		waitOrNotToWait(3000);
 		clickElement(button_UploadCandidates);
 		waitForJavascript();
 		waitUntilElementToBeClickable(By.xpath("//*[text()='Peržiurėti kandidatus']"));
 		waitForJavascript();
-		waitOrNotToWait(2000);
+		waitOrNotToWait(1000);
 		assertEquals(getPreviewCandidatesButtonCount(), 2, "Candidates havn`t been added");
 
 	}
@@ -129,12 +131,12 @@ public class AdminCandidateUploadSingle extends BasePage {
 	public void assertCsvUploadWithSemicolonWorks() {
 		clickElement(radioButton_DataWithSemicolon);
 		setElementTextNoAssert(button_ChooseFile, CsvFilesList.constituencyCanSemicolon);
-		waitOrNotToWait(7000);
+		waitOrNotToWait(3000);
 		clickElement(button_UploadCandidates);
 		waitForJavascript();
 		waitUntilElementToBeClickable(By.xpath("//*[text()='Peržiurėti kandidatus']"));
 		waitForJavascript();
-		waitOrNotToWait(2000);
+		waitOrNotToWait(1000);
 		assertEquals(getPreviewCandidatesButtonCount(), 2, "Candidates havn`t been added");
 
 	}

@@ -12,7 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import _base.BasePage;
 
 public class AdminConstituency extends BasePage {
-	
+
 	private By rows = By.xpath("//tr");
 	private By addNew = By.id("addNew");
 	private By removeButton = By.xpath("//*[@class='glyphicon glyphicon-remove']");
@@ -40,7 +40,7 @@ public class AdminConstituency extends BasePage {
 	private WebElement button_CancelAddingConstituency;
 
 	// --CONSTRUCTOR--
-	
+
 	public AdminConstituency(WebDriver webDriver) {
 		super(webDriver);
 		this.PAGE_TITLE = "Rinkimai";
@@ -90,6 +90,8 @@ public class AdminConstituency extends BasePage {
 	}
 
 	public void assertConstituencyRemoveWorks() {
+		waitForJavascript();
+		checkIsLoaded();
 		waitForElementToBeInDOM(button_RemoveConstituency);
 		waitUntilElementToBeClickable(removeButton);
 		clickRemove();

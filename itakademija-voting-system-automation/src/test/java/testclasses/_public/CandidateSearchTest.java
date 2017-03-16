@@ -18,7 +18,7 @@ import _utils.DataBaseInsert;
 
 public class CandidateSearchTest extends BaseTest {
 
-	@Test(groups = { "p1" })
+	@Test(groups = { "smoke" })
 	public void candidateSearchLoadPageTest() {
 		try {
 			DataBaseInsert.insertDataToDataBaseFromFile(DataBaseCommands.allData2Parties4Candidates);
@@ -29,32 +29,32 @@ public class CandidateSearchTest extends BaseTest {
 		publicCandidatesSearch.assertCorrectPage();
 	}
 
-	@Test(groups = { "p1" }, dependsOnMethods = "candidateSearchLoadPageTest")
+	@Test(groups = { "reg" }, dependsOnMethods = "candidateSearchLoadPageTest")
 	@Parameters("name")
 	public void candidateSearchByNameTest(String name) {
 		publicCandidatesSearch.assertCandidateSearchByNameWorks(name);
 	}
 
 	@Parameters("surname")
-	@Test(groups = { "p1" }, dependsOnMethods = "candidateSearchLoadPageTest")
+	@Test(groups = { "reg" }, dependsOnMethods = "candidateSearchLoadPageTest")
 	public void candidateSearchBySurnameTest(String surname) {
 		publicCandidatesSearch.assertCandidateSearchBySurnameWorks(surname);
 	}
 
 	@Parameters("party")
-	@Test(groups = { "p1" }, dependsOnMethods = "candidateSearchLoadPageTest")
+	@Test(groups = { "reg" }, dependsOnMethods = "candidateSearchLoadPageTest")
 	public void candidateSearchByPartyTest(String party) {
 		publicCandidatesSearch.assertCandidateSearchByPartyWorks(party);
 	}
 
 	@Parameters("abbreviation")
-	@Test(groups = { "p1" }, dependsOnMethods = "candidateSearchLoadPageTest")
+	@Test(groups = { "reg" }, dependsOnMethods = "candidateSearchLoadPageTest")
 	public void candidateSearchByAbbreviationTest(String abbreviation) {
 		publicCandidatesSearch.assertCandidateSearchByAbbreviationWorks(abbreviation);
 	}
 
 	@Parameters("city")
-	@Test(groups = { "p1" }, dependsOnMethods = "candidateSearchLoadPageTest")
+	@Test(groups = { "reg" }, dependsOnMethods = "candidateSearchLoadPageTest")
 	public void candidateSearchByConstituencyTest(String city) {
 		publicCandidatesSearch.assertCandidateSearchByConstituencyWorks(city);
 	}

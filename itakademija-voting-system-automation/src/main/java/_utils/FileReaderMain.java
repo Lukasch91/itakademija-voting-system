@@ -16,9 +16,7 @@ public class FileReaderMain {
 		try {
 			File fileDir = new File(fileName);
 
-			BufferedReader in = new BufferedReader(
-					new InputStreamReader(
-							new FileInputStream(fileDir), "UTF-8"));
+			BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(fileDir), "UTF-8"));
 			String str;
 
 			while ((str = in.readLine()) != null) {

@@ -14,5 +14,4 @@ public class DataBaseCommands {
 	public static String AllData2Parties4CandidatesFORCSVSINGLE = "src/main/resources/DataBaseData/AllData2Parties4CandidatesFORCSVSINGLE.txt";
 	public static String allDataOnePartyOneCandidateWithVotesNOTCONFIRMED = "src/main/resources/DataBaseData/AllDataOnePartyOneCandidateWithVotesNOTCONFIRMED.txt";
 
-
 }

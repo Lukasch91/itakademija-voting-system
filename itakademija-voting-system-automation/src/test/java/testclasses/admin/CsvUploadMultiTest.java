@@ -20,52 +20,53 @@ import _utils.DataBaseInsert;
 import data.LoginData;
 
 public class CsvUploadMultiTest extends BaseTest {
-	
+
 	@Test(groups = { "p1" }, dataProvider = "loginAsAdmin", dataProviderClass = LoginData.class)
-	public void csvUploadLoadPageTest(String username, String password) throws ClassNotFoundException, SQLException, InterruptedException {
+	public void csvUploadLoadPageTest(String username, String password)
+			throws ClassNotFoundException, SQLException, InterruptedException {
 		DataBaseInsert.insertDataToDataBaseFromFile(DataBaseCommands.AllData2Parties4CandidatesFORCSVSINGLE);
 		loginPage.login(username, password);
 		adminCandidateUploadMulti.loadPage();
 		adminCandidateUploadMulti.assertCorrectPage();
 	}
-	
-	//preview
+
+	// preview
 	@Test(groups = { "csv2" }, dependsOnMethods = "csvUploadLoadPageTest")
 	public void csvPreviewButtonTest() {
 		adminCandidateUploadMulti.assertPreviewCsvButtonWorks();
 	}
+
 	@Test(groups = { "csv3" }, dependsOnMethods = "csvPreviewButtonTest")
 	public void csvDeleteCandidatesTest() {
 		adminCandidateUploadMulti.assertDeleteCandidatesWorks();
 	}
-	
+
 	@Test(groups = { "csv3" }, dependsOnMethods = "csvPreviewButtonTest")
 	public void csvPreviewListWithCandidatesDisplayedTest() {
 		adminCandidateUploadMulti.assertPreviewListWithCandidatesDisplayed();
 	}
-	
+
 	@Test(groups = { "csv3" }, dependsOnMethods = "csvPreviewButtonTest")
 	public void csvPreviewCancelButtonTest() {
 		adminCandidateUploadMulti.assertCsvPreviewCancelButtonWorks();
 	}
-	
 
-	//upload
+	// upload
 	@Test(groups = { "p2" }, dependsOnMethods = "csvUploadLoadPageTest")
 	public void csvUploadButtonTest() {
 		adminCandidateUploadMulti.assertUploadCsvButtonWorks();
 	}
-	
+
 	@Test(groups = { "csv3" }, dependsOnMethods = "csvUploadButtonTest")
 	public void csvUploadCancelButtonTest() {
 		adminCandidateUploadMulti.assertCsvUploadCancelButtonWorks();
 	}
-	
+
 	@Test(groups = { "csv3" }, dependsOnMethods = "csvUploadButtonTest")
 	public void csvUploadCommasTest() {
 		adminCandidateUploadMulti.assertCsvUploadWithCommasWorks();
 	}
-	
+
 	@Test(groups = { "csv3" }, dependsOnMethods = "csvUploadButtonTest")
 	public void csvUploadSimcolonTest() {
 		adminCandidateUploadMulti.assertCsvUploadWithSemicolonWorks();

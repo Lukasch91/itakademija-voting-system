@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SmokeTest">
+	<test name="PublicRoleSmokeTest">
+		<classes>
+			<class name="smoketest.PublicSmokeTest"></class>
+		</classes>
+	</test>
+	<test name="AdminRoleSmokeTest">
+		<classes>
+			<class name="smoketest.AdminSmokeTest"></class>
+		</classes>
+	</test>
+	<test name="RepresentativeRoleSmokeTest">
+		<parameter name="" value=""></parameter>
+		<classes>
+			<class name="smoketest.RespresentativeSmokeTest"></class>
+		</classes>
+	</test>
+</suite>

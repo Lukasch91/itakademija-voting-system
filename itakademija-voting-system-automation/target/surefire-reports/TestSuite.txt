@@ -1,0 +1,92 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 68, Failures: 22, Errors: 0, Skipped: 41, Time elapsed: 82.95 sec <<< FAILURE! - in TestSuite
+candidateSearchLoadPageTest(testclasses._public.CandidateSearchTest)  Time elapsed: 0.469 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses._public.CandidateSearchTest.candidateSearchLoadPageTest(CandidateSearchTest.java:24)
+
+resultPreviewSingleTest(testclasses._public.PublicResultsSingleTest)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses._public.PublicResultsSingleTest.resultPreviewSingleTest(PublicResultsSingleTest.java:23)
+
+resultPreviewMultiTest(testclasses._public.PublicResultsMultiTest)  Time elapsed: 0.002 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses._public.PublicResultsMultiTest.resultPreviewMultiTest(PublicResultsMultiTest.java:24)
+
+voteRegistrationLoadPageTest(testclasses.rep.VoteRegistrationSingleTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.rep.VoteRegistrationSingleTest.voteRegistrationLoadPageTest(VoteRegistrationSingleTest.java:26)
+
+voteRegistrationLoadPageTest(testclasses.rep.VoteRegistrationMultiTest)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.rep.VoteRegistrationMultiTest.voteRegistrationLoadPageTest(VoteRegistrationMultiTest.java:18)
+
+constituencyLoadPageTest(testclasses.admin.ConstituencyTest)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.ConstituencyTest.constituencyLoadPageTest(ConstituencyTest.java:26)
+
+constituencyLoadPageTest(testclasses.admin.ConstituencyTest)  Time elapsed: 0.01 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.ConstituencyTest.constituencyLoadPageTest(ConstituencyTest.java:26)
+
+districtLoadPageTest(testclasses.admin.DistrictTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.DistrictTest.districtLoadPageTest(DistrictTest.java:18)
+
+districtLoadPageTest(testclasses.admin.DistrictTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.DistrictTest.districtLoadPageTest(DistrictTest.java:18)
+
+reprentativeLoadPageTest(testclasses.admin.ReprentativeTest)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.ReprentativeTest.reprentativeLoadPageTest(ReprentativeTest.java:28)
+
+reprentativeLoadPageTest(testclasses.admin.ReprentativeTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.ReprentativeTest.reprentativeLoadPageTest(ReprentativeTest.java:28)
+
+reprentativeLoadPageTest(testclasses.admin.ReprentativeTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.ReprentativeTest.reprentativeLoadPageTest(ReprentativeTest.java:28)
+
+partyLoadPageTest(testclasses.admin.PartiesTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.PartiesTest.partyLoadPageTest(PartiesTest.java:26)
+
+partyLoadPageTest(testclasses.admin.PartiesTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.PartiesTest.partyLoadPageTest(PartiesTest.java:26)
+
+csvUploadLoadPageTest(testclasses.admin.CsvUploadSingleTest)  Time elapsed: 0.017 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.CsvUploadSingleTest.csvUploadLoadPageTest(CsvUploadSingleTest.java:26)
+
+csvUploadLoadPageTest(testclasses.admin.CsvUploadSingleTest)  Time elapsed: 0.016 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.CsvUploadSingleTest.csvUploadLoadPageTest(CsvUploadSingleTest.java:26)
+
+csvUploadLoadPageTest(testclasses.admin.CsvUploadSingleTest)  Time elapsed: 0.014 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.CsvUploadSingleTest.csvUploadLoadPageTest(CsvUploadSingleTest.java:26)
+
+csvUploadLoadPageTest(testclasses.admin.CsvUploadSingleTest)  Time elapsed: 0.015 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.CsvUploadSingleTest.csvUploadLoadPageTest(CsvUploadSingleTest.java:26)
+
+csvUploadLoadPageTest(testclasses.admin.CsvUploadMultiTest)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest(CsvUploadMultiTest.java:26)
+
+csvUploadLoadPageTest(testclasses.admin.CsvUploadMultiTest)  Time elapsed: 0.001 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest(CsvUploadMultiTest.java:26)
+
+csvUploadLoadPageTest(testclasses.admin.CsvUploadMultiTest)  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest(CsvUploadMultiTest.java:26)
+
+csvUploadLoadPageTest(testclasses.admin.CsvUploadMultiTest)  Time elapsed: 0.003 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest(CsvUploadMultiTest.java:26)
+

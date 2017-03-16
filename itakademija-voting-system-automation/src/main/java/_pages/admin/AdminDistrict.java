@@ -92,6 +92,7 @@ public class AdminDistrict extends BasePage {
 	// ---------ASSERTS----------
 
 	public void assertCorrectPage() {
+		waitForElementToBeInDOM(button_AddRepresentative);
 		assertTrue(button_AddRepresentative.isDisplayed(), "You are in the wrong page");
 	}
 

@@ -7,32 +7,26 @@ import org.openqa.selenium.support.FindBy;
 
 import _base.BasePage;
 
-public class RepresentativeHomePage extends BasePage{
+public class RepresentativeHomePage extends BasePage {
 
-	
-	//--ELEMENTS--
+	// --ELEMENTS--
 
 	@FindBy(xpath = "//div/div/div")
 	@CacheLookup
 	private WebElement text_Welcome;
 
-	
-	//--CONSTRUCTOR--
+	// --CONSTRUCTOR--
 	public RepresentativeHomePage(WebDriver webDriver) {
 		super(webDriver);
 		this.PAGE_TITLE = "RinkSis";
 		this.PAGE_URL = "http://localhost:8080/rep#/home";
 	}
-	
-	//--ASSERTS--
-	
-	
-	//--METHODS--
+
+	// --ASSERTS--
+
+	// --METHODS--
 	public String getWelcomeText() {
 		return text_Welcome.getText();
 	}
-
-	
-	
 
 }

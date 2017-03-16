@@ -23,6 +23,9 @@ import _pages.admin.AdminHomePage;
 import _pages.admin.AdminParties;
 import _pages.admin.AdminRepresentative;
 import _pages.admin.AdminResults;
+import _pages.navigation.AdminNavigation;
+import _pages.navigation.PublicNavigation;
+import _pages.navigation.RepresentativeNavigation;
 import _pages.representative.RepresentativeHomePage;
 import _pages.representative.VoteRegistrationMulti;
 import _pages.representative.VoteRegistrationSingle;
@@ -35,21 +38,6 @@ public class BaseTest {
 	public static DataBaseCommands command;
 
 	public WebDriver webDriver;
-	public LoginPage loginPage;
-	public AdminConstituency adminConstituency;
-	public AdminDistrict adminDistrict;
-	public AdminRepresentative adminRepresentative;
-	public AdminParties adminParties;
-	public PublicCandidatesSearch publicCandidatesSearch;
-	public PublicResultsMulti publicResultsMulti;
-	public PublicResultsSingle publicResultsSingle;
-	public AdminHomePage adminHomePage;
-	public AdminResults adminResults;
-	public AdminCandidateUploadMulti adminCandidateUploadMulti;
-	public AdminCandidateUploadSingle adminCandidateUploadSingle;
-	public RepresentativeHomePage representativeHomePage;
-	public VoteRegistrationMulti voteRegistrationMulti;
-	public VoteRegistrationSingle voteRegistrationSingle;
 
 	@BeforeTest
 	public void open() {
@@ -75,7 +63,40 @@ public class BaseTest {
 	@BeforeClass(alwaysRun = true)
 	public void setUp() {
 		this.webDriver = new ChromeDriver();
-		webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		webDriver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+		webDriver.manage().window().maximize();
+		pageFactory();
+
+	}
+
+	@AfterClass(alwaysRun = true)
+	public void tearDown() {
+		webDriver.close();
+		webDriver.quit();
+	}
+
+	// nepaskaiciau iki galo info apie page factory del to taip gavosi :(
+
+	public LoginPage loginPage;
+	public AdminConstituency adminConstituency;
+	public AdminDistrict adminDistrict;
+	public AdminRepresentative adminRepresentative;
+	public AdminParties adminParties;
+	public PublicCandidatesSearch publicCandidatesSearch;
+	public PublicResultsMulti publicResultsMulti;
+	public PublicResultsSingle publicResultsSingle;
+	public AdminHomePage adminHomePage;
+	public AdminResults adminResults;
+	public AdminCandidateUploadMulti adminCandidateUploadMulti;
+	public AdminCandidateUploadSingle adminCandidateUploadSingle;
+	public RepresentativeHomePage representativeHomePage;
+	public VoteRegistrationMulti voteRegistrationMulti;
+	public VoteRegistrationSingle voteRegistrationSingle;
+	public AdminNavigation adminNavigation;
+	public PublicNavigation publicNavigation;
+	public RepresentativeNavigation representativeNavigation;
+
+	public void pageFactory() {
 		loginPage = PageFactory.initElements(webDriver, LoginPage.class);
 		adminConstituency = PageFactory.initElements(webDriver, AdminConstituency.class);
 		adminDistrict = PageFactory.initElements(webDriver, AdminDistrict.class);
@@ -91,11 +112,8 @@ public class BaseTest {
 		representativeHomePage = PageFactory.initElements(webDriver, RepresentativeHomePage.class);
 		voteRegistrationMulti = PageFactory.initElements(webDriver, VoteRegistrationMulti.class);
 		voteRegistrationSingle = PageFactory.initElements(webDriver, VoteRegistrationSingle.class);
-	}
-
-	@AfterClass(alwaysRun = true)
-	public void tearDown() {
-		webDriver.close();
-		webDriver.quit();
+		adminNavigation = PageFactory.initElements(webDriver, AdminNavigation.class);
+		publicNavigation = PageFactory.initElements(webDriver, PublicNavigation.class);
+		representativeNavigation = PageFactory.initElements(webDriver, RepresentativeNavigation.class);
 	}
 }

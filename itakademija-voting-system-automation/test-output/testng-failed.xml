@@ -1,15 +1,295 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test verbose="2" name="Default test">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Regression Test Suite]">
+  <parameter name="constituencyName" value="Vilnius"/>
+  <parameter name="districtName" value="Naujamiestis"/>
+  <parameter name="city" value="Vilnius"/>
+  <parameter name="votersCount" value="568"/>
+  <parameter name="secondField" value="1"/>
+  <parameter name="abbreviation" value="LSDP"/>
+  <parameter name="firstField" value="21"/>
+  <parameter name="partyAbbreviation" value="LLS"/>
+  <parameter name="surname" value="Jonaitis"/>
+  <parameter name="name" value="Jonas"/>
+  <parameter name="partyName" value="Lietuvos Laisves Sujudimas"/>
+  <parameter name="districtAdress" value="Seimo g. 31 Vilnius"/>
+  <parameter name="party" value="Suvalkijos Lygumų Lyga"/>
+  <parameter name="email" value="janus@warpportal.com"/>
+  <parameter name="username" value="janus"/>
+  <test name="Candidate Search Test Cases">
+    <parameter name="city" value="Vilnius"/>
+    <parameter name="surname" value="Laukietis"/>
+    <parameter name="name" value="Benas"/>
+    <parameter name="abbreviation" value="LSDP"/>
+    <parameter name="party" value="Suvalkijos Lygumų Lyga"/>
+    <classes>
+      <class name="testclasses._public.CandidateSearchTest">
+        <methods>
+          <include name="candidateSearchLoadPageTest"/>
+          <include name="candidateSearchByNameTest"/>
+          <include name="candidateSearchBySurnameTest"/>
+          <include name="candidateSearchByPartyTest"/>
+          <include name="candidateSearchByAbbreviationTest"/>
+          <include name="candidateSearchByConstituencyTest"/>
+        </methods>
+      </class> <!-- testclasses._public.CandidateSearchTest -->
+    </classes>
+  </test> <!-- Candidate Search Test Cases -->
+  <test name="Results For Public Viewers Preview Single Test Cases">
+    <classes>
+      <class name="testclasses._public.PublicResultsSingleTest">
+        <methods>
+          <include name="resultPreviewSingleTest"/>
+          <include name="resultPreviewForSingleConsituencyTest"/>
+          <include name="resultPreviewForSingleConsituencyDistrictTest"/>
+        </methods>
+      </class> <!-- testclasses._public.PublicResultsSingleTest -->
+    </classes>
+  </test> <!-- Results For Public Viewers Preview Single Test Cases -->
+  <test name="Results For Public Viewers Preview Multi Test Cases">
+    <classes>
+      <class name="testclasses._public.PublicResultsMultiTest">
+        <methods>
+          <include name="resultPreviewMultiTest"/>
+          <include name="resultPreviewForMultiConsituencyTest"/>
+          <include name="resultPreviewForMultiConsituencyDistrictTest"/>
+        </methods>
+      </class> <!-- testclasses._public.PublicResultsMultiTest -->
+    </classes>
+  </test> <!-- Results For Public Viewers Preview Multi Test Cases -->
+  <test name="Representative Login Test Cases">
+    <classes>
+      <class name="testclasses.rep.RepresentativeLoginTest">
+        <methods>
+          <include name="testLoginPage"/>
+        </methods>
+      </class> <!-- testclasses.rep.RepresentativeLoginTest -->
+    </classes>
+  </test> <!-- Representative Login Test Cases -->
+  <test name="Representative Vote Registration Single Test Cases">
+    <parameter name="secondField" value="10"/>
+    <parameter name="firstField" value="12"/>
+    <classes>
+      <class name="testclasses.rep.VoteRegistrationSingleTest">
+        <methods>
+          <include name="voteRegistrationLoadPageTest"/>
+          <include name="voteRegistrationForSingleTest"/>
+        </methods>
+      </class> <!-- testclasses.rep.VoteRegistrationSingleTest -->
+    </classes>
+  </test> <!-- Representative Vote Registration Single Test Cases -->
+  <test name="Representative Vote Registration Multi Test Cases">
+    <parameter name="secondField" value="1"/>
+    <parameter name="firstField" value="21"/>
+    <classes>
+      <class name="testclasses.rep.VoteRegistrationMultiTest">
+        <methods>
+          <include name="voteRegistrationLoadPageTest"/>
+          <include name="voteRegistrationForMultiTest"/>
+        </methods>
+      </class> <!-- testclasses.rep.VoteRegistrationMultiTest -->
+    </classes>
+  </test> <!-- Representative Vote Registration Multi Test Cases -->
+  <test name="Admin Login Test Cases">
+    <classes>
+      <class name="testclasses.admin.AdminLoginTest">
+        <methods>
+          <include name="testLoginPage"/>
+        </methods>
+      </class> <!-- testclasses.admin.AdminLoginTest -->
+    </classes>
+  </test> <!-- Admin Login Test Cases -->
+  <test name="Admin Add Constituency Test Cases">
+    <parameter name="constituencyName" value="Vilnius"/>
+    <classes>
+      <class name="testclasses.admin.ConstituencyTest">
+        <methods>
+          <include name="constituencyLoadPageTest"/>
+          <include name="addNewConstituencyButtonTest"/>
+          <include name="addNewConstituencyTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.ConstituencyTest -->
+    </classes>
+  </test> <!-- Admin Add Constituency Test Cases -->
+  <test name="Admin Constituency remove Test Cases">
+    <classes>
+      <class name="testclasses.admin.ConstituencyTest">
+        <methods>
+          <include name="constituencyLoadPageTest"/>
+          <include name="removeConstituencyTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.ConstituencyTest -->
+    </classes>
+  </test> <!-- Admin Constituency remove Test Cases -->
+  <test name="Admin District Add Test Cases">
+    <parameter name="districtName" value="Naujamiestis"/>
+    <parameter name="votersCount" value="568"/>
+    <parameter name="districtAdress" value="Seimo g. 31 Vilnius"/>
+    <classes>
+      <class name="testclasses.admin.DistrictTest">
+        <methods>
+          <include name="districtLoadPageTest"/>
+          <include name="addNewDistrictButtonTest"/>
+          <include name="addNewConstituencyTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.DistrictTest -->
+    </classes>
+  </test> <!-- Admin District Add Test Cases -->
+  <test name="Admin District Remove Test Cases">
+    <classes>
+      <class name="testclasses.admin.DistrictTest">
+        <methods>
+          <include name="districtLoadPageTest"/>
+          <include name="removeDistrictTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.DistrictTest -->
+    </classes>
+  </test> <!-- Admin District Remove Test Cases -->
+  <test name="Admin Representative Add Test Cases">
+    <parameter name="surname" value="Jonaitis"/>
+    <parameter name="name" value="Jonas"/>
+    <parameter name="email" value="janus@warpportal.com"/>
+    <parameter name="username" value="janus"/>
+    <classes>
+      <class name="testclasses.admin.ReprentativeTest">
+        <methods>
+          <include name="reprentativeLoadPageTest"/>
+          <include name="addNewReprentativeTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.ReprentativeTest -->
+    </classes>
+  </test> <!-- Admin Representative Add Test Cases -->
+  <test name="Admin Representative Preview Test Cases">
+    <classes>
+      <class name="testclasses.admin.ReprentativeTest">
+        <methods>
+          <include name="reprentativeLoadPageTest"/>
+          <include name="correctPreviewTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.ReprentativeTest -->
+    </classes>
+  </test> <!-- Admin Representative Preview Test Cases -->
+  <test name="Admin Representative Remove Test Cases">
+    <classes>
+      <class name="testclasses.admin.ReprentativeTest">
+        <methods>
+          <include name="reprentativeLoadPageTest"/>
+          <include name="deleteRepresntativeTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.ReprentativeTest -->
+    </classes>
+  </test> <!-- Admin Representative Remove Test Cases -->
+  <test name="Admin Parties Test Cases">
+    <parameter name="partyAbbreviation" value="LLS"/>
+    <parameter name="partyName" value="Lietuvos Laisves Sujudimas"/>
+    <classes>
+      <class name="testclasses.admin.PartiesTest">
+        <methods>
+          <include name="partyLoadPageTest"/>
+          <include name="addPartyButtonTest"/>
+          <include name="addNewPartyTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.PartiesTest -->
+    </classes>
+  </test> <!-- Admin Parties Test Cases -->
+  <test name="Admin Parties Remove Test Cases">
+    <classes>
+      <class name="testclasses.admin.PartiesTest">
+        <methods>
+          <include name="partyLoadPageTest"/>
+          <include name="removePartyTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.PartiesTest -->
+    </classes>
+  </test> <!-- Admin Parties Remove Test Cases -->
+  <test name="Admin Candidate List Preview Single Test Cases">
+    <classes>
+      <class name="testclasses.admin.CsvUploadSingleTest">
+        <methods>
+          <include name="csvUploadLoadPageTest"/>
+          <include name="csvPreviewButtonTest"/>
+          <include name="csvPreviewListWithCandidatesDisplayedTest"/>
+          <include name="csvPreviewCancelButtonTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.CsvUploadSingleTest -->
+    </classes>
+  </test> <!-- Admin Candidate List Preview Single Test Cases -->
+  <test name="Admin Candidate Remove Single Test Cases">
+    <classes>
+      <class name="testclasses.admin.CsvUploadSingleTest">
+        <methods>
+          <include name="csvUploadLoadPageTest"/>
+          <include name="csvPreviewButtonTest"/>
+          <include name="csvDeleteCandidatesTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.CsvUploadSingleTest -->
+    </classes>
+  </test> <!-- Admin Candidate Remove Single Test Cases -->
+  <test name="Admin Candidate Upload File With Commas Single Test Cases">
+    <classes>
+      <class name="testclasses.admin.CsvUploadSingleTest">
+        <methods>
+          <include name="csvUploadLoadPageTest"/>
+          <include name="csvUploadButtonTest"/>
+          <include name="csvUploadCommasTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.CsvUploadSingleTest -->
+    </classes>
+  </test> <!-- Admin Candidate Upload File With Commas Single Test Cases -->
+  <test name="Admin Candidate Upload File With Semicolns Single Test Cases">
+    <classes>
+      <class name="testclasses.admin.CsvUploadSingleTest">
+        <methods>
+          <include name="csvUploadLoadPageTest"/>
+          <include name="csvUploadButtonTest"/>
+          <include name="csvUploadSimcolonTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.CsvUploadSingleTest -->
+    </classes>
+  </test> <!-- Admin Candidate Upload File With Semicolns Single Test Cases -->
+  <test name="Admin Candidate List Preview Multi Test Cases">
     <classes>
       <class name="testclasses.admin.CsvUploadMultiTest">
         <methods>
-          <include name="csvUploadButtonTest"/>
           <include name="csvUploadLoadPageTest"/>
+          <include name="csvPreviewButtonTest"/>
+          <include name="csvPreviewListWithCandidatesDisplayedTest"/>
+          <include name="csvPreviewCancelButtonTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.CsvUploadMultiTest -->
+    </classes>
+  </test> <!-- Admin Candidate List Preview Multi Test Cases -->
+  <test name="Admin Candidate Remove Multi Test Cases">
+    <classes>
+      <class name="testclasses.admin.CsvUploadMultiTest">
+        <methods>
+          <include name="csvUploadLoadPageTest"/>
+          <include name="csvPreviewButtonTest"/>
+          <include name="csvDeleteCandidatesTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.CsvUploadMultiTest -->
+    </classes>
+  </test> <!-- Admin Candidate Remove Multi Test Cases -->
+  <test name="Admin Candidate Upload File With Commas Multi Test Cases">
+    <classes>
+      <class name="testclasses.admin.CsvUploadMultiTest">
+        <methods>
+          <include name="csvUploadLoadPageTest"/>
+          <include name="csvUploadButtonTest"/>
           <include name="csvUploadCommasTest"/>
         </methods>
       </class> <!-- testclasses.admin.CsvUploadMultiTest -->
     </classes>
-  </test> <!-- Default test -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Admin Candidate Upload File With Commas Multi Test Cases -->
+  <test name="Admin Candidate Upload File With Semicolns Multi Test Cases">
+    <classes>
+      <class name="testclasses.admin.CsvUploadMultiTest">
+        <methods>
+          <include name="csvUploadLoadPageTest"/>
+          <include name="csvUploadButtonTest"/>
+          <include name="csvUploadSimcolonTest"/>
+        </methods>
+      </class> <!-- testclasses.admin.CsvUploadMultiTest -->
+    </classes>
+  </test> <!-- Admin Candidate Upload File With Semicolns Multi Test Cases -->
+</suite> <!-- Failed suite [Regression Test Suite] -->

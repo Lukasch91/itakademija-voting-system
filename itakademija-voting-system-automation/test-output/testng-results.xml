@@ -1,30 +1,918 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" total="3" passed="3">
+<testng-results skipped="0" failed="0" total="68" passed="68">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="30392" started-at="2017-03-15T11:13:49Z" finished-at="2017-03-15T11:14:19Z">
+  <suite name="Regression Test Suite" duration-ms="207453" started-at="2017-03-16T08:28:25Z" finished-at="2017-03-16T08:31:52Z">
     <groups>
       <group name="p1">
-        <method signature="CsvUploadMultiTest.csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="csvUploadLoadPageTest" class="testclasses.admin.CsvUploadMultiTest"/>
+        <method signature="RepresentativeLoginTest.testLoginPage(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.RepresentativeLoginTest@343f4d3d]" name="testLoginPage" class="testclasses.rep.RepresentativeLoginTest"/>
+        <method signature="VoteRegistrationSingleTest.voteRegistrationLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.VoteRegistrationSingleTest@e25b2fe]" name="voteRegistrationLoadPageTest" class="testclasses.rep.VoteRegistrationSingleTest"/>
+        <method signature="VoteRegistrationMultiTest.voteRegistrationLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.VoteRegistrationMultiTest@239963d8]" name="voteRegistrationLoadPageTest" class="testclasses.rep.VoteRegistrationMultiTest"/>
+        <method signature="AdminLoginTest.testLoginPage(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.AdminLoginTest@4f7d0008]" name="testLoginPage" class="testclasses.admin.AdminLoginTest"/>
+        <method signature="ConstituencyTest.constituencyLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ConstituencyTest@3fee9989]" name="constituencyLoadPageTest" class="testclasses.admin.ConstituencyTest"/>
+        <method signature="ConstituencyTest.constituencyLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ConstituencyTest@31a5c39e]" name="constituencyLoadPageTest" class="testclasses.admin.ConstituencyTest"/>
+        <method signature="DistrictTest.districtLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.DistrictTest@6e1567f1]" name="districtLoadPageTest" class="testclasses.admin.DistrictTest"/>
+        <method signature="DistrictTest.districtLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.DistrictTest@25bbe1b6]" name="districtLoadPageTest" class="testclasses.admin.DistrictTest"/>
+        <method signature="ReprentativeTest.reprentativeLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ReprentativeTest@6adede5]" name="reprentativeLoadPageTest" class="testclasses.admin.ReprentativeTest"/>
+        <method signature="ReprentativeTest.reprentativeLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ReprentativeTest@64bf3bbf]" name="reprentativeLoadPageTest" class="testclasses.admin.ReprentativeTest"/>
+        <method signature="ReprentativeTest.reprentativeLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ReprentativeTest@617faa95]" name="reprentativeLoadPageTest" class="testclasses.admin.ReprentativeTest"/>
+        <method signature="PartiesTest.partyLoadPageTest(java.lang.String, java.lang.String)[pri:1, instance:testclasses.admin.PartiesTest@71318ec4]" name="partyLoadPageTest" class="testclasses.admin.PartiesTest"/>
+        <method signature="PartiesTest.partyLoadPageTest(java.lang.String, java.lang.String)[pri:1, instance:testclasses.admin.PartiesTest@78c03f1f]" name="partyLoadPageTest" class="testclasses.admin.PartiesTest"/>
+        <method signature="CsvUploadMultiTest.csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadMultiTest@7791a895]" name="csvUploadLoadPageTest" class="testclasses.admin.CsvUploadMultiTest"/>
+        <method signature="CsvUploadMultiTest.csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadMultiTest@61f8bee4]" name="csvUploadLoadPageTest" class="testclasses.admin.CsvUploadMultiTest"/>
+        <method signature="CsvUploadMultiTest.csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadMultiTest@23e028a9]" name="csvUploadLoadPageTest" class="testclasses.admin.CsvUploadMultiTest"/>
+        <method signature="CsvUploadMultiTest.csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadMultiTest@2b552920]" name="csvUploadLoadPageTest" class="testclasses.admin.CsvUploadMultiTest"/>
       </group> <!-- p1 -->
       <group name="p2">
-        <method signature="CsvUploadMultiTest.csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="csvUploadButtonTest" class="testclasses.admin.CsvUploadMultiTest"/>
+        <method signature="VoteRegistrationSingleTest.voteRegistrationForSingleTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.VoteRegistrationSingleTest@e25b2fe]" name="voteRegistrationForSingleTest" class="testclasses.rep.VoteRegistrationSingleTest"/>
+        <method signature="VoteRegistrationMultiTest.voteRegistrationForMultiTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.VoteRegistrationMultiTest@239963d8]" name="voteRegistrationForMultiTest" class="testclasses.rep.VoteRegistrationMultiTest"/>
+        <method signature="ConstituencyTest.addNewConstituencyButtonTest()[pri:0, instance:testclasses.admin.ConstituencyTest@3fee9989]" name="addNewConstituencyButtonTest" class="testclasses.admin.ConstituencyTest"/>
+        <method signature="ConstituencyTest.addNewConstituencyTest(java.lang.String)[pri:0, instance:testclasses.admin.ConstituencyTest@3fee9989]" name="addNewConstituencyTest" class="testclasses.admin.ConstituencyTest"/>
+        <method signature="ConstituencyTest.removeConstituencyTest()[pri:0, instance:testclasses.admin.ConstituencyTest@31a5c39e]" name="removeConstituencyTest" class="testclasses.admin.ConstituencyTest"/>
+        <method signature="DistrictTest.addNewDistrictButtonTest()[pri:0, instance:testclasses.admin.DistrictTest@6e1567f1]" name="addNewDistrictButtonTest" class="testclasses.admin.DistrictTest"/>
+        <method signature="DistrictTest.addNewConstituencyTest(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.DistrictTest@6e1567f1]" name="addNewConstituencyTest" class="testclasses.admin.DistrictTest"/>
+        <method signature="DistrictTest.removeDistrictTest()[pri:0, instance:testclasses.admin.DistrictTest@25bbe1b6]" name="removeDistrictTest" class="testclasses.admin.DistrictTest"/>
+        <method signature="ReprentativeTest.addNewReprentativeTest(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ReprentativeTest@6adede5]" name="addNewReprentativeTest" class="testclasses.admin.ReprentativeTest"/>
+        <method signature="ReprentativeTest.correctPreviewTest()[pri:0, instance:testclasses.admin.ReprentativeTest@64bf3bbf]" name="correctPreviewTest" class="testclasses.admin.ReprentativeTest"/>
+        <method signature="ReprentativeTest.deleteRepresntativeTest()[pri:0, instance:testclasses.admin.ReprentativeTest@617faa95]" name="deleteRepresntativeTest" class="testclasses.admin.ReprentativeTest"/>
+        <method signature="PartiesTest.addPartyButtonTest()[pri:2, instance:testclasses.admin.PartiesTest@71318ec4]" name="addPartyButtonTest" class="testclasses.admin.PartiesTest"/>
+        <method signature="PartiesTest.addNewPartyTest(java.lang.String, java.lang.String)[pri:3, instance:testclasses.admin.PartiesTest@71318ec4]" name="addNewPartyTest" class="testclasses.admin.PartiesTest"/>
+        <method signature="PartiesTest.removePartyTest()[pri:4, instance:testclasses.admin.PartiesTest@78c03f1f]" name="removePartyTest" class="testclasses.admin.PartiesTest"/>
+        <method signature="CsvUploadSingleTest.csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6c3708b3]" name="csvUploadButtonTest" class="testclasses.admin.CsvUploadSingleTest"/>
+        <method signature="CsvUploadSingleTest.csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6ddf90b0]" name="csvUploadButtonTest" class="testclasses.admin.CsvUploadSingleTest"/>
+        <method signature="CsvUploadMultiTest.csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@23e028a9]" name="csvUploadButtonTest" class="testclasses.admin.CsvUploadMultiTest"/>
+        <method signature="CsvUploadMultiTest.csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@2b552920]" name="csvUploadButtonTest" class="testclasses.admin.CsvUploadMultiTest"/>
       </group> <!-- p2 -->
+      <group name="csv2">
+        <method signature="CsvUploadSingleTest.csvPreviewButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@3632be31]" name="csvPreviewButtonTest" class="testclasses.admin.CsvUploadSingleTest"/>
+        <method signature="CsvUploadSingleTest.csvPreviewButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@370736d9]" name="csvPreviewButtonTest" class="testclasses.admin.CsvUploadSingleTest"/>
+        <method signature="CsvUploadMultiTest.csvPreviewButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@7791a895]" name="csvPreviewButtonTest" class="testclasses.admin.CsvUploadMultiTest"/>
+        <method signature="CsvUploadMultiTest.csvPreviewButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@61f8bee4]" name="csvPreviewButtonTest" class="testclasses.admin.CsvUploadMultiTest"/>
+      </group> <!-- csv2 -->
       <group name="csv3">
-        <method signature="CsvUploadMultiTest.csvUploadCommasTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="csvUploadCommasTest" class="testclasses.admin.CsvUploadMultiTest"/>
+        <method signature="CsvUploadSingleTest.csvPreviewCancelButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@3632be31]" name="csvPreviewCancelButtonTest" class="testclasses.admin.CsvUploadSingleTest"/>
+        <method signature="CsvUploadSingleTest.csvPreviewListWithCandidatesDisplayedTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@3632be31]" name="csvPreviewListWithCandidatesDisplayedTest" class="testclasses.admin.CsvUploadSingleTest"/>
+        <method signature="CsvUploadSingleTest.csvDeleteCandidatesTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@370736d9]" name="csvDeleteCandidatesTest" class="testclasses.admin.CsvUploadSingleTest"/>
+        <method signature="CsvUploadSingleTest.csvUploadCommasTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6c3708b3]" name="csvUploadCommasTest" class="testclasses.admin.CsvUploadSingleTest"/>
+        <method signature="CsvUploadSingleTest.csvUploadSimcolonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6ddf90b0]" name="csvUploadSimcolonTest" class="testclasses.admin.CsvUploadSingleTest"/>
+        <method signature="CsvUploadMultiTest.csvPreviewCancelButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@7791a895]" name="csvPreviewCancelButtonTest" class="testclasses.admin.CsvUploadMultiTest"/>
+        <method signature="CsvUploadMultiTest.csvPreviewListWithCandidatesDisplayedTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@7791a895]" name="csvPreviewListWithCandidatesDisplayedTest" class="testclasses.admin.CsvUploadMultiTest"/>
+        <method signature="CsvUploadMultiTest.csvDeleteCandidatesTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@61f8bee4]" name="csvDeleteCandidatesTest" class="testclasses.admin.CsvUploadMultiTest"/>
+        <method signature="CsvUploadMultiTest.csvUploadCommasTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@23e028a9]" name="csvUploadCommasTest" class="testclasses.admin.CsvUploadMultiTest"/>
+        <method signature="CsvUploadMultiTest.csvUploadSimcolonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@2b552920]" name="csvUploadSimcolonTest" class="testclasses.admin.CsvUploadMultiTest"/>
       </group> <!-- csv3 -->
+      <group name="reg">
+        <method signature="CandidateSearchTest.candidateSearchByAbbreviationTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="candidateSearchByAbbreviationTest" class="testclasses._public.CandidateSearchTest"/>
+        <method signature="CandidateSearchTest.candidateSearchByConstituencyTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="candidateSearchByConstituencyTest" class="testclasses._public.CandidateSearchTest"/>
+        <method signature="CandidateSearchTest.candidateSearchByNameTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="candidateSearchByNameTest" class="testclasses._public.CandidateSearchTest"/>
+        <method signature="CandidateSearchTest.candidateSearchByPartyTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="candidateSearchByPartyTest" class="testclasses._public.CandidateSearchTest"/>
+        <method signature="CandidateSearchTest.candidateSearchBySurnameTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="candidateSearchBySurnameTest" class="testclasses._public.CandidateSearchTest"/>
+        <method signature="PublicResultsSingleTest.resultPreviewForSingleConsituencyTest()[pri:0, instance:testclasses._public.PublicResultsSingleTest@3bfdc050]" name="resultPreviewForSingleConsituencyTest" class="testclasses._public.PublicResultsSingleTest"/>
+        <method signature="PublicResultsSingleTest.resultPreviewForSingleConsituencyDistrictTest()[pri:0, instance:testclasses._public.PublicResultsSingleTest@3bfdc050]" name="resultPreviewForSingleConsituencyDistrictTest" class="testclasses._public.PublicResultsSingleTest"/>
+        <method signature="PublicResultsMultiTest.resultPreviewForMultiConsituencyTest()[pri:0, instance:testclasses._public.PublicResultsMultiTest@7cd62f43]" name="resultPreviewForMultiConsituencyTest" class="testclasses._public.PublicResultsMultiTest"/>
+        <method signature="PublicResultsMultiTest.resultPreviewForMultiConsituencyDistrictTest()[pri:0, instance:testclasses._public.PublicResultsMultiTest@7cd62f43]" name="resultPreviewForMultiConsituencyDistrictTest" class="testclasses._public.PublicResultsMultiTest"/>
+      </group> <!-- reg -->
+      <group name="csv1">
+        <method signature="CsvUploadSingleTest.csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadSingleTest@3632be31]" name="csvUploadLoadPageTest" class="testclasses.admin.CsvUploadSingleTest"/>
+        <method signature="CsvUploadSingleTest.csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadSingleTest@370736d9]" name="csvUploadLoadPageTest" class="testclasses.admin.CsvUploadSingleTest"/>
+        <method signature="CsvUploadSingleTest.csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6c3708b3]" name="csvUploadLoadPageTest" class="testclasses.admin.CsvUploadSingleTest"/>
+        <method signature="CsvUploadSingleTest.csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6ddf90b0]" name="csvUploadLoadPageTest" class="testclasses.admin.CsvUploadSingleTest"/>
+      </group> <!-- csv1 -->
+      <group name="smoke">
+        <method signature="CandidateSearchTest.candidateSearchLoadPageTest()[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="candidateSearchLoadPageTest" class="testclasses._public.CandidateSearchTest"/>
+        <method signature="PublicResultsSingleTest.resultPreviewSingleTest()[pri:0, instance:testclasses._public.PublicResultsSingleTest@3bfdc050]" name="resultPreviewSingleTest" class="testclasses._public.PublicResultsSingleTest"/>
+        <method signature="PublicResultsMultiTest.resultPreviewMultiTest()[pri:0, instance:testclasses._public.PublicResultsMultiTest@7cd62f43]" name="resultPreviewMultiTest" class="testclasses._public.PublicResultsMultiTest"/>
+      </group> <!-- smoke -->
     </groups>
-    <test name="Default test" duration-ms="30392" started-at="2017-03-15T11:13:49Z" finished-at="2017-03-15T11:14:19Z">
-      <class name="testclasses.admin.CsvUploadMultiTest">
-        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="open" is-config="true" duration-ms="204" started-at="2017-03-15T13:13:49Z" finished-at="2017-03-15T13:13:49Z">
+    <test name="Candidate Search Test Cases" duration-ms="6626" started-at="2017-03-16T08:28:25Z" finished-at="2017-03-16T08:28:31Z">
+      <class name="testclasses._public.CandidateSearchTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="open" is-config="true" duration-ms="87" started-at="2017-03-16T10:28:25Z" finished-at="2017-03-16T10:28:25Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- open -->
-        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="setUp" is-config="true" duration-ms="15797" started-at="2017-03-15T13:13:49Z" finished-at="2017-03-15T13:14:05Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="setUp" is-config="true" duration-ms="3079" started-at="2017-03-16T10:28:25Z" finished-at="2017-03-16T10:28:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="csvUploadLoadPageTest" duration-ms="6372" started-at="2017-03-15T13:14:05Z" data-provider="loginAsAdmin" finished-at="2017-03-15T13:14:11Z">
+        <test-method status="PASS" signature="candidateSearchLoadPageTest()[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="candidateSearchLoadPageTest" duration-ms="2070" started-at="2017-03-16T10:28:28Z" finished-at="2017-03-16T10:28:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- candidateSearchLoadPageTest -->
+        <test-method status="PASS" signature="candidateSearchByNameTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="candidateSearchByNameTest" duration-ms="365" started-at="2017-03-16T10:28:30Z" depends-on-methods="testclasses._public.CandidateSearchTest.candidateSearchLoadPageTest" finished-at="2017-03-16T10:28:30Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Benas]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- candidateSearchByNameTest -->
+        <test-method status="PASS" signature="candidateSearchBySurnameTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="candidateSearchBySurnameTest" duration-ms="233" started-at="2017-03-16T10:28:30Z" depends-on-methods="testclasses._public.CandidateSearchTest.candidateSearchLoadPageTest" finished-at="2017-03-16T10:28:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Laukietis]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- candidateSearchBySurnameTest -->
+        <test-method status="PASS" signature="candidateSearchByPartyTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="candidateSearchByPartyTest" duration-ms="299" started-at="2017-03-16T10:28:31Z" depends-on-methods="testclasses._public.CandidateSearchTest.candidateSearchLoadPageTest" finished-at="2017-03-16T10:28:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Suvalkijos Lygumų Lyga]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- candidateSearchByPartyTest -->
+        <test-method status="PASS" signature="candidateSearchByAbbreviationTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="candidateSearchByAbbreviationTest" duration-ms="170" started-at="2017-03-16T10:28:31Z" depends-on-methods="testclasses._public.CandidateSearchTest.candidateSearchLoadPageTest" finished-at="2017-03-16T10:28:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[LSDP]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- candidateSearchByAbbreviationTest -->
+        <test-method status="PASS" signature="candidateSearchByConstituencyTest(java.lang.String)[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="candidateSearchByConstituencyTest" duration-ms="196" started-at="2017-03-16T10:28:31Z" depends-on-methods="testclasses._public.CandidateSearchTest.candidateSearchLoadPageTest" finished-at="2017-03-16T10:28:31Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Vilnius]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- candidateSearchByConstituencyTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="tearDown" is-config="true" duration-ms="90" started-at="2017-03-16T10:28:31Z" finished-at="2017-03-16T10:28:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses._public.CandidateSearchTest@18be83e4]" name="close" is-config="true" duration-ms="4" started-at="2017-03-16T10:28:31Z" finished-at="2017-03-16T10:28:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses._public.CandidateSearchTest -->
+    </test> <!-- Candidate Search Test Cases -->
+    <test name="Results For Public Viewers Preview Single Test Cases" duration-ms="7482" started-at="2017-03-16T08:28:31Z" finished-at="2017-03-16T08:28:39Z">
+      <class name="testclasses._public.PublicResultsSingleTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses._public.PublicResultsSingleTest@3bfdc050]" name="open" is-config="true" duration-ms="4" started-at="2017-03-16T10:28:31Z" finished-at="2017-03-16T10:28:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses._public.PublicResultsSingleTest@3bfdc050]" name="setUp" is-config="true" duration-ms="2502" started-at="2017-03-16T10:28:31Z" finished-at="2017-03-16T10:28:34Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="resultPreviewSingleTest()[pri:0, instance:testclasses._public.PublicResultsSingleTest@3bfdc050]" name="resultPreviewSingleTest" duration-ms="2226" started-at="2017-03-16T10:28:34Z" finished-at="2017-03-16T10:28:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- resultPreviewSingleTest -->
+        <test-method status="PASS" signature="resultPreviewForSingleConsituencyTest()[pri:0, instance:testclasses._public.PublicResultsSingleTest@3bfdc050]" name="resultPreviewForSingleConsituencyTest" duration-ms="1355" started-at="2017-03-16T10:28:36Z" depends-on-methods="testclasses._public.PublicResultsSingleTest.resultPreviewSingleTest" finished-at="2017-03-16T10:28:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- resultPreviewForSingleConsituencyTest -->
+        <test-method status="PASS" signature="resultPreviewForSingleConsituencyDistrictTest()[pri:0, instance:testclasses._public.PublicResultsSingleTest@3bfdc050]" name="resultPreviewForSingleConsituencyDistrictTest" duration-ms="1271" started-at="2017-03-16T10:28:38Z" depends-on-methods="testclasses._public.PublicResultsSingleTest.resultPreviewForSingleConsituencyTest" finished-at="2017-03-16T10:28:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- resultPreviewForSingleConsituencyDistrictTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses._public.PublicResultsSingleTest@3bfdc050]" name="tearDown" is-config="true" duration-ms="119" started-at="2017-03-16T10:28:39Z" finished-at="2017-03-16T10:28:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses._public.PublicResultsSingleTest@3bfdc050]" name="close" is-config="true" duration-ms="2" started-at="2017-03-16T10:28:39Z" finished-at="2017-03-16T10:28:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses._public.PublicResultsSingleTest -->
+    </test> <!-- Results For Public Viewers Preview Single Test Cases -->
+    <test name="Results For Public Viewers Preview Multi Test Cases" duration-ms="7807" started-at="2017-03-16T08:28:39Z" finished-at="2017-03-16T08:28:47Z">
+      <class name="testclasses._public.PublicResultsMultiTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses._public.PublicResultsMultiTest@7cd62f43]" name="open" is-config="true" duration-ms="6" started-at="2017-03-16T10:28:39Z" finished-at="2017-03-16T10:28:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses._public.PublicResultsMultiTest@7cd62f43]" name="setUp" is-config="true" duration-ms="2531" started-at="2017-03-16T10:28:39Z" finished-at="2017-03-16T10:28:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="resultPreviewMultiTest()[pri:0, instance:testclasses._public.PublicResultsMultiTest@7cd62f43]" name="resultPreviewMultiTest" duration-ms="2469" started-at="2017-03-16T10:28:41Z" finished-at="2017-03-16T10:28:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- resultPreviewMultiTest -->
+        <test-method status="PASS" signature="resultPreviewForMultiConsituencyTest()[pri:0, instance:testclasses._public.PublicResultsMultiTest@7cd62f43]" name="resultPreviewForMultiConsituencyTest" duration-ms="1389" started-at="2017-03-16T10:28:44Z" depends-on-methods="testclasses._public.PublicResultsMultiTest.resultPreviewMultiTest" finished-at="2017-03-16T10:28:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- resultPreviewForMultiConsituencyTest -->
+        <test-method status="PASS" signature="resultPreviewForMultiConsituencyDistrictTest()[pri:0, instance:testclasses._public.PublicResultsMultiTest@7cd62f43]" name="resultPreviewForMultiConsituencyDistrictTest" duration-ms="1287" started-at="2017-03-16T10:28:45Z" depends-on-methods="testclasses._public.PublicResultsMultiTest.resultPreviewForMultiConsituencyTest" finished-at="2017-03-16T10:28:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- resultPreviewForMultiConsituencyDistrictTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses._public.PublicResultsMultiTest@7cd62f43]" name="tearDown" is-config="true" duration-ms="120" started-at="2017-03-16T10:28:47Z" finished-at="2017-03-16T10:28:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses._public.PublicResultsMultiTest@7cd62f43]" name="close" is-config="true" duration-ms="3" started-at="2017-03-16T10:28:47Z" finished-at="2017-03-16T10:28:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses._public.PublicResultsMultiTest -->
+    </test> <!-- Results For Public Viewers Preview Multi Test Cases -->
+    <test name="Representative Login Test Cases" duration-ms="7349" started-at="2017-03-16T08:28:47Z" finished-at="2017-03-16T08:28:54Z">
+      <class name="testclasses.rep.RepresentativeLoginTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.rep.RepresentativeLoginTest@343f4d3d]" name="open" is-config="true" duration-ms="4" started-at="2017-03-16T10:28:47Z" finished-at="2017-03-16T10:28:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.rep.RepresentativeLoginTest@343f4d3d]" name="setUp" is-config="true" duration-ms="2658" started-at="2017-03-16T10:28:47Z" finished-at="2017-03-16T10:28:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="testLoginPage(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.RepresentativeLoginTest@343f4d3d]" name="testLoginPage" duration-ms="3076" started-at="2017-03-16T10:28:49Z" data-provider="RepresentativeLoginWithValidation" finished-at="2017-03-16T10:28:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[ZV]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="2">
+              <value is-null="true"/>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginPage -->
+        <test-method status="PASS" signature="testLoginPage(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.RepresentativeLoginTest@343f4d3d]" name="testLoginPage" duration-ms="1481" started-at="2017-03-16T10:28:52Z" data-provider="RepresentativeLoginWithValidation" finished-at="2017-03-16T10:28:54Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Neteisingas prisijungimo vardas arba slaptažodis.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginPage -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.rep.RepresentativeLoginTest@343f4d3d]" name="tearDown" is-config="true" duration-ms="122" started-at="2017-03-16T10:28:54Z" finished-at="2017-03-16T10:28:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.rep.RepresentativeLoginTest@343f4d3d]" name="close" is-config="true" duration-ms="2" started-at="2017-03-16T10:28:54Z" finished-at="2017-03-16T10:28:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.rep.RepresentativeLoginTest -->
+    </test> <!-- Representative Login Test Cases -->
+    <test name="Representative Vote Registration Single Test Cases" duration-ms="8115" started-at="2017-03-16T08:28:54Z" finished-at="2017-03-16T08:29:02Z">
+      <class name="testclasses.rep.VoteRegistrationSingleTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.rep.VoteRegistrationSingleTest@e25b2fe]" name="open" is-config="true" duration-ms="3" started-at="2017-03-16T10:28:54Z" finished-at="2017-03-16T10:28:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.rep.VoteRegistrationSingleTest@e25b2fe]" name="setUp" is-config="true" duration-ms="2498" started-at="2017-03-16T10:28:54Z" finished-at="2017-03-16T10:28:57Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="voteRegistrationLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.VoteRegistrationSingleTest@e25b2fe]" name="voteRegistrationLoadPageTest" duration-ms="3463" started-at="2017-03-16T10:28:57Z" data-provider="loginAsRepresentative" finished-at="2017-03-16T10:29:00Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[ZV]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- voteRegistrationLoadPageTest -->
+        <test-method status="PASS" signature="voteRegistrationForSingleTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.VoteRegistrationSingleTest@e25b2fe]" name="voteRegistrationForSingleTest" duration-ms="2024" started-at="2017-03-16T10:29:00Z" depends-on-methods="testclasses.rep.VoteRegistrationSingleTest.voteRegistrationLoadPageTest" finished-at="2017-03-16T10:29:02Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[12]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[10]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- voteRegistrationForSingleTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.rep.VoteRegistrationSingleTest@e25b2fe]" name="tearDown" is-config="true" duration-ms="121" started-at="2017-03-16T10:29:02Z" finished-at="2017-03-16T10:29:02Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.rep.VoteRegistrationSingleTest@e25b2fe]" name="close" is-config="true" duration-ms="2" started-at="2017-03-16T10:29:02Z" finished-at="2017-03-16T10:29:02Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.rep.VoteRegistrationSingleTest -->
+    </test> <!-- Representative Vote Registration Single Test Cases -->
+    <test name="Representative Vote Registration Multi Test Cases" duration-ms="7827" started-at="2017-03-16T08:29:02Z" finished-at="2017-03-16T08:29:10Z">
+      <class name="testclasses.rep.VoteRegistrationMultiTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.rep.VoteRegistrationMultiTest@239963d8]" name="open" is-config="true" duration-ms="3" started-at="2017-03-16T10:29:02Z" finished-at="2017-03-16T10:29:02Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.rep.VoteRegistrationMultiTest@239963d8]" name="setUp" is-config="true" duration-ms="2534" started-at="2017-03-16T10:29:02Z" finished-at="2017-03-16T10:29:05Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="voteRegistrationLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.VoteRegistrationMultiTest@239963d8]" name="voteRegistrationLoadPageTest" duration-ms="3240" started-at="2017-03-16T10:29:05Z" data-provider="loginAsRepresentative" finished-at="2017-03-16T10:29:08Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[ZV]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[123]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- voteRegistrationLoadPageTest -->
+        <test-method status="PASS" signature="voteRegistrationForMultiTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.rep.VoteRegistrationMultiTest@239963d8]" name="voteRegistrationForMultiTest" duration-ms="1945" started-at="2017-03-16T10:29:08Z" depends-on-methods="testclasses.rep.VoteRegistrationMultiTest.voteRegistrationLoadPageTest" finished-at="2017-03-16T10:29:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[21]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[1]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- voteRegistrationForMultiTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.rep.VoteRegistrationMultiTest@239963d8]" name="tearDown" is-config="true" duration-ms="100" started-at="2017-03-16T10:29:10Z" finished-at="2017-03-16T10:29:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.rep.VoteRegistrationMultiTest@239963d8]" name="close" is-config="true" duration-ms="3" started-at="2017-03-16T10:29:10Z" finished-at="2017-03-16T10:29:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.rep.VoteRegistrationMultiTest -->
+    </test> <!-- Representative Vote Registration Multi Test Cases -->
+    <test name="Admin Login Test Cases" duration-ms="9528" started-at="2017-03-16T08:29:10Z" finished-at="2017-03-16T08:29:20Z">
+      <class name="testclasses.admin.AdminLoginTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.AdminLoginTest@4f7d0008]" name="open" is-config="true" duration-ms="5" started-at="2017-03-16T10:29:10Z" finished-at="2017-03-16T10:29:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.AdminLoginTest@4f7d0008]" name="setUp" is-config="true" duration-ms="2559" started-at="2017-03-16T10:29:10Z" finished-at="2017-03-16T10:29:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="testLoginPage(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.AdminLoginTest@4f7d0008]" name="testLoginPage" duration-ms="3843" started-at="2017-03-16T10:29:13Z" data-provider="AdminLoginWithValidation" finished-at="2017-03-16T10:29:16Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+            <param index="2">
+              <value is-null="true"/>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginPage -->
+        <test-method status="PASS" signature="testLoginPage(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.AdminLoginTest@4f7d0008]" name="testLoginPage" duration-ms="1434" started-at="2017-03-16T10:29:16Z" data-provider="AdminLoginWithValidation" finished-at="2017-03-16T10:29:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Neteisingas prisijungimo vardas arba slaptažodis.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginPage -->
+        <test-method status="PASS" signature="testLoginPage(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.AdminLoginTest@4f7d0008]" name="testLoginPage" duration-ms="1552" started-at="2017-03-16T10:29:18Z" data-provider="AdminLoginWithValidation" finished-at="2017-03-16T10:29:19Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[passx]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Neteisingas prisijungimo vardas arba slaptažodis.]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginPage -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.AdminLoginTest@4f7d0008]" name="tearDown" is-config="true" duration-ms="120" started-at="2017-03-16T10:29:19Z" finished-at="2017-03-16T10:29:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.AdminLoginTest@4f7d0008]" name="close" is-config="true" duration-ms="7" started-at="2017-03-16T10:29:20Z" finished-at="2017-03-16T10:29:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.AdminLoginTest -->
+    </test> <!-- Admin Login Test Cases -->
+    <test name="Admin Add Constituency Test Cases" duration-ms="7171" started-at="2017-03-16T08:29:20Z" finished-at="2017-03-16T08:29:27Z">
+      <class name="testclasses.admin.ConstituencyTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.ConstituencyTest@3fee9989]" name="open" is-config="true" duration-ms="3" started-at="2017-03-16T10:29:20Z" finished-at="2017-03-16T10:29:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.ConstituencyTest@3fee9989]" name="setUp" is-config="true" duration-ms="2500" started-at="2017-03-16T10:29:20Z" finished-at="2017-03-16T10:29:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="constituencyLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ConstituencyTest@3fee9989]" name="constituencyLoadPageTest" duration-ms="3889" started-at="2017-03-16T10:29:22Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:29:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- constituencyLoadPageTest -->
+        <test-method status="PASS" signature="addNewConstituencyButtonTest()[pri:0, instance:testclasses.admin.ConstituencyTest@3fee9989]" name="addNewConstituencyButtonTest" duration-ms="152" started-at="2017-03-16T10:29:26Z" depends-on-methods="testclasses.admin.ConstituencyTest.constituencyLoadPageTest" finished-at="2017-03-16T10:29:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addNewConstituencyButtonTest -->
+        <test-method status="PASS" signature="addNewConstituencyTest(java.lang.String)[pri:0, instance:testclasses.admin.ConstituencyTest@3fee9989]" name="addNewConstituencyTest" duration-ms="500" started-at="2017-03-16T10:29:26Z" depends-on-methods="testclasses.admin.ConstituencyTest.addNewConstituencyButtonTest" finished-at="2017-03-16T10:29:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Vilnius]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addNewConstituencyTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.ConstituencyTest@3fee9989]" name="tearDown" is-config="true" duration-ms="122" started-at="2017-03-16T10:29:27Z" finished-at="2017-03-16T10:29:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.ConstituencyTest@3fee9989]" name="close" is-config="true" duration-ms="3" started-at="2017-03-16T10:29:27Z" finished-at="2017-03-16T10:29:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.ConstituencyTest -->
+    </test> <!-- Admin Add Constituency Test Cases -->
+    <test name="Admin Constituency remove Test Cases" duration-ms="7896" started-at="2017-03-16T08:29:27Z" finished-at="2017-03-16T08:29:35Z">
+      <class name="testclasses.admin.ConstituencyTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.ConstituencyTest@31a5c39e]" name="open" is-config="true" duration-ms="2" started-at="2017-03-16T10:29:27Z" finished-at="2017-03-16T10:29:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.ConstituencyTest@31a5c39e]" name="setUp" is-config="true" duration-ms="2511" started-at="2017-03-16T10:29:27Z" finished-at="2017-03-16T10:29:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="constituencyLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ConstituencyTest@31a5c39e]" name="constituencyLoadPageTest" duration-ms="3692" started-at="2017-03-16T10:29:29Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:29:33Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- constituencyLoadPageTest -->
+        <test-method status="PASS" signature="removeConstituencyTest()[pri:0, instance:testclasses.admin.ConstituencyTest@31a5c39e]" name="removeConstituencyTest" duration-ms="1614" started-at="2017-03-16T10:29:33Z" depends-on-methods="testclasses.admin.ConstituencyTest.constituencyLoadPageTest" finished-at="2017-03-16T10:29:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- removeConstituencyTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.ConstituencyTest@31a5c39e]" name="tearDown" is-config="true" duration-ms="72" started-at="2017-03-16T10:29:35Z" finished-at="2017-03-16T10:29:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.ConstituencyTest@31a5c39e]" name="close" is-config="true" duration-ms="3" started-at="2017-03-16T10:29:35Z" finished-at="2017-03-16T10:29:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.ConstituencyTest -->
+    </test> <!-- Admin Constituency remove Test Cases -->
+    <test name="Admin District Add Test Cases" duration-ms="8118" started-at="2017-03-16T08:29:35Z" finished-at="2017-03-16T08:29:43Z">
+      <class name="testclasses.admin.DistrictTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.DistrictTest@6e1567f1]" name="open" is-config="true" duration-ms="7" started-at="2017-03-16T10:29:35Z" finished-at="2017-03-16T10:29:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.DistrictTest@6e1567f1]" name="setUp" is-config="true" duration-ms="2538" started-at="2017-03-16T10:29:35Z" finished-at="2017-03-16T10:29:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="districtLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.DistrictTest@6e1567f1]" name="districtLoadPageTest" duration-ms="4372" started-at="2017-03-16T10:29:37Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:29:42Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- districtLoadPageTest -->
+        <test-method status="PASS" signature="addNewDistrictButtonTest()[pri:0, instance:testclasses.admin.DistrictTest@6e1567f1]" name="addNewDistrictButtonTest" duration-ms="174" started-at="2017-03-16T10:29:42Z" depends-on-methods="testclasses.admin.DistrictTest.districtLoadPageTest" finished-at="2017-03-16T10:29:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addNewDistrictButtonTest -->
+        <test-method status="PASS" signature="addNewConstituencyTest(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.DistrictTest@6e1567f1]" name="addNewConstituencyTest" duration-ms="902" started-at="2017-03-16T10:29:42Z" depends-on-methods="testclasses.admin.DistrictTest.addNewDistrictButtonTest" finished-at="2017-03-16T10:29:43Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Naujamiestis]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Seimo g. 31 Vilnius]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[568]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addNewConstituencyTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.DistrictTest@6e1567f1]" name="tearDown" is-config="true" duration-ms="121" started-at="2017-03-16T10:29:43Z" finished-at="2017-03-16T10:29:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.DistrictTest@6e1567f1]" name="close" is-config="true" duration-ms="2" started-at="2017-03-16T10:29:43Z" finished-at="2017-03-16T10:29:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.DistrictTest -->
+    </test> <!-- Admin District Add Test Cases -->
+    <test name="Admin District Remove Test Cases" duration-ms="8232" started-at="2017-03-16T08:29:43Z" finished-at="2017-03-16T08:29:51Z">
+      <class name="testclasses.admin.DistrictTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.DistrictTest@25bbe1b6]" name="open" is-config="true" duration-ms="3" started-at="2017-03-16T10:29:43Z" finished-at="2017-03-16T10:29:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.DistrictTest@25bbe1b6]" name="setUp" is-config="true" duration-ms="2532" started-at="2017-03-16T10:29:43Z" finished-at="2017-03-16T10:29:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="districtLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.DistrictTest@25bbe1b6]" name="districtLoadPageTest" duration-ms="4102" started-at="2017-03-16T10:29:45Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:29:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- districtLoadPageTest -->
+        <test-method status="PASS" signature="removeDistrictTest()[pri:0, instance:testclasses.admin.DistrictTest@25bbe1b6]" name="removeDistrictTest" duration-ms="1467" started-at="2017-03-16T10:29:49Z" depends-on-methods="testclasses.admin.DistrictTest.districtLoadPageTest" finished-at="2017-03-16T10:29:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- removeDistrictTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.DistrictTest@25bbe1b6]" name="tearDown" is-config="true" duration-ms="122" started-at="2017-03-16T10:29:51Z" finished-at="2017-03-16T10:29:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.DistrictTest@25bbe1b6]" name="close" is-config="true" duration-ms="3" started-at="2017-03-16T10:29:51Z" finished-at="2017-03-16T10:29:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.DistrictTest -->
+    </test> <!-- Admin District Remove Test Cases -->
+    <test name="Admin Representative Add Test Cases" duration-ms="9687" started-at="2017-03-16T08:29:51Z" finished-at="2017-03-16T08:30:01Z">
+      <class name="testclasses.admin.ReprentativeTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.ReprentativeTest@6adede5]" name="open" is-config="true" duration-ms="3" started-at="2017-03-16T10:29:51Z" finished-at="2017-03-16T10:29:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.ReprentativeTest@6adede5]" name="setUp" is-config="true" duration-ms="2484" started-at="2017-03-16T10:29:51Z" finished-at="2017-03-16T10:29:53Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="reprentativeLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ReprentativeTest@6adede5]" name="reprentativeLoadPageTest" duration-ms="4207" started-at="2017-03-16T10:29:53Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:29:58Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reprentativeLoadPageTest -->
+        <test-method status="PASS" signature="addNewReprentativeTest(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ReprentativeTest@6adede5]" name="addNewReprentativeTest" duration-ms="2885" started-at="2017-03-16T10:29:58Z" depends-on-methods="testclasses.admin.ReprentativeTest.reprentativeLoadPageTest" finished-at="2017-03-16T10:30:01Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Jonas]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Jonaitis]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[janus]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[janus@warpportal.com]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addNewReprentativeTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.ReprentativeTest@6adede5]" name="tearDown" is-config="true" duration-ms="100" started-at="2017-03-16T10:30:01Z" finished-at="2017-03-16T10:30:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.ReprentativeTest@6adede5]" name="close" is-config="true" duration-ms="6" started-at="2017-03-16T10:30:01Z" finished-at="2017-03-16T10:30:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.ReprentativeTest -->
+    </test> <!-- Admin Representative Add Test Cases -->
+    <test name="Admin Representative Preview Test Cases" duration-ms="7011" started-at="2017-03-16T08:30:01Z" finished-at="2017-03-16T08:30:08Z">
+      <class name="testclasses.admin.ReprentativeTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.ReprentativeTest@64bf3bbf]" name="open" is-config="true" duration-ms="7" started-at="2017-03-16T10:30:01Z" finished-at="2017-03-16T10:30:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.ReprentativeTest@64bf3bbf]" name="setUp" is-config="true" duration-ms="2598" started-at="2017-03-16T10:30:01Z" finished-at="2017-03-16T10:30:03Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="reprentativeLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ReprentativeTest@64bf3bbf]" name="reprentativeLoadPageTest" duration-ms="4098" started-at="2017-03-16T10:30:03Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:30:07Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reprentativeLoadPageTest -->
+        <test-method status="PASS" signature="correctPreviewTest()[pri:0, instance:testclasses.admin.ReprentativeTest@64bf3bbf]" name="correctPreviewTest" duration-ms="226" started-at="2017-03-16T10:30:07Z" depends-on-methods="testclasses.admin.ReprentativeTest.reprentativeLoadPageTest" finished-at="2017-03-16T10:30:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- correctPreviewTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.ReprentativeTest@64bf3bbf]" name="tearDown" is-config="true" duration-ms="72" started-at="2017-03-16T10:30:08Z" finished-at="2017-03-16T10:30:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.ReprentativeTest@64bf3bbf]" name="close" is-config="true" duration-ms="5" started-at="2017-03-16T10:30:08Z" finished-at="2017-03-16T10:30:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.ReprentativeTest -->
+    </test> <!-- Admin Representative Preview Test Cases -->
+    <test name="Admin Representative Remove Test Cases" duration-ms="7924" started-at="2017-03-16T08:30:08Z" finished-at="2017-03-16T08:30:16Z">
+      <class name="testclasses.admin.ReprentativeTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.ReprentativeTest@617faa95]" name="open" is-config="true" duration-ms="8" started-at="2017-03-16T10:30:08Z" finished-at="2017-03-16T10:30:08Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.ReprentativeTest@617faa95]" name="setUp" is-config="true" duration-ms="2520" started-at="2017-03-16T10:30:08Z" finished-at="2017-03-16T10:30:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="reprentativeLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.ReprentativeTest@617faa95]" name="reprentativeLoadPageTest" duration-ms="4197" started-at="2017-03-16T10:30:10Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:30:14Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- reprentativeLoadPageTest -->
+        <test-method status="PASS" signature="deleteRepresntativeTest()[pri:0, instance:testclasses.admin.ReprentativeTest@617faa95]" name="deleteRepresntativeTest" duration-ms="1065" started-at="2017-03-16T10:30:14Z" depends-on-methods="testclasses.admin.ReprentativeTest.reprentativeLoadPageTest" finished-at="2017-03-16T10:30:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteRepresntativeTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.ReprentativeTest@617faa95]" name="tearDown" is-config="true" duration-ms="128" started-at="2017-03-16T10:30:16Z" finished-at="2017-03-16T10:30:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.ReprentativeTest@617faa95]" name="close" is-config="true" duration-ms="3" started-at="2017-03-16T10:30:16Z" finished-at="2017-03-16T10:30:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.ReprentativeTest -->
+    </test> <!-- Admin Representative Remove Test Cases -->
+    <test name="Admin Parties Test Cases" duration-ms="7413" started-at="2017-03-16T08:30:16Z" finished-at="2017-03-16T08:30:23Z">
+      <class name="testclasses.admin.PartiesTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.PartiesTest@71318ec4]" name="open" is-config="true" duration-ms="4" started-at="2017-03-16T10:30:16Z" finished-at="2017-03-16T10:30:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.PartiesTest@71318ec4]" name="setUp" is-config="true" duration-ms="2570" started-at="2017-03-16T10:30:16Z" finished-at="2017-03-16T10:30:18Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="partyLoadPageTest(java.lang.String, java.lang.String)[pri:1, instance:testclasses.admin.PartiesTest@71318ec4]" name="partyLoadPageTest" duration-ms="3781" started-at="2017-03-16T10:30:18Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:30:22Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- partyLoadPageTest -->
+        <test-method status="PASS" signature="addPartyButtonTest()[pri:2, instance:testclasses.admin.PartiesTest@71318ec4]" name="addPartyButtonTest" duration-ms="252" started-at="2017-03-16T10:30:22Z" depends-on-methods="testclasses.admin.PartiesTest.partyLoadPageTest" finished-at="2017-03-16T10:30:22Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addPartyButtonTest -->
+        <test-method status="PASS" signature="addNewPartyTest(java.lang.String, java.lang.String)[pri:3, instance:testclasses.admin.PartiesTest@71318ec4]" name="addNewPartyTest" duration-ms="717" started-at="2017-03-16T10:30:22Z" depends-on-methods="testclasses.admin.PartiesTest.addPartyButtonTest" finished-at="2017-03-16T10:30:23Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Lietuvos Laisves Sujudimas]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[LLS]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addNewPartyTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.PartiesTest@71318ec4]" name="tearDown" is-config="true" duration-ms="75" started-at="2017-03-16T10:30:23Z" finished-at="2017-03-16T10:30:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.PartiesTest@71318ec4]" name="close" is-config="true" duration-ms="11" started-at="2017-03-16T10:30:23Z" finished-at="2017-03-16T10:30:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.PartiesTest -->
+    </test> <!-- Admin Parties Test Cases -->
+    <test name="Admin Parties Remove Test Cases" duration-ms="7918" started-at="2017-03-16T08:30:23Z" finished-at="2017-03-16T08:30:31Z">
+      <class name="testclasses.admin.PartiesTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.PartiesTest@78c03f1f]" name="open" is-config="true" duration-ms="4" started-at="2017-03-16T10:30:23Z" finished-at="2017-03-16T10:30:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.PartiesTest@78c03f1f]" name="setUp" is-config="true" duration-ms="2498" started-at="2017-03-16T10:30:23Z" finished-at="2017-03-16T10:30:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="partyLoadPageTest(java.lang.String, java.lang.String)[pri:1, instance:testclasses.admin.PartiesTest@78c03f1f]" name="partyLoadPageTest" duration-ms="3833" started-at="2017-03-16T10:30:26Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:30:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- partyLoadPageTest -->
+        <test-method status="PASS" signature="removePartyTest()[pri:4, instance:testclasses.admin.PartiesTest@78c03f1f]" name="removePartyTest" duration-ms="1503" started-at="2017-03-16T10:30:29Z" depends-on-methods="testclasses.admin.PartiesTest.partyLoadPageTest" finished-at="2017-03-16T10:30:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- removePartyTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.PartiesTest@78c03f1f]" name="tearDown" is-config="true" duration-ms="75" started-at="2017-03-16T10:30:31Z" finished-at="2017-03-16T10:30:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.PartiesTest@78c03f1f]" name="close" is-config="true" duration-ms="2" started-at="2017-03-16T10:30:31Z" finished-at="2017-03-16T10:30:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.PartiesTest -->
+    </test> <!-- Admin Parties Remove Test Cases -->
+    <test name="Admin Candidate List Preview Single Test Cases" duration-ms="7668" started-at="2017-03-16T08:30:31Z" finished-at="2017-03-16T08:30:39Z">
+      <class name="testclasses.admin.CsvUploadSingleTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@3632be31]" name="open" is-config="true" duration-ms="5" started-at="2017-03-16T10:30:31Z" finished-at="2017-03-16T10:30:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@3632be31]" name="setUp" is-config="true" duration-ms="2489" started-at="2017-03-16T10:30:31Z" finished-at="2017-03-16T10:30:33Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadSingleTest@3632be31]" name="csvUploadLoadPageTest" duration-ms="3943" started-at="2017-03-16T10:30:33Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:30:37Z">
           <params>
             <param index="0">
               <value>
@@ -40,23 +928,339 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- csvUploadLoadPageTest -->
-        <test-method status="PASS" signature="csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="csvUploadButtonTest" duration-ms="772" started-at="2017-03-15T13:14:11Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest" finished-at="2017-03-15T13:14:12Z">
+        <test-method status="PASS" signature="csvPreviewButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@3632be31]" name="csvPreviewButtonTest" duration-ms="832" started-at="2017-03-16T10:30:37Z" depends-on-methods="testclasses.admin.CsvUploadSingleTest.csvUploadLoadPageTest" finished-at="2017-03-16T10:30:38Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- csvUploadButtonTest -->
-        <test-method status="PASS" signature="csvUploadCommasTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="csvUploadCommasTest" duration-ms="6396" started-at="2017-03-15T13:14:12Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvUploadButtonTest" finished-at="2017-03-15T13:14:19Z">
+        </test-method> <!-- csvPreviewButtonTest -->
+        <test-method status="PASS" signature="csvPreviewListWithCandidatesDisplayedTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@3632be31]" name="csvPreviewListWithCandidatesDisplayedTest" duration-ms="28" started-at="2017-03-16T10:30:38Z" depends-on-methods="testclasses.admin.CsvUploadSingleTest.csvPreviewButtonTest" finished-at="2017-03-16T10:30:38Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- csvUploadCommasTest -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="tearDown" is-config="true" duration-ms="714" started-at="2017-03-15T13:14:19Z" finished-at="2017-03-15T13:14:19Z">
+        </test-method> <!-- csvPreviewListWithCandidatesDisplayedTest -->
+        <test-method status="PASS" signature="csvPreviewCancelButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@3632be31]" name="csvPreviewCancelButtonTest" duration-ms="282" started-at="2017-03-16T10:30:38Z" depends-on-methods="testclasses.admin.CsvUploadSingleTest.csvPreviewButtonTest" finished-at="2017-03-16T10:30:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvPreviewCancelButtonTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@3632be31]" name="tearDown" is-config="true" duration-ms="80" started-at="2017-03-16T10:30:39Z" finished-at="2017-03-16T10:30:39Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@14acaea5]" name="close" is-config="true" duration-ms="27" started-at="2017-03-15T13:14:19Z" finished-at="2017-03-15T13:14:19Z">
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@3632be31]" name="close" is-config="true" duration-ms="5" started-at="2017-03-16T10:30:39Z" finished-at="2017-03-16T10:30:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.CsvUploadSingleTest -->
+    </test> <!-- Admin Candidate List Preview Single Test Cases -->
+    <test name="Admin Candidate Remove Single Test Cases" duration-ms="8068" started-at="2017-03-16T08:30:39Z" finished-at="2017-03-16T08:30:47Z">
+      <class name="testclasses.admin.CsvUploadSingleTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@370736d9]" name="open" is-config="true" duration-ms="6" started-at="2017-03-16T10:30:39Z" finished-at="2017-03-16T10:30:39Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@370736d9]" name="setUp" is-config="true" duration-ms="2522" started-at="2017-03-16T10:30:39Z" finished-at="2017-03-16T10:30:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadSingleTest@370736d9]" name="csvUploadLoadPageTest" duration-ms="3882" started-at="2017-03-16T10:30:41Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:30:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadLoadPageTest -->
+        <test-method status="PASS" signature="csvPreviewButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@370736d9]" name="csvPreviewButtonTest" duration-ms="833" started-at="2017-03-16T10:30:45Z" depends-on-methods="testclasses.admin.CsvUploadSingleTest.csvUploadLoadPageTest" finished-at="2017-03-16T10:30:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvPreviewButtonTest -->
+        <test-method status="PASS" signature="csvDeleteCandidatesTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@370736d9]" name="csvDeleteCandidatesTest" duration-ms="740" started-at="2017-03-16T10:30:46Z" depends-on-methods="testclasses.admin.CsvUploadSingleTest.csvPreviewButtonTest" finished-at="2017-03-16T10:30:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvDeleteCandidatesTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@370736d9]" name="tearDown" is-config="true" duration-ms="81" started-at="2017-03-16T10:30:47Z" finished-at="2017-03-16T10:30:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@370736d9]" name="close" is-config="true" duration-ms="3" started-at="2017-03-16T10:30:47Z" finished-at="2017-03-16T10:30:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.CsvUploadSingleTest -->
+    </test> <!-- Admin Candidate Remove Single Test Cases -->
+    <test name="Admin Candidate Upload File With Commas Single Test Cases" duration-ms="11654" started-at="2017-03-16T08:30:47Z" finished-at="2017-03-16T08:30:58Z">
+      <class name="testclasses.admin.CsvUploadSingleTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6c3708b3]" name="open" is-config="true" duration-ms="3" started-at="2017-03-16T10:30:47Z" finished-at="2017-03-16T10:30:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6c3708b3]" name="setUp" is-config="true" duration-ms="2555" started-at="2017-03-16T10:30:47Z" finished-at="2017-03-16T10:30:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6c3708b3]" name="csvUploadLoadPageTest" duration-ms="3830" started-at="2017-03-16T10:30:49Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:30:53Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadLoadPageTest -->
+        <test-method status="PASS" signature="csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6c3708b3]" name="csvUploadButtonTest" duration-ms="795" started-at="2017-03-16T10:30:53Z" depends-on-methods="testclasses.admin.CsvUploadSingleTest.csvUploadLoadPageTest" finished-at="2017-03-16T10:30:54Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadButtonTest -->
+        <test-method status="PASS" signature="csvUploadCommasTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6c3708b3]" name="csvUploadCommasTest" duration-ms="4386" started-at="2017-03-16T10:30:54Z" depends-on-methods="testclasses.admin.CsvUploadSingleTest.csvUploadButtonTest" finished-at="2017-03-16T10:30:58Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadCommasTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6c3708b3]" name="tearDown" is-config="true" duration-ms="81" started-at="2017-03-16T10:30:58Z" finished-at="2017-03-16T10:30:58Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6c3708b3]" name="close" is-config="true" duration-ms="2" started-at="2017-03-16T10:30:58Z" finished-at="2017-03-16T10:30:58Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.CsvUploadSingleTest -->
+    </test> <!-- Admin Candidate Upload File With Commas Single Test Cases -->
+    <test name="Admin Candidate Upload File With Semicolns Single Test Cases" duration-ms="12886" started-at="2017-03-16T08:30:58Z" finished-at="2017-03-16T08:31:11Z">
+      <class name="testclasses.admin.CsvUploadSingleTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6ddf90b0]" name="open" is-config="true" duration-ms="3" started-at="2017-03-16T10:30:58Z" finished-at="2017-03-16T10:30:58Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6ddf90b0]" name="setUp" is-config="true" duration-ms="2548" started-at="2017-03-16T10:30:58Z" finished-at="2017-03-16T10:31:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6ddf90b0]" name="csvUploadLoadPageTest" duration-ms="4934" started-at="2017-03-16T10:31:01Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:31:06Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadLoadPageTest -->
+        <test-method status="PASS" signature="csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6ddf90b0]" name="csvUploadButtonTest" duration-ms="776" started-at="2017-03-16T10:31:06Z" depends-on-methods="testclasses.admin.CsvUploadSingleTest.csvUploadLoadPageTest" finished-at="2017-03-16T10:31:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadButtonTest -->
+        <test-method status="PASS" signature="csvUploadSimcolonTest()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6ddf90b0]" name="csvUploadSimcolonTest" duration-ms="4517" started-at="2017-03-16T10:31:07Z" depends-on-methods="testclasses.admin.CsvUploadSingleTest.csvUploadButtonTest" finished-at="2017-03-16T10:31:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadSimcolonTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6ddf90b0]" name="tearDown" is-config="true" duration-ms="73" started-at="2017-03-16T10:31:11Z" finished-at="2017-03-16T10:31:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.CsvUploadSingleTest@6ddf90b0]" name="close" is-config="true" duration-ms="32" started-at="2017-03-16T10:31:11Z" finished-at="2017-03-16T10:31:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.CsvUploadSingleTest -->
+    </test> <!-- Admin Candidate Upload File With Semicolns Single Test Cases -->
+    <test name="Admin Candidate List Preview Multi Test Cases" duration-ms="9238" started-at="2017-03-16T08:31:11Z" finished-at="2017-03-16T08:31:20Z">
+      <class name="testclasses.admin.CsvUploadMultiTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@7791a895]" name="open" is-config="true" duration-ms="6" started-at="2017-03-16T10:31:11Z" finished-at="2017-03-16T10:31:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@7791a895]" name="setUp" is-config="true" duration-ms="4033" started-at="2017-03-16T10:31:11Z" finished-at="2017-03-16T10:31:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadMultiTest@7791a895]" name="csvUploadLoadPageTest" duration-ms="3942" started-at="2017-03-16T10:31:15Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:31:19Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadLoadPageTest -->
+        <test-method status="PASS" signature="csvPreviewButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@7791a895]" name="csvPreviewButtonTest" duration-ms="810" started-at="2017-03-16T10:31:19Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest" finished-at="2017-03-16T10:31:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvPreviewButtonTest -->
+        <test-method status="PASS" signature="csvPreviewListWithCandidatesDisplayedTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@7791a895]" name="csvPreviewListWithCandidatesDisplayedTest" duration-ms="19" started-at="2017-03-16T10:31:20Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvPreviewButtonTest" finished-at="2017-03-16T10:31:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvPreviewListWithCandidatesDisplayedTest -->
+        <test-method status="PASS" signature="csvPreviewCancelButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@7791a895]" name="csvPreviewCancelButtonTest" duration-ms="304" started-at="2017-03-16T10:31:20Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvPreviewButtonTest" finished-at="2017-03-16T10:31:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvPreviewCancelButtonTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@7791a895]" name="tearDown" is-config="true" duration-ms="119" started-at="2017-03-16T10:31:20Z" finished-at="2017-03-16T10:31:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@7791a895]" name="close" is-config="true" duration-ms="2" started-at="2017-03-16T10:31:20Z" finished-at="2017-03-16T10:31:20Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- close -->
       </class> <!-- testclasses.admin.CsvUploadMultiTest -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Admin Candidate List Preview Multi Test Cases -->
+    <test name="Admin Candidate Remove Multi Test Cases" duration-ms="8336" started-at="2017-03-16T08:31:20Z" finished-at="2017-03-16T08:31:29Z">
+      <class name="testclasses.admin.CsvUploadMultiTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@61f8bee4]" name="open" is-config="true" duration-ms="2" started-at="2017-03-16T10:31:20Z" finished-at="2017-03-16T10:31:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@61f8bee4]" name="setUp" is-config="true" duration-ms="2509" started-at="2017-03-16T10:31:20Z" finished-at="2017-03-16T10:31:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadMultiTest@61f8bee4]" name="csvUploadLoadPageTest" duration-ms="4105" started-at="2017-03-16T10:31:23Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:31:27Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadLoadPageTest -->
+        <test-method status="PASS" signature="csvPreviewButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@61f8bee4]" name="csvPreviewButtonTest" duration-ms="839" started-at="2017-03-16T10:31:27Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest" finished-at="2017-03-16T10:31:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvPreviewButtonTest -->
+        <test-method status="PASS" signature="csvDeleteCandidatesTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@61f8bee4]" name="csvDeleteCandidatesTest" duration-ms="752" started-at="2017-03-16T10:31:28Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvPreviewButtonTest" finished-at="2017-03-16T10:31:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvDeleteCandidatesTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@61f8bee4]" name="tearDown" is-config="true" duration-ms="123" started-at="2017-03-16T10:31:29Z" finished-at="2017-03-16T10:31:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@61f8bee4]" name="close" is-config="true" duration-ms="2" started-at="2017-03-16T10:31:29Z" finished-at="2017-03-16T10:31:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.CsvUploadMultiTest -->
+    </test> <!-- Admin Candidate Remove Multi Test Cases -->
+    <test name="Admin Candidate Upload File With Commas Multi Test Cases" duration-ms="11675" started-at="2017-03-16T08:31:29Z" finished-at="2017-03-16T08:31:41Z">
+      <class name="testclasses.admin.CsvUploadMultiTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@23e028a9]" name="open" is-config="true" duration-ms="2" started-at="2017-03-16T10:31:29Z" finished-at="2017-03-16T10:31:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@23e028a9]" name="setUp" is-config="true" duration-ms="2441" started-at="2017-03-16T10:31:29Z" finished-at="2017-03-16T10:31:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadMultiTest@23e028a9]" name="csvUploadLoadPageTest" duration-ms="4026" started-at="2017-03-16T10:31:31Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:31:35Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadLoadPageTest -->
+        <test-method status="PASS" signature="csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@23e028a9]" name="csvUploadButtonTest" duration-ms="777" started-at="2017-03-16T10:31:35Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest" finished-at="2017-03-16T10:31:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadButtonTest -->
+        <test-method status="PASS" signature="csvUploadCommasTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@23e028a9]" name="csvUploadCommasTest" duration-ms="4350" started-at="2017-03-16T10:31:36Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvUploadButtonTest" finished-at="2017-03-16T10:31:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadCommasTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@23e028a9]" name="tearDown" is-config="true" duration-ms="72" started-at="2017-03-16T10:31:40Z" finished-at="2017-03-16T10:31:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@23e028a9]" name="close" is-config="true" duration-ms="3" started-at="2017-03-16T10:31:40Z" finished-at="2017-03-16T10:31:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.CsvUploadMultiTest -->
+    </test> <!-- Admin Candidate Upload File With Commas Multi Test Cases -->
+    <test name="Admin Candidate Upload File With Semicolns Multi Test Cases" duration-ms="11735" started-at="2017-03-16T08:31:41Z" finished-at="2017-03-16T08:31:52Z">
+      <class name="testclasses.admin.CsvUploadMultiTest">
+        <test-method status="PASS" signature="open()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@2b552920]" name="open" is-config="true" duration-ms="2" started-at="2017-03-16T10:31:41Z" finished-at="2017-03-16T10:31:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- open -->
+        <test-method status="PASS" signature="setUp()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@2b552920]" name="setUp" is-config="true" duration-ms="2534" started-at="2017-03-16T10:31:41Z" finished-at="2017-03-16T10:31:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="csvUploadLoadPageTest(java.lang.String, java.lang.String)[pri:0, instance:testclasses.admin.CsvUploadMultiTest@2b552920]" name="csvUploadLoadPageTest" duration-ms="3842" started-at="2017-03-16T10:31:43Z" data-provider="loginAsAdmin" finished-at="2017-03-16T10:31:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[admin]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[pass]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadLoadPageTest -->
+        <test-method status="PASS" signature="csvUploadButtonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@2b552920]" name="csvUploadButtonTest" duration-ms="754" started-at="2017-03-16T10:31:47Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvUploadLoadPageTest" finished-at="2017-03-16T10:31:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadButtonTest -->
+        <test-method status="PASS" signature="csvUploadSimcolonTest()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@2b552920]" name="csvUploadSimcolonTest" duration-ms="4467" started-at="2017-03-16T10:31:48Z" depends-on-methods="testclasses.admin.CsvUploadMultiTest.csvUploadButtonTest" finished-at="2017-03-16T10:31:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- csvUploadSimcolonTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@2b552920]" name="tearDown" is-config="true" duration-ms="123" started-at="2017-03-16T10:31:52Z" finished-at="2017-03-16T10:31:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="close()[pri:0, instance:testclasses.admin.CsvUploadMultiTest@2b552920]" name="close" is-config="true" duration-ms="11" started-at="2017-03-16T10:31:52Z" finished-at="2017-03-16T10:31:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- close -->
+      </class> <!-- testclasses.admin.CsvUploadMultiTest -->
+    </test> <!-- Admin Candidate Upload File With Semicolns Multi Test Cases -->
+  </suite> <!-- Regression Test Suite -->
 </testng-results>

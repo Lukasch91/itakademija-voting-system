@@ -11,7 +11,7 @@ import _utils.DataBaseInsert;
 import data.LoginData;
 
 public class VoteRegistrationMultiTest extends BaseTest {
-	
+
 	@Test(groups = { "p1" }, dataProvider = "loginAsRepresentative", dataProviderClass = LoginData.class)
 	public void voteRegistrationLoadPageTest(String username, String password)
 			throws ClassNotFoundException, SQLException, InterruptedException {
@@ -20,9 +20,8 @@ public class VoteRegistrationMultiTest extends BaseTest {
 		voteRegistrationMulti.loadPage();
 		voteRegistrationMulti.assertCorrectMultiVoteRegistrationPage();
 	}
-	//nezinau kaip paassertint
-	
-	@Parameters({"firstField", "secondField"})
+
+	@Parameters({ "firstField", "secondField" })
 	@Test(groups = { "p2" }, dependsOnMethods = "voteRegistrationLoadPageTest")
 	public void voteRegistrationForMultiTest(String firstField, String secondField) {
 		voteRegistrationMulti.assertVoteRegistrationForMultiWorks(firstField, secondField);

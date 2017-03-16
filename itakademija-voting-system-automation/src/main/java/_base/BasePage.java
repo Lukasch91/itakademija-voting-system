@@ -7,12 +7,15 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.base.Function;
+
+import _pages.admin.AdminCandidateUploadMulti;
 
 public class BasePage {
 
@@ -21,9 +24,11 @@ public class BasePage {
 	public String PAGE_TITLE;
 	public static final int WAIT_FOR_ELEMENT = 20;
 	public By popUp = By.xpath("//*[@class='btn btn-xs btn-danger']");
+	public By remove = By.xpath("//*[@class='glyphicon glyphicon-remove']");
 
 	public BasePage(WebDriver webDriver) {
 		this.webDriver = webDriver;
+		PageFactory.initElements(webDriver, this);
 	}
 
 	public void loadPage() {
@@ -39,12 +44,12 @@ public class BasePage {
 		webElement.sendKeys(text);
 		assertEquals(webElement.getAttribute("value"), text);
 	}
-	
+
 	public void setElementTextNoClear(WebElement webElement, String text) {
 		webElement.sendKeys(text);
 		assertEquals(webElement.getAttribute("value"), text);
 	}
-	
+
 	public void setElementTextNoAssert(WebElement webElement, String text) {
 		webElement.clear();
 		webElement.sendKeys(text);
@@ -61,9 +66,9 @@ public class BasePage {
 		webElement.click();
 		waitForJavascript();
 	}
-	
+
 	public void clickRemove() {
-		clickElement(webDriver.findElement(By.xpath("//*[@class='glyphicon glyphicon-remove']")));
+		clickElement(webDriver.findElement(remove));
 	}
 
 	// --------------GETTERS-----------------
@@ -81,7 +86,7 @@ public class BasePage {
 		} catch (NoSuchElementException e) {
 			return false;
 		} finally {
-			
+
 		}
 
 	}
@@ -163,7 +168,7 @@ public class BasePage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 		wait.until(ExpectedConditions.elementToBeClickable(by));
 	}
-	
+
 	/**
 	 * Wait until your system gets optimized
 	 */
